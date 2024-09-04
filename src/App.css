@@ -1,0 +1,29 @@
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.animate-scroll {
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes rotateZIn {
+    from {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+    to {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
+  
+  .rotate-z-on-load {
+    display: inline-block;
+    animation: rotateZIn 0.5s ease-in ;
+    /* animation-delay: 5s; */
+  }
