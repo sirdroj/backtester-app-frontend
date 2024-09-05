@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
-
-
-
-// const [selected,setSelected]=useState(1)
-
-
-
-
 const Backtest = () => {
   const pathRef = useRef(null);
+  const [selected, setSelected] = useState(1);
+  // const inputs=[
+  //   "Trend":
+  //   "inputs":[{
+  //     "name":"Moving Averages(MA)",
+  //     "type":"dropdown",
+  //     "options":["some MA","simple MA"]
+  //   }],
+
+  // ]
   const items = [
     "Technical Filters",
     "Fundamental Filters",
@@ -27,14 +29,14 @@ const Backtest = () => {
 
     items.forEach((_, index) => {
       const point = path.getPointAtLength(
-        (totalLength / (items.length +1)) * (index+1 )
+        (totalLength / (items.length + 1)) * (index + 1)
       );
 
       const item = itemRefs.current[index];
 
       item.style.position = "absolute";
       item.style.left = `${point.x - 100}px`;
-      item.style.top = `${point.y-20 }px`;
+      item.style.top = `${point.y - 30}px`;
     });
   }, [items]);
 
@@ -51,7 +53,12 @@ const Backtest = () => {
             <li
               key={index}
               ref={(el) => (itemRefs.current[index] = el)}
-              className={`${true?"shadow-[0_0_10px_5px_rgba(255,255,255,0.5)]":""}  p-1 text-center absolute border-[2px] border-[#111F29] bg-white shadow-white text-black w-52 font-bold rounded-full z-[1000]`}
+              onClick={() => setSelected(index)}
+              className={`${
+                selected == index
+                  ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100"
+                  : "bg-slate-100"
+              } cursor-pointer  p-1 text-center absolute border-[1px] border-[#111F29]  text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
             >
               {item}
             </li>
@@ -74,10 +81,117 @@ const Backtest = () => {
       </div>
 
       <div
-        className="m-2 w-96 bg-black bg-opacity-10 h-96 rounded-lg"
+        className="m-2 w-[670px] relative h-[400px] bg-black bg-opacity-10 rounded-lg "
         style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
       >
-        sdf
+        <div className="relative my-[1%]  h-[98%] overflow-y-scroll ">
+          <section className="relative ">
+            <div className="px-4 p-2">
+              <h2 className="flex border-b-[1px] items-center text-[25px] px-4">
+                {" "}
+                <img
+                  className="w-[35px] relative top-[3px] mx-2"
+                  src="./icons/trending up.png"
+                />
+                Trend
+              </h2>
+              <p className="text-center pt-1 pb-4 text-[12px]">
+                Some info about trends and what is trends
+              </p>
+              <form className="inputs px-2">
+                <div className="flex justify-between items-center">
+                  <label>Moving Averages(MA)</label>
+                  <select
+                    id="states"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                  >
+                    {/* <option selected>Choose a state</option> */}
+                    <option value="SA">Simple MA </option>
+                    <option value="CMA">some MA</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div className="px-4 p-2">
+              <h2 className="flex border-b-[1px] items-center text-[25px] px-4">
+                {" "}
+                <img
+                  className="w-[35px] relative top-[3px] mx-2"
+                  src="./icons/trending up.png"
+                />
+                Trend
+              </h2>
+              <p className="text-center pt-1 pb-4 text-[12px]">
+                Some info about trends and what is trends
+              </p>
+              <form className="inputs px-2">
+                <div className="flex justify-between items-center">
+                  <label>Moving Averages(MA)</label>
+                  <select
+                    id="states"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                  >
+                    {/* <option selected>Choose a state</option> */}
+                    <option value="SA">Simple MA </option>
+                    <option value="CMA">some MA</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div className="px-4 p-2">
+              <h2 className="flex border-b-[1px] items-center text-[25px] px-4">
+                {" "}
+                <img
+                  className="w-[35px] relative top-[3px] mx-2"
+                  src="./icons/trending up.png"
+                />
+                Trend
+              </h2>
+              <p className="text-center pt-1 pb-4 text-[12px]">
+                Some info about trends and what is trends
+              </p>
+              <form className="inputs px-2">
+                <div className="flex justify-between items-center">
+                  <label>Moving Averages(MA)</label>
+                  <select
+                    id="states"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                  >
+                    {/* <option selected>Choose a state</option> */}
+                    <option value="SA">Simple MA </option>
+                    <option value="CMA">some MA</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div className="px-4 p-2">
+              <h2 className="flex border-b-[1px] items-center text-[25px] px-4">
+                {" "}
+                <img
+                  className="w-[35px] relative top-[3px] mx-2"
+                  src="./icons/trending up.png"
+                />
+                Trend
+              </h2>
+              <p className="text-center pt-1 pb-4 text-[12px]">
+                Some info about trends and what is trends
+              </p>
+              <form className="inputs px-2">
+                <div className="flex justify-between items-center">
+                  <label>Moving Averages(MA)</label>
+                  <select
+                    id="states"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                  >
+                    {/* <option selected>Choose a state</option> */}
+                    <option value="SA">Simple MA </option>
+                    <option value="CMA">some MA</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
