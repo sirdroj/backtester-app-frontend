@@ -1,9 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import TechnicalFiltersForm from "../components/forms/technicalFiltersForm";
-import FundamentalForm from "../components/forms/FundamentalForm";
-import Test from "../components/forms/Test";
-import StrategyType from "../components/forms/StrategyType";
-import TechnicalForm2 from "../components/forms/TechnicalForm2";
 
 const Backtest = () => {
   const pathRef = useRef(null);
@@ -17,13 +12,6 @@ const Backtest = () => {
     "Breadth": { indicator: "", period: "", priceField: "", quantity: 0 }
   });
 
-  const dc={
-    // 0:<TechnicalFiltersForm />,
-    0:<TechnicalForm2 />,
-    // 1:<Test />
-    1:<FundamentalForm />,
-    2:<StrategyType />
-  }
   const items = [
     "Technical Filters",
     "Fundamental Filters",
@@ -158,13 +146,13 @@ const Backtest = () => {
   };
 
   return (
-    <div className="flex justify-end mx-20 h-[100vh] overflow-hidden  text-white">
+    <div className="flex justify-end mx-20 h-[700px]  ">
       <div className=" w-[35%] z-1 h-full left-0 top-0  ">
         <img
-          // src="/images/fundamentalFilter_badge.png"
-          src="/images/bt_badge.png"
-          className=" mx-auto left-[-4rem] top-[170px] absolute w-[290px]"
+          src="/images/fundamentalFilter_badge.png"
+          className=" mx-auto left-[-3rem] top-[160px] absolute w-[250px]"
         />
+        {currentIndex}
         <ul>
           {items.map((item, index) => (
             <li
@@ -225,9 +213,116 @@ const Backtest = () => {
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
             <section className="relative">
-              {dc[currentIndex]}
-              {/* <TechnicalFiltersForm /> */}
+              {Object.keys(inputDataTypes).map((filter)=>{
+
               
+              {inputDataTypes[filter].map((item, index) => (
+                <div className="px-4 p-2 ">
+                  <h2 className="flex border-b-[1px] h-[40px] items-center text-[20px] px-4">
+                    <img
+                      className="h-[25px] relative top-[0px] mx-2"
+                      src={item.icon}
+                    />
+                    {item["name"]}
+                  </h2>
+                  <p className="text-center pt-1 pb-4 text-[12px]">
+                    Some info about trends and what is trends
+                  </p>
+                  <form className="inputs px-2">
+                    <div className="flex justify-between items-center">
+                      <label>Indicator</label>
+                      <select
+                        id="states"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                      >
+                        <option value="SA">Simple MA</option>
+                        <option value="CMA">some MA</option>
+                      </select>
+                    </div>
+                    <div className="flex justify-between items-center ">
+                      <label>Period</label>
+                      <select
+                        id="states"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                      >
+                        <option value="SA">Days</option>
+                        <option value="CMA">Year</option>
+                      </select>
+                      <div class="relative flex items-center max-w-[8rem] mt-2">
+                        <button
+                        onClick={()=>count>0?setCount(count-1):""}
+                          type="button"
+                          id="decrement-button"
+                          data-input-counter-decrement="quantity-input"
+                          class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                        >
+                          <svg
+                            class="w-3 h-3 text-gray-900 dark:text-white"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 18 2"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M1 1h16"
+                            />
+                          </svg>
+                        </button>
+                        <input
+                          type="text"
+                          id="quantity-input"
+                          data-input-counter
+                          aria-describedby="helper-text-explanation"
+                          class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="999"
+                          // value={item["name"]=="Trend"?{count}:""}
+                          value={item.name === "Trend" ? count : ""}
+
+                          required
+                        />
+                        <button
+                          type="button"
+                          id="increment-button"
+                          onClick={()=>setCount(count+1)}
+
+                          data-input-counter-increment="quantity-input"
+                          class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                        >
+                          <svg
+                            class="w-3 h-3 text-gray-900 dark:text-white"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 18 18"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 1v16M1 9h16"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-2">
+                      <label>Price Field</label>
+                      <select
+                        id="states"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                      >
+                        <option value="SA">Simple MA</option>
+                        <option value="CMA">some MA</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              ))}})}
               <div className="mt-10 w-full p-4 flex justify-end">
                 <div className="z-10 px-2 w-20 leftbutton h-7 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer">
                   Save
