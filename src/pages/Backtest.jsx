@@ -4,6 +4,7 @@ import FundamentalForm from "../components/forms/FundamentalForm";
 import Test from "../components/forms/Test";
 import StrategyType from "../components/forms/StrategyType";
 import TechnicalForm2 from "../components/forms/TechnicalForm2";
+import CombineFilters from "../components/forms/CombineFilters";
 
 const Backtest = () => {
   const pathRef = useRef(null);
@@ -22,7 +23,8 @@ const Backtest = () => {
     0:<TechnicalForm2 />,
     // 1:<Test />
     1:<FundamentalForm />,
-    2:<StrategyType />
+    2:<StrategyType />,
+    3:<CombineFilters />
   }
   const items = [
     "Technical Filters",

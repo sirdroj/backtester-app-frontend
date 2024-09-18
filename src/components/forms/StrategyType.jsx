@@ -774,15 +774,15 @@ const StrategyType = () => {
       title: "DATA TYPE",
       children: [
         {
-          title: "Sourse type",
+          title: "Source type",
           info: "Some info about trends and what is ",
           children: [
             {
-              title: "Data Sourse",
+              title: "Data Source",
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["use provided data", "to upload Csv"],
+                  options: ["Native data", "Upload Data"],
                 },
               ],
             },
@@ -794,7 +794,7 @@ const StrategyType = () => {
       title: "ANALYSIS MIXTURE",
       children: [
         {
-          title: "Technical Threshold",
+          title: "Technical Threshhold",
           // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
@@ -851,11 +851,11 @@ const StrategyType = () => {
           ],
         },
         {
-          title: "Fundamental Threshold",
+          title: "Fundamental Threshhold",
           // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
-              title: "Sales",
+              title: "Sales Growth",
               inputs: [
                 {
                   type: "dropdown",
@@ -988,7 +988,7 @@ const StrategyType = () => {
         <div key={index} className="px-">
           <div
             onClick={() => handleDropdownClick(index)}
-            className="flex justify-between border-b-[px] h-[40px] items-center text-[20px] px-4 cursor-pointer"
+            className="flex justify-between border-b-[px] h-[40px] items-center text-[18px] px-4 cursor-pointer"
             style={{
               boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)", // Adjust shadow as needed
             }}
@@ -1009,7 +1009,7 @@ const StrategyType = () => {
           >
             {item.children.map((input, subIndex) => (
               <div key={subIndex} className="mb-4 ">
-                <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
+                <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
                   <span
                     className={`relative top-[20px] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                       currentDropDown.includes(index) ? "" : "shadow-none"
@@ -1028,7 +1028,7 @@ const StrategyType = () => {
                     boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                   }}
                 >
-                  <p className="text-center pt-1 pb-4 text-[12px]">
+                  <p className="text-center pt-1 pb-4 text-[10px]">
                     {input.info}
                   </p>
 

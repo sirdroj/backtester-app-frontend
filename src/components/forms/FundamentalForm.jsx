@@ -52,7 +52,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Sales",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Calculation Method",
@@ -64,7 +64,7 @@ const FundamentalForm = () => {
 
         {
           title: "Expense",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -85,7 +85,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Operating Profit",
-          info: "Some info about trends and what is Operating Profit",
+          // info: "Some info about trends and what is Operating Profit",
           children: [
             {
               title: "Matric",
@@ -106,7 +106,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Profit before tax	",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -127,7 +127,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Net Profit +",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -156,7 +156,7 @@ const FundamentalForm = () => {
         },
         {
           title: "EPS in Rs	",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Period",
@@ -177,7 +177,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Sales",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Matric",
@@ -198,7 +198,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Expense",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -224,7 +224,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Operating Profit",
-          info: "Some info about trends and what is Operating Profit",
+          // info: "Some info about trends and what is Operating Profit",
           children: [
             {
               title: "Matric",
@@ -246,7 +246,7 @@ const FundamentalForm = () => {
 
         {
           title: "Tax %	",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "input",
@@ -263,7 +263,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Equity Capital	",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -284,7 +284,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Reserves",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -305,7 +305,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Borrowings ",
-          info: "Some info about trends and what is",
+          // info: "Some info about trends and what is",
           children: [
             {
               title: "Matric",
@@ -333,7 +333,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Other Liabilities ",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -358,7 +358,7 @@ const FundamentalForm = () => {
         },
         // {
         //   title: "Total Liabilities ",
-        //   info: "Some info about trends and what is ",
+        //   // info: "Some info about trends and what is ",
         //   children: [
         //     {
         //       title: "Matric",
@@ -379,7 +379,7 @@ const FundamentalForm = () => {
         // },
         {
           title: "Fixed Assets",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -410,7 +410,7 @@ const FundamentalForm = () => {
         },
         {
           title: "CWIP",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -431,7 +431,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Investments",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -452,7 +452,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Other Assets",
-          info: "Some info about trends and what is ",
+          // info: "Some info about trends and what is ",
           children: [
             {
               title: "Matric",
@@ -492,7 +492,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Cash from Operating Activity",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -528,7 +528,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Cash from Investing Activity",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -560,7 +560,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Cash from Investing Activity",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "Matric",
@@ -593,7 +593,7 @@ const FundamentalForm = () => {
         },
         // {
         //   title: "Net Cash Flow	",
-        //   info: "Some info about trends and what is Sales",
+        //   // info: "Some info about trends and what is Sales",
         //   children: [],
         // },
       ],
@@ -603,7 +603,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Ratios",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",
@@ -625,7 +625,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Cash Conversion Cycle	",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",
@@ -652,7 +652,7 @@ const FundamentalForm = () => {
       children: [
         {
           title: "Promoters",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",
@@ -681,7 +681,7 @@ const FundamentalForm = () => {
         },
         {
           title: "FIIs",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",
@@ -708,7 +708,7 @@ const FundamentalForm = () => {
         },
         {
           title: "DIIs",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",
@@ -736,7 +736,7 @@ const FundamentalForm = () => {
         },
         {
           title: "Public",
-          info: "Some info about trends and what is Sales",
+          // info: "Some info about trends and what is Sales",
           children: [
             {
               title: "metric",

@@ -39,7 +39,7 @@ const TechnicalForm2 = () => {
       children: [
         {
           title: " ",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Indicator",
@@ -80,7 +80,7 @@ const TechnicalForm2 = () => {
       children: [
         {
           title: " ",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Indicator",
@@ -121,7 +121,7 @@ const TechnicalForm2 = () => {
       children: [
         {
           title: " ",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Indicator",
@@ -162,7 +162,7 @@ const TechnicalForm2 = () => {
       children: [
         {
           title: " ",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Indicator",
@@ -203,7 +203,7 @@ const TechnicalForm2 = () => {
       children: [
         {
           title: "",
-          info: "Some info about trends and what is QUARTERLY RESULTS",
+          // info: "Some info about trends and what is QUARTERLY RESULTS",
           children: [
             {
               title: "Indicator",
