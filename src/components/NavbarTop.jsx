@@ -27,7 +27,7 @@ export const NavbarTop = () => {
   }, [location.pathname]);
 
   return (
-    <div className="h-5 w-[98%]  z-50">
+    <div className="h-5 w-[98%] fixed z-50">
       <header className="w-full flex justify-center ">
         <ul className=" z-100 flex justify-between p-1 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-[#5E445F]  rounded-full mt-5 text-[12px]">
           <Link to={"/"} className="text-white z-50">

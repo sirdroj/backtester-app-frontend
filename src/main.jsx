@@ -13,6 +13,7 @@ import UserGuide from './pages/UserGuide.jsx';
 import Home from './pages/Home.jsx';
 import Backtest from './pages/Backtest.jsx';
 import UserGuideBeta from './pages/UserGuideBeta.jsx';
+import Backtest2 from './pages/Backtest2.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "backtest",
         element:<Backtest />,
+      },
+      {
+        path: "backtest2",
+        element:<Backtest2 />,
       },
       {
         path: "backtest-guide-beta",

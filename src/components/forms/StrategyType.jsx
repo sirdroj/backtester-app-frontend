@@ -33,742 +33,6 @@ const initializeFormData = (inputsData) => {
 };
 
 const StrategyType = () => {
-  // const inputsData = [
-  //   {
-  //     title: "QUARTERLY RESULTS",
-  //     children: [
-  //       {
-  //         title: "Sales",
-  //         info: "Some info about trends and what is QUARTERLY RESULTS",
-  //         children: [
-  //           {
-  //             title: "Calculation Method",
-  //             inputs: [
-  //               {
-  //                 type: "dropdown",
-  //                 options: [
-  //                   "YOY-Growth",
-  //                   "QTR-Growth",
-  //                   "Rate of Change",
-  //                   "CAGR",
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-
-  //       {
-  //         title: "Expense",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["Material Cost", "Employee Cost"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             inputs: [
-  //               {
-  //                 type: "dropdown",
-  //                 options: [
-  //                   "YOY-Growth",
-  //                   "QTR-Growth",
-  //                   "Rate of Change",
-  //                   "CAGR",
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Operating Profit",
-  //         info: "Some info about trends and what is Operating Profit",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Profit before tax	",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["Tax %"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Net Profit +",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Profit after tax	",
-  //               "Reported Net Profit	",
-  //               "Minority share	",
-  //               "Profit for EPS	",
-  //               "Exceptional items AT	",
-  //               "Profit for PE	",
-  //               // "EPS in Rs	",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "EPS in Rs	",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "PROFIT & LOSS",
-  //     children: [
-  //       {
-  //         title: "Sales",
-  //         info: "Some info about trends and what is QUARTERLY RESULTS",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Expense",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Material Cost",
-  //               "Manufacturing Cost",
-  //               "Employee Cost",
-  //               "Other Cost %	",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Operating Profit",
-  //         info: "Some info about trends and what is Operating Profit",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-
-  //       {
-  //         title: "Tax %	",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "input",
-  //             type: "dropdown",
-  //             options: [1, 2, 3],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-
-  //   {
-  //     title: "BALANCE SHEET",
-  //     children: [
-  //       {
-  //         title: "Equity Capital	",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Reserves",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Borrowings ",
-  //         info: "Some info about trends and what is",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Long term Borrowings	",
-  //               "Short term Borrowings	",
-  //               "Lease Liabilities	",
-  //               "Preference Capital	",
-  //               "Other Borrowings	",
-  //               "Depreciation",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Other Liabilities ",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Non controlling int	",
-  //               "Trade Payables",
-  //               "Other liability items",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       // {
-  //       //   title: "Total Liabilities ",
-  //       //   info: "Some info about trends and what is ",
-  //       //   children: [
-  //       //     {
-  //       //       title: "Matric",
-  //       //       type: "dropdown",
-  //       //       options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //       //     },
-  //       //     {
-  //       //       title: "Period",
-  //       //       type: "dropdown",
-  //       //       options: [1, 2, 3],
-  //       //     },
-  //       //     {
-  //       //       title: "Calculation Method",
-  //       //       type: "dropdown",
-  //       //       options: [1, 2, 3],
-  //       //     },
-  //       //   ],
-  //       // },
-  //       {
-  //         title: "Fixed Assets",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Land",
-  //               "Building",
-  //               "Plant Machinery",
-  //               "Equipments",
-  //               "Furniture n fittings",
-  //               "Vehicles",
-  //               "Intangible Assets",
-  //               "Other fixed assets	",
-  //               "Accumulated Depreciation",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "CWIP",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Investments",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Other Assets",
-  //         info: "Some info about trends and what is ",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Inventories",
-  //               "Cash Equivalents",
-  //               "Short term loans	",
-  //               "Other asset items	",
-  //             ],
-  //           },
-  //           {
-  //             title: "trade receivables",
-  //             type: "dropdown",
-  //             options: [
-  //               "Receivables over 6m	",
-  //               "Receivables under 6m	",
-  //               "Prov for Doubtful	",
-  //             ],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "CASH FLOWS",
-  //     children: [
-  //       {
-  //         title: "Cash from Operating Activity",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: ["OPM %", "Interest", "Depreciation"],
-  //           },
-  //           {
-  //             title: "Profit from operations",
-  //             type: "dropdown",
-  //             options: [
-  //               "Receivables	",
-  //               "Inventory",
-  //               "Payables",
-  //               "Other WC items	",
-  //             ],
-  //           },
-  //           {
-  //             title: "Working capital changes	",
-  //             type: "dropdown",
-  //             options: ["Interest paid", "Direct taxes"],
-  //           },
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Cash from Investing Activity",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Fixed assets purchased	",
-  //               "Fixed assets sold	",
-  //               "Investments purchased	",
-  //               "Investments sold	",
-  //               "Interest received	",
-  //               "Dividends received	",
-  //               "Redemp n Canc of Shares	",
-  //               "Acquisition of companies	",
-  //               "Other investing items",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Cash from Investing Activity",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "Matric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Proceeds from shares	",
-  //               "Proceeds from borrowings	",
-  //               "Repayment of borrowings	",
-  //               "Interest paid fin	",
-  //               "Dividends paid	",
-  //               "Dividends received	",
-  //               "Financial liabilities	",
-  //               "Share application money	",
-  //               "Application money refund	",
-  //               "Other financing items	",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       // {
-  //       //   title: "Net Cash Flow	",
-  //       //   info: "Some info about trends and what is Sales",
-  //       //   children: [],
-  //       // },
-  //     ],
-  //   },
-  //   {
-  //     title: "RATIOS",
-  //     children: [
-  //       {
-  //         title: "Ratios",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: ["Debtor Days	", "Inventory Days	", "Days Payable	"],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Cash Conversion Cycle	",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: ["Working Capital Days	", "ROCE %"],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "SHAREHOLDING PATTERN",
-  //     children: [
-  //       {
-  //         title: "Promoters",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Tata Sons Private Limited",
-  //               "Tata Investment Corporation Limited",
-  //               "Ewart Investments Limited",
-  //               "Af-Taab Investment Company Limited",
-  //               "Panatone Finvest Limited",
-  //               "Titan Company Limited",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "FIIs",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Dodona Holdings Limited",
-  //               "Arisaig India Fund Limited",
-  //               "St. James's Place Emerging Markets Equity Unit Tru",
-  //               "Amansa Holdings Private Limited",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "DIIs",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Sbi Life Insurance Co Ltd",
-  //               "Axis Mutual Fund Trustee Limited A/C Axis Mutual Fund",
-  //               "HDFC Life Insurance Co Ltd",
-  //               "Nippon Life India Trustee Ltd-A/C Nippon India Growth Fund",
-  //               "UTI Flexi Cap Fund",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         title: "Public",
-  //         info: "Some info about trends and what is Sales",
-  //         children: [
-  //           {
-  //             title: "metric",
-  //             type: "dropdown",
-  //             options: [
-  //               "Derive Trading And Resorts Private Limited",
-  //               "Prazim Trading And Investment Co. Pvt. Ltd.",
-  //             ],
-  //           },
-
-  //           {
-  //             title: "Period",
-  //             type: "period",
-  //             options: ["days", "week", "year"],
-  //           },
-  //           {
-  //             title: "Calculation Method",
-  //             type: "dropdown",
-  //             options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const inputsData = [
     {
       title: "DATA TYPE",
@@ -780,6 +44,10 @@ const StrategyType = () => {
             {
               title: "Data Source",
               inputs: [
+                {
+                  type: "file upload",
+                  show_option: "Upload Data",
+                },
                 {
                   type: "dropdown",
                   options: ["Native data", "Upload Data"],
@@ -802,7 +70,14 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Exponential MA","Wilder's MA","Custom MAs","15","10","8"],
+                  options: [
+                    "Exponential MA",
+                    "Wilder's MA",
+                    "Custom MAs",
+                    "15",
+                    "10",
+                    "8",
+                  ],
                 },
                 {
                   type: "dropdown",
@@ -819,7 +94,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["RSI","Stochastic","15","10","8",],
+                  options: ["RSI", "Stochastic", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
@@ -836,7 +111,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Volume Accunulation","15","10","8",],
+                  options: ["Volume Accunulation", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
@@ -859,9 +134,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["QTR-Growth",
-                    "Rate of Change",
-                    "CAGR",10,15],
+                  options: ["QTR-Growth", "Rate of Change", "CAGR", 10, 15],
                 },
                 {
                   type: "dropdown",
@@ -878,7 +151,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Employee Cost","50%","20%"],
+                  options: ["Employee Cost", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
@@ -895,7 +168,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [ "35","30%","20%",],
+                  options: ["35", "30%", "20%"],
                 },
                 {
                   type: "dropdown",
@@ -912,7 +185,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [ "Interest", "Depreciation","50%","20%"],
+                  options: ["Interest", "Depreciation", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
@@ -929,12 +202,15 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [ 
+                  options: [
                     "Reported Net Profit",
                     "Minority share",
                     "Profit for EPS",
                     "Exceptional items AT",
-                    "Profit for PE","50%","20%"],
+                    "Profit for PE",
+                    "50%",
+                    "20%",
+                  ],
                 },
                 {
                   type: "dropdown",
@@ -1038,15 +314,18 @@ const StrategyType = () => {
                         {/* <div> {field.title} </div> */}
                         <label>{field.title}</label>
                         <div className=" flex justify-between inputs_wrapper">
-
-
                           {field.inputs.map((input) => {
                             return (
                               <div key={input.id} className="mx-2 ">
+                                {input.type === "file upload" && (
+                                  <div className="p-[9px] bg-gray-700 text-[10px] rounded-lg">
+ <input className="" type="file" accept=".csv, .xlsx" />                                  </div>
+                                )}
+
                                 {input.type === "dropdown" && (
                                   <select
                                     id="states"
-                                    className= " bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
+                                    className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
                                   >
                                     {input.options.map(
                                       (option, optionIndex) => (
@@ -1060,6 +339,7 @@ const StrategyType = () => {
                                     )}
                                   </select>
                                 )}
+
                                 {input.type === "fixed" && (
                                   <div
                                     id="states"
@@ -1068,6 +348,7 @@ const StrategyType = () => {
                                     {input.info}
                                   </div>
                                 )}
+
                                 {input.type === "number" && (
                                   <div class="relative flex items-center max-w-[8rem]">
                                     <button
@@ -1136,8 +417,6 @@ const StrategyType = () => {
                               </div>
                             );
                           })}
-
-                          
                         </div>
                       </div>
                     );

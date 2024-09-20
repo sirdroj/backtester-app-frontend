@@ -11,7 +11,7 @@ function App() {
 
   return (
  
-  <div className="w-screen h-[800px]  bg-gradient-to-r from-[#3E2539] to-[#101F29]  overflow-hidden text-white">
+  <div className="w-screen min-h-screen  bg-gradient-to-r from-[#3E2539] to-[#101F29]  overflow-hidden text-white">
     <NavbarTop />
     <div className="mt-10 overflow-hidden">
 

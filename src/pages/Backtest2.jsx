@@ -24,7 +24,7 @@ const Backtest = () => {
     1: <FundamentalForm />,
     2: <StrategyType />,
     3: <CombineFilters />,
-    4:<TradeInvestPeriod />
+    4: <TradeInvestPeriod />,
   };
   const items = [
     "Technical Filters",
