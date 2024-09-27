@@ -204,7 +204,7 @@ const Backtest = () => {
   };
 
   return (
-    <div className="flex justify-end p-20 px-10 w-screen  h-screen border-[1px] fixed top-0 text-white">
+    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white">
       <div className="relative w-[35%] z-1  left-[-35px] top-[-100px]  ">
         <img
           src="/images/bt_badge.png"

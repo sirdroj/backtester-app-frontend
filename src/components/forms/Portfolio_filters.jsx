@@ -110,7 +110,81 @@ const Portfolio_filters = () => {
         childrens: [
           {
             label: "Cash from Operating Activity",
-            values: ["OPM %", "10 Days", "YOY-growth"],
+            values: [
+              "OPM %",
+              "Profit from Receivables",
+              "Intrest Paied",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+          {
+            label: "Cash from Investing Activity",
+            values: ["Fixed assets purchased", "10 Days", "YOY-growth"],
+          },
+          {
+            label: "Cash from Financing Activity",
+            values: ["Proceeds from Shares", "10 Days", "YOY-growth"],
+          },
+        ],
+      },
+      {
+        title: "Shareholding Pattern",
+
+        childrens: [
+          {
+            label: "Promoters",
+            values: [
+              "Tata Sons Private Limited",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+          {
+            label: "Flls",
+            values: [
+              "Dodona Holdings Limited",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+          {
+            label: "Dlls",
+            values: [
+              "SBI Life insurance Co Ltd",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+          {
+            label: "Public",
+            values: [
+              "Derive Trading And Resorts Private Limited",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Ratios",
+
+        childrens: [
+          {
+            label: "Ratios",
+            values: [
+              "Debtor Days",
+              "10 Days",
+              "YOY-growth",
+            ],
+          },
+          {
+            label: "Cash Conversion Cycle",
+            values: [
+              "Working Capital Days",
+              "10 Days",
+              "YOY-growth",
+            ],
           },
         ],
       },
@@ -513,10 +587,10 @@ const Portfolio_filters = () => {
             >
               <div className=" my-4 items-center">
                 <div className="flex justify-between font-semibold text-gray-400">
-                  <label>Technical Data</label>
+                  <label className="font-semibold">Technical Data</label>
                   {/* <div> Selected value</div> */}
                 </div>
-                <div className="ml-4 border-l-[1px] pl-4">
+                <div className="ml-4 border-l-[1px] pl-4 text-xs">
                   <h1 className="">QUARTERLY RESULTS</h1>
                   <div className="flex justify-between my-2 items-center">
                     <div className="flex items-center">
@@ -607,21 +681,24 @@ const Portfolio_filters = () => {
                 {/* --------------------------------------------------- */}
                 <label className="">Fundamental Data</label>
                 {data.fundamentalData.map((item, index) => (
-                  <div className="ml-4 border-b-[1px] border-gray-700 my-2 pl-1 " key={index}>
+                  <div
+                    className="ml-4 border-b-[1px] border-gray-700 my-2 pl-1 "
+                    key={index}
+                  >
                     <h1 className="font-semibold text-[14px]">{item.title}</h1>
                     <div className="pl-2 ml-2 border-l-[1px]">
                       {item.childrens.map((item, index) => (
                         <div
                           key={index}
-                          className="flex  justify-between my-2 items-center"
+                          className="flex  justify-between my-2 items-center text-xs"
                         >
                           <div className="flex items-center">
                             <label> {item.label} - </label>
-                            <div className="flex text-xs">
+                            <div className="flex ">
                               {item.values.map((value, idx) => (
                                 <div
                                   key={idx}
-                                  className="p-1 ml-2 px-4 bg-gray-700 border-[1px] rounded-md"
+                                  className="p-1 ml-2 px-1 bg-gray-700 border-[1px] rounded-md"
                                 >
                                   {value}
                                 </div>

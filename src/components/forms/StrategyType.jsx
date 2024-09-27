@@ -310,16 +310,21 @@ const StrategyType = () => {
 
                   {input.children.map((field) => {
                     return (
-                      <div key={field.id} className="flex justify-between my-2">
+                      <div key={field.id} className="flex items-center justify-between my-2">
                         {/* <div> {field.title} </div> */}
                         <label>{field.title}</label>
-                        <div className=" flex justify-between inputs_wrapper">
+                        <div className=" flex justify-between items-center inputs_wrapper">
                           {field.inputs.map((input) => {
                             return (
                               <div key={input.id} className="mx-2 ">
                                 {input.type === "file upload" && (
-                                  <div className="p-[9px] bg-gray-700 text-[10px] rounded-lg">
- <input className="" type="file" accept=".csv, .xlsx" />                                  </div>
+                                  <div className="p-[2px] scale-90 bg-gray-700 text-[10px] rounded-lg">
+                                    <input
+                                      className="rounded-md"
+                                      type="file"
+                                      accept=".csv, .xlsx"
+                                    />{" "}
+                                  </div>
                                 )}
 
                                 {input.type === "dropdown" && (

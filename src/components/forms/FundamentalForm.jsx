@@ -559,7 +559,7 @@ const FundamentalForm = () => {
           ],
         },
         {
-          title: "Cash from Investing Activity",
+          title: "Cash from Financing Activity",
           // info: "Some info about trends and what is Sales",
           children: [
             {
