@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const UserGuide = () => {
   const [position, setPosition] = useState(0); // 0 means st1 is in the center
@@ -221,6 +222,7 @@ const UserGuide = () => {
               >
                 <b>&#8594;</b>
               </div>:
+              <Link to={"../backtest"}>
               <div
                 className="z-10 leftbutton w-max px-4 h-10 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
                 
@@ -238,6 +240,7 @@ const UserGuide = () => {
 
 
               </div>
+              </Link>
               }
             </div>
           </div>

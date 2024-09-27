@@ -33,10 +33,6 @@ const router = createBrowserRouter([
         element:<Backtest />,
       },
       {
-        path: "backtest2",
-        element:<Backtest2 />,
-      },
-      {
         path: "backtest-guide-beta",
         element:<UserGuideBeta />,
       },

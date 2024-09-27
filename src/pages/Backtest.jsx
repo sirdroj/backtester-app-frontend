@@ -6,6 +6,8 @@ import StrategyType from "../components/forms/StrategyType";
 import TechnicalForm2 from "../components/forms/TechnicalForm2";
 import CombineFilters from "../components/forms/CombineFilters";
 import TradeInvestPeriod from "../components/forms/TradeInvestPeriod";
+import Portfolio_filters from "../components/forms/Portfolio_filters";
+import RiskManagement from "../components/forms/RiskManagement";
 
 const Backtest = () => {
   const pathRef = useRef(null);
@@ -24,7 +26,9 @@ const Backtest = () => {
     1: <FundamentalForm />,
     2: <StrategyType />,
     3: <CombineFilters />,
-    4:<TradeInvestPeriod />
+    4:<TradeInvestPeriod />,
+    5:<Portfolio_filters />,
+    6:<RiskManagement />
   };
   const items = [
     "Technical Filters",
@@ -33,6 +37,7 @@ const Backtest = () => {
     "Combine Filters",
     "Invest/Trade/Periods",
     "Portfolio Filters",
+    "Risk Management",
   ];
 
   const [count, setCount] = useState(0);
@@ -160,9 +165,9 @@ const Backtest = () => {
     const centerIndex = Math.floor(items.length / 2);
 
     items.forEach((_, index) => {
-      const relativeIndex = index - currentIndex + 3; // Adjust for circular behavior
+      const relativeIndex = index - currentIndex +3; // Adjust for circular behavior
       const point = path.getPointAtLength(
-        (totalLength / (items.length + 1)) * (relativeIndex + 1)
+        (totalLength / (items.length+0 )) * (relativeIndex + 1)
       );
 
       const item = itemRefs.current[index];
@@ -171,8 +176,8 @@ const Backtest = () => {
         const scale = 1 - distanceFromCenter * 0.2; // Scale based on distance from center
 
         item.style.position = "absolute";
-        item.style.left = `${point.x - 30}px`;
-        item.style.top = `${point.y - 30}px`;
+        item.style.left = `${point.x -30}px`;
+        item.style.top = `${point.y -20}px`;
         item.style.transform = `scale(${Math.max(scale, 0.5)})`; // Prevent scale from going negative
         item.style.transition =
           "left 0.5s ease, top 0.5s ease, transform 0.5s ease"; // Smooth transitions
@@ -200,10 +205,10 @@ const Backtest = () => {
 
   return (
     <div className="flex justify-end p-20 px-10 w-screen  h-screen border-[1px] fixed top-0 text-white">
-      <div className=" w-[35%] z-1  left-[-10px] top-0  ">
+      <div className="relative w-[35%] z-1  left-[-35px] top-[-100px]  ">
         <img
           src="/images/bt_badge.png"
-          className=" mx-auto left-[-4rem] top-[170px] absolute w-[290px]"
+          className=" mx-auto left-[-5rem] top-[220px] absolute w-[290px]"
         />
         <div className="">
         <ul>
@@ -229,9 +234,9 @@ const Backtest = () => {
                     : " right-[-50px] opacity-10  "
                 } absolute bottom-[-79px] right-[-100px]`}
               >
-                <circle cx="40" cy="50" r="5" fill="white" />
+                <circle cx="50" cy="50" r="5" fill="white" />
                 <path
-                  d="M0,50 L40,50"
+                  d="M0,50 L50,50"
                   stroke="white"
                   stroke-width="2"
                   fill="none"
@@ -249,7 +254,7 @@ const Backtest = () => {
           <path
             id="arch"
             ref={pathRef}
-            d={`M 100,0 A 600,600 0 0,1 100,${window.innerHeight + 30}`}
+            d={`M 70,0 A 600,600 0 0,1 100,${window.innerHeight + 30}`}
             fill="none"
             stroke="white"
             strokeWidth="1"
@@ -259,10 +264,10 @@ const Backtest = () => {
         </div>
       </div>
 
-      <div className="w-[89%] relative left-[-10px] ">
+      <div className="w-[89%]  relative left-[-10px] ">
         <div
           id="formsection"
-          className="m-2 w-[100%] relative h-[400px] bg-black bg-opacity-10 rounded-lg"
+          className="m-2 w-[100%] relative h-[450px] bg-black bg-opacity-10 rounded-lg"
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
