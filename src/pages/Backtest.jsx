@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 // import TechnicalFiltersForm from "../components/forms/technicalFiltersForm";
-import FundamentalForm from "../components/forms/FundamentalForm";
-import Test from "../components/forms/Test";
-import StrategyType from "../components/forms/StrategyType";
-import TechnicalForm2 from "../components/forms/TechnicalForm2";
-import CombineFilters from "../components/forms/CombineFilters";
-import TradeInvestPeriod from "../components/forms/TradeInvestPeriod";
-import Portfolio_filters from "../components/forms/Portfolio_filters";
-import RiskManagement from "../components/forms/RiskManagement";
+import FundamentalForm from "../components/backtest forms/FundamentalForm";
+import Test from "../components/backtest forms/Test";
+import StrategyType from "../components/backtest forms/StrategyType";
+import TechnicalForm2 from "../components/backtest forms/TechnicalForm2";
+import CombineFilters from "../components/backtest forms/CombineFilters";
+import TradeInvestPeriod from "../components/backtest forms/TradeInvestPeriod";
+import Portfolio_filters from "../components/backtest forms/Portfolio_filters";
+import RiskManagement from "../components/backtest forms/RiskManagement";
 
 const Backtest = () => {
   const pathRef = useRef(null);
@@ -290,13 +290,29 @@ const Backtest = () => {
           >
             Prev
           </div>
-          <div
-            onClick={handleNext}
-            className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-            style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-          >
-            Next
-          </div>
+          {currentIndex != 3 && (
+            <div
+              onClick={handleNext}
+              className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            >
+              Next
+            </div>
+          )}
+          {currentIndex == 3 && (
+            
+            <div
+              onClick={handleNext}
+              className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
+              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            >
+              Start BackTest
+              <svg width="20" height="20" className={``}>
+                <circle cx="15" cy="10" r="5" fill="#05FF00" className="z-0" />
+              </svg>
+            </div>
+          
+          )}
         </div>
       </div>
       

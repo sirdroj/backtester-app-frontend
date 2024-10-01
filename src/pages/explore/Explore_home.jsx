@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 // import TechnicalFiltersForm from "../components/forms/technicalFiltersForm";
-import FundamentalForm from "../components/forms/FundamentalForm";
-import Test from "../components/forms/Test";
-import StrategyType from "../components/forms/StrategyType";
-import TechnicalForm2 from "../components/forms/TechnicalForm2";
-import CombineFilters from "../components/forms/CombineFilters";
-import TradeInvestPeriod from "../components/forms/TradeInvestPeriod";
+import FundamentalForm from "../../components/backtest forms/FundamentalForm";
+import StrategyType from "../../components/backtest forms/StrategyType";
+import TechnicalForm2 from "../../components/backtest forms/TechnicalForm2";
+import CombineFilters from "../../components/backtest forms/CombineFilters";
+import { Link } from "react-router-dom";
+import TechnicalFormExplorer from "../../components/Explore forms/TechnicalFormExplorer";
+import FundamentalFormExplore from "../../components/Explore forms/export default FundamentalFormExplore";
+import StrategyTypeExplorer from "../../components/Explore forms/StrategyTypeExplorer";
+import CombineFiltersExplorer from "../../components/Explore forms/CombineFiltersExplorer";
 
-const Backtest = () => {
+const Explore_home = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
 
@@ -20,19 +23,16 @@ const Backtest = () => {
   });
 
   const dc = {
-    0: <TechnicalForm2 />,
-    1: <FundamentalForm />,
-    2: <StrategyType />,
-    3: <CombineFilters />,
-    4: <TradeInvestPeriod />,
+    0: <TechnicalFormExplorer />,
+    1: <FundamentalFormExplore />,
+    2: <StrategyTypeExplorer />,
+    3: <CombineFiltersExplorer />,
   };
   const items = [
     "Technical Filters",
     "Fundamental Filters",
     "Strategy Type",
     "Combine Filters",
-    "Invest/Trade/Periods",
-    "Portfolio Filters",
   ];
 
   const [count, setCount] = useState(0);
@@ -160,9 +160,9 @@ const Backtest = () => {
     const centerIndex = Math.floor(items.length / 2);
 
     items.forEach((_, index) => {
-      const relativeIndex = index - currentIndex + 3; // Adjust for circular behavior
+      const relativeIndex = index - currentIndex + 2; // Adjust for circular behavior
       const point = path.getPointAtLength(
-        (totalLength / (items.length + 1)) * (relativeIndex + 1)
+        (totalLength / (items.length + 0)) * relativeIndex
       );
 
       const item = itemRefs.current[index];
@@ -172,7 +172,7 @@ const Backtest = () => {
 
         item.style.position = "absolute";
         item.style.left = `${point.x - 30}px`;
-        item.style.top = `${point.y - 30}px`;
+        item.style.top = `${point.y }px`;
         item.style.transform = `scale(${Math.max(scale, 0.5)})`; // Prevent scale from going negative
         item.style.transition =
           "left 0.5s ease, top 0.5s ease, transform 0.5s ease"; // Smooth transitions
@@ -185,7 +185,7 @@ const Backtest = () => {
   }, [currentIndex]);
 
   const handleNext = () => {
-    if (currentIndex == 6) {
+    if (currentIndex == 3) {
       return;
     }
     setCurrentIndex((prevIndex) => prevIndex + 1); // Move to the next item
@@ -199,70 +199,70 @@ const Backtest = () => {
   };
 
   return (
-    <div className="flex justify-end p-20 px-10 w-screen  h-screen border-[1px] fixed top-0 text-white">
-      <div className=" w-[35%] z-1  left-[-10px] top-0  ">
+    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white">
+      <div className="relative w-[35%] z-1  left-[-35px] top-[-100px]  ">
         <img
-          src="/images/bt_badge.png"
-          className=" mx-auto left-[-4rem] top-[170px] absolute w-[290px]"
+          src="/images/exploreBadge.png"
+          className=" mx-auto left-[-5rem] top-[190px] absolute w-[290px]"
         />
         <div className="">
-        <ul>
-          {items.map((item, index) => (
-            <li
-              key={index}
-              ref={(el) => (itemRefs.current[index] = el)}
-              onClick={() => setCurrentIndex(index)}
-              className={`${
-                currentIndex === index
-                  ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100"
-                  : "bg-slate-100"
-              } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
-            >
-              {item}
-
-              <svg
-                width="100"
-                height="150"
+          <ul>
+            {items.map((item, index) => (
+              <li
+                key={index}
+                ref={(el) => (itemRefs.current[index] = el)}
+                onClick={() => setCurrentIndex(index)}
                 className={`${
-                  currentIndex == index
-                    ? " rotate-y-0 duration-300  opacity-100 z-0"
-                    : " right-[-50px] opacity-10  "
-                } absolute bottom-[-79px] right-[-100px]`}
+                  currentIndex === index
+                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100"
+                    : "bg-slate-100"
+                } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
               >
-                <circle cx="40" cy="50" r="5" fill="white" />
-                <path
-                  d="M0,50 L40,50"
-                  stroke="white"
-                  stroke-width="2"
-                  fill="none"
-                />
-              </svg>
-            </li>
-          ))}
-        </ul>
-        <svg
-          width="600"
-          height="800"
-          className="absolute top-[-00px] left-[60px]  border-[0px]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            id="arch"
-            ref={pathRef}
-            d={`M 100,0 A 600,600 0 0,1 100,${window.innerHeight + 30}`}
-            fill="none"
-            stroke="white"
-            strokeWidth="1"
-            className="h-screen border-[1px]"
-          />
-        </svg>
+                {item}
+
+                <svg
+                  width="100"
+                  height="150"
+                  className={`${
+                    currentIndex == index
+                      ? " rotate-y-0 duration-300  opacity-100 z-0"
+                      : " right-[-50px] opacity-10  "
+                  } absolute bottom-[-79px] right-[-100px]`}
+                >
+                  <circle cx="50" cy="50" r="5" fill="white" />
+                  <path
+                    d="M0,50 L50,50"
+                    stroke="white"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+            ))}
+          </ul>
+          <svg
+            width="600"
+            height="800"
+            className="absolute top-[-00px] left-[60px]  border-[0px]"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="arch"
+              ref={pathRef}
+              d={`M 70,0 A 600,600 0 0,1 100,${window.innerHeight + 30}`}
+              fill="none"
+              stroke="white"
+              strokeWidth="1"
+              className="h-screen border-[1px]"
+            />
+          </svg>
         </div>
       </div>
 
-      <div className="w-[89%] relative left-[-10px] ">
+      <div className="w-[89%]  relative left-[-10px] ">
         <div
           id="formsection"
-          className="m-2 w-[100%] relative h-[400px] bg-black bg-opacity-10 rounded-lg"
+          className="m-2 w-[100%] relative h-[450px] bg-black bg-opacity-10 rounded-lg"
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
@@ -285,18 +285,34 @@ const Backtest = () => {
           >
             Prev
           </div>
-          <div
-            onClick={handleNext}
-            className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-            style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-          >
-            Next
-          </div>
+          {currentIndex != 3 && (
+            <div
+              onClick={handleNext}
+              className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            >
+              Next
+            </div>
+          )}
+          {currentIndex == 3 && (
+            <Link to={"/explore/explor_table"}>
+            
+            <div
+              onClick={handleNext}
+              className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
+              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            >
+              Explore
+              <svg width="20" height="20" className={``}>
+                <circle cx="15" cy="10" r="5" fill="#05FF00" className="z-0" />
+              </svg>
+            </div>
+            </Link>
+          )}
         </div>
       </div>
-      
     </div>
   );
 };
 
-export default Backtest;
+export default Explore_home;

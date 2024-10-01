@@ -91,7 +91,9 @@ export const NavbarTop = () => {
             Charts
           </li>
           </Link>
-          <Link className="text-white z-50">
+          <Link 
+          to={"/explore"}
+          className="text-white z-50">
 
           <li
             className={`${

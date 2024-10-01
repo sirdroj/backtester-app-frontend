@@ -258,7 +258,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -279,7 +279,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -300,7 +300,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -329,7 +329,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -345,7 +345,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -371,7 +371,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -397,7 +397,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -418,7 +418,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -457,7 +457,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -478,7 +478,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -506,7 +506,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -531,7 +531,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -583,7 +583,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -604,7 +604,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -625,7 +625,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -660,7 +660,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -701,7 +701,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -733,7 +733,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -766,7 +766,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -798,7 +798,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -820,7 +820,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -854,7 +854,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -881,7 +881,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -909,7 +909,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
@@ -934,7 +934,7 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
                 },
                 {
                   title: "Calculation Method",
