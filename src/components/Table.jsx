@@ -1,8 +1,9 @@
 import React from 'react';
 
-export const Table = ({ products }) => {
+
+export const Table = ({ products ,tableTheme}) => {
   return (
-    <div className="mx-10 my-2 flex justify-center overflow-auto rounded-md">
+    <div className={` ${tableTheme} mx-10 my-2 flex justify-center overflow-auto rounded-md`}>
       <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {
@@ -27,12 +28,12 @@ export const Table = ({ products }) => {
         scrollbar-width: thin; /* Makes scrollbar thin */
         scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
       `}</style>
-      <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg w-[95%] ">
-        <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
-            <tr className="bg-[#F7F8FB] text-black sticky top-0 z-10">
+      <div className=" relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg w-[95%] ">
+        <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
+          <thead className="text-xs uppercase dark:text-white">
+            <tr className="bg-[#F7F8FB] dark:bg-slate-700  sticky top-0 z-10">
               {Object.keys(products[0]).map((key) => (
-                <th key={key} scope="col" className="px-6 py-3 bg-opacity-20 dark:bg-gray-800">
+                <th key={key} scope="col" className="px-6 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25">
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </th>
               ))}
@@ -40,11 +41,11 @@ export const Table = ({ products }) => {
           </thead>
           <tbody>
             {products.map((product, index) => (
-              <tr key={index} className={`border-b ${index%2==0?"bg-[#FBFBFB]":" bg-white"} border-b-gray-200 dark:border-gray-700`}>
+              <tr key={index} className={`border-b ${index%2==0?" dark:bg-gray-900  bg-[#FBFBFB]":" dark:bg-gray-800 bg-white"} dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}>
                 {Object.values(product).map((value, idx) => (
                   <td
                   key={idx}
-                  className={`px-6 py-2 text-xs font font-semibold ${idx === 0 ? "text-black font-semibold" : ""} ${
+                  className={`px-6 py-2 text-xs font font-semibold ${idx === 0 ? "text-black font-bold dark:text-white" : ""} ${
                     value.endsWith("%") ? (parseFloat(value) < 0 ? "text-red-500" : "text-green-500") : ""
                   } w-max`}
                 >
