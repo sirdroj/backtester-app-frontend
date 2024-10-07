@@ -6,9 +6,10 @@ import TechnicalForm2 from "../../components/backtest forms/TechnicalForm2";
 import CombineFilters from "../../components/backtest forms/CombineFilters";
 import { Link } from "react-router-dom";
 import TechnicalFormExplorer from "../../components/Explore forms/TechnicalFormExplorer";
-import FundamentalFormExplore from "../../components/Explore forms/export default FundamentalFormExplore";
+import FundamentalFormExplore from "../../components/Explore forms/FundamentalFormExplore";
 import StrategyTypeExplorer from "../../components/Explore forms/StrategyTypeExplorer";
 import CombineFiltersExplorer from "../../components/Explore forms/CombineFiltersExplorer";
+import useStore from "../../stores/useStore";
 
 const Explore_home = () => {
   const pathRef = useRef(null);
@@ -36,6 +37,7 @@ const Explore_home = () => {
   ];
 
   const [count, setCount] = useState(0);
+  const {theme}=useStore()
 
   const inputDataTypes = {
     "Technical Filters": [
@@ -172,7 +174,7 @@ const Explore_home = () => {
 
         item.style.position = "absolute";
         item.style.left = `${point.x - 30}px`;
-        item.style.top = `${point.y }px`;
+        item.style.top = `${point.y}px`;
         item.style.transform = `scale(${Math.max(scale, 0.5)})`; // Prevent scale from going negative
         item.style.transition =
           "left 0.5s ease, top 0.5s ease, transform 0.5s ease"; // Smooth transitions
@@ -199,7 +201,7 @@ const Explore_home = () => {
   };
 
   return (
-    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white">
+    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white border-[1px] ">
       <div className="relative w-[35%] z-1  left-[-35px] top-[-100px]  ">
         <img
           src="/images/exploreBadge.png"
@@ -214,8 +216,8 @@ const Explore_home = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`${
                   currentIndex === index
-                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100"
-                    : "bg-slate-100"
+                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-gray-700 text-gray-300"
+                    : "bg-gray-700 text-gray-300"
                 } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
               >
                 {item}
@@ -226,7 +228,7 @@ const Explore_home = () => {
                   className={`${
                     currentIndex == index
                       ? " rotate-y-0 duration-300  opacity-100 z-0"
-                      : " right-[-50px] opacity-10  "
+                      : " right-[-50px] opacity-0  "
                   } absolute bottom-[-79px] right-[-100px]`}
                 >
                   <circle cx="50" cy="50" r="5" fill="white" />
@@ -265,7 +267,14 @@ const Explore_home = () => {
           className="m-2 w-[100%] relative h-[450px] bg-black bg-opacity-10 rounded-lg"
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
-          <div className="relative my-[1%] h-[98%] overflow-y-scroll">
+          <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
+          <Link to={"/explore/logs"}
+              className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
+            >
+              View logs
+            </Link>
+          </div>
+          <div className="relative my-[1%] h-[90%] overflow-y-scroll">
             <section className="relative">
               {dc[currentIndex]}
 
@@ -295,18 +304,23 @@ const Explore_home = () => {
             </div>
           )}
           {currentIndex == 3 && (
-            <Link to={"/explore/explor_table"}>
-            
-            <div
-              onClick={handleNext}
-              className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
-              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-            >
-              Explore
-              <svg width="20" height="20" className={``}>
-                <circle cx="15" cy="10" r="5" fill="#05FF00" className="z-0" />
-              </svg>
-            </div>
+            <Link to={"/explore/logs"}>
+              <div
+                onClick={handleNext}
+                className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
+                style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+              >
+                Explore
+                <svg width="20" height="20" className={``}>
+                  <circle
+                    cx="15"
+                    cy="10"
+                    r="5"
+                    fill="#05FF00"
+                    className="z-0"
+                  />
+                </svg>
+              </div>
             </Link>
           )}
         </div>

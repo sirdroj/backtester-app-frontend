@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Table = ({ products ,tableTheme}) => {
   return (
-    <div className={` ${tableTheme} mx-10 my-2 flex justify-center overflow-auto rounded-md`}>
+    <div className={`  mx-10 my-2 flex justify-center overflow-auto rounded-md`}>
       <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {

@@ -33,7 +33,7 @@ const TechnicalFiltersForm = () => {
             icon: "./icons/trending up.png",
             inputs: [
               { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Days", "Year"] },
+              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
               { name: "priceField", type: "select", options: ["Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
@@ -43,7 +43,7 @@ const TechnicalFiltersForm = () => {
             icon: "./icons/momentum.svg",
             inputs: [
               { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Days", "Year"] },
+              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
               { name: "priceField", type: "select", options: ["Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
@@ -53,7 +53,7 @@ const TechnicalFiltersForm = () => {
             icon: "./icons/volatility.svg",
             inputs: [
               { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Days", "Year"] },
+              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
               { name: "priceField", type: "select", options: ["Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
@@ -63,7 +63,7 @@ const TechnicalFiltersForm = () => {
             icon: "./icons/volume.svg",
             inputs: [
               { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Days", "Year"] },
+              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
               { name: "priceField", type: "select", options: ["Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
@@ -73,7 +73,7 @@ const TechnicalFiltersForm = () => {
             icon: "./icons/breath.svg",
             inputs: [
               { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Days", "Year"] },
+              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
               { name: "priceField", type: "select", options: ["Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]

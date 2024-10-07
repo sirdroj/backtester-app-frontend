@@ -300,7 +300,7 @@ const TechnicalFormExplorer = () => {
               <div key={subIndex} className="mb-4">
                 <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
                   <span
-                    className={`text-opacity-15 relative top-[20px] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
+                    className={`text-opacity-15 relative top-[20px] dark:bg-[#0D111E] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                       currentDropDown.includes(index) ? "" : "shadow-none"
                     }`}
                     style={{

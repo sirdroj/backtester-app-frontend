@@ -67,13 +67,7 @@ const ExploreTable = () => {
         >
           Download
         </div>
-        <div
-          className=" mx-2 cursor-pointer px-6 py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-          style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-          onClick={()=>setTableTheme(tableTheme=="light"?"dark":"light")} // Attach downloadCSV function on click
-        >
-          {tableTheme}
-        </div>
+        
       </div>
       <Table products={products} tableTheme={tableTheme} />
     </div>
