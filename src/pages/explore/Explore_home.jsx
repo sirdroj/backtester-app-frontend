@@ -201,7 +201,7 @@ const Explore_home = () => {
   };
 
   return (
-    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white border-[1px] ">
+    <div className="flex justify-end p-20 px-10 w-screen  h-screen  fixed top-0 text-white  ">
       <div className="relative w-[35%] z-1  left-[-35px] top-[-100px]  ">
         <img
           src="/images/exploreBadge.png"
@@ -216,8 +216,8 @@ const Explore_home = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`${
                   currentIndex === index
-                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-gray-700 text-gray-300"
-                    : "bg-gray-700 text-gray-300"
+                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] dark:bg-gray-700 bg-white dark:text-gray-300"
+                    : "dark:bg-gray-700 bg-white dark:text-gray-300 "
                 } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
               >
                 {item}

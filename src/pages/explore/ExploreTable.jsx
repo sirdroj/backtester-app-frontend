@@ -59,9 +59,9 @@ const ExploreTable = () => {
 
   return (
     <div>
-      <div className="w-full flex justify-end px-10 mt-2">
+      <div className="w-full flex justify-end px-10 mt-5">
         <div
-          className=" cursor-pointer px-6 py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+          className=" cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
           style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
           onClick={downloadCSV} // Attach downloadCSV function on click
         >

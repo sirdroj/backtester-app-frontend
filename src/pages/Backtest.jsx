@@ -220,8 +220,8 @@ const Backtest = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`${
                   currentIndex === index
-                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100"
-                    : "bg-slate-100"
+                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100 dark:bg-gray-700 bg-white dark:text-gray-300"
+                    : "bg-slate-100 dark:bg-gray-700 bg-white dark:text-gray-300"
                 } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
               >
                 {item}
