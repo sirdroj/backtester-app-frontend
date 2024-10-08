@@ -220,9 +220,9 @@ const Backtest = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`${
                   currentIndex === index
-                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100 dark:bg-gray-700 bg-white dark:text-gray-300"
-                    : "bg-slate-100 dark:bg-gray-700 bg-white dark:text-gray-300"
-                } cursor-pointer   p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
+                    ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100 dark:bg-gray-700 dark:bg-opacity-100 dark:text-gray-100"
+                    : "bg-slate-100 dark:bg-gray-700 z-10 dark:text-gray-300 dark:bg-opacity-100"
+                } cursor-pointer  bg-opacity-45  p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-48 text-[14px] font-semibold rounded-xl z-[1000]`}
               >
                 {item}
 
@@ -232,7 +232,7 @@ const Backtest = () => {
                   className={`${
                     currentIndex == index
                       ? " rotate-y-0 duration-300  opacity-100 z-0"
-                      : " right-[-50px] opacity-10  "
+                      : " right-[-50px] opacity-0  "
                   } absolute bottom-[-79px] right-[-100px]`}
                 >
                   <circle cx="50" cy="50" r="5" fill="white" />
