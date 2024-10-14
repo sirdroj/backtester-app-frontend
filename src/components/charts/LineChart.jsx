@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import ApexCharts from "apexcharts";
+import filled from "@material-tailwind/react/theme/components/timeline/timelineIconColors/filled";
 
-const BarChart = () => {
+const LineChart = () => {
   useEffect(() => {
     const chartConfig = {
       series: [
@@ -9,26 +10,37 @@ const BarChart = () => {
           name: "Sales",
           data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
         },
+        {
+          name: "ef",
+          data: [5, 4, 30, 35, 50, 30, 20, 20, 50], 
+        },
+        {
+          name: "xyz",
+          data: [51, 41, 201, 452, 242, 401, 112, 101, 552,112, 101, 552,41, 201, 452,], 
+        },
       ],
       chart: {
-        type: "bar",
-        height: 200,
+        type: "line",
+        height: 440,
         toolbar: {
           show: false,
         },
+        colors: ["white","yellow"],
       },
       title: {
-        show: "",
+        show: false,
       },
       dataLabels: {
         enabled: false,
       },
-      colors: ["white"],
-      plotOptions: {
-        bar: {
-          columnWidth: "40%",
-          borderRadius: 2,
-        },
+      // colors: ["white","yellow"],
+      stroke: {
+        lineCap: "round",
+        curve: "smooth",
+        
+      },
+      markers: {
+        size: 5,
       },
       xaxis: {
         axisTicks: {
@@ -45,17 +57,7 @@ const BarChart = () => {
             fontWeight: 400,
           },
         },
-        categories: [
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
+        categories: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       },
       yaxis: {
         labels: {
@@ -82,34 +84,29 @@ const BarChart = () => {
         },
       },
       fill: {
-        opacity: 0.8,
+        opacity: 1,
       },
       tooltip: {
         theme: "dark",
       },
     };
 
-    const chart = new ApexCharts(
-      document.querySelector("#bar-chart"),
-      chartConfig
-    );
+    const chart = new ApexCharts(document.querySelector("#line-chart"), chartConfig);
     chart.render();
 
-    // Cleanup the chart on component unmount
     return () => {
-      chart.destroy();
+      chart.destroy(); // Cleanup the chart on component unmount
     };
   }, []);
 
   return (
-    <div className="relative max-h-min flex flex-col rounded-xl  bg-gray-900  bg-clip-border text-gray-100 shadow-sm">
-      <h1 className="p-2">Pie chart of some thing</h1>
-
-      <div className="">
-        <div id="bar-chart"></div>
+    <div className="relative flex flex-col rounded-xl bg-gray-900 text-gray-700 shadow-md">
+     
+      <div className=" px-2 pb-0">
+        <div id="line-chart"></div>
       </div>
     </div>
   );
 };
 
-export default BarChart;
+export default LineChart;

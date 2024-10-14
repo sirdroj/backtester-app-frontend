@@ -37,7 +37,7 @@ const SettingsDropdown = () => {
 
   return (
     <div>
-      <div className="relative peer ml-60">
+      <div className="relative peer ml-60 ">
         <svg
           ref={svgIconRef}
           onClick={() => {
@@ -63,12 +63,12 @@ const SettingsDropdown = () => {
           ref={settingsRef} // Attach ref to the dropdown container
           className={`${
             showSettings ? "fixed" : "hidden"
-          } top-12 right-10  bg-white p-4 rounded-lg shadow-lg dark:bg-gray-800`}
+          } top-12 right-10  bg-white p-3 items-center rounded-lg shadow-lg dark:bg-gray-800`}
         >
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex items-center space-x-10 text-sm">
             <span className="text-black dark:text-white">Theme</span>
             <div className=" ">
-              <label className="inline-flex items-center cursor-pointer">
+              <label className="inline-flex items-center cursor-pointer ">
                 <input
                   type="checkbox"
                   checked={theme !== "dark"}

@@ -7,8 +7,8 @@ const PieChart = () => {
       series: [44, 55, 13, 43, 22],
       chart: {
         type: 'pie',
-        width: 280,
-        height: 280,
+        width: 200,
+        height: 200,
         toolbar: {
           show: false,
         },
@@ -35,9 +35,9 @@ const PieChart = () => {
   }, []);
 
   return (
-    <div className="h-min relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-     
-      <div className="py-6 mt-4 grid place-items-center px-2">
+    <div className="h-min relative flex flex-col rounded-xl bg-gray-900 bg-clip-border text-white text-gray-700 shadow-md">
+     <h1 className='p-2'>Pie chart of some thing</h1>
+      <div className="py-1 mt-0 grid place-items-center px-2">
         <div id="pie-chart"></div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-export const Table = ({ products ,tableTheme}) => {
+export const TableEquity = ({ products ,tableTheme}) => {
   return (
-    <div className={`  mx-10 my-2 flex justify-center overflow-auto rounded-md`}>
+    <div className={`  mx-0  flex justify-center overflow-auto rounded-md`}>
       <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {
@@ -28,8 +28,8 @@ export const Table = ({ products ,tableTheme}) => {
         scrollbar-width: thin; /* Makes scrollbar thin */
         scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
       `}</style>
-      <div className=" relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg  ">
-        <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
+      <div className=" relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg  w-full">
+        <table className=" rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
           <thead className="text-xs uppercase dark:text-white">
             <tr className="bg-[#F7F8FB] dark:bg-slate-700  sticky top-0 z-10">
               {Object.keys(products[0]).map((key) => (

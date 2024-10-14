@@ -287,7 +287,7 @@ const Explore_home = () => {
           </div>
         </div>
 
-        <div className="flex justify-between mt-0 text-[12px]">
+        <div className="flex justify-between mx-10 mt-0 text-[12px]">
           <div
             onClick={handlePrev}
             className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"

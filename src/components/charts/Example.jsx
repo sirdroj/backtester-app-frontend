@@ -105,7 +105,7 @@ import {
     return (
         
       
-        <div className="px-2 pb-0 h-min max-h-min bg-white rounded-2xl">
+        <div className="px-2 pb-0 h-min max-h-min bg-gray-200 rounded-2xl">
         <Chart {...chartConfig} />
         </div>
       

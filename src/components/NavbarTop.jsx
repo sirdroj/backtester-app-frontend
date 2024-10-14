@@ -14,9 +14,11 @@ export const NavbarTop = () => {
   ];
 
   useEffect(() => {
-    const found = navItems.find((item) => item.path === location.pathname);
-    setSelected(found ? found.id : 1);
+    const pathSegment = location.pathname.split("/")[1]; // Get the first path segment
+    const found = navItems.find((item) => item.path === `/${pathSegment}`); // Compare against the path
+    setSelected(found ? found.id : 1); // Set the id if found, or default to 1
   }, [location.pathname]);
+  
 
   return (
     <div className="h-5 w-[98%] fixed z-50">

@@ -6,10 +6,10 @@ const ExploreLogs = () => {
     <div className="p-10">
       <h1>Explore Logs</h1>
       <div className="border-b-[1px] border-gray-500 py-2">
-        <div class="relative w-[250px]">
-          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="relative w-[250px]">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
-              class="w-4 h-4 text-gray-500 dark:text-gray-400"
+              className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
