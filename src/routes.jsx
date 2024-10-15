@@ -12,6 +12,7 @@ import Backtestlogs from "./pages/Backtest/Backtestlogs.jsx";
 import Settings from "./pages/Settings.jsx";
 import ExploreAnalytics from "./pages/explore/ExploreAnalytics.jsx";
 import BacktestAnalatics from "./pages/Backtest/BacktestAnalatics.jsx";
+import ChatWindow from "./pages/ChatWindow.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "chat_AI",
+        element: <ChatWindow />,
       },
       {
         path: "settings",

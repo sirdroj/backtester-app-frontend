@@ -1,6 +1,52 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const ChatBot = () => {
+export const getBotReply = (userMessage) => {
+  const trimmedMessage = userMessage.toLowerCase().trim();
+
+  const responses = {
+    greeting: ["Hello! How can I assist you today?", "Hi there! Need help with something?"],
+    help: ["Sure! I'm here to help. Ask me anything.", "Feel free to ask any questions you have."],
+    howAreYou: ["I'm just a bot, but I'm doing great! How about you?", "I'm doing fantastic! How can I assist you?"],
+    name: ["I'm your friendly chatbot assistant!", "You can call me ChatBot. What's your name?"],
+    time: `The current time is ${new Date().toLocaleTimeString()}.`,
+    date: `Today's date is ${new Date().toLocaleDateString()}.`,
+    thanks: ["You're welcome! Let me know if you need anything else.", "Glad I could help! Anything else?"],
+    bye: ["Goodbye! Have a great day!", "Take care! Feel free to chat again anytime."],
+    whatCanYouDo: ["I can assist with answering questions, providing time and date, and more! Just ask.", "I can help with information, advice, or just a friendly chat!"],
+    joke: ["Why don't skeletons fight each other? Because they don't have the guts!", "What do you get when you cross a snowman and a vampire? Frostbite!"],
+    weather: "I can't check the weather right now, but you can ask me other things!",
+    unknown: ["I'm not sure how to respond to that. Can you ask something else?", "Sorry, I didn't quite get that. Could you rephrase?"]
+  };
+
+  // Using regular expressions for better keyword matching
+  if (/hello|hi|hey/.test(trimmedMessage)) {
+    return responses.greeting[Math.floor(Math.random() * responses.greeting.length)];
+  } else if (/help|assist/.test(trimmedMessage)) {
+    return responses.help[Math.floor(Math.random() * responses.help.length)];
+  } else if (/how are you|how's it going/.test(trimmedMessage)) {
+    return responses.howAreYou[Math.floor(Math.random() * responses.howAreYou.length)];
+  } else if (/your name|who are you/.test(trimmedMessage)) {
+    return responses.name[Math.floor(Math.random() * responses.name.length)];
+  } else if (/time/.test(trimmedMessage)) {
+    return responses.time;
+  } else if (/date/.test(trimmedMessage)) {
+    return responses.date;
+  } else if (/thank you|thanks/.test(trimmedMessage)) {
+    return responses.thanks[Math.floor(Math.random() * responses.thanks.length)];
+  } else if (/bye|goodbye/.test(trimmedMessage)) {
+    return responses.bye[Math.floor(Math.random() * responses.bye.length)];
+  } else if (/what can you do|capabilities/.test(trimmedMessage)) {
+    return responses.whatCanYouDo[Math.floor(Math.random() * responses.whatCanYouDo.length)];
+  } else if (/joke|make me laugh/.test(trimmedMessage)) {
+    return responses.joke[Math.floor(Math.random() * responses.joke.length)];
+  } else if (/weather/.test(trimmedMessage)) {
+    return responses.weather;
+  } else {
+    return responses.unknown[Math.floor(Math.random() * responses.unknown.length)];
+  }
+};
+
+ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [messages, setMessages] = useState([]); // Store messages
   const [input, setInput] = useState(""); // Input value
@@ -54,37 +100,6 @@ const ChatBot = () => {
 
   // Function to generate bot response
   // Function to generate bot response
-const getBotReply = (userMessage) => {
-  const trimmedMessage = userMessage.toLowerCase().trim();
-
-  // Simple rule-based responses
-  if (trimmedMessage.includes("hello") || trimmedMessage.includes("hi")) {
-    return "Hello! How can I assist you today?";
-  } else if (trimmedMessage.includes("help")) {
-    return "Sure! I'm here to help. Ask me anything.";
-  } else if (trimmedMessage.includes("how are you")) {
-    return "I'm just a bot, but I'm doing great! How about you?";
-  } else if (trimmedMessage.includes("your name")) {
-    return "I'm your friendly chatbot assistant!";
-  } else if (trimmedMessage.includes("time")) {
-    return `The current time is ${new Date().toLocaleTimeString()}.`;
-  } else if (trimmedMessage.includes("date")) {
-    return `Today's date is ${new Date().toLocaleDateString()}.`;
-  } else if (trimmedMessage.includes("thank you") || trimmedMessage.includes("thanks")) {
-    return "You're welcome! Let me know if you need anything else.";
-  } else if (trimmedMessage.includes("bye")) {
-    return "Goodbye! Have a great day!";
-  } else if (trimmedMessage.includes("what can you do")) {
-    return "I can assist you with answering questions, providing time and date, and more! Just ask.";
-  } else if (trimmedMessage.includes("joke")) {
-    return "Why don't skeletons fight each other? Because they don't have the guts!";
-  } else if (trimmedMessage.includes("weather")) {
-    return "I can't check the weather right now, but you can ask me other things!";
-  } else {
-    return "I'm not sure how to respond to that. Can you please ask something else?";
-  }
-};
-
 
   // Handle 'Enter' key to send message
   const handleKeyDown = (e) => {

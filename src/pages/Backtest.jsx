@@ -206,7 +206,7 @@ const Backtest = () => {
 
   return (
     <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[1px]">
-      <div className="relative w-[300px] z-1   top-[-9%]  ">
+      <div className="relative w-[285px] z-1   top-[-9%]  ">
         {/* <img
           src="/images/bt_badge.png"
           className=" mx-auto left-[-5rem] top-[220px] absolute w-[290px]"
@@ -271,7 +271,7 @@ const Backtest = () => {
             <path
               id="arch"
               ref={pathRef}
-              d={`M 70,0 A 700,500 0 0,1 100,${600 + 30}`}
+              d={`M 150,0 A 700,700 0 0,1 150,${600 + 30}`}
               fill="none"
               stroke="white"
               strokeWidth="1"

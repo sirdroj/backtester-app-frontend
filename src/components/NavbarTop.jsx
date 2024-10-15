@@ -11,6 +11,7 @@ export const NavbarTop = () => {
     { path: "/backtest", label: "BackTest", id: 2 },
     { path: "/backtest-guide", label: "BackTest Guide", id: 5 },
     { path: "/explore", label: "Explore", id: 4 },
+    { path: "/Chat_AI", label: "Chat with AI", id: 6 },
   ];
 
   useEffect(() => {
