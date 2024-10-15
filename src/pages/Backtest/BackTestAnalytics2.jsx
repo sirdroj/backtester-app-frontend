@@ -4,7 +4,7 @@ import { Table } from "../../components/Table";
 import { equityTable } from "./Test_data";
 import { TableEquity } from "./TableEquity";
 
-const ResizableSections = () => {
+const BackTestAnalytics2 = () => {
   const equity_Table_data = equityTable;
 
   const [leftWidth, setLeftWidth] = useState(50); // Initial width for the left section
@@ -31,10 +31,10 @@ const ResizableSections = () => {
   };
 
   return (
-    <div className="flex  mt-5  ">
+    <div className="flex  mt-4  ">
       {/* Left section */}
       <div className="" style={{ width: `${leftWidth}%` }}>
-        <div className=" p- text-white flex justify-center">
+        <div className=" text-white flex justify-center">
           <TableEquity products={equity_Table_data} tableTheme={"dark"} />
         </div>
       </div>
@@ -55,4 +55,4 @@ const ResizableSections = () => {
   );
 };
 
-export default ResizableSections;
+export default BackTestAnalytics2;

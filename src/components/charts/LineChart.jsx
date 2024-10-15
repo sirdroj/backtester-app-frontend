@@ -100,7 +100,7 @@ const LineChart = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col rounded-xl bg-gray-900 text-gray-700 shadow-md">
+    <div className="relative flex flex-col rounded-xl dark:bg-gray-900 bg-gray-600 text-gray-700 shadow-md">
      
       <div className=" px-2 pb-0">
         <div id="line-chart"></div>

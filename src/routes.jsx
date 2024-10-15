@@ -9,8 +9,9 @@ import Explore_home from "./pages/explore/Explore_home.jsx";
 import App from "./App.jsx";
 import ExploreLogs from "./pages/explore/ExploreLogs.jsx";
 import Backtestlogs from "./pages/Backtest/Backtestlogs.jsx";
-import BacktestAnalatics from "./pages/Backtest/BacktestAnalatics.jsx";
 import Settings from "./pages/Settings.jsx";
+import ExploreAnalytics from "./pages/explore/ExploreAnalytics.jsx";
+import BacktestAnalatics from "./pages/Backtest/BacktestAnalatics.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -60,10 +61,17 @@ export const router = createBrowserRouter([
           {
             path: "explor_table",
             element: <ExploreTable />,
+            children:[
+              {
+                path:"popup",
+                element:<ExploreAnalytics />
+              }
+            ]
           },
           {
             path: "Logs",
             element: <ExploreLogs />,
+            
           },
         ],
       },
