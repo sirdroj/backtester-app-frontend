@@ -48,13 +48,13 @@ const Explore_home = () => {
           {
             name: "indicator",
             type: "select",
-            options: ["Simple MA", "some MA"],
+            options: ["None","Simple MA", "some MA"],
           },
-          { name: "period", type: "select", options: ["Days", "Year"] },
+          { name: "period", type: "select", options: ["None","Days", "Year"] },
           {
             name: "priceField",
             type: "select",
-            options: ["Price A", "Price B"],
+            options: ["None","Price A", "Price B"],
           },
           { name: "quantity", type: "number" },
         ],
@@ -66,13 +66,13 @@ const Explore_home = () => {
           {
             name: "indicator",
             type: "select",
-            options: ["Simple MA", "some MA"],
+            options: ["None","Simple MA", "some MA"],
           },
-          { name: "period", type: "select", options: ["Days", "Year"] },
+          { name: "period", type: "select", options: ["None","Days", "Year"] },
           {
             name: "priceField",
             type: "select",
-            options: ["Price A", "Price B"],
+            options: ["None","Price A", "Price B"],
           },
           { name: "quantity", type: "number" },
         ],
@@ -84,13 +84,13 @@ const Explore_home = () => {
           {
             name: "indicator",
             type: "select",
-            options: ["Simple MA", "some MA"],
+            options: ["None","Simple MA", "some MA"],
           },
-          { name: "period", type: "select", options: ["Days", "Year"] },
+          { name: "period", type: "select", options: ["None","Days", "Year"] },
           {
             name: "priceField",
             type: "select",
-            options: ["Price A", "Price B"],
+            options: ["None","Price A", "Price B"],
           },
           { name: "quantity", type: "number" },
         ],
@@ -102,13 +102,13 @@ const Explore_home = () => {
           {
             name: "indicator",
             type: "select",
-            options: ["Simple MA", "some MA"],
+            options: ["None","Simple MA", "some MA"],
           },
-          { name: "period", type: "select", options: ["Days", "Year"] },
+          { name: "period", type: "select", options: ["None","Days", "Year"] },
           {
             name: "priceField",
             type: "select",
-            options: ["Price A", "Price B"],
+            options: ["None","Price A", "Price B"],
           },
           { name: "quantity", type: "number" },
         ],
@@ -120,13 +120,13 @@ const Explore_home = () => {
           {
             name: "indicator",
             type: "select",
-            options: ["Simple MA", "some MA"],
+            options: ["None","Simple MA", "some MA"],
           },
-          { name: "period", type: "select", options: ["Days", "Year"] },
+          { name: "period", type: "select", options: ["None","Days", "Year"] },
           {
             name: "priceField",
             type: "select",
-            options: ["Price A", "Price B"],
+            options: ["None","Price A", "Price B"],
           },
           { name: "quantity", type: "number" },
         ],
@@ -283,14 +283,22 @@ const Explore_home = () => {
         className="m-2 w-[100%]  h-[450px] bg-black bg-opacity-10 rounded-lg"
         style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
       >
+
         <div className="relative my-[1%] h-[98%] overflow-y-scroll">
+        <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
+          <Link to={"/explore/logs"}
+              className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
+            >
+              View logs
+            </Link>
+          </div>
           <section className="relative">
             {dc[currentIndex]}
 
             <div className="mt-10 w-full p-4 flex justify-end">
-              <div className="z-10 px-2 w-20 leftbutton h-7 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer">
+              {/* <div className="z-10 px-2 w-20 leftbutton h-7 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer">
                 Save
-              </div>
+              </div> */}
             </div>
           </section>
         </div>
@@ -303,7 +311,7 @@ const Explore_home = () => {
         >
           Prev
         </div>
-        {currentIndex != 6 && (
+        {currentIndex != 3 && (
           <div
             onClick={handleNext}
             className=" cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
@@ -312,25 +320,27 @@ const Explore_home = () => {
             Next
           </div>
         )}
-        {currentIndex == 6 && (
-          <Link to={"./logs"}>
-            <div
-              className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
-              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-            >
-              Start BackTest
-              <svg width="20" height="20" className={``}>
-                <circle
-                  cx="15"
-                  cy="10"
-                  r="5"
-                  fill="#05FF00"
-                  className="z-0"
-                />
-              </svg>
-            </div>
-          </Link>
-        )}
+        {currentIndex == 3 && (
+            <Link to={"/explore/logs"}>
+              <div
+                onClick={handleNext}
+                className=" flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
+                style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+              >
+                Explore
+                <svg width="20" height="20" className={``}>
+                  <circle
+                    cx="15"
+                    cy="10"
+                    r="5"
+                    fill="#05FF00"
+                    className="z-0"
+                  />
+                </svg>
+              </div>
+            </Link>
+          )}
+        
       </div>
     </div>
   </div>

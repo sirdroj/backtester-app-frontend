@@ -219,7 +219,11 @@ const TradeInvestPeriod = () => {
                 </div>
 
               </div>
+               
             </form>
+              <div className="flex justify-end mt-2">
+                <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                </div>
           </div>
         </div>
       </div>

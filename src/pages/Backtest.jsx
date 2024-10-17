@@ -288,13 +288,20 @@ const Backtest = () => {
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
+          <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
+          <Link to={"./logs"}
+              className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
+            >
+              View logs
+            </Link>
+          </div>
             <section className="relative">
               {dc[currentIndex]}
 
               <div className="mt-10 w-full p-4 flex justify-end">
-                <div className="z-10 px-2 w-20 leftbutton h-7 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer">
+                {/* <div className="z-10 px-2 w-20 leftbutton h-7 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer">
                   Save
-                </div>
+                </div> */}
               </div>
             </section>
           </div>

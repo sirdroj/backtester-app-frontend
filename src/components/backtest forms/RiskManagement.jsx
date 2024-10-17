@@ -46,6 +46,7 @@ const RiskManagement = () => {
                 {
                   type: "dropdown",
                   options: [
+                    "None",
                     "Simple MA",
                     "Exponential MA",
                     "Wilder's MA",
@@ -55,6 +56,7 @@ const RiskManagement = () => {
                 {
                   type: "dropdown",
                   options: [
+                    "None",
                     "Simple MA",
                     "Exponential MA",
                     "Wilder's MA",
@@ -68,7 +70,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None", "Days", "Year"],
                 },
                 {
                   type: "number",
@@ -80,7 +82,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -94,7 +96,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["RSI", "CMO", "Stochastic"],
+                  options: ["None", "RSI", "CMO", "Stochastic"],
                 },
               ],
             },
@@ -103,7 +105,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None", "Days", "Year"],
                 },
                 {
                   type: "number",
@@ -115,7 +117,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -129,7 +131,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["ATR", "VIX"],
+                  options: ["None", "ATR", "VIX"],
                 },
               ],
             },
@@ -138,7 +140,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None", "Days", "Year"],
                 },
                 {
                   type: "number",
@@ -150,7 +152,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -164,7 +166,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPT1", "OPT2"],
+                  options: ["None", "OPT1", "OPT2"],
                 },
               ],
             },
@@ -173,7 +175,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None", "Days", "Year"],
                 },
                 {
                   type: "number",
@@ -185,7 +187,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -199,7 +201,11 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Volume Accunulation", "Volume weighted MA"],
+                  options: [
+                    "None",
+                    "Volume Accunulation",
+                    "Volume weighted MA",
+                  ],
                 },
               ],
             },
@@ -208,7 +214,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None", "Days", "Year"],
                 },
                 {
                   type: "number",
@@ -220,7 +226,7 @@ const RiskManagement = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -241,11 +247,17 @@ const RiskManagement = () => {
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
-    
+
             {
               title: "Expense",
               // info: "Some info about trends and what is Sales",
@@ -253,17 +265,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["Material Cost", "Employee Cost"],
+                  options: ["None", "Material Cost", "Employee Cost"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -274,17 +299,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -295,17 +333,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["Tax %"],
+                  options: ["None", "Tax %"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -317,6 +368,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Profit after tax	",
                     "Reported Net Profit	",
                     "Minority share	",
@@ -329,12 +381,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -345,12 +410,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -366,17 +444,36 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "Sale Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -388,6 +485,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Material Cost",
                     "Manufacturing Cost",
                     "Employee Cost",
@@ -397,12 +495,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -413,21 +524,34 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
-    
+
             {
               title: "Tax %	",
               // info: "Some info about trends and what is ",
@@ -435,13 +559,13 @@ const RiskManagement = () => {
                 {
                   title: "input",
                   type: "dropdown",
-                  options: [1, 2, 3],
+                  options: ["None", 1, 2, 3],
                 },
               ],
             },
           ],
         },
-    
+
         {
           title: "BALANCE SHEET",
           children: [
@@ -452,17 +576,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -473,17 +610,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -495,6 +645,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Long term Borrowings	",
                     "Short term Borrowings	",
                     "Lease Liabilities	",
@@ -506,12 +657,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -523,6 +687,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Non controlling int	",
                     "Trade Payables",
                     "Other liability items",
@@ -531,12 +696,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -547,17 +725,17 @@ const RiskManagement = () => {
             //     {
             //       title: "Matric",
             //       type: "dropdown",
-            //       options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+            //       options: ["None","Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             //     },
             //     {
             //       title: "Period",
             //       type: "dropdown",
-            //       options: [1, 2, 3],
+            //       options: ["None",1, 2, 3],
             //     },
             //     {
             //       title: "Calculation Method",
             //       type: "dropdown",
-            //       options: [1, 2, 3],
+            //       options: ["None",1, 2, 3],
             //     },
             //   ],
             // },
@@ -569,6 +747,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Land",
                     "Building",
                     "Plant Machinery",
@@ -583,12 +762,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -599,17 +791,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -620,17 +825,30 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -642,6 +860,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Inventories",
                     "Cash Equivalents",
                     "Short term loans	",
@@ -652,6 +871,7 @@ const RiskManagement = () => {
                   title: "trade receivables",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Receivables over 6m	",
                     "Receivables under 6m	",
                     "Prov for Doubtful	",
@@ -660,12 +880,25 @@ const RiskManagement = () => {
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -681,12 +914,13 @@ const RiskManagement = () => {
                 {
                   title: "Matric",
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None", "OPM %", "Interest", "Depreciation"],
                 },
                 {
                   title: "Profit from operations",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Receivables	",
                     "Inventory",
                     "Payables",
@@ -696,17 +930,30 @@ const RiskManagement = () => {
                 {
                   title: "Working capital changes	",
                   type: "dropdown",
-                  options: ["Interest paid", "Direct taxes"],
+                  options: ["None", "Interest paid", "Direct taxes"],
                 },
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -718,6 +965,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Fixed assets purchased	",
                     "Fixed assets sold	",
                     "Investments purchased	",
@@ -729,16 +977,29 @@ const RiskManagement = () => {
                     "Other investing items",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -750,6 +1011,7 @@ const RiskManagement = () => {
                   title: "Matric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Proceeds from shares	",
                     "Proceeds from borrowings	",
                     "Repayment of borrowings	",
@@ -762,16 +1024,29 @@ const RiskManagement = () => {
                     "Other financing items	",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -792,18 +1067,36 @@ const RiskManagement = () => {
                 {
                   title: "metric",
                   type: "dropdown",
-                  options: ["Debtor Days	", "Inventory Days	", "Days Payable	"],
+                  options: [
+                    "None",
+                    "Debtor Days	",
+                    "Inventory Days	",
+                    "Days Payable	",
+                  ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -814,18 +1107,31 @@ const RiskManagement = () => {
                 {
                   title: "metric",
                   type: "dropdown",
-                  options: ["Working Capital Days	", "ROCE %"],
+                  options: ["None", "Working Capital Days	", "ROCE %"],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -842,6 +1148,7 @@ const RiskManagement = () => {
                   title: "metric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Tata Sons Private Limited",
                     "Tata Investment Corporation Limited",
                     "Ewart Investments Limited",
@@ -850,16 +1157,29 @@ const RiskManagement = () => {
                     "Titan Company Limited",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -871,22 +1191,36 @@ const RiskManagement = () => {
                   title: "metric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Dodona Holdings Limited",
                     "Arisaig India Fund Limited",
                     "St. James's Place Emerging Markets Equity Unit Tru",
                     "Amansa Holdings Private Limited",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -898,6 +1232,7 @@ const RiskManagement = () => {
                   title: "metric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Sbi Life Insurance Co Ltd",
                     "Axis Mutual Fund Trustee Limited A/C Axis Mutual Fund",
                     "HDFC Life Insurance Co Ltd",
@@ -905,16 +1240,29 @@ const RiskManagement = () => {
                     "UTI Flexi Cap Fund",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
@@ -926,26 +1274,40 @@ const RiskManagement = () => {
                   title: "metric",
                   type: "dropdown",
                   options: [
+                    "None",
                     "Derive Trading And Resorts Private Limited",
                     "Prazim Trading And Investment Co. Pvt. Ltd.",
                   ],
                 },
-    
+
                 {
                   title: "Period",
                   type: "period",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   title: "Calculation Method",
                   type: "dropdown",
-                  options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+                  options: [
+                    "None",
+                    "YOY-Growth",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                  ],
                 },
               ],
             },
           ],
         },
-      ]
+      ],
     },
   ];
 
@@ -1154,6 +1516,14 @@ const RiskManagement = () => {
                           </div>
                         </div>
                       ))}
+                      <div className="flex justify-end mt-2">
+                        <button
+                          type="submit"
+                          className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                        >
+                          Save&Next
+                        </button>
+                      </div>
                     </form>
                   </div>
                 ))}{" "}
@@ -1163,14 +1533,16 @@ const RiskManagement = () => {
               <div className="ml-[-10px]">
                 {item.children.map((subinput, subIndex) => (
                   <div key={subIndex} className="mb-4">
-                    
                     <div
                       className=" justify-between my-5 border-[px] shadow-black inset-2 border-b-[1px] border-b-gray-500 rounded-lg p-2"
                       style={{
                         boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                       }}
                     >
-                      <h1 className="text-[17px] font-semibold border-b-[1px] border-gray-700"> {subinput.title} -</h1>
+                      <h1 className="text-[17px] font-semibold border-b-[1px] border-gray-700">
+                        {" "}
+                        {subinput.title} -
+                      </h1>
                       {/* <label>{item.title}</label> */}
                       <div className="flex space-x-2">
                         <form className="inputs px-2 pt- shadow-black inset-2 rounded-lg p-2 w-full">
@@ -1327,6 +1699,14 @@ const RiskManagement = () => {
                               </div>
                             </div>
                           ))}
+                          <div className="flex justify-end mt-2">
+                            <button
+                              type="submit"
+                              className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                            >
+                              Save&Next
+                            </button>
+                          </div>
                         </form>
                       </div>
                     </div>

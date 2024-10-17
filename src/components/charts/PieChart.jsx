@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ApexCharts from 'apexcharts';
 
-const PieChart = () => {
+const PieChart = ({data,title}) => {
   useEffect(() => {
     const chartConfig = {
       series: [44, 55, 13, 43, 22],

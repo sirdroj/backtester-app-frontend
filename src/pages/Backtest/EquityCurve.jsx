@@ -1,128 +1,78 @@
-import React, { useEffect } from "react";
-import ApexCharts from "apexcharts";
+import { useState, useRef } from "react";
+import { Table } from "../../components/Table";
+import { equityTable } from "./Test_data";
+import { TableEquity } from "./TableEquity";
+import EquityChart from "./EquityChart";
 
-const transformToColumnLists = (data) => {
-  const result = {};
+const EquityCurve = () => {
+  const equity_Table_data = equityTable;
 
-  data.forEach((item) => {
-    Object.keys(item).forEach((key) => {
-      if (!result[key]) {
-        result[key] = [];
-      }
-      result[key].push(item[key]);
-    });
-  });
+  const [leftWidth, setLeftWidth] = useState(40); // Initial width for the left section
+  const resizeRequestRef = useRef(null); // To store animation frame ID
 
-  let ans = [];
-  for (const key in result) {
-    if (key === "Equity" || key === "Nifty 500") {
-      ans.push({
-        name: key,
-        data: result[key],
+  const handleMouseDown = (e) => {
+    const initialLeftWidth = leftWidth;
+
+    const handleMouseMove = (moveEvent) => {
+      if (resizeRequestRef.current) return; // Prevent multiple requests
+
+      resizeRequestRef.current = requestAnimationFrame(() => {
+        const newLeftWidth = (moveEvent.clientX / window.innerWidth) * 100;
+        if (newLeftWidth > 20 && newLeftWidth < 50) {
+          setLeftWidth(newLeftWidth);
+        }
+        resizeRequestRef.current = null; // Clear the request ID after update
       });
-    }
-  }
-
-  return { series: ans, dates: result["Date"] };
-};
-
-const chartConfig = (transformedData) => ({
-  series: transformedData["series"],
-  chart: {
-    type: "line",
-    height: 450,
-    toolbar: {
-      show: false,
-    },
-  },
-  title: {
-    show: false,
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    lineCap: "round",
-    curve: "smooth",
-  },
-  markers: {
-    size: 1,
-    colors: "white",
-  },
-  xaxis: {
-    axisTicks: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-    labels: {
-      style: {
-        colors: "white",
-        fontSize: "12px",
-        fontFamily: "inherit",
-        fontWeight: 400,
-      },
-    },
-    categories: transformedData.dates,
-  },
-  yaxis: {
-    tickAmount: 20,
-    labels: {
-      style: {
-        colors: "white",
-        fontSize: "12px",
-        fontFamily: "inherit",
-        fontWeight: 400,
-      },
-    },
-  },
-  grid: {
-    show: true,
-    borderColor: "rgba(255, 255, 255, 0.1)",
-    strokeDashArray: 0,
-    opacity: 0.1,
-    xaxis: {
-      lines: {
-        show: true,
-        opacity: 0.2,
-      },
-    },
-    padding: {
-      top: 5,
-      right: 20,
-    },
-  },
-  fill: {
-    opacity: 1,
-  },
-  tooltip: {
-    theme: "dark",
-  },
-});
-
-const EquityCurve = ({ equity_Table_data }) => {
-  const transformedData = transformToColumnLists(equity_Table_data.slice(0, 40));
-
-  useEffect(() => {
-    const chart = new ApexCharts(
-      document.querySelector("#line-chart"),
-      chartConfig(transformedData)
-    );
-    chart.render();
-
-    return () => {
-      chart.destroy();
     };
-  }, [transformedData]);
+
+    const handleMouseUp = () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      if (resizeRequestRef.current) {
+        cancelAnimationFrame(resizeRequestRef.current); // Cancel any pending frame
+        resizeRequestRef.current = null;
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  };
 
   return (
-    <div
-      style={{ width: "100%" }}
-      className="relative flex flex-col rounded-xl dark:bg-gray-900 bg-gray-700 shadow-md"
-    >
-      <div className="px-2 pb-0">
-        <div id="line-chart" style={{ width: "100%" }}></div>
+    <div className="flex items-center w-full pt-1 ">
+      <div className="p-2 mt- w-16 dark:bg-gray-900 bg-gray-600 rounded-lg h-[480px]">
+        <ul className="space-y-1">
+          <li className="w-full bg-gray-700 rounded-md p-2 px-3">
+            <img src="/icons/Line_light.svg" className="w-full" />
+          </li>
+          <li className="w-full bg-gray-700 rounded-md p-2 px-3">
+            <img src="/icons/volatility.svg" className="w-full" />
+          </li>
+          <li className="w-full bg-gray-700 rounded-md p-2 px-3">
+            <img src="/icons/trending up.png" className="w-full" />
+          </li>
+        </ul>
+      </div>
+      <div className="flex w-[90%] mt-0 h-[470px]">
+        {/* Left section */}
+        <div className="h-full" style={{ width: `${leftWidth}%` }}>
+          <div className="text-white flex justify-center h-full">
+            <TableEquity products={equity_Table_data} tableTheme={"dark"} />
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div
+          className="w-2 bg-gray-500 cursor-col-resize"
+          onMouseDown={handleMouseDown}
+        ></div>
+
+        {/* Right section */}
+        <div className=" w-full " >
+          <div className="pt-2 px-2 text-white w-full">
+            <EquityChart equity_Table_data={equity_Table_data} />
+          </div>
+        </div>
       </div>
     </div>
   );

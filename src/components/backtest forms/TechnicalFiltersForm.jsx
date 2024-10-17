@@ -32,9 +32,9 @@ const TechnicalFiltersForm = () => {
             name: "Trend",
             icon: "./icons/trending up.png",
             inputs: [
-              { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
-              { name: "priceField", type: "select", options: ["Price A", "Price B"] },
+              { name: "indicator", type: "select", options: ["None","Simple MA", "some MA"] },
+              { name: "period", type: "select", options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"] },
+              { name: "priceField", type: "select", options: ["None","Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
           },
@@ -42,9 +42,9 @@ const TechnicalFiltersForm = () => {
             name: "Momentum",
             icon: "./icons/momentum.svg",
             inputs: [
-              { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
-              { name: "priceField", type: "select", options: ["Price A", "Price B"] },
+              { name: "indicator", type: "select", options: ["None","Simple MA", "some MA"] },
+              { name: "period", type: "select", options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"] },
+              { name: "priceField", type: "select", options: ["None","Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
           },
@@ -52,9 +52,9 @@ const TechnicalFiltersForm = () => {
             name: "Volatility",
             icon: "./icons/volatility.svg",
             inputs: [
-              { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
-              { name: "priceField", type: "select", options: ["Price A", "Price B"] },
+              { name: "indicator", type: "select", options: ["None","Simple MA", "some MA"] },
+              { name: "period", type: "select", options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"] },
+              { name: "priceField", type: "select", options: ["None","Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
           },
@@ -62,9 +62,9 @@ const TechnicalFiltersForm = () => {
             name: "Volume",
             icon: "./icons/volume.svg",
             inputs: [
-              { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
-              { name: "priceField", type: "select", options: ["Price A", "Price B"] },
+              { name: "indicator", type: "select", options: ["None","Simple MA", "some MA"] },
+              { name: "period", type: "select", options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"] },
+              { name: "priceField", type: "select", options: ["None","Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
           },
@@ -72,9 +72,9 @@ const TechnicalFiltersForm = () => {
             name: "Breadth",
             icon: "./icons/breath.svg",
             inputs: [
-              { name: "indicator", type: "select", options: ["Simple MA", "some MA"] },
-              { name: "period", type: "select", options: ["Yearly","Quaterly","Monthly","Weekly","Daily"] },
-              { name: "priceField", type: "select", options: ["Price A", "Price B"] },
+              { name: "indicator", type: "select", options: ["None","Simple MA", "some MA"] },
+              { name: "period", type: "select", options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"] },
+              { name: "priceField", type: "select", options: ["None","Price A", "Price B"] },
               { name: "quantity", type: "number" }
             ]
           }

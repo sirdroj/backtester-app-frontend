@@ -93,7 +93,7 @@ const ChatWindow = () => {
     >
       {/* Chat History */}
       <div
-        className="rounded-md w-[16%] h-full p-2 dark:bg-gray-900 bg-gray-600 mb-2"
+        className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-600 mb-2"
         //   style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
       >
         <h1 className="text-center font-semibold dark:text-white text-gray-200 ">History</h1>
@@ -103,7 +103,7 @@ const ChatWindow = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-2"
+            className="h-4 w-4 mr-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

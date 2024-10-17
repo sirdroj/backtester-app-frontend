@@ -47,7 +47,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -67,7 +67,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Material Cost", "Employee Cost"],
+                  options: ["None","Material Cost", "Employee Cost"],
                 },
               ],
             },
@@ -76,11 +76,11 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
                 {
                   type: "number",
-                  // options: ["days", "week", "year"],
+                  // options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -89,7 +89,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -109,7 +109,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None","OPM %", "Interest", "Depreciation"],
                 },
               ],
             },
@@ -118,7 +118,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -127,7 +127,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -147,7 +147,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Tax %"],
+                  options: ["None","Tax %"],
                 },
               ],
             },
@@ -156,7 +156,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -165,7 +165,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -185,7 +185,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "Profit after tax",
                     "Reported Net Profit",
                     "Minority share",
@@ -202,7 +202,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -211,7 +211,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -231,7 +231,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -240,7 +240,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -265,7 +265,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "Sale Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -279,7 +279,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -288,7 +288,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -308,7 +308,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "Material Cost",
                     "Manufacturing Cost",
                     "Employee Cost",
@@ -322,7 +322,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -331,7 +331,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -351,7 +351,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None","OPM %", "Interest", "Depreciation"],
                 },
               ],
             },
@@ -360,7 +360,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -369,7 +369,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -389,7 +389,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [1, 2, 3],
+                  options: ["None",1, 2, 3],
                 },
               ],
             },
@@ -409,7 +409,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None","OPM %", "Interest", "Depreciation"],
                 },
               ],
             },
@@ -418,7 +418,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -427,7 +427,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -447,7 +447,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPM %", "Interest", "Depreciation"],
+                  options: ["None","OPM %", "Interest", "Depreciation"],
                 },
               ],
             },
@@ -456,7 +456,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -465,7 +465,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -485,7 +485,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "Long term Borrowings",
                     "Short term Borrowings",
                     "Lease Liabilities",
@@ -501,7 +501,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -510,7 +510,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -530,7 +530,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "Non controlling int",
                     "Trade Payables",
                     "Other liability items",
@@ -543,7 +543,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -552,7 +552,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",
@@ -572,7 +572,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Gross Fixed Assets", "Net Fixed Assets"],
+                  options: ["None","Gross Fixed Assets", "Net Fixed Assets"],
                 },
               ],
             },
@@ -581,7 +581,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "period",
-                  options: ["days", "week", "year"],
+                  options: ["None","days", "week", "year"],
                 },
               ],
             },
@@ -590,7 +590,7 @@ const FundamentalForm = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
+                  options: ["None",
                     "YOY-Growth",
                     "QTR-Growth",
                     "Rate of Change",

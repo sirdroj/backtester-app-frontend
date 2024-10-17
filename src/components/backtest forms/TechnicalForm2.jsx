@@ -46,7 +46,13 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Simple MA", "Exponential MA","Wilder's MA","Custom MAs"],
+                  options: [
+                    "None",
+                    "Simple MA",
+                    "Exponential MA",
+                    "Wilder's MA",
+                    "Custom MAs",
+                  ],
                 },
               ],
             },
@@ -55,7 +61,14 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   type: "number",
@@ -67,7 +80,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -87,7 +100,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["RSI", "CMO","Stochastic"],
+                  options: ["None", "RSI", "CMO", "Stochastic"],
                 },
               ],
             },
@@ -96,7 +109,14 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   type: "number",
@@ -108,7 +128,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -128,7 +148,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["ATR", "VIX"],
+                  options: ["None", "ATR", "VIX"],
                 },
               ],
             },
@@ -137,7 +157,14 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   type: "number",
@@ -149,7 +176,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -169,7 +196,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPT1", "OPT2"],
+                  options: ["None", "OPT1", "OPT2"],
                 },
               ],
             },
@@ -178,7 +205,14 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   type: "number",
@@ -190,7 +224,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -210,7 +244,11 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Volume Accunulation", "Volume weighted MA"],
+                  options: [
+                    "None",
+                    "Volume Accunulation",
+                    "Volume weighted MA",
+                  ],
                 },
               ],
             },
@@ -219,7 +257,14 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+                  options: [
+                    "None",
+                    "Yearly",
+                    "Quaterly",
+                    "Monthly",
+                    "Weekly",
+                    "Daily",
+                  ],
                 },
                 {
                   type: "number",
@@ -231,7 +276,7 @@ const TechnicalForm2 = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None", "Price A", "Price B"],
                 },
               ],
             },
@@ -413,6 +458,9 @@ const TechnicalForm2 = () => {
                       </div>
                     );
                   })}
+                  <div className="flex justify-end">
+                  <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                  </div>
                 </form>
               </div>
             ))}

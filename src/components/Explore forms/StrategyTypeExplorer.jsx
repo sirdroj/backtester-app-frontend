@@ -50,7 +50,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: ["Native data", "Upload Data"],
+                  options: ["None", "Native data", "Upload Data"],
                 },
               ],
             },
@@ -71,6 +71,7 @@ const StrategyType = () => {
                 {
                   type: "dropdown",
                   options: [
+                    "None",
                     "Exponential MA",
                     "Wilder's MA",
                     "Custom MAs",
@@ -81,7 +82,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -94,11 +95,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["RSI", "Stochastic", "15", "10", "8"],
+                  options: ["None", "RSI", "Stochastic", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -111,11 +112,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Volume Accunulation", "15", "10", "8"],
+                  options: ["None", "Volume Accunulation", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -134,11 +135,18 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["QTR-Growth", "Rate of Change", "CAGR", 10, 15],
+                  options: [
+                    "None",
+                    "QTR-Growth",
+                    "Rate of Change",
+                    "CAGR",
+                    10,
+                    15,
+                  ],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -151,11 +159,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Employee Cost", "50%", "20%"],
+                  options: ["None", "Employee Cost", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -168,11 +176,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["35", "30%", "20%"],
+                  options: ["None", "35", "30%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -185,11 +193,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Interest", "Depreciation", "50%", "20%"],
+                  options: ["None", "Interest", "Depreciation", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -203,6 +211,7 @@ const StrategyType = () => {
                 {
                   type: "dropdown",
                   options: [
+                    "None",
                     "Reported Net Profit",
                     "Minority share",
                     "Profit for EPS",
@@ -214,7 +223,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: [">", ">=", "<", "<="],
+                  options: ["None", ">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -310,7 +319,10 @@ const StrategyType = () => {
 
                   {input.children.map((field) => {
                     return (
-                      <div key={field.id} className="flex items-center justify-between my-2">
+                      <div
+                        key={field.id}
+                        className="flex items-center justify-between my-2"
+                      >
                         {/* <div> {field.title} </div> */}
                         <label>{field.title}</label>
                         <div className=" flex justify-between items-center inputs_wrapper">
@@ -426,6 +438,14 @@ const StrategyType = () => {
                       </div>
                     );
                   })}
+                  <div className="flex justify-end mt-2">
+                    <button
+                      type="submit"
+                      className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                    >
+                      Save&Next
+                    </button>
+                  </div>
                 </form>
               </div>
             ))}

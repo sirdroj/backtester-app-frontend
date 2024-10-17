@@ -134,27 +134,15 @@ const Portfolio_filters = () => {
         childrens: [
           {
             label: "Promoters",
-            values: [
-              "Tata Sons Private Limited",
-              "10 Days",
-              "YOY-growth",
-            ],
+            values: ["Tata Sons Private Limited", "10 Days", "YOY-growth"],
           },
           {
             label: "Flls",
-            values: [
-              "Dodona Holdings Limited",
-              "10 Days",
-              "YOY-growth",
-            ],
+            values: ["Dodona Holdings Limited", "10 Days", "YOY-growth"],
           },
           {
             label: "Dlls",
-            values: [
-              "SBI Life insurance Co Ltd",
-              "10 Days",
-              "YOY-growth",
-            ],
+            values: ["SBI Life insurance Co Ltd", "10 Days", "YOY-growth"],
           },
           {
             label: "Public",
@@ -172,19 +160,11 @@ const Portfolio_filters = () => {
         childrens: [
           {
             label: "Ratios",
-            values: [
-              "Debtor Days",
-              "10 Days",
-              "YOY-growth",
-            ],
+            values: ["Debtor Days", "10 Days", "YOY-growth"],
           },
           {
             label: "Cash Conversion Cycle",
-            values: [
-              "Working Capital Days",
-              "10 Days",
-              "YOY-growth",
-            ],
+            values: ["Working Capital Days", "10 Days", "YOY-growth"],
           },
         ],
       },
@@ -259,6 +239,14 @@ const Portfolio_filters = () => {
                     className=" bg-gray-700 active:outline-gray-400 rounded-md w-20"
                   />
                 </div>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
               </div>
             </form>
           </div>
@@ -377,6 +365,14 @@ const Portfolio_filters = () => {
                   %
                 </div>
               </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
+              </div>
             </form>
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
@@ -414,6 +410,14 @@ const Portfolio_filters = () => {
                     className=" bg-gray-700 rounded-md w-20 m-1"
                   />
                 </div>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
               </div>
             </form>
           </div>
@@ -471,7 +475,14 @@ const Portfolio_filters = () => {
                   />
                 </div>
               </div>
-
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
+              </div>
               {/* ------------------------------------------------------------------------- */}
             </form>
           </div>
@@ -560,6 +571,14 @@ const Portfolio_filters = () => {
                     />
                   </div>
                 </div>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
               </div>
               {/* ------------------------------------------------------------------------- */}
             </form>
@@ -718,6 +737,14 @@ const Portfolio_filters = () => {
                   </div>
                 ))}
               </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
+              </div>
             </form>
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
@@ -750,6 +777,14 @@ const Portfolio_filters = () => {
                     className=" bg-gray-700 active:outline-gray-400 rounded-md "
                   />
                 </div>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  type="submit"
+                  className="p-1 border-[1px] rounded-lg px-4 text-sm"
+                >
+                  Save&Next
+                </button>
               </div>
             </form>
           </div>

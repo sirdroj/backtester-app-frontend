@@ -23,7 +23,7 @@ export const NavbarTop = () => {
 
   return (
     <div className="h-5 w-[98%] fixed z-50">
-      <header className="w-full flex justify-center items-center mt-5">
+      <header className="w-full flex justify-center items-center mt-2">
         <ul className="ml-60 z-100 flex justify-between p-1 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-[#5E445F] rounded-full text-[12px]">
           {navItems.map((item) => (
             <Link to={item.path} key={item.id} className="text-white z-50">

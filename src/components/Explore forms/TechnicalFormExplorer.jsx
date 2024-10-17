@@ -46,7 +46,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Simple MA", "Exponential MA","Wilder's MA","Custom MAs"],
+                  options: ["None","Simple MA", "Exponential MA","Wilder's MA","Custom MAs"],
                 },
               ],
             },
@@ -55,7 +55,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None","Days", "Year"],
                 },
                 {
                   type: "number",
@@ -67,7 +67,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None","Price A", "Price B"],
                 },
               ],
             },
@@ -87,7 +87,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["RSI", "CMO","Stochastic"],
+                  options: ["None","RSI", "CMO","Stochastic"],
                 },
               ],
             },
@@ -96,7 +96,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None","Days", "Year"],
                 },
                 {
                   type: "number",
@@ -108,7 +108,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None","Price A", "Price B"],
                 },
               ],
             },
@@ -128,7 +128,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["ATR", "VIX"],
+                  options: ["None","ATR", "VIX"],
                 },
               ],
             },
@@ -137,7 +137,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None","Days", "Year"],
                 },
                 {
                   type: "number",
@@ -149,7 +149,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None","Price A", "Price B"],
                 },
               ],
             },
@@ -169,7 +169,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["OPT1", "OPT2"],
+                  options: ["None","OPT1", "OPT2"],
                 },
               ],
             },
@@ -178,7 +178,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None","Days", "Year"],
                 },
                 {
                   type: "number",
@@ -190,7 +190,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None","Price A", "Price B"],
                 },
               ],
             },
@@ -210,7 +210,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Volume Accunulation", "Volume weighted MA"],
+                  options: ["None","Volume Accunulation", "Volume weighted MA"],
                 },
               ],
             },
@@ -219,7 +219,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Days", "Year"],
+                  options: ["None","Days", "Year"],
                 },
                 {
                   type: "number",
@@ -231,7 +231,7 @@ const TechnicalFormExplorer = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["Price A", "Price B"],
+                  options: ["None","Price A", "Price B"],
                 },
               ],
             },
@@ -413,6 +413,9 @@ const TechnicalFormExplorer = () => {
                       </div>
                     );
                   })}
+                  <div className="flex justify-end mt-2">
+                <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                </div>
                 </form>
               </div>
             ))}

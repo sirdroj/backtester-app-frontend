@@ -57,7 +57,7 @@ const FundamentalForm = () => {
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -69,17 +69,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["Material Cost", "Employee Cost"],
+              options: ["None","Material Cost", "Employee Cost"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -90,17 +90,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -111,17 +111,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["Tax %"],
+              options: ["None","Tax %"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -132,7 +132,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Profit after tax	",
                 "Reported Net Profit	",
                 "Minority share	",
@@ -145,12 +145,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -161,12 +161,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -182,17 +182,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -203,7 +203,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Material Cost",
                 "Manufacturing Cost",
                 "Employee Cost",
@@ -213,12 +213,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -229,17 +229,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -251,7 +251,7 @@ const FundamentalForm = () => {
             {
               title: "input",
               type: "dropdown",
-              options: [1, 2, 3],
+              options: ["None",1, 2, 3],
             },
           ],
         },
@@ -268,17 +268,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -289,17 +289,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -310,7 +310,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Long term Borrowings	",
                 "Short term Borrowings	",
                 "Lease Liabilities	",
@@ -322,12 +322,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -338,7 +338,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Non controlling int	",
                 "Trade Payables",
                 "Other liability items",
@@ -347,12 +347,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -363,17 +363,17 @@ const FundamentalForm = () => {
         //     {
         //       title: "Matric",
         //       type: "dropdown",
-        //       options: ["Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+        //       options: ["None","Sale Growth", "QTR-Growth", "Rate of Change", "CAGR"],
         //     },
         //     {
         //       title: "Period",
         //       type: "dropdown",
-        //       options: [1, 2, 3],
+        //       options: ["None",1, 2, 3],
         //     },
         //     {
         //       title: "Calculation Method",
         //       type: "dropdown",
-        //       options: [1, 2, 3],
+        //       options: ["None",1, 2, 3],
         //     },
         //   ],
         // },
@@ -384,7 +384,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Land",
                 "Building",
                 "Plant Machinery",
@@ -399,12 +399,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -415,17 +415,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -436,17 +436,17 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -457,7 +457,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Inventories",
                 "Cash Equivalents",
                 "Short term loans	",
@@ -467,7 +467,7 @@ const FundamentalForm = () => {
             {
               title: "trade receivables",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Receivables over 6m	",
                 "Receivables under 6m	",
                 "Prov for Doubtful	",
@@ -476,12 +476,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -497,12 +497,12 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: ["OPM %", "Interest", "Depreciation"],
+              options: ["None","OPM %", "Interest", "Depreciation"],
             },
             {
               title: "Profit from operations",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Receivables	",
                 "Inventory",
                 "Payables",
@@ -512,17 +512,17 @@ const FundamentalForm = () => {
             {
               title: "Working capital changes	",
               type: "dropdown",
-              options: ["Interest paid", "Direct taxes"],
+              options: ["None","Interest paid", "Direct taxes"],
             },
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -533,7 +533,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Fixed assets purchased	",
                 "Fixed assets sold	",
                 "Investments purchased	",
@@ -549,12 +549,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -565,7 +565,7 @@ const FundamentalForm = () => {
             {
               title: "Matric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Proceeds from shares	",
                 "Proceeds from borrowings	",
                 "Repayment of borrowings	",
@@ -582,12 +582,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -608,18 +608,18 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: ["Debtor Days	", "Inventory Days	", "Days Payable	"],
+              options: ["None","Debtor Days	", "Inventory Days	", "Days Payable	"],
             },
 
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -630,18 +630,18 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: ["Working Capital Days	", "ROCE %"],
+              options: ["None","Working Capital Days	", "ROCE %"],
             },
 
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -657,7 +657,7 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Tata Sons Private Limited",
                 "Tata Investment Corporation Limited",
                 "Ewart Investments Limited",
@@ -670,12 +670,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -686,7 +686,7 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Dodona Holdings Limited",
                 "Arisaig India Fund Limited",
                 "St. James's Place Emerging Markets Equity Unit Tru",
@@ -697,12 +697,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -713,7 +713,7 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Sbi Life Insurance Co Ltd",
                 "Axis Mutual Fund Trustee Limited A/C Axis Mutual Fund",
                 "HDFC Life Insurance Co Ltd",
@@ -725,12 +725,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -741,7 +741,7 @@ const FundamentalForm = () => {
             {
               title: "metric",
               type: "dropdown",
-              options: [
+              options: ["None",
                 "Derive Trading And Resorts Private Limited",
                 "Prazim Trading And Investment Co. Pvt. Ltd.",
               ],
@@ -750,12 +750,12 @@ const FundamentalForm = () => {
             {
               title: "Period",
               type: "period",
-              options: ["Yearly","Quaterly","Monthly","Weekly","Daily"],
+              options: ["None","Yearly","Quaterly","Monthly","Weekly","Daily"],
             },
             {
               title: "Calculation Method",
               type: "dropdown",
-              options: ["YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
+              options: ["None","YOY-Growth", "QTR-Growth", "Rate of Change", "CAGR"],
             },
           ],
         },
@@ -946,6 +946,9 @@ const FundamentalForm = () => {
                     })}
 
 
+                <div className="flex justify-end mt-2">
+                    <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                  </div>
                 </form>
               </div>
             ))}
