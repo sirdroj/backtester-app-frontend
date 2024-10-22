@@ -55,19 +55,20 @@ export const YearlySummaryTable = ({ products, tableTheme }) => {
                       onChange={handleSelectChangeSecond}
                       className="text-black p-1 dark:text-white text-sm dark:bg-gray-800 bg-transparent active:border-none focus:border-none rounded-lg px-5"
                     >
-                      <option value="Option 1">Option 1</option>
-                      <option value="Option 2">Option 2</option>
-                      <option value="Option 3">Option 3</option>
+                      <option value="Option 1">StratV1F2</option>
+                      <option value="Option 2">StratV2F1</option>
+                      <option value="Option 3">StratV3F1</option>
                     </select>
                   ) : index === 2 ? (
                     <select
                       value={selectedOptionThird}
                       onChange={handleSelectChangeThird}
-                      className="text-black p-1 dark:text-white text-sm   bg-transparent rounded-lg px-5"
+                      className="text-black p-1 dark:text-white text-sm dark:bg-gray-800 bg-transparent active:border-none focus:border-none rounded-lg px-5"
                     >
-                      <option value="Option 1">Option 1</option>
-                      <option value="Option 2">Option 2</option>
-                      <option value="Option 3">Option 3</option>
+                      
+                      <option value="Option 1">Nifty 500</option>
+                      <option value="Option 2">Nifty 50</option>
+                      <option value="Option 3">LargeCap 100</option>
                     </select>
                   ) : (
                     key.charAt(0).toUpperCase() + key.slice(1)

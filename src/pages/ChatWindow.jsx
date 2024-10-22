@@ -88,12 +88,12 @@ const ChatWindow = () => {
 
   return (
     <div
-      className=" z-[11] mt-7 p-4 px-2 mx-2 h-[86vh] w-[98vw] border-[1px] border-gray-800 bg-gray-700 dark:bg-slate-900 rounded-lg shadow-lg flex justify-evenly"
+      className=" z-[11] mt-7 p-4 px-2 mx-2 h-[86vh] w-[98vw] border-[1px] border-gray-800  dark:bg-slate-900 rounded-lg shadow-lg flex justify-evenly"
       style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.1)" }}
     >
       {/* Chat History */}
       <div
-        className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-600 mb-2"
+        className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-900 bg-opacity-20 mb-2"
         //   style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
       >
         <h1 className="text-center font-semibold dark:text-white text-gray-200 ">History</h1>
@@ -201,9 +201,9 @@ const ChatWindow = () => {
               <div
                 key={index}
                 className={`p-2 my-1 rounded-md ${
-                  msg.sender === "user"
-                    ? "dark:bg-gray-900 bg-gray-400 text-gray-700 dark:text-white"
-                    : "dark:bg-gray-800 bg-gray-200 text-gray-700 dark:text-gray-300"
+                  msg.sender != "user"
+                    ? "dark:bg-gray-900 bg-gray-100 bg-opacity-15 text-gray-100 font-semibold dark:text-white"
+                    : "dark:bg-gray-800 bg-gray-300 bg-opacity-75 text-gray-900 font-semibold dark:text-gray-300"
                 }`}
               >
                 {msg.text}

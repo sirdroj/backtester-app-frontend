@@ -18,7 +18,7 @@ const EquityCurve = () => {
 
       resizeRequestRef.current = requestAnimationFrame(() => {
         const newLeftWidth = (moveEvent.clientX / window.innerWidth) * 100;
-        if (newLeftWidth > 20 && newLeftWidth < 50) {
+        if (newLeftWidth > 20 && newLeftWidth < 80) {
           setLeftWidth(newLeftWidth);
         }
         resizeRequestRef.current = null; // Clear the request ID after update
@@ -72,6 +72,7 @@ const EquityCurve = () => {
           <div className="pt-2 px-2 text-white w-full">
             <EquityChart equity_Table_data={equity_Table_data} />
           </div>
+          
         </div>
       </div>
     </div>
