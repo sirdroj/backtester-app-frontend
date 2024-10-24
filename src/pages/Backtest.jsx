@@ -205,7 +205,7 @@ const Backtest = () => {
   };
 
   return (
-    <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[1px]">
+    <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[px]">
       <div className="relative w-[285px] z-1   top-[-9%]  ">
         {/* <img
           src="/images/bt_badge.png"
@@ -214,13 +214,13 @@ const Backtest = () => {
         <div className="h-screen flex items-center justify-center absolute left-[20px]">
           <div className=" space-y-80 z-[100]">
             <div
-              className=" z-10 rightbutton w-10 h-10 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
+              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-700 border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
               onClick={handlePrev}
             >
               <b>&#8593;</b>
             </div>
             <div
-              className=" z-10 rightbutton w-10 h-10 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
+              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-700 border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
               onClick={handleNext}
             >
               <b>&#8595;</b>

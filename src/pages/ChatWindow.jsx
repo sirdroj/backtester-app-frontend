@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { getBotReply } from "./ChatBot";
+import { getBotReply, getBotReplyAPI } from "./ChatBot";
 import FileUploadPopup from "../components/FileUploadPopup ";
 
 const ChatWindow = () => {
@@ -27,33 +27,35 @@ const ChatWindow = () => {
   };
 
   // Handle sending message
-  const sendMessage = () => {
-    if (input.trim()) {
+ // Handle sending message
+const sendMessage = async () => {
+  if (input.trim()) {
       const userMessage = input;
 
       // Append user message
       setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: userMessage, sender: "user" },
+          ...prevMessages,
+          { text: userMessage, sender: "user" },
       ]);
 
       // Get bot reply
-      const botReply = getBotReply(userMessage);
+      const botReply = await getBotReplyAPI(userMessage); // Use await here
 
       // Append bot reply after a short delay
       setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: botReply, sender: "bot" },
-        ]);
-        scrollToBottom(); // Scroll to bottom after bot reply
+          setMessages((prevMessages) => [
+              ...prevMessages,
+              { text: botReply, sender: "bot" },
+          ]);
+          scrollToBottom(); // Scroll to bottom after bot reply
       }, 500);
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
       setInput(""); // Clear input field after sending
-    }
-  };
+  }
+};
+
 
   // Handle 'Enter' key to send message
   const handleKeyDown = (e) => {

@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import axios from 'axios';
+
 
 export const getBotReply = (userMessage) => {
   const trimmedMessage = userMessage.toLowerCase().trim();
@@ -46,6 +48,21 @@ export const getBotReply = (userMessage) => {
   }
 };
 
+export const getBotReplyAPI = async (userMessage) => {
+  try {
+    const response = await axios.post('http://localhost:8000/sentientgpt_chat/', {
+        message: userMessage,
+    });
+
+    console.log(response.data); // This will log the response from the backend
+    return response.data; // Return the bot's reply from the API
+} catch (error) {
+    console.error("Error fetching bot reply:", error);
+    return "Sorry, I'm having trouble responding right now."; // Fallback message on error
+}
+};
+
+
  const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [messages, setMessages] = useState([]); // Store messages
@@ -70,33 +87,35 @@ export const getBotReply = (userMessage) => {
   };
 
   // Handle sending message
-  const sendMessage = () => {
-    if (input.trim()) {
+  // Handle sending message
+const sendMessage = async () => {
+  if (input.trim()) {
       const userMessage = input;
 
       // Append user message
       setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: userMessage, sender: "user" },
+          ...prevMessages,
+          { text: userMessage, sender: "user" },
       ]);
 
       // Get bot reply
-      const botReply = getBotReply(userMessage);
+      const botReply = await getBotReply(userMessage); // Use await here
 
       // Append bot reply after a short delay
       setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: botReply, sender: "bot" },
-        ]);
-        scrollToBottom(); // Scroll to bottom after bot reply
+          setMessages((prevMessages) => [
+              ...prevMessages,
+              { text: botReply, sender: "bot" },
+          ]);
+          scrollToBottom(); // Scroll to bottom after bot reply
       }, 500);
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
       setInput(""); // Clear input field after sending
-    }
-  };
+  }
+};
+
 
   // Function to generate bot response
   // Function to generate bot response

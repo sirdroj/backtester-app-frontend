@@ -11,9 +11,17 @@ function App() {
   const location = useLocation(); // Get the current route
 
   return (
-    <div className={` ${theme} `}>
+    <div
+      className={` ${theme} `}
+      style={{
+        backgroundImage:
+          'url("https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div
-        className={`w-screen min-h-screen bg-gradient-to-r from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] overflow-hidden text-white`}
+        className={`w-screen min-h-screen bg-gradient-to-r from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] overflow-hidden text-white bg-opacity-20`}
       >
         <NavbarTop />
 
