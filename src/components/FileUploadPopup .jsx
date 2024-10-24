@@ -2,10 +2,29 @@ import { useState } from 'react';
 
 const FileUploadPopup = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleFileChange = (e) => {
-    console.log(e.target.files); // Handle file input change here
-    setIsPopupOpen(false); // Close popup after file selection
+    const files = e.target.files;
+    if (files.length > 0) {
+      const file = files[0];
+      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      const validDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const validVideoTypes = ['video/mp4', 'video/x-m4v', 'video/*'];
+
+      // Check file type based on input
+      if (e.target.id === 'image-upload' && !validImageTypes.includes(file.type)) {
+        setMessage('Please upload a valid image file (JPEG, PNG, GIF).');
+      } else if (e.target.id === 'doc-upload' && !validDocTypes.includes(file.type)) {
+        setMessage('Please upload a valid document file (PDF, DOC, DOCX).');
+      } else if (e.target.id === 'video-upload' && !validVideoTypes.includes(file.type)) {
+        setMessage('Please upload a valid video file (MP4, M4V).');
+      } else {
+        setMessage('File uploaded successfully!'); // Reset message after successful upload
+        console.log(file); // Handle the file here
+        setIsPopupOpen(false); // Close popup after file selection
+      }
+    }
   };
 
   return (
@@ -114,6 +133,8 @@ const FileUploadPopup = () => {
               />
             </div>
           </div>
+          {/* Message Display */}
+          {message && <p className="mt-2 text-red-500">{message}</p>}
         </div>
       )}
     </div>

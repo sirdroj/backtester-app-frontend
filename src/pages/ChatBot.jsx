@@ -1,32 +1,63 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from 'axios';
-
+import axios from "axios";
 
 export const getBotReply = (userMessage) => {
   const trimmedMessage = userMessage.toLowerCase().trim();
 
   const responses = {
-    greeting: ["Hello! How can I assist you today?", "Hi there! Need help with something?"],
-    help: ["Sure! I'm here to help. Ask me anything.", "Feel free to ask any questions you have."],
-    howAreYou: ["I'm just a bot, but I'm doing great! How about you?", "I'm doing fantastic! How can I assist you?"],
-    name: ["I'm your friendly chatbot assistant!", "You can call me ChatBot. What's your name?"],
+    greeting: [
+      "Hello! How can I assist you today?",
+      "Hi there! Need help with something?",
+    ],
+    help: [
+      "Sure! I'm here to help. Ask me anything.",
+      "Feel free to ask any questions you have.",
+    ],
+    howAreYou: [
+      "I'm just a bot, but I'm doing great! How about you?",
+      "I'm doing fantastic! How can I assist you?",
+    ],
+    name: [
+      "I'm your friendly chatbot assistant!",
+      "You can call me ChatBot. What's your name?",
+    ],
     time: `The current time is ${new Date().toLocaleTimeString()}.`,
     date: `Today's date is ${new Date().toLocaleDateString()}.`,
-    thanks: ["You're welcome! Let me know if you need anything else.", "Glad I could help! Anything else?"],
-    bye: ["Goodbye! Have a great day!", "Take care! Feel free to chat again anytime."],
-    whatCanYouDo: ["I can assist with answering questions, providing time and date, and more! Just ask.", "I can help with information, advice, or just a friendly chat!"],
-    joke: ["Why don't skeletons fight each other? Because they don't have the guts!", "What do you get when you cross a snowman and a vampire? Frostbite!"],
-    weather: "I can't check the weather right now, but you can ask me other things!",
-    unknown: ["I'm not sure how to respond to that. Can you ask something else?", "Sorry, I didn't quite get that. Could you rephrase?"]
+    thanks: [
+      "You're welcome! Let me know if you need anything else.",
+      "Glad I could help! Anything else?",
+    ],
+    bye: [
+      "Goodbye! Have a great day!",
+      "Take care! Feel free to chat again anytime.",
+    ],
+    whatCanYouDo: [
+      "I can assist with answering questions, providing time and date, and more! Just ask.",
+      "I can help with information, advice, or just a friendly chat!",
+    ],
+    joke: [
+      "Why don't skeletons fight each other? Because they don't have the guts!",
+      "What do you get when you cross a snowman and a vampire? Frostbite!",
+    ],
+    weather:
+      "I can't check the weather right now, but you can ask me other things!",
+    unknown: [
+      "I'm not sure how to respond to that. Can you ask something else?",
+      "Sorry, I didn't quite get that. Could you rephrase?",
+    ],
   };
 
   // Using regular expressions for better keyword matching
   if (/hello|hi|hey/.test(trimmedMessage)) {
-    return responses.greeting[Math.floor(Math.random() * responses.greeting.length)];
+    return responses.greeting[
+      Math.floor(Math.random() * responses.greeting.length)
+    ];
   } else if (/help|assist/.test(trimmedMessage)) {
     return responses.help[Math.floor(Math.random() * responses.help.length)];
   } else if (/how are you|how's it going/.test(trimmedMessage)) {
-    return responses.howAreYou[Math.floor(Math.random() * responses.howAreYou.length)];
+    return responses.howAreYou[
+      Math.floor(Math.random() * responses.howAreYou.length)
+    ];
   } else if (/your name|who are you/.test(trimmedMessage)) {
     return responses.name[Math.floor(Math.random() * responses.name.length)];
   } else if (/time/.test(trimmedMessage)) {
@@ -34,36 +65,48 @@ export const getBotReply = (userMessage) => {
   } else if (/date/.test(trimmedMessage)) {
     return responses.date;
   } else if (/thank you|thanks/.test(trimmedMessage)) {
-    return responses.thanks[Math.floor(Math.random() * responses.thanks.length)];
+    return responses.thanks[
+      Math.floor(Math.random() * responses.thanks.length)
+    ];
   } else if (/bye|goodbye/.test(trimmedMessage)) {
     return responses.bye[Math.floor(Math.random() * responses.bye.length)];
   } else if (/what can you do|capabilities/.test(trimmedMessage)) {
-    return responses.whatCanYouDo[Math.floor(Math.random() * responses.whatCanYouDo.length)];
+    return responses.whatCanYouDo[
+      Math.floor(Math.random() * responses.whatCanYouDo.length)
+    ];
   } else if (/joke|make me laugh/.test(trimmedMessage)) {
     return responses.joke[Math.floor(Math.random() * responses.joke.length)];
   } else if (/weather/.test(trimmedMessage)) {
     return responses.weather;
   } else {
-    return responses.unknown[Math.floor(Math.random() * responses.unknown.length)];
+    return responses.unknown[
+      Math.floor(Math.random() * responses.unknown.length)
+    ];
   }
 };
 
 export const getBotReplyAPI = async (userMessage) => {
   try {
-    const response = await axios.post('http://localhost:8000/sentientgpt_chat/', {
+    const response = await axios.post(
+      "http://localhost:8000/sentientgpt_chat/",
+      {
         message: userMessage,
-    });
+      }
+    );
 
     console.log(response.data); // This will log the response from the backend
-    return response.data; // Return the bot's reply from the API
-} catch (error) {
+    if (response.data && response.data.reply) {
+      return response.data.reply; // Return the bot's reply from the API
+    } else {
+      return "Sorry, I didn't understand that.";
+    } // Return the bot's reply from the API
+  } catch (error) {
     console.error("Error fetching bot reply:", error);
     return "Sorry, I'm having trouble responding right now."; // Fallback message on error
-}
+  }
 };
 
-
- const ChatBot = () => {
+const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [messages, setMessages] = useState([]); // Store messages
   const [input, setInput] = useState(""); // Input value
@@ -88,14 +131,14 @@ export const getBotReplyAPI = async (userMessage) => {
 
   // Handle sending message
   // Handle sending message
-const sendMessage = async () => {
-  if (input.trim()) {
+  const sendMessage = async () => {
+    if (input.trim()) {
       const userMessage = input;
 
       // Append user message
       setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: userMessage, sender: "user" },
+        ...prevMessages,
+        { text: userMessage, sender: "user" },
       ]);
 
       // Get bot reply
@@ -103,19 +146,18 @@ const sendMessage = async () => {
 
       // Append bot reply after a short delay
       setTimeout(() => {
-          setMessages((prevMessages) => [
-              ...prevMessages,
-              { text: botReply, sender: "bot" },
-          ]);
-          scrollToBottom(); // Scroll to bottom after bot reply
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: botReply, sender: "bot" },
+        ]);
+        scrollToBottom(); // Scroll to bottom after bot reply
       }, 500);
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
       setInput(""); // Clear input field after sending
-  }
-};
-
+    }
+  };
 
   // Function to generate bot response
   // Function to generate bot response
