@@ -9,6 +9,45 @@ const ChatWindow = () => {
   const [history, setHistory] = useState([]); // Store chat history
   const messagesEndRef = useRef(null); // Reference to message container's end
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleFileChange = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      const file = files[0];
+      const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+      const validDocTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      const validVideoTypes = ["video/mp4", "video/x-m4v", "video/*"];
+
+      // Check file type based on input
+      if (
+        e.target.id === "image-upload" &&
+        !validImageTypes.includes(file.type)
+      ) {
+        setMessage("Please upload a valid image file (JPEG, PNG, GIF).");
+      } else if (
+        e.target.id === "doc-upload" &&
+        !validDocTypes.includes(file.type)
+      ) {
+        setMessage("Please upload a valid document file (PDF, DOC, DOCX).");
+      } else if (
+        e.target.id === "video-upload" &&
+        !validVideoTypes.includes(file.type)
+      ) {
+        setMessage("Please upload a valid video file (MP4, M4V).");
+      } else {
+        setMessage("File uploaded successfully!"); // Reset message after successful upload
+        console.log(file); // Handle the file here
+        setIsPopupOpen(false); // Close popup after file selection
+      }
+    }
+  };
+
   // Toggle chatbot popup
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -27,35 +66,35 @@ const ChatWindow = () => {
   };
 
   // Handle sending message
- // Handle sending message
-const sendMessage = async () => {
-  if (input.trim()) {
+  // Handle sending message
+  const sendMessage = async () => {
+    if (input.trim()) {
       const userMessage = input;
 
       // Append user message
       setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: userMessage, sender: "user" },
+        ...prevMessages,
+        { text: userMessage, sender: "user" },
       ]);
 
       // Get bot reply
       const botReply = await getBotReplyAPI(userMessage); // Use await here
+      // const botReply = getBotReply(userMessage); // Use await here
 
       // Append bot reply after a short delay
       setTimeout(() => {
-          setMessages((prevMessages) => [
-              ...prevMessages,
-              { text: botReply, sender: "bot" },
-          ]);
-          scrollToBottom(); // Scroll to bottom after bot reply
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: botReply, sender: "bot" },
+        ]);
+        scrollToBottom(); // Scroll to bottom after bot reply
       }, 500);
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
       setInput(""); // Clear input field after sending
-  }
-};
-
+    }
+  };
 
   // Handle 'Enter' key to send message
   const handleKeyDown = (e) => {
@@ -88,6 +127,10 @@ const sendMessage = async () => {
     scrollToBottom();
   }, [messages]);
 
+  const formatMessageWithHTML = (text) => {
+    return { __html: text.replace(/\n/g, "<br />") };
+  };
+
   return (
     <div
       className=" z-[11] mt-7 p-4 px-2 mx-2 h-[86vh] w-[98vw] border-[1px] border-gray-800  dark:bg-slate-900 rounded-lg shadow-lg flex justify-evenly"
@@ -98,7 +141,9 @@ const sendMessage = async () => {
         className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-900 bg-opacity-20 mb-2"
         //   style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
       >
-        <h1 className="text-center font-semibold dark:text-white text-gray-200 ">History</h1>
+        <h1 className="text-center font-semibold dark:text-white text-gray-200 ">
+          History
+        </h1>
         <button
           className="flex items-center bg-gray-700 text-white p-2 mt-2 rounded-full w-full justify-center pr-6 hover:bg-gray-600"
           onClick={startNewChat}
@@ -160,7 +205,128 @@ const sendMessage = async () => {
                 />
               </svg>
             </div> */}
-            <FileUploadPopup />
+
+            {/* <FileUploadPopup /> */}
+
+            <div className="relative inline-block">
+              {/* Attach button */}
+              <div
+                id="attach"
+                className="flex justify-center items-center p-2 mx-1 rounded-md cursor-pointer"
+                onClick={() => setIsPopupOpen(!isPopupOpen)}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.2982 12.2412L12.3721 20.1673C10.2147 22.3247 6.97931 22.5794 4.77977 20.3799C2.62244 18.2225 2.90283 15.0972 5.10237 12.8976L14.0122 3.98783C15.3758 2.6242 17.5711 2.6242 18.9347 3.98783C20.2984 5.35147 20.2984 7.54679 18.9347 8.91042L9.8685 17.9767C9.18884 18.6563 8.08688 18.6563 7.40721 17.9767C6.72754 17.297 6.72754 16.195 7.40721 15.5154L15.4898 7.4328"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Popup with upload options */}
+              {isPopupOpen && (
+                <div className="absolute left-0 bottom-12 bg-gray-700 shadow-lg p-4 rounded-lg">
+                  <div className="flex flex-col space-y-3">
+                    {/* Image Upload Option */}
+                    <div className="flex items-center space-x-2">
+                      <label
+                        htmlFor="image-upload"
+                        className="flex items-center space-x-1 cursor-pointer"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L7.41 9.59L10 12.17L16.59 5.59L19 8L10 17Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>Upload Image</span>
+                      </label>
+                      <input
+                        id="image-upload"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+
+                    {/* Document Upload Option */}
+                    <div className="flex items-center space-x-2">
+                      <label
+                        htmlFor="doc-upload"
+                        className="flex items-center space-x-1 cursor-pointer"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 2C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2H6ZM13 9V3.5L18.5 9H13ZM6 10H12V12H6V10ZM6 14H18V16H6V14ZM6 18H18V20H6V18Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>Upload Document</span>
+                      </label>
+                      <input
+                        id="doc-upload"
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+
+                    {/* Video Upload Option */}
+                    <div className="flex items-center space-x-2">
+                      <label
+                        htmlFor="video-upload"
+                        className="flex items-center space-x-1 cursor-pointer"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M17 10.5V7C17 5.9 16.1 5 15 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19H15C16.1 19 17 18.1 17 17V13.5L21 17V7L17 10.5Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>Upload Video</span>
+                      </label>
+                      <input
+                        id="video-upload"
+                        type="file"
+                        accept="video/*"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                  </div>
+                  {/* Message Display */}
+                  {message && <p className="mt-2 text-red-500">{message}</p>}
+                </div>
+              )}
+            </div>
             <input
               type="text"
               value={input}
@@ -197,19 +363,20 @@ const sendMessage = async () => {
         </div>
         <div className="p-4 full overflow-y-auto   rounded-md">
           {messages.length === 0 ? (
-            <p className="dark:text-gray-700 text-gray-500">No messages yet...</p>
+            <p className="dark:text-gray-700 text-gray-500">
+              No messages yet...
+            </p>
           ) : (
             messages.map((msg, index) => (
               <div
                 key={index}
                 className={`p-2 my-1 rounded-md ${
-                  msg.sender != "user"
+                  msg.sender !== "user"
                     ? "dark:bg-gray-900 bg-gray-100 bg-opacity-15 text-gray-100 font-semibold dark:text-white"
                     : "dark:bg-gray-800 bg-gray-300 bg-opacity-75 text-gray-900 font-semibold dark:text-gray-300"
                 }`}
-              >
-                {msg.text}
-              </div>
+                dangerouslySetInnerHTML={formatMessageWithHTML(msg.text)}
+              />
             ))
           )}
           {/* Empty div to help scroll to the bottom */}
