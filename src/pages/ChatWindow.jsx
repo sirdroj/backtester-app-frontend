@@ -12,6 +12,44 @@ const ChatWindow = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [message, setMessage] = useState("");
 
+  const [popupIndex, setPopupIndex] = useState(null); // Track which popup is open
+  const [isRenaming, setIsRenaming] = useState(null); // Track which chat is being renamed
+  const [newName, setNewName] = useState(""); // New name for renaming
+
+  const togglePopup = (index) => {
+    setPopupIndex(popupIndex === index ? null : index); // Toggle the popup
+  };
+
+  const startRenaming = (index, currentName) => {
+    setIsRenaming(index);
+    setNewName(currentName || `Chat ${index + 1}`);
+    setPopupIndex(null); // Close the popup
+  };
+
+  const renameChat = (index) => {
+    setIsRenaming(null); // Stop renaming mode
+    const updatedHistory = [...history];
+    updatedHistory[index].name = newName || updatedHistory[index].name;
+    setHistory(updatedHistory);
+    setNewName("");
+  };
+  const handleDelete = (index) => {
+    const updatedHistory = history.filter((_, i) => i !== index);
+    setHistory(updatedHistory);
+  };
+
+  useEffect(() => {
+    const storedHistory = localStorage.getItem("chatHistory");
+    if (storedHistory) {
+      setHistory(JSON.parse(storedHistory));
+    }
+  }, []);
+
+  // Update localStorage whenever history changes
+  useEffect(() => {
+    localStorage.setItem("chatHistory", JSON.stringify(history));
+  }, [history]);
+
   const handleFileChange = (e) => {
     const files = e.target.files;
     if (files.length > 0) {
@@ -92,7 +130,7 @@ const ChatWindow = () => {
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
-       // Clear input field after sending
+      // Clear input field after sending
     }
   };
 
@@ -100,7 +138,7 @@ const ChatWindow = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       sendMessage(input);
-      setInput("")
+      setInput("");
     }
   };
 
@@ -128,8 +166,18 @@ const ChatWindow = () => {
     scrollToBottom();
   }, [messages]);
 
+  // const formatMessageWithHTML = (text) => {
+  //   return { __html: text.replace(/\n/g, "<br />") };
+  // };
+
   const formatMessageWithHTML = (text) => {
-    return { __html: text.replace(/\n/g, "<br />") };
+    const formattedText = text
+      // .replace(/\#\#\#(.*?)\n/g, "<b>$1</b><br />") // Bold text between *** and newline
+      .replace(/\#\#\#(.*?)(\n|$)/g, "<b>$1</b><br />") // Bold text between *** and newline or end of string
+
+      .replace(/\n/g, "<br />"); // Replace remaining newlines with <br />
+
+    return { __html: formattedText };
   };
 
   return (
@@ -172,11 +220,65 @@ const ChatWindow = () => {
             history.map((chat, index) => (
               <div
                 key={index}
-                className="p-2 my-1 rounded-md bg-gray-700 text-white cursor-pointer"
+                className="px-2 p-1 my-1 rounded-md bg-gray-700 text-white cursor-pointer "
                 onClick={() => setMessages(chat.messages)} // Load previous chat
               >
-                {chat.name || `Chat ${index + 1}`}{" "}
-                {/* Display the starting message */}
+                <div className=" h-10 justify-between items-center flex overflow-hidden">
+                  {isRenaming === index ? (
+                    <input
+                      type="text"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                      onBlur={() => renameChat(index)} // Rename when input loses focus
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") renameChat(index); // Rename on Enter key
+                      }}
+                      className="text-black rounded-md  "
+                      autoFocus
+                    />
+                  ) : (
+                    <span>{chat.name || `Chat ${index + 1}`}</span>
+                  )}
+
+                  {/* Three dots button */}
+                  <div className="">
+                    {isRenaming != index && (
+                      <button
+                        className="text-gray-400 ml-2 text-center text-2xl mb-3 "
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent the main click event
+                          togglePopup(index);
+                        }}
+                      >
+                        {/* Unicode for three dots */}
+                        ...
+                      </button>
+                    )}
+                    {/* Popup for rename and delete options */}
+                    {popupIndex === index && (
+                      <div
+                        className="fixed mt-2 w-24 bg-gray-700 rounded-md shadow-lg z-10"
+                        onClick={(e) => e.stopPropagation()} // Prevent closing popup on click
+                      >
+                        <button
+                          onClick={() => startRenaming(index, chat.name)}
+                          className="block w-full px-2 py-1 text-left hover:bg-gray-800"
+                        >
+                          Rename
+                        </button>
+                        <button
+                          onClick={() => {
+                            handleDelete(index);
+                            setPopupIndex(null);
+                          }}
+                          className="block w-full px-2 py-1 text-left hover:bg-gray-800"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             ))
           )}
