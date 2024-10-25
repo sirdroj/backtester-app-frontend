@@ -67,7 +67,7 @@ const ChatWindow = () => {
 
   // Handle sending message
   // Handle sending message
-  const sendMessage = async () => {
+  const sendMessage = async (input) => {
     if (input.trim()) {
       const userMessage = input;
 
@@ -92,14 +92,15 @@ const ChatWindow = () => {
 
       // Scroll to bottom immediately after sending
       scrollToBottom();
-      setInput(""); // Clear input field after sending
+       // Clear input field after sending
     }
   };
 
   // Handle 'Enter' key to send message
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      sendMessage();
+      sendMessage(input);
+      setInput("")
     }
   };
 
