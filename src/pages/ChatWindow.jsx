@@ -177,13 +177,7 @@ const ChatWindow = () => {
     }
   };
 
-  // Start a new chat, clear messages and save current chat to history
-  //   const startNewChat = () => {
-  //     if (messages.length > 0) {
-  //       setHistory((prevHistory) => [...prevHistory, messages]); // Save current chat to history
-  //       setMessages([]); // Clear chat messages
-  //     }
-  //   };
+
 
   const startNewChat = () => {
     if (messages.length > 0) {

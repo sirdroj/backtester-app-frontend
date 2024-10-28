@@ -85,25 +85,30 @@ export const getBotReply = (userMessage) => {
   }
 };
 
-export const getBotReplyAPI = async (userMessage, uploadedFile = null) => {
+export const getBotReplyAPI = async (userMessage, uploadedFile) => {
   try {
-    // Set up FormData for sending both message and file
-    const formData = new FormData();
-    formData.append("role", "user");
-    formData.append("content", userMessage);
-
-    // Append file if it exists
+    // Check if the uploaded file is present
+    let fileContent = null;
     if (uploadedFile) {
-      formData.append("file", uploadedFile); // 'file' should match backend file field
+      // Read the file as a Base64 string
+      const reader = new FileReader();
+      fileContent = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(uploadedFile); // Convert file to Base64
+      });
     }
 
     const response = await axios.post(
       "http://127.0.0.1:8000/sentientgpt_chat/",
-      formData
+      {
+        role: "user",  // Ensure this matches the expected structure
+        content: userMessage,  // This should be the user's message
+        file: fileContent // Add the file content as Base64
+      }
     );
 
-    console.log(response.data); // Logs the response from the backend
-
+    console.log(response.data); // This will log the response from the backend
     if (response.data && response.data.reply) {
       return response.data.reply; // Return the bot's reply from the API
     } else {
@@ -114,6 +119,7 @@ export const getBotReplyAPI = async (userMessage, uploadedFile = null) => {
     return "Sorry, I'm having trouble responding right now."; // Fallback message on error
   }
 };
+
 
 
 const ChatBot = () => {
