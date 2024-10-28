@@ -105,44 +105,7 @@ const ChatWindow = () => {
   };
 
   // Handle sending message
-  // const sendMessage = async (input) => {
-  //   if (input.trim() || uploadedFile) {
-  //     // Append user message
-  //     const userMessage = input.trim();
-  //     if (userMessage) {
-  //       setMessages((prevMessages) => [
-  //         ...prevMessages,
-  //         { text: userMessage, sender: "user", type: "text" },
-  //       ]);
-  //     }
-
-  //     // Prepare form data if file exists
-  //     const formData = new FormData();
-  //     if (uploadedFile) {
-  //       formData.append("file", uploadedFile);
-  //     }
-  //     formData.append("message", userMessage);
-  //     setInput("");
-  //     setUploadedFile(null);
-
-  //     // Get bot reply
-  //     const botReply = await getBotReplyAPI(userMessage, uploadedFile);
-
-  //     // Append bot reply after a short delay
-  //     setTimeout(() => {
-  //       setMessages((prevMessages) => [
-  //         ...prevMessages,
-  //         { text: botReply, sender: "bot" },
-  //       ]);
-  //       scrollToBottom(); // Scroll to bottom after bot reply
-  //     }, 500);
-
-  //     // Reset input and uploaded file
-  //     // setInput("");
-  //     // setUploadedFile(null);
-  //     scrollToBottom();
-  //   }
-  // };
+  
   const sendMessage = async (input) => {
     if (input.trim() || uploadedFile) {
       const userMessage = input.trim();
@@ -167,6 +130,7 @@ const ChatWindow = () => {
       formData.append("message", userMessage);
 
       const botReply = await getBotReplyAPI(userMessage, uploadedFile);
+      // const botReply = await getBotReply(userMessage, uploadedFile);
       setMessages((prevMessages) => [
         ...prevMessages,
         { text: botReply, sender: "bot" },
@@ -205,14 +169,16 @@ const ChatWindow = () => {
   // };
 
   const formatMessageWithHTML = (text) => {
-    const formattedText = text
-      // .replace(/\#\#\#(.*?)\n/g, "<b>$1</b><br />") // Bold text between *** and newline
-      .replace(/\#\#\#(.*?)(\n|$)/g, "<b>$1</b><br />") // Bold text between *** and newline or end of string
-
+    // Remove all asterisks from the string
+    const cleanedText = text.replace(/\*/g, '');
+  
+    const formattedText = cleanedText
+      .replace(/\#\#\#(.*?)(\n|$)/g, "<b>$1</b><br />") // Bold text between ### and newline or end of string
       .replace(/\n/g, "<br />"); // Replace remaining newlines with <br />
-
+  
     return { __html: formattedText };
   };
+  
 
   return (
     <div

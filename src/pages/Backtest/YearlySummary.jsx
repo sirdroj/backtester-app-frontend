@@ -57,7 +57,7 @@ const YearlySummary = () => {
       {showPopup && (
         <div
           id="popup"
-          className="fixed inset-0 w-full h-full bg-white bg-opacity-20 backdrop-blur-sm z-[100] w-full justify-center items-center"
+          className="fixed inset-0  h-full bg-white bg-opacity-20 backdrop-blur-sm z-[100] w-full justify-center items-center"
         >
           <div className="p-2 rounded-md shadow-lg  flex justify-end ">
             <button
