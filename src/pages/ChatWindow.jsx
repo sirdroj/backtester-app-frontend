@@ -146,10 +146,16 @@ const ChatWindow = () => {
   const sendMessage = async (input) => {
     if (input.trim() || uploadedFile) {
       const userMessage = input.trim();
-      if (userMessage) {
+      if (userMessage && !uploadedFile) {
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: userMessage, sender: "user", type: "text" },
+          { text: userMessage, sender: "user" },
+        ]);
+      }
+      if (uploadedFile) {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: userMessage, sender: "user", filename: uploadedFile.name },
         ]);
       }
 
@@ -174,10 +180,9 @@ const ChatWindow = () => {
     if (e.key === "Enter") {
       sendMessage(input);
       setInput("");
+      setMessage("");
     }
   };
-
-
 
   const startNewChat = () => {
     if (messages.length > 0) {
@@ -348,7 +353,7 @@ const ChatWindow = () => {
                 <div className="absolute left-0 bottom-12 bg-gray-700 shadow-lg p-4 rounded-lg">
                   <div className="flex flex-col space-y-3">
                     {/* Image Upload Option */}
-                    <div className="flex items-center space-x-2">
+                    {/* <div className="flex items-center space-x-2">
                       <label
                         htmlFor="image-upload"
                         className="flex items-center space-x-1 cursor-pointer"
@@ -374,7 +379,7 @@ const ChatWindow = () => {
                         className="hidden"
                         onChange={handleFileChange}
                       />
-                    </div>
+                    </div> */}
 
                     {/* Document Upload Option */}
                     <div className="flex items-center space-x-2">
@@ -406,7 +411,7 @@ const ChatWindow = () => {
                     </div>
 
                     {/* Video Upload Option */}
-                    <div className="flex items-center space-x-2">
+                    {/* <div className="flex items-center space-x-2">
                       <label
                         htmlFor="video-upload"
                         className="flex items-center space-x-1 cursor-pointer"
@@ -432,10 +437,10 @@ const ChatWindow = () => {
                         className="hidden"
                         onChange={handleFileChange}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   {/* Message Display */}
-                  {message && <p className="mt-2 text-red-500">{message}</p>}
+                  {/* {message && <p className="mt-2 text-red-500">{message}</p>} */}
                 </div>
               )}
             </div>
@@ -448,10 +453,9 @@ const ChatWindow = () => {
               placeholder="Type your message..."
             />
             <button
-              onClick={()=>
-                {
-                  sendMessage(input)
-                  setInput("")
+              onClick={() => {
+                sendMessage(input);
+                setInput("");
               }}
               className="bg-gray-800 text-white px-2 py-2 rounded-lg hover:bg-gray-600 opacity-30"
             >
@@ -528,22 +532,32 @@ const ChatWindow = () => {
                     : "dark:bg-gray-800 bg-gray-300 bg-opacity-75 text-gray-900 font-semibold dark:text-gray-300"
                 }`}
               >
-                {/* Conditional Rendering for Text or File */}
-                {msg.type === "file" ? (
-                  <a
-                    href={msg.file.url} // Assumes msg.file.url contains the URL or path to the uploaded file
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 underline"
-                  >
-                    {msg.file.name || "Uploaded File"}{" "}
-                    {/* Display file name or placeholder */}
-                  </a>
-                ) : (
-                  <div
-                    dangerouslySetInnerHTML={formatMessageWithHTML(msg.text)}
-                  />
+                {/* File Display */}
+                {msg.filename && (
+                  <div className="flex items-center bg-gray-700 w-28 p-2 space-x-2 rounded-lg text-white">
+                    {/* Conditional icon based on file type */}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label={`File: ${msg.filename}`} // Accessibility
+                    >
+                      <path
+                        d="M6 2C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2H6ZM13 9V3.5L18.5 9H13ZM6 10H12V12H6V10ZM6 14H18V16H6V14ZM6 18H18V20H6V18Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+
+                    {/* Display file name */}
+                    <span>{msg.filename}</span>
+                  </div>
                 )}
+                {/* Conditional Rendering for Text or File */}
+                <div
+                  dangerouslySetInnerHTML={formatMessageWithHTML(msg.text)}
+                />
               </div>
             ))
           )}
