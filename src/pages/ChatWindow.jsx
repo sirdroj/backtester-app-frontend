@@ -454,7 +454,11 @@ const ChatWindow = () => {
               placeholder="Type your message..."
             />
             <button
-              onClick={sendMessage}
+              onClick={()=>
+                {
+                  sendMessage(input)
+                  setInput("")
+              }}
               className="bg-gray-800 text-white px-2 py-2 rounded-lg hover:bg-gray-600 opacity-30"
             >
               <svg
