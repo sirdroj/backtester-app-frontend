@@ -85,26 +85,36 @@ export const getBotReply = (userMessage) => {
   }
 };
 
-export const getBotReplyAPI = async (userMessage) => {
+export const getBotReplyAPI = async (userMessage, uploadedFile = null) => {
   try {
+    // Set up FormData for sending both message and file
+    const formData = new FormData();
+    formData.append("role", "user");
+    formData.append("content", userMessage);
+
+    // Append file if it exists
+    if (uploadedFile) {
+      formData.append("file", uploadedFile); // 'file' should match backend file field
+    }
+
     const response = await axios.post(
-      "http://localhost:8000/sentientgpt_chat/",
-      {
-        message: userMessage,
-      }
+      "http://127.0.0.1:8000/sentientgpt_chat/",
+      formData
     );
 
-    console.log(response.data); // This will log the response from the backend
+    console.log(response.data); // Logs the response from the backend
+
     if (response.data && response.data.reply) {
       return response.data.reply; // Return the bot's reply from the API
     } else {
       return "Sorry, I didn't understand that.";
-    } // Return the bot's reply from the API
+    }
   } catch (error) {
     console.error("Error fetching bot reply:", error);
     return "Sorry, I'm having trouble responding right now."; // Fallback message on error
   }
 };
+
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
