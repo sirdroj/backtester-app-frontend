@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { getBotReply, getBotReplyAPI } from "./ChatBot";
 import FileUploadPopup from "../components/FileUploadPopup ";
+import ChatHistory from "./chatbot/chatHistory";
 
 const ChatWindow = () => {
+
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [uploadedFile, setUploadedFile] = useState(null);
 
@@ -105,7 +107,7 @@ const ChatWindow = () => {
   };
 
   // Handle sending message
-  
+
   const sendMessage = async (input) => {
     if (input.trim() || uploadedFile) {
       const userMessage = input.trim();
@@ -170,15 +172,14 @@ const ChatWindow = () => {
 
   const formatMessageWithHTML = (text) => {
     // Remove all asterisks from the string
-    const cleanedText = text.replace(/\*/g, '');
-  
+    const cleanedText = text.replace(/\*/g, "");
+
     const formattedText = cleanedText
       .replace(/\#\#\#(.*?)(\n|$)/g, "<b>$1</b><br />") // Bold text between ### and newline or end of string
       .replace(/\n/g, "<br />"); // Replace remaining newlines with <br />
-  
+
     return { __html: formattedText };
   };
-  
 
   return (
     <div
@@ -186,6 +187,7 @@ const ChatWindow = () => {
       style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.1)" }}
     >
       {/* Chat History */}
+      <ChatHistory  setMessages={setMessages} popupIndex={popupIndex}  setNewName={setNewName} renameChat={renameChat} startRenaming={startRenaming} handleDelete={handleDelete} setPopupIndex={setPopupIndex} startNewChat={startNewChat} history={history} isRenaming={isRenaming}/>
       <div
         className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-900 bg-opacity-20 mb-2"
         //   style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
@@ -448,7 +450,7 @@ const ChatWindow = () => {
           </div>
         </div>
         {uploadedFile && (
-          <div className="flex items-center bg-gray-700 w-28 p-2 space-x-2 rounded-lg text-white">
+          <div className="flex items-center bg-gray-700 w-min p-2 space-x-2 rounded-lg text-white">
             {/* Conditional icon based on file type */}
             {uploadedFile.type.startsWith("image/") ? (
               <svg
@@ -500,7 +502,7 @@ const ChatWindow = () => {
               >
                 {/* File Display */}
                 {msg.filename && (
-                  <div className="flex items-center bg-gray-700 w-28 p-2 space-x-2 rounded-lg text-white">
+                  <div className="flex items-center bg-gray-700 w-min mb-2 p-2 space-x-2 rounded-lg text-white">
                     {/* Conditional icon based on file type */}
                     <svg
                       width="24"
