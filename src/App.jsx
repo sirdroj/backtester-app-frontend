@@ -7,8 +7,19 @@ import ChatBot from "./pages/ChatBot";
 
 function App() {
   const [count, setCount] = useState(0);
-  const { theme, toggleTheme } = useStore();
+  const { theme, toggleTheme,username,token } = useStore();
   const location = useLocation(); // Get the current route
+  
+
+
+  function checkLogin() {
+
+    if (!token || !username) {
+      window.location.href = "/login"; // Redirect to the login page
+    }
+  }
+
+  checkLogin();
 
   return (
     <div

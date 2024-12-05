@@ -85,30 +85,74 @@ export const getBotReply = (userMessage) => {
   }
 };
 
+
+// base 64
+// export const getBotReplyAPI = async (userMessage, uploadedFile) => {
+//   try {
+//     // Check if the uploaded file is present
+//     let fileContent = null;
+//     if (uploadedFile) {
+//       // Read the file as a Base64 string
+//       const reader = new FileReader();
+//       fileContent = await new Promise((resolve, reject) => {
+//         reader.onload = () => resolve(reader.result);
+//         reader.onerror = reject;
+//         reader.readAsDataURL(uploadedFile); // Convert file to Base64
+//       });
+//     }
+
+//     const response = await axios.post(
+//       "http://127.0.0.1:8000/sentientgpt_chat/",
+//       {
+//         role: "user",  // Ensure this matches the expected structure
+//         content: userMessage,  // This should be the user's message
+//         file: fileContent // Add the file content as Base64
+//       }
+//     );
+
+//     console.log(response.data); // This will log the response from the backend
+//     if (response.data && response.data.reply) {
+//       return response.data.reply; // Return the bot's reply from the API
+//     } else {
+//       return "Sorry, I didn't understand that.";
+//     }
+//   } catch (error) {
+//     console.error("Error fetching bot reply:", error);
+//     return "Sorry, I'm having trouble responding right now."; // Fallback message on error
+//   }
+// };
+
+
+// form dadta
 export const getBotReplyAPI = async (userMessage, uploadedFile) => {
   try {
-    // Check if the uploaded file is present
-    let fileContent = null;
+    // Create a FormData object
+    const token = localStorage.getItem("access_token");
+    const formData = new FormData();
+    formData.append("role", "user"); // Add the role to the FormData
+    formData.append("content", userMessage);
+    formData.append("token", token);
+    
+    // Add the user's message to the FormData
+
+
+    // Check if a file is uploaded and add it to the FormData
     if (uploadedFile) {
-      // Read the file as a Base64 string
-      const reader = new FileReader();
-      fileContent = await new Promise((resolve, reject) => {
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(uploadedFile); // Convert file to Base64
-      });
+      formData.append("file", uploadedFile); // Add the file directly
     }
 
+    // Send the form data to the backend
     const response = await axios.post(
       "http://127.0.0.1:8000/sentientgpt_chat/",
+      formData,
       {
-        role: "user",  // Ensure this matches the expected structure
-        content: userMessage,  // This should be the user's message
-        file: fileContent // Add the file content as Base64
+        headers: {
+          "Content-Type": "multipart/form-data", // Ensure correct headers
+        },
       }
     );
 
-    console.log(response.data); // This will log the response from the backend
+    console.log(response.data); // Log the response from the backend
     if (response.data && response.data.reply) {
       return response.data.reply; // Return the bot's reply from the API
     } else {

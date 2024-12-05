@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const CombineFilters = () => {
   const [currentDropDown, setCurrentDropDown] = useState([0]);
   const [filterOrder, setFilterOrder] = useState(0);
-  const [showNews, setShowNews] = useState(false);
+  const [showNews, setShowNews] = useState(true);
 
   const handleDropdownClick = (id) => {
     if (currentDropDown.includes(id)) {
@@ -115,22 +115,21 @@ const CombineFilters = () => {
               <div className="mt-4 flex justify-end">
                 <button
                   className="border-[1px] border-gray-500 px-2 rounded-md flex"
-                  onClick={() => setShowNews(!showNews)}
+                  // onClick={() => setShowNews(!showNews)}
                 >
                   News
                   <img
                     src="./images/chevron-down (1).png"
-                    className={`${
-                      showNews ? "rotate-180" : ""
-                    }`}
+                    // className={`${
+                    //   showNews ? "rotate-180" : ""
+                    // }`}
                     alt="Toggle"
                   />
                 </button>
               </div>
               <table
-                className={`${
-                  showNews ? "" : "hidden"
-                }  px-5 w-full mt-4 rounded-sm border-[1px] border-gray-600 text-gray-300`}
+                className={`
+                     px-5 w-full mt-4 rounded-sm border-[1px] border-gray-600 text-gray-300`}
                 style={{
                   boxShadow: "inset 0px -2px 2px rgba(0, 0, 0, 0.5)", // Inner shadow
                 }}

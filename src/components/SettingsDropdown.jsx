@@ -1,12 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import useStore from "../stores/useStore";
+import { useNavigate } from "react-router-dom";
+
 
 const SettingsDropdown = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const { theme, toggleTheme } = useStore();
+  const { theme, toggleTheme,username,settoken,setusername } = useStore();
   const settingsRef = useRef(null); // Create a ref for the settings container
   const svgIconRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem("access_token");
+  
+    // Optionally clear other user-related data from localStorage
+    localStorage.removeItem("user_info"); // Example
+    setusername(null)
+    settoken(null)
+
+
+  
+    // Redirect the user to the login page or home page
+    
+    navigate("/Login"); // Change to the desired route
+  };
 
   useEffect(() => {
     if (isDarkMode) {
@@ -78,6 +97,9 @@ const SettingsDropdown = () => {
                 <div className=" relative w-11 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"></div>
               </label>
             </div>
+          </div>
+          <div className="p-1">
+            <button className="boeder-[1px]" onClick={handleLogout}>Log Out</button>
           </div>
         </div>
       </div>

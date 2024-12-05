@@ -187,7 +187,7 @@ const ChatWindow = () => {
       style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.1)" }}
     >
       {/* Chat History */}
-      <ChatHistory  setMessages={setMessages} popupIndex={popupIndex}  setNewName={setNewName} renameChat={renameChat} startRenaming={startRenaming} handleDelete={handleDelete} setPopupIndex={setPopupIndex} startNewChat={startNewChat} history={history} isRenaming={isRenaming}/>
+      {/* <ChatHistory  setMessages={setMessages} popupIndex={popupIndex}  setNewName={setNewName} renameChat={renameChat} startRenaming={startRenaming} handleDelete={handleDelete} setPopupIndex={setPopupIndex} startNewChat={startNewChat} history={history} isRenaming={isRenaming}/> */}
       <div
         className="rounded-md w-[16%] h-full p-2 dark:bg-gray-800 bg-gray-900 bg-opacity-20 mb-2"
         //   style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
