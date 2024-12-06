@@ -14,9 +14,9 @@ function App() {
 
   function checkLogin() {
 
-    if (!token || !username) {
-      window.location.href = "/login"; // Redirect to the login page
-    }
+    // if (!token || !username) {
+    //   window.location.href = "/login"; // Redirect to the login page
+    // }
   }
 
   checkLogin();
