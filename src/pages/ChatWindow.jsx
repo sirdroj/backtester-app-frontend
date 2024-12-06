@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { getBotReply, getBotReplyAPI } from "./ChatBot";
-import FileUploadPopup from "../components/FileUploadPopup ";
-import ChatHistory from "./chatbot/chatHistory";
+// import FileUploadPopup from "../components/FileUploadPopup ";
+// import ChatHistory from "./chatbot/chatHistory";
 
 const ChatWindow = () => {
 
