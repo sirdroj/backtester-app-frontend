@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-    const {setusername,settoken } = useStore();
+  const {setusername,settoken } = useStore();
 
 
   const togglePasswordVisibility = () => {
@@ -26,8 +26,8 @@ const Login = () => {
     formData.append("password", password);
   
     try {
-      // const response = await axios.post("https://sentientco.in/login", formData, {
-      const response = await axios.post("http://127.0.0.1:8000/login", formData, {
+      const response = await axios.post("https://sentientco.in/login", formData, {
+      // const response = await axios.post("http://127.0.0.1:8000/login", formData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
