@@ -143,8 +143,8 @@ export const getBotReplyAPI = async (userMessage, uploadedFile) => {
 
     // Send the form data to the backend
     const response = await axios.post(
-      // "http://127.0.0.1:8000/sentientgpt_chat/",
-      "https://sentientco.in/sentientgpt_chat/",
+      "http://127.0.0.1:8000/sentientgpt_chat/",
+      // "https://sentientco.in/sentientgpt_chat/",
       formData,
       {
         headers: {
