@@ -9,10 +9,12 @@ import TradeInvestPeriod from "../components/backtest forms/TradeInvestPeriod";
 import Portfolio_filters from "../components/backtest forms/Portfolio_filters";
 import RiskManagement from "../components/backtest forms/RiskManagement";
 import { Link } from "react-router-dom";
+import useStore from "../stores/useStore";
 
 const Backtest = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
+  const { forminputData, removeFormInputData } = useStore();
 
   const [formData, setFormData] = useState({
     Trend: { indicator: "", period: "", priceField: "", quantity: 0 },
@@ -280,21 +282,21 @@ const Backtest = () => {
           </svg>
         </div>
       </div>
-
-      <div className="w-[1000px]    ">
+      <div className="w-[730px]">
         <div
           id="formsection"
           className="m-2 w-[100%]  h-[450px] bg-black bg-opacity-10 rounded-lg"
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
-          <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
-          <Link to={"./logs"}
-              className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
-            >
-              View logs
-            </Link>
-          </div>
+            <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
+              <Link
+                to={"./logs"}
+                className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
+              >
+                View logs
+              </Link>
+            </div>
             <section className="relative">
               {dc[currentIndex]}
 
@@ -342,6 +344,46 @@ const Backtest = () => {
               </div>
             </Link>
           )}
+        </div>
+      </div>
+      <div className="w-[280px] ml-[20px] mx-2">
+        <div className=" p-2 h-full ">
+          <div
+            className="border-[1px] p-1 h-[450px] rounded-lg px-2"
+            style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
+          >
+            <h1 className="w-full text-center">Saved Filters</h1>
+            {Object.entries(forminputData).map(([key, item]) => {
+              return (
+                <div className="px-1 justify-between border-[1px] rounded flex">
+                  <div>
+                    {key} ({Object.values(item).join(", ")})
+                  </div>
+                  <button onClick={() => removeFormInputData(key)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <g clip-path="url(#clip0_6_12293)">
+                        <path
+                          d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
+                          fill="white"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_6_12293">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

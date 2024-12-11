@@ -14,8 +14,8 @@ function App() {
 
   function checkLogin() {
 
-    if (!token || !username) {
-      window.location.href = "/login"; // Redirect to the login page
+    if ( (!localStorage.getItem("access_token") || !localStorage.getItem("username"))) {
+      window.location.href = "/login"; 
     }
   }
 

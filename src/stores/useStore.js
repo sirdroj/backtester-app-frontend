@@ -8,6 +8,8 @@ const useStore = create((set) => ({
   theme: 'dark',
   token :localStorage.getItem("token"),
   username : localStorage.getItem("username"),
+  forminputData:{
+},
   
   // Consistent naming convention for `Theme`
 
@@ -18,6 +20,30 @@ const useStore = create((set) => ({
   settoken: (newtoken) => set({ token: newtoken }),
   setusername: (newusername) => set({ username: newusername }),
   toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })), // Improved toggle logic
+  setFormInputData: (newFormData) => set({ forminputData: newFormData }),
+
+  // Update a specific key in forminputData
+  updateFormInputData: (key, value) => set((state) => ({
+    forminputData: {
+      ...state.forminputData,
+      [key]: { ...state.forminputData[key], ...value }
+    }
+  })),
+
+  // Add a new key-value pair to forminputData
+  addFormInputData: (key, value) => set((state) => ({
+    forminputData: {
+      ...state.forminputData,
+      [key]: value
+    }
+  })),
+
+  // Remove a key from forminputData
+  removeFormInputData: (key) => set((state) => {
+    const newFormInputData = { ...state.forminputData };
+    delete newFormInputData[key];
+    return { forminputData: newFormInputData };
+  }),
 }));
 
 export default useStore;

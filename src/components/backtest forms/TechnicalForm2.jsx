@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import useStore from "../../stores/useStore";
 
 const initializeFormData = (inputsData) => {
   const initialData = {};
-
   const traverseInputs = (inputs) => {
     inputs.forEach((input) => {
       // Initialize the data for each input's title
@@ -33,6 +33,44 @@ const initializeFormData = (inputsData) => {
 };
 
 const TechnicalForm2 = () => {
+
+
+  async function sendFormData(stage, inputs) {
+    const url = "https://api.sentientco.in/forms/technicalFilters"; 
+    const token = localStorage.getItem("access_token");; 
+    try {
+      const response = await fetch(url, {
+        method: "PATCH", 
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          stage: stage,
+          data:  inputs
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log("Success:", result);
+      return result; // Return response for further use if needed
+    } catch (error) {
+      console.error("Error:", error.message);
+      return { error: error.message }; // Return error for handling in UI
+    }
+  }
+  function handleSave(title,data){
+    updateFormInputData(title,data)
+    sendFormData(title,data)
+  }
+
+
+  const {forminputData,setFormInputData,updateFormInputData,addFormInputData,removeFormInputData}=useStore()
+
   const inputsData = [
     {
       title: "Trend",
@@ -57,7 +95,7 @@ const TechnicalForm2 = () => {
               ],
             },
             {
-              title: "period",
+              title: "Period Type",
               inputs: [
                 {
                   type: "dropdown",
@@ -69,18 +107,23 @@ const TechnicalForm2 = () => {
                     "Weekly",
                     "Daily",
                   ],
-                },
+                }
+              ],
+            },
+            {
+              title: "Period",
+              inputs: [
                 {
                   type: "number",
                 },
               ],
             },
             {
-              title: "priceField",
+              title: "Price",
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "Price A", "Price B"],
+                  options: ["None","open","close","low","high","volume"],
                 },
               ],
             },
@@ -105,7 +148,7 @@ const TechnicalForm2 = () => {
               ],
             },
             {
-              title: "period",
+              title: "Period Type",
               inputs: [
                 {
                   type: "dropdown",
@@ -117,14 +160,19 @@ const TechnicalForm2 = () => {
                     "Weekly",
                     "Daily",
                   ],
-                },
+                }
+              ],
+            },
+            {
+              title: "Period",
+              inputs: [
                 {
                   type: "number",
                 },
               ],
             },
             {
-              title: "priceField",
+              title: "Price",
               inputs: [
                 {
                   type: "dropdown",
@@ -153,7 +201,7 @@ const TechnicalForm2 = () => {
               ],
             },
             {
-              title: "period",
+              title: "Period Type",
               inputs: [
                 {
                   type: "dropdown",
@@ -165,14 +213,19 @@ const TechnicalForm2 = () => {
                     "Weekly",
                     "Daily",
                   ],
-                },
+                }
+              ],
+            },
+            {
+              title: "Period",
+              inputs: [
                 {
                   type: "number",
                 },
               ],
             },
             {
-              title: "priceField",
+              title: "Price",
               inputs: [
                 {
                   type: "dropdown",
@@ -201,7 +254,7 @@ const TechnicalForm2 = () => {
               ],
             },
             {
-              title: "period",
+              title: "Period Type",
               inputs: [
                 {
                   type: "dropdown",
@@ -213,14 +266,19 @@ const TechnicalForm2 = () => {
                     "Weekly",
                     "Daily",
                   ],
-                },
+                }
+              ],
+            },
+            {
+              title: "Period",
+              inputs: [
                 {
                   type: "number",
                 },
               ],
             },
             {
-              title: "priceField",
+              title: "Price",
               inputs: [
                 {
                   type: "dropdown",
@@ -253,7 +311,7 @@ const TechnicalForm2 = () => {
               ],
             },
             {
-              title: "period",
+              title: "Period Type",
               inputs: [
                 {
                   type: "dropdown",
@@ -265,14 +323,19 @@ const TechnicalForm2 = () => {
                     "Weekly",
                     "Daily",
                   ],
-                },
+                }
+              ],
+            },
+            {
+              title: "Period",
+              inputs: [
                 {
                   type: "number",
                 },
               ],
             },
             {
-              title: "priceField",
+              title: "Price",
               inputs: [
                 {
                   type: "dropdown",
@@ -285,25 +348,20 @@ const TechnicalForm2 = () => {
       ],
     },
   ];
+  const [formData, setFormData] = useState(() => initializeFormData(inputsData));
 
-  function getInput(type) {
-    if (type == "dropdown") return <div>{type}</div>;
-  }
-  const [formData, setFormData] = useState(() =>
-    initializeFormData(inputsData)
-  );
-
-  const handleChange = (secName, filterName, inputName, value) => {
-    if (inputName == "quantity" && value < 0) {
-      value = 0;
-    }
+  const handleChange = (section, filter, inputType, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [filterName]: {
-        ...prevFormData[filterName],
-        [inputName]: value,
+      [section]: {
+        ...prevFormData[section],
+        [filter]: {
+          ...prevFormData[section][filter],
+          [inputType]: value,
+        },
       },
     }));
+    // console.log({formData})
   };
 
   const [currentDropDown, setCurrentDropDown] = useState([0]);
@@ -318,148 +376,90 @@ const TechnicalForm2 = () => {
 
   return (
     <div>
-      {inputsData.map((item, index) => (
+      {inputsData.map((section, index) => (
         <div key={index} className="px-">
           <div
             onClick={() => handleDropdownClick(index)}
-            className="flex justify-between border-b-[px] h-[40px] items-center text-[20px] px-4 cursor-pointer"
-            style={{
-              boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)", // Adjust shadow as needed
-            }}
+            className="flex justify-between border-b px-2 h-[40px] w-full items-center text-[20px] cursor-pointer"
+            style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
           >
-            <h1 className="font-semibold">{item.title}</h1>
+            <h1 className="font-semibold">{section.title}</h1>
             <img
-              src="./images/chevron-down (1).png"
-              className={`${
-                currentDropDown.includes(index) ? "rotate-180" : ""
-              }`}
+
+              src="./images/chevron-down.png"
+              className={`${currentDropDown.includes(index) ? "rotate-180" : ""} invert`}
               alt="Toggle"
             />
           </div>
           <div
             className={`dropdown-content ${
-              currentDropDown.includes(index) ? "show max-h-[" + +"]" : ""
+              currentDropDown.includes(index) ? "show max-h-full" : "hidden"
             } ml-2 px-4 p-2`}
           >
-            {item.children.map((input, subIndex) => (
+            {section.children.map((filter, subIndex) => (
               <div key={subIndex} className="mb-4">
-                <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
-                  <span
-                    className={`text-opacity-15 relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
-                      currentDropDown.includes(index) ? "" : "shadow-none"
-                    }`}
-                    style={{
-                      boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
-                    }}
-                  >
-                    {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
-                    {input.title} .
-                  </span>
-                </h2>
-                <form
-                  className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
-                  style={{
-                    boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
-                  }}
-                >
-                  <p className="text-center pt-1 pb-4 text-[12px]">
-                    {input.info}
-                  </p>
+                <h2 className="text-[20px] mb-2 text-black">{filter.title}</h2>
+                <form onSubmit={(e)=>{
+                  e.preventDefault();
+                  handleSave(section.title,formData[section.title][" "])
+                  }} className="inputs px-2 shadow-black inset-2 rounded-lg p-2">
+                  {filter.children.map((inputField) => (
+                    <div key={inputField.title} className="flex justify-between my-2">
+                      <label className="mr-2">{inputField.title}</label>
+                      {inputField.inputs.map((input, inputIndex) => (
+                        <div key={inputIndex}>
+                          {input.type === "dropdown" && (
+                            <select
+                              value={
+                                formData[section.title]?.[filter.title]?.[inputField.title] || ""
+                              }
+                              required
+                              onChange={(e) =>
+                                handleChange(
+                                  section.title,
+                                  filter.title,
+                                  inputField.title,
+                                  e.target.value
+                                )
+                              }
+                              className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg p-2"
+                            >
+                              {input.options.map((option, optionIndex) => (
+                                <option key={optionIndex} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
+                          )}
+                          {input.type === "number" && (
+                            <input
+                            required
+                              type="number"
+                              value={
+                                formData[section.title]?.[filter.title]?.[inputField.title] || ""
+                              }
+                              onChange={(e) =>
+                                handleChange(
+                                  section.title,
+                                  filter.title,
+                                  inputField.title,
+                                  e.target.value
+                                )
+                              }
+                              className="bg-gray-50 border text-black border-gray-300 text-sm rounded-lg p-2"
+                            />
+                          )}
+                         
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                  <div className="flex justify-end py-2">
+                  <button type="submit"  className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer" onClick={()=>{
+                    console.log(formData[section.title][" "])
+                    console.log(forminputData)
 
-                  {input.children.map((field) => {
-                    return (
-                      <div key={field.id} className="flex justify-between my-2">
-                        {/* <div> {field.title} </div> */}
-                        <label>{field.title}</label>
-
-                        {field.inputs.map((input) => {
-                          return (
-                            <div key={input.id}>
-                              {input.type === "dropdown" && (
-                                <select
-                                  id="states"
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
-                                >
-                                  {input.options.map((option, optionIndex) => (
-                                    <option key={optionIndex} value={option}>
-                                      {option}
-                                    </option>
-                                  ))}
-                                </select>
-                              )}
-                              {input.type === "number" && (
-                                <div class="relative flex items-center max-w-[8rem]">
-                                  <button
-                                    // onClick={()=>count>0?setCount(count-1):""}
-                                    // onClick={()=>handleChange(item.name,"quantity",formData[item.name].quantity-1)}
-                                    type="button"
-                                    id="decrement-button"
-                                    data-input-counter-decrement="quantity-input"
-                                    class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                                  >
-                                    <svg
-                                      class="w-3 h-3 text-gray-900 dark:text-white"
-                                      aria-hidden="true"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      fill="none"
-                                      viewBox="0 0 18 2"
-                                    >
-                                      <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M1 1h16"
-                                      />
-                                    </svg>
-                                  </button>
-                                  <input
-                                    type="text"
-                                    id="quantity-input"
-                                    data-input-counter
-                                    aria-describedby="helper-text-explanation"
-                                    class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="999"
-                                    // value={item["name"]=="Trend"?{count}:""}
-                                    //   value={item.name === "Trend" ? count : ""}
-                                    // value={formData[item.name].quantity}
-
-                                    required
-                                  />
-                                  <button
-                                    type="button"
-                                    id="increment-button"
-                                    // onClick={()=>handleChange(item.name,"quantity",formData[item.name].quantity+1)}
-
-                                    data-input-counter-increment="quantity-input"
-                                    class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                                  >
-                                    <svg
-                                      class="w-3 h-3 text-gray-900 dark:text-white"
-                                      aria-hidden="true"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      fill="none"
-                                      viewBox="0 0 18 18"
-                                    >
-                                      <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M9 1v16M1 9h16"
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                  <div className="flex justify-end">
-                  <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                  }}>Save&Next</button>
                   </div>
                 </form>
               </div>
