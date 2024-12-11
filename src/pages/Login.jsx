@@ -52,7 +52,7 @@ const Login = () => {
 
   return (
     <div className="h-screen w-screen bg-gradient-to-r from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] flex items-center justify-center px-2">
-      <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2"><img className="w-[40px] mx-3" src="./mtLogo.png"/> Santient</div>
+      <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2"><img className="w-[40px] mx-3" src="./mtLogo.png"/> Sentient</div>
       <div className="w-[500px] flex justify-center items-center pt-0 bg-black bg-opacity-5 rounded-lg">
         <div className="container w-[500px] p-10 border-[1px] rounded-md shadow-md bg-bggrey">
           <h2 className="w-full text-center font-bold text-2xl text-gray-400">LOGIN</h2>
