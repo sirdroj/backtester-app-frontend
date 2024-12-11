@@ -35,7 +35,7 @@ const Login = () => {
   
       // Store the access token in localStorage
       localStorage.setItem("access_token", response.data.access_token);
-      localStorage.setItem("User Name", response.data.username);
+      localStorage.setItem("username", response.data.username);
       setusername(response.data.username)
       settoken( response.data.access_token)
   
@@ -57,7 +57,7 @@ const Login = () => {
         <div className="container w-[500px] p-10 border-[1px] rounded-md shadow-md bg-bggrey">
           <h2 className="w-full text-center font-bold text-2xl text-gray-400">LOGIN</h2>
           <form onSubmit={handleSubmit} className="block p-5">
-            <label className="block text-sm mb-2 text-gray-200" htmlFor="username">
+            <label className="block text-sm mb-2 text-gray-200" >
               Username
             </label>
             <input
