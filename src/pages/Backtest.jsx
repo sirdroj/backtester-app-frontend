@@ -15,15 +15,7 @@ const Backtest = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
   const { forminputData, removeFormInputData } = useStore();
-
-  const [formData, setFormData] = useState({
-    Trend: { indicator: "", period: "", priceField: "", quantity: 0 },
-    Momentum: { indicator: "", period: "", priceField: "", quantity: 0 },
-    Volatility: { indicator: "", period: "", priceField: "", quantity: 0 },
-    Volume: { indicator: "", period: "", priceField: "", quantity: 0 },
-    Breadth: { indicator: "", period: "", priceField: "", quantity: 0 },
-  });
-
+ 
   const dc = {
     0: <TechnicalForm2 />,
     1: <FundamentalForm />,
@@ -43,120 +35,14 @@ const Backtest = () => {
     "Risk Management",
   ];
 
-  const [count, setCount] = useState(0);
-
-  const inputDataTypes = {
-    "Technical Filters": [
-      {
-        name: "Trend",
-        icon: "./icons/trending up.png",
-        inputs: [
-          {
-            name: "indicator",
-            type: "select",
-            options: ["Simple MA", "some MA"],
-          },
-          { name: "period", type: "select", options: ["Days", "Year"] },
-          {
-            name: "priceField",
-            type: "select",
-            options: ["Price A", "Price B"],
-          },
-          { name: "quantity", type: "number" },
-        ],
-      },
-      {
-        name: "Momentum",
-        icon: "./icons/momentum.svg",
-        inputs: [
-          {
-            name: "indicator",
-            type: "select",
-            options: ["Simple MA", "some MA"],
-          },
-          { name: "period", type: "select", options: ["Days", "Year"] },
-          {
-            name: "priceField",
-            type: "select",
-            options: ["Price A", "Price B"],
-          },
-          { name: "quantity", type: "number" },
-        ],
-      },
-      {
-        name: "Volatility",
-        icon: "./icons/volatility.svg",
-        inputs: [
-          {
-            name: "indicator",
-            type: "select",
-            options: ["Simple MA", "some MA"],
-          },
-          { name: "period", type: "select", options: ["Days", "Year"] },
-          {
-            name: "priceField",
-            type: "select",
-            options: ["Price A", "Price B"],
-          },
-          { name: "quantity", type: "number" },
-        ],
-      },
-      {
-        name: "Volume",
-        icon: "./icons/volume.svg",
-        inputs: [
-          {
-            name: "indicator",
-            type: "select",
-            options: ["Simple MA", "some MA"],
-          },
-          { name: "period", type: "select", options: ["Days", "Year"] },
-          {
-            name: "priceField",
-            type: "select",
-            options: ["Price A", "Price B"],
-          },
-          { name: "quantity", type: "number" },
-        ],
-      },
-      {
-        name: "Breadth",
-        icon: "./icons/breath.svg",
-        inputs: [
-          {
-            name: "indicator",
-            type: "select",
-            options: ["Simple MA", "some MA"],
-          },
-          { name: "period", type: "select", options: ["Days", "Year"] },
-          {
-            name: "priceField",
-            type: "select",
-            options: ["Price A", "Price B"],
-          },
-          { name: "quantity", type: "number" },
-        ],
-      },
-    ],
+  const handleWheel = (event) => {
+    if (event.deltaY < 0) {
+      handlePrev()
+    } else if (event.deltaY > 0) {
+      handleNext()
+    }
   };
-
-  const handleChange = (filterName, inputName, value) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [filterName]: {
-        ...prevFormData[filterName],
-        [inputName]: value,
-      },
-    }));
-  };
-
-  // Technical_Filters=[
-  //     "Trend",
-  //     "Momentum",
-  //     "Volatility",
-  //     "Volume",
-  //     "Breadth"
-  //   ]
+ 
 
   const itemRefs = useRef([]);
 
@@ -207,12 +93,10 @@ const Backtest = () => {
   };
 
   return (
-    <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[px]">
-      <div className="relative w-[285px] z-1   top-[-9%]  ">
-        {/* <img
-          src="/images/bt_badge.png"
-          className=" mx-auto left-[-5rem] top-[220px] absolute w-[290px]"
-        /> */}
+    <div className="flex z-[100] p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[px]">
+      <div className="relative w-[285px] z-1   top-[-9%]  " onWheel={handleWheel}
+      >
+        
         <div className="h-screen flex items-center justify-center absolute left-[20px]">
           <div className=" space-y-80 z-[100]">
             <div
@@ -289,6 +173,30 @@ const Backtest = () => {
           style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="relative my-[1%] h-[98%] overflow-y-scroll">
+          <style>{`
+        /* Scrollbar styles for webkit browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+          width: 8px; /* Adjust width */
+          height: 8px; /* Adjust height for horizontal scrollbar */
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #ccc; /* Background of the scrollbar track */
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background: #888; /* Color of the scrollbar thumb */
+          border-radius: 10px; /* Rounded corners for thumb */
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555; /* Color on hover */
+        }
+
+        /* For Firefox */
+        scrollbar-width: thin; /* Makes scrollbar thin */
+        scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
+      `}</style>
             <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
               <Link
                 to={"./logs"}
