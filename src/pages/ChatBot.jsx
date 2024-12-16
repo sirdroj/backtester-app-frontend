@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import currentAPI from "../apiendpoint";
 
 export const getBotReply = (userMessage) => {
   const trimmedMessage = userMessage.toLowerCase().trim();
@@ -144,7 +145,7 @@ export const getBotReplyAPI = async (userMessage, uploadedFile) => {
     // Send the form data to the backend
     const response = await axios.post(
       // "http://127.0.0.1:8000/sentientgpt_chat/",
-      "https://api.sentientco.in/sentientgpt_chat/",
+      `${currentAPI}/sentientgpt_chat/`,
       formData,
       {
         headers: {

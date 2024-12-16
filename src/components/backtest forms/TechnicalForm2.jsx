@@ -36,7 +36,8 @@ const TechnicalForm2 = () => {
 
 
   async function sendFormData(stage, inputs) {
-    const url = "https://api.sentientco.in/forms/technicalFilters"; 
+    const url = "https://api.sentientco.in/technical_filters/trends"; 
+    // const url = "https://api.sentientco.in/forms/technicalFilters"; 
     const token = localStorage.getItem("access_token");; 
     try {
       const response = await fetch(url, {

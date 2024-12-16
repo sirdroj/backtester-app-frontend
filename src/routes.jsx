@@ -14,7 +14,9 @@ import ExploreAnalytics from "./pages/explore/ExploreAnalytics.jsx";
 import BacktestAnalatics from "./pages/Backtest/BacktestAnalatics.jsx";
 import ChatWindow from "./pages/ChatWindow.jsx";
 import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
+import Signup from "./pages/Signup.jsx";
+import AdminLogin from "./Admin/AdminLogin.jsx";
+import AdminPanel from "./Admin/AdminPanel.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -91,7 +93,15 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "Register",
-    element: <Register />,
+    path: "signup",
+    element: <Signup />,
+  },
+  {
+    path: "AdminPanel",
+    element: <AdminPanel />,
+  },
+  {
+    path: "AdminLogin",
+    element: <AdminLogin />,
   },
 ]);

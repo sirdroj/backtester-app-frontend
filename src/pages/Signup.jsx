@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import currentAPI from "../apiendpoint";
 
-const Register = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState("");
@@ -12,24 +13,40 @@ const Register = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-
-    const userdata = { email, userId, password };
-
-    // Simulate a registration function or API call
+  
+    const userdata = {
+      user_id: userId,
+      username: email, // Assuming username is the email; adjust if needed
+      password,
+      email,
+    };
+  
     try {
-      // Replace this with your actual register API function
-      console.log("User registered:", userdata);
-      // Example: navigate to the login page on successful registration
-      navigate("/login");
+      const response = await fetch(`${currentAPI}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userdata),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert(`Success: ${data.message}`);
+        navigate("/login"); // Redirect to login after success
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.detail}`);
+      }
     } catch (error) {
       console.error("Registration failed:", error);
+      alert("An unexpected error occurred. Please try again.");
     }
   };
 
@@ -37,9 +54,9 @@ const Register = () => {
     <div className="h-screen w-screen bg-gradient-to-r text-gray-600 from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] flex items-center justify-center px-2">
       <div className="w-[500px] flex justify-center items-center pt-0 bg-black bg-opacity-5 rounded-lg">
         <div className="container w-[500px] p-7 border-[1px] rounded-md shadow-md bg-bggrey">
-          <h2 className="w-full text-center font-bold text-xl">REGISTER</h2>
+          <h2 className="w-full text-center font-bold text-xl">SIGNUP</h2>
           <form onSubmit={handleSubmit} className="block p-5">
-            <label className="block text-sm mb-2 text-[#3C2538]" htmlFor="email">
+            <label className="block text-sm mb-2 text-gray-200" htmlFor="email">
               Email
             </label>
             <div>
@@ -146,7 +163,7 @@ const Register = () => {
             </div>
             <input
               type="submit"
-              value="Register"
+              value="Signup"
               className="cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full"
             />
           </form>
@@ -162,4 +179,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;

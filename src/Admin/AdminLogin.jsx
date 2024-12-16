@@ -4,7 +4,7 @@ import axios from "axios";
 import useStore from "../stores/useStore";
 import currentAPI from "../apiendpoint";
 
-const Login = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const [usernameLocal, setusernameLocal] = useState("");
   const [password, setPassword] = useState("");
@@ -27,21 +27,21 @@ const Login = () => {
     formData.append("password", password);
   
     try {
-      const response = await axios.post(`${currentAPI}/login`, formData, {
-      // const response = await axios.post("http://127.0.0.1:8000/login", formData, {
+      const response = await axios.post(`${currentAPI}/admin/login`, formData, {
+    //   const response = await axios.post("http://127.0.0.1:8000/login", formData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
   
       // Store the access token in localStorage
-      localStorage.setItem("access_token", response.data.access_token);
+      localStorage.setItem("admin_access_token", response.data.admin_access_token);
       localStorage.setItem("username", response.data.username);
       setusername(response.data.username)
       settoken( response.data.access_token)
   
       // Redirect to the dashboard
-      navigate("/");
+      navigate("/AdminPanel");
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Invalid username or password");
@@ -52,23 +52,23 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-gradient-to-r from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] flex items-center justify-center px-2">
+    <div className="h-screen w-screen bg-gray-700 dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] flex items-center justify-center px-2">
       <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2"><img className="w-[40px] mx-3" src="./mtLogo.png"/> Sentient</div>
       <div className="w-[500px] flex justify-center items-center pt-0 bg-black bg-opacity-5 rounded-lg">
         <div className="container w-[500px] p-10 border-[1px] rounded-md shadow-md bg-bggrey">
-          <h2 className="w-full text-center font-bold text-2xl text-gray-400">LOGIN</h2>
+          <h2 className="w-full text-center font-bold text-2xl text-gray-400">ADMIN LOGIN</h2>
           <form onSubmit={handleSubmit} className="block p-5">
             <label className="block text-sm mb-2 text-gray-200" >
-              Username
+              Admin ID
             </label>
             <input
               className="my-3 appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1"
               type="text"
-              placeholder="Username"
+              placeholder="Admin ID"
               value={usernameLocal}
               onChange={(e) => setusernameLocal(e.target.value)}
               required
-              name="username"
+              name="Admin ID"
             />
 
             <label className="block text-sm mb-2 text-gray-200" htmlFor="password">
@@ -79,7 +79,7 @@ const Login = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 className="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Enter password"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -130,31 +130,14 @@ const Login = () => {
             <input
               type="submit"
               value="Login"
-              className="cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full"
+              className="border-[1px] cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full"
             />
           </form>
-          <div className="w-full text-center text-white">
-            Don't have an account?{" "}
-            <span
-              className="cursor-pointer text-blue-600"
-              onClick={() => navigate("/signup")}
-            >
-              Signup
-            </span>
-          </div>
-          <div className="w-full text-center text-white">
-            to acess Admin Panel{" "}
-            <span
-              className="cursor-pointer text-blue-600"
-              onClick={() => navigate("/AdminLogin")}
-            >
-              Admin Login
-            </span>
-          </div>
+        
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;
