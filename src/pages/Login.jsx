@@ -56,7 +56,7 @@ const Login = () => {
       <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2"><img className="w-[40px] mx-3" src="./mtLogo.png"/> Sentient</div>
       <div className="w-[500px] flex justify-center items-center pt-0 bg-black bg-opacity-5 rounded-lg">
         <div className="container w-[500px] p-10 border-[1px] rounded-md shadow-md bg-bggrey">
-          <h2 className="w-full text-center font-bold text-2xl text-gray-400">LOGIN dev</h2>
+          <h2 className="w-full text-center font-bold text-2xl text-gray-400">LOGIN</h2>
           <form onSubmit={handleSubmit} className="block p-5">
             <label className="block text-sm mb-2 text-gray-200" >
               Username
