@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStore from "../../stores/useStore";
+import currentAPI from "../../apiendpoint";
 
 const initializeFormData = (inputsData) => {
   const initialData = {};
@@ -36,7 +37,7 @@ const TechnicalForm2 = () => {
 
 
   async function sendFormData(stage, inputs) {
-    const url = "https://api.sentientco.in/technical_filters/trends"; 
+    const url = `${currentAPI}/technical_filters/trends`; 
     // const url = "https://api.sentientco.in/forms/technicalFilters"; 
     const token = localStorage.getItem("access_token");; 
     try {
