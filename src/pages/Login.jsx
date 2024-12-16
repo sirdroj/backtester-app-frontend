@@ -133,7 +133,7 @@ const Login = () => {
               className="cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full"
             />
           </form>
-          <div className="w-full text-center text-white">
+          {/* <div className="w-full text-center text-white">
             Don't have an account?{" "}
             <span
               className="cursor-pointer text-blue-600"
@@ -150,7 +150,7 @@ const Login = () => {
             >
               Admin Login
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

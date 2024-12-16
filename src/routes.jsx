@@ -92,16 +92,16 @@ export const router = createBrowserRouter([
     path: "Login",
     element: <Login />,
   },
-  {
-    path: "signup",
-    element: <Signup />,
-  },
-  {
-    path: "AdminPanel",
-    element: <AdminPanel />,
-  },
-  {
-    path: "AdminLogin",
-    element: <AdminLogin />,
-  },
+  // {
+  //   path: "signup",
+  //   element: <Signup />,
+  // },
+  // {
+  //   path: "AdminPanel",
+  //   element: <AdminPanel />,
+  // },
+  // {
+  //   path: "AdminLogin",
+  //   element: <AdminLogin />,
+  // },
 ]);
