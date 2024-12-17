@@ -3,5 +3,6 @@ const apidlobalDev="https://api.sentientco.in"
 const apidlobalQA="https://apis.sentientco.in"
 
 // const currentAPI=apilocal
-const currentAPI=apidlobalQA
+// const currentAPI=apidlobalQAdD
+const currentAPI=apidlobalDev
 export default currentAPI
