@@ -130,7 +130,7 @@ const TechnicalForm2 = () => {
             inputs: [
               {
                 type: "dropdown",
-                options: ["None", "open", "close", "low", "high", "volume"],
+                options: ["None", "Open", "Close", "Low", "High", "Volume"],
               },
             ],
           },
@@ -389,7 +389,8 @@ const TechnicalForm2 = () => {
         },
       },
     }));
-    // console.log({formData})
+    console.log(section, filter, inputType, value)
+    console.log({formData})
   };
 
   const [currentDropDown, setCurrentDropDown] = useState([0]);
@@ -439,7 +440,7 @@ const TechnicalForm2 = () => {
                           {input.type === "dropdown" && (
                             <select
                               value={
-                                formData[section.title]?.[filter.title]?.[inputField.title] || ""
+                                formData[section.key]?.[filter.key]?.[inputField.key] || ""
                               }
                               required
                               onChange={(e) =>
@@ -484,7 +485,7 @@ const TechnicalForm2 = () => {
                   ))}
                   <div className="flex justify-end py-2">
                   <button type="submit"  className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer" onClick={()=>{
-                    console.log(formData[section.title][" "])
+                    console.log(formData[section.key])
                     console.log(forminputData)
 
                   }}>Save&Next</button>
