@@ -8,22 +8,22 @@ const initializeFormData = (inputsData) => {
     inputs.forEach((input) => {
       // Initialize the data for each input's title
       if (input.children) {
-        initialData[input.title] = {}; // Initialize with empty object for nested fields
+        initialData[input.key] = {}; // Initialize with empty object for nested fields
 
         input.children.forEach((child) => {
           if (child.type === "dropdown" || child.type === "period") {
-            initialData[input.title][child.title] = child.options[0] || ""; // Set default value or empty string
+            initialData[input.key][child.key] = child.options[0] || ""; // Set default value or empty string
           } else if (child.type === "input") {
-            initialData[input.title][child.title] = ""; // Default for input fields
+            initialData[input.key][child.key] = ""; // Default for input fields
           }
           // Recurse into children
           traverseInputs(child.children || []);
         });
       } else {
         if (input.type === "dropdown" || input.type === "period") {
-          initialData[input.title] = input.options[0] || ""; // Set default value or empty string
+          initialData[input.key] = input.options[0] || ""; // Set default value or empty string
         } else if (input.type === "input") {
-          initialData[input.title] = ""; // Default for input fields
+          initialData[input.key] = ""; // Default for input fields
         }
       }
     });
@@ -74,282 +74,308 @@ const TechnicalForm2 = () => {
   const {forminputData,setFormInputData,updateFormInputData,addFormInputData,removeFormInputData}=useStore()
 
   const inputsData = [
-    {
-      title: "Trend",
-      children: [
-        {
-          title: " ",
-          // info: "Some info about trends and what is QUARTERLY RESULTS",
-          children: [
-            {
-              title: "Indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Simple MA",
-                    "Exponential MA",
-                    "Wilder's MA",
-                    "Custom MAs",
-                  ],
-                },
-              ],
-            },
-            {
-              title: "Period Type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Yearly",
-                    "Quaterly",
-                    "Monthly",
-                    "Weekly",
-                    "Daily",
-                  ],
-                }
-              ],
-            },
-            {
-              title: "Period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None","open","close","low","high","volume"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Momentum",
-      children: [
-        {
-          title: " ",
-          // info: "Some info about trends and what is QUARTERLY RESULTS",
-          children: [
-            {
-              title: "Indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "RSI", "CMO", "Stochastic"],
-                },
-              ],
-            },
-            {
-              title: "Period Type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Yearly",
-                    "Quaterly",
-                    "Monthly",
-                    "Weekly",
-                    "Daily",
-                  ],
-                }
-              ],
-            },
-            {
-              title: "Period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Price A", "Price B"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Volatility",
-      children: [
-        {
-          title: " ",
-          // info: "Some info about trends and what is QUARTERLY RESULTS",
-          children: [
-            {
-              title: "Indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "ATR", "VIX"],
-                },
-              ],
-            },
-            {
-              title: "Period Type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Yearly",
-                    "Quaterly",
-                    "Monthly",
-                    "Weekly",
-                    "Daily",
-                  ],
-                }
-              ],
-            },
-            {
-              title: "Period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Price A", "Price B"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Breadth",
-      children: [
-        {
-          title: " ",
-          // info: "Some info about trends and what is QUARTERLY RESULTS",
-          children: [
-            {
-              title: "Indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "OPT1", "OPT2"],
-                },
-              ],
-            },
-            {
-              title: "Period Type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Yearly",
-                    "Quaterly",
-                    "Monthly",
-                    "Weekly",
-                    "Daily",
-                  ],
-                }
-              ],
-            },
-            {
-              title: "Period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Price A", "Price B"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Volume",
-      children: [
-        {
-          title: "",
-          // info: "Some info about trends and what is QUARTERLY RESULTS",
-          children: [
-            {
-              title: "Indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Volume Accunulation",
-                    "Volume weighted MA",
-                  ],
-                },
-              ],
-            },
-            {
-              title: "Period Type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Yearly",
-                    "Quaterly",
-                    "Monthly",
-                    "Weekly",
-                    "Daily",
-                  ],
-                }
-              ],
-            },
-            {
-              title: "Period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Price A", "Price B"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  {
+    title: "Trend",
+    key: "trend",
+    children: [
+      {
+        title: " ",
+        key: " ",
+        children: [
+          {
+            title: "Indicator",
+            key: "indicator",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Simple MA",
+                  "Exponential MA",
+                  "Wilder's MA",
+                  "Custom MAs",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period Type",
+            key: "period_type",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Yearly",
+                  "Quaterly",
+                  "Monthly",
+                  "Weekly",
+                  "Daily",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period",
+            key: "period",
+            inputs: [
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            title: "Price",
+            key: "price",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "open", "close", "low", "high", "volume"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Momentum",
+    key: "momentum",
+    children: [
+      {
+        title: " ",
+        key: " ",
+        children: [
+          {
+            title: "Indicator",
+            key: "indicator",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "RSI", "CMO", "Stochastic"],
+              },
+            ],
+          },
+          {
+            title: "Period Type",
+            key: "period_type",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Yearly",
+                  "Quaterly",
+                  "Monthly",
+                  "Weekly",
+                  "Daily",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period",
+            key: "period",
+            inputs: [
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            title: "Price",
+            key: "price",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "Price A", "Price B"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Volatility",
+    key: "volatility",
+    children: [
+      {
+        title: " ",
+        key: " ",
+        children: [
+          {
+            title: "Indicator",
+            key: "indicator",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "ATR", "VIX"],
+              },
+            ],
+          },
+          {
+            title: "Period Type",
+            key: "period_type",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Yearly",
+                  "Quaterly",
+                  "Monthly",
+                  "Weekly",
+                  "Daily",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period",
+            key: "period",
+            inputs: [
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            title: "Price",
+            key: "price",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "Price A", "Price B"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Breadth",
+    key: "breadth",
+    children: [
+      {
+        title: " ",
+        key: " ",
+        children: [
+          {
+            title: "Indicator",
+            key: "indicator",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "OPT1", "OPT2"],
+              },
+            ],
+          },
+          {
+            title: "Period Type",
+            key: "period_type",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Yearly",
+                  "Quaterly",
+                  "Monthly",
+                  "Weekly",
+                  "Daily",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period",
+            key: "period",
+            inputs: [
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            title: "Price",
+            key: "price",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "Price A", "Price B"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Volume",
+    key: "volume",
+    children: [
+      {
+        title: "",
+        children: [
+          {
+            title: "Indicator",
+            key: "indicator",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Volume Accunulation",
+                  "Volume weighted MA",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period Type",
+            key: "period_type",
+            inputs: [
+              {
+                type: "dropdown",
+                options: [
+                  "None",
+                  "Yearly",
+                  "Quaterly",
+                  "Monthly",
+                  "Weekly",
+                  "Daily",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Period",
+            key: "period",
+            inputs: [
+              {
+                type: "number",
+              },
+            ],
+          },
+          {
+            title: "Price",
+            key: "price",
+            inputs: [
+              {
+                type: "dropdown",
+                options: ["None", "Price A", "Price B"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+  
   const [formData, setFormData] = useState(() => initializeFormData(inputsData));
 
   const handleChange = (section, filter, inputType, value) => {
@@ -403,7 +429,7 @@ const TechnicalForm2 = () => {
                 <h2 className="text-[20px] mb-2 text-black">{filter.title}</h2>
                 <form onSubmit={(e)=>{
                   e.preventDefault();
-                  handleSave(section.title,formData[section.title][" "])
+                  handleSave(section.key,formData[section.key][" "])
                   }} className="inputs px-2 shadow-black inset-2 rounded-lg p-2">
                   {filter.children.map((inputField) => (
                     <div key={inputField.title} className="flex justify-between my-2">
@@ -418,9 +444,9 @@ const TechnicalForm2 = () => {
                               required
                               onChange={(e) =>
                                 handleChange(
-                                  section.title,
-                                  filter.title,
-                                  inputField.title,
+                                  section.key,
+                                  filter.key,
+                                  inputField.key,
                                   e.target.value
                                 )
                               }
@@ -438,13 +464,13 @@ const TechnicalForm2 = () => {
                             required
                               type="number"
                               value={
-                                formData[section.title]?.[filter.title]?.[inputField.title] || ""
+                                formData[section.key]?.[filter.key]?.[inputField.key] || ""
                               }
                               onChange={(e) =>
                                 handleChange(
-                                  section.title,
-                                  filter.title,
-                                  inputField.title,
+                                  section.key,
+                                  filter.key,
+                                  inputField.key,
                                   e.target.value
                                 )
                               }
