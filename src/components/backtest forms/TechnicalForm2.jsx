@@ -93,7 +93,7 @@ const TechnicalForm2 = () => {
                   "Simple MA",
                   "Exponential MA",
                   "Wilder's MA",
-                  "Custom MAs",
+                  "Custom MA",
                   "Double MA",
                   "Cumulative MA",
                 ],
