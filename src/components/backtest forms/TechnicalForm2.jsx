@@ -192,7 +192,7 @@ const TechnicalForm2 = () => {
             inputs: [
               {
                 type: "dropdown",
-                options: ["None", "Price A", "Price B"],
+                options: ["None", "Open", "Close", "Low", "High", "Volume"],
               },
             ],
           },
@@ -250,7 +250,7 @@ const TechnicalForm2 = () => {
             inputs: [
               {
                 type: "dropdown",
-                options: ["None", "Price A", "Price B"],
+                options: ["None", "Open", "Close", "Low", "High", "Volume"],
               },
             ],
           },
@@ -308,7 +308,7 @@ const TechnicalForm2 = () => {
             inputs: [
               {
                 type: "dropdown",
-                options: ["None", "Price A", "Price B"],
+                options: ["None", "Open", "Close", "Low", "High", "Volume"],
               },
             ],
           },
@@ -369,7 +369,7 @@ const TechnicalForm2 = () => {
             inputs: [
               {
                 type: "dropdown",
-                options: ["None", "Price A", "Price B"],
+                options: ["None", "Open", "Close", "Low", "High", "Volume"],
               },
             ],
           },
