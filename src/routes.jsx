@@ -17,6 +17,9 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import AdminLogin from "./Admin/AdminLogin.jsx";
 import AdminPanel from "./Admin/AdminPanel.jsx";
+import Login2 from "./pages/Login2.jsx";
+import ActiveUsers from "./Admin/ActiveUsers.jsx";
+import PendingApprovals from "./Admin/PendingApprovals.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -90,16 +93,41 @@ export const router = createBrowserRouter([
   },
   {
     path: "Login",
-    element: <Login />,
+    // element: <Login />,
+    element: <Login2 />,
   },
-  // {
-  //   path: "signup",
-  //   element: <Signup />,
-  // },
-  // {
-  //   path: "AdminPanel",
-  //   element: <AdminPanel />,
-  // },
+  {
+    path: "signup",
+    element: <Signup />,
+  },
+  {
+    path: "Admin",
+    children: [
+      {
+        path: "",
+        element: <AdminPanel />,
+        children:
+        [
+          {
+            path: "",
+            element: <ActiveUsers />,
+          },
+          {
+            path: "ActiveUsers",
+            element: <ActiveUsers />,
+          },
+          {
+            path: "pendingSignups",
+            element: <PendingApprovals />,
+          },
+        ]
+      },
+      {
+        path: "Login",
+        element: <AdminLogin />,
+      },
+    ]
+  },
   // {
   //   path: "AdminLogin",
   //   element: <AdminLogin />,

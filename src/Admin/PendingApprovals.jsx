@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import currentAPI from "../apiendpoint";
 
-const Pending_signups = () => {
+const PendingApprovals = () => {
     const [pendingSignups, setPendingSignups] = useState([
         {
           user_id: "101",
@@ -49,35 +49,37 @@ const Pending_signups = () => {
   }, []);
 
   // Approve a signup
-  const handleApprove = async (userId) => {
+  const handleApprove = async (username, email) => {
     try {
       const token = localStorage.getItem("admin_access_token");
       await axios.post(
         `${currentAPI}/admin/approve_signup`,
-        { user_id: userId },
+        { username, email }, // Send user data in the request body
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
           },
         }
       );
       alert("Signup approved successfully!");
       setPendingSignups(
-        pendingSignups.filter((signup) => signup.user_id !== userId)
+        pendingSignups.filter((signup) => signup.username !== username && signup.email !== email)
       );
     } catch (error) {
       console.error("Error approving signup:", error);
-      alert("Failed to approve signup.",error);
+      alert("Failed to approve signup.", error);
     }
   };
+
+  
   return (
     <div className="flex-1 p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold mb-6">Pending Signups</h1>
+      <h1 className="text-3xl font-bold mb-6">Pending Approvals</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full bg-white shadow-md rounded-lg">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th className="px-4 py-2 text-left">User ID</th>
               <th className="px-4 py-2 text-left">Username</th>
               <th className="px-4 py-2 text-left">Email</th>
               <th className="px-4 py-2 text-left">Actions</th>
@@ -85,13 +87,12 @@ const Pending_signups = () => {
           </thead>
           <tbody>
             {pendingSignups.map((signup) => (
-              <tr key={signup.user_id} className="border-t">
-                <td className="px-4 py-2">{signup.user_id}</td>
+              <tr key={signup.email} className="border-t">
                 <td className="px-4 py-2">{signup.username}</td>
                 <td className="px-4 py-2">{signup.email}</td>
                 <td className="px-4 py-2">
                   <button
-                    onClick={() => handleApprove(signup.user_id)}
+                    onClick={() => handleApprove(signup.username,signup.email)}
                     className="bg-green-500 hover:bg-green-600 text-white py-1 px-4 rounded"
                   >
                     Approve
@@ -106,4 +107,4 @@ const Pending_signups = () => {
   );
 };
 
-export default Pending_signups;
+export default PendingApprovals;

@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import useStore from "../stores/useStore";
 import { useNavigate } from "react-router-dom";
 
-
 const SettingsDropdown = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const { theme, toggleTheme,username,settoken,setusername } = useStore();
+  const { theme, toggleTheme, username, settoken, setusername } = useStore();
   const settingsRef = useRef(null); // Create a ref for the settings container
   const svgIconRef = useRef(null);
   const navigate = useNavigate();
@@ -14,16 +13,14 @@ const SettingsDropdown = () => {
   const handleLogout = () => {
     // Clear the token from localStorage
     localStorage.removeItem("access_token");
-  
+
     // Optionally clear other user-related data from localStorage
     localStorage.removeItem("user_info"); // Example
-    setusername(null)
-    settoken(null)
+    setusername(null);
+    settoken(null);
 
-
-  
     // Redirect the user to the login page or home page
-    
+
     navigate("/Login"); // Change to the desired route
   };
 
@@ -56,7 +53,7 @@ const SettingsDropdown = () => {
 
   return (
     <div>
-      <div className="relative peer ml-60 ">
+      <div className="relative peer ml-0 dark:text-white text-gray-700">
         <svg
           ref={svgIconRef}
           onClick={() => {
@@ -82,9 +79,31 @@ const SettingsDropdown = () => {
           ref={settingsRef} // Attach ref to the dropdown container
           className={`${
             showSettings ? "fixed" : "hidden"
-          } top-12 right-10  bg-white p-3 items-center rounded-lg shadow-lg dark:bg-gray-800`}
+          } top-12 right-10  bg-gray-100 p-3 items-center rounded-lg shadow-lg dark:bg-gray-800`}
         >
-          <div className="flex items-center space-x-10 text-sm">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="relative w-8 h-8 overflow-hidden bg-gray-300  rounded-full dark:bg-gray-500">
+              <svg
+                class="absolute w-10 h-10 text-gray-700 -left-1 dark:text-gray-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>{" "}
+            <div class="font-medium dark:text-white">
+              <div>
+                <span>{username}</span> 
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-sm">
             <span className="text-black dark:text-white">Theme</span>
             <div className=" ">
               <label className="inline-flex items-center cursor-pointer ">
@@ -98,9 +117,14 @@ const SettingsDropdown = () => {
               </label>
             </div>
           </div>
-          <div className="p-1">
-            <button className="boeder-[1px]" onClick={handleLogout}>Log Out</button>
+          <div className="">
+            <button className="border-[1px] mt-2 rounded-xl border-gray-200 p-[2px] px-2 text-sm" onClick={handleLogout}>
+              Log Out
+            </button>
           </div>
+          {/* <div className="p-1">
+            <button className="boeder-[1px]" onClick={()=>navigate("/Admin/Login")}>Admin Login</button>
+          </div> */}
         </div>
       </div>
 
@@ -108,7 +132,7 @@ const SettingsDropdown = () => {
 
       {!showSettings && (
         <div className="absolute top-0 ml-56 mt-12 hidden peer-hover:block">
-          <span className="bg-gray-700 text-white text-xs rounded py-1 px-2">
+          <span className="bg-gray-700 dark:text-white text-xs rounded py-1 px-2">
             Settings
           </span>
         </div>

@@ -146,7 +146,7 @@ const Login = () => {
             to acess Admin Panel{" "}
             <span
               className="cursor-pointer text-blue-600"
-              onClick={() => navigate("/AdminLogin")}
+              onClick={() => navigate("/Admin/Login")}
             >
               Admin Login
             </span>

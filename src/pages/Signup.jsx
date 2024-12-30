@@ -5,7 +5,7 @@ import currentAPI from "../apiendpoint";
 const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -13,20 +13,20 @@ const Signup = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-  
+
     const userdata = {
-      user_id: userId,
-      username: email, // Assuming username is the email; adjust if needed
-      password,
+      username,
       email,
+      password,
     };
-  
+
     try {
       const response = await fetch(`${currentAPI}/signup`, {
         method: "POST",
@@ -35,7 +35,7 @@ const Signup = () => {
         },
         body: JSON.stringify(userdata),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         alert(`Success: ${data.message}`);
@@ -72,19 +72,19 @@ const Signup = () => {
             </div>
             <label
               className="block text-sm mb-2 text-gray-200"
-              htmlFor="userId"
+              htmlFor="username"
             >
-              User ID
+              Username
             </label>
             <div>
               <input
                 className="my-3 appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1"
                 type="text"
-                placeholder="User ID"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
-                name="userId"
+                name="username"
               />
             </div>
             <label
@@ -108,7 +108,6 @@ const Signup = () => {
                 onClick={togglePasswordVisibility}
                 className="absolute inset-y-0 end-0 right-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500"
               >
-                {/* Password visibility toggle icon */}
                 {showPassword ? (
                   <svg
                     className="shrink-0 size-3.5"

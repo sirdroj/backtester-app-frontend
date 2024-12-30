@@ -10,8 +10,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const {setusername,settoken } = useStore();
-
+  const { setadminname, settoken } = useStore();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -20,28 +19,31 @@ const AdminLogin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage(""); // Clear previous error messages
-  
+
     // Use FormData to send data as application/x-www-form-urlencoded
     const formData = new FormData();
     formData.append("username", usernameLocal);
     formData.append("password", password);
-  
+
     try {
       const response = await axios.post(`${currentAPI}/admin/login`, formData, {
-    //   const response = await axios.post("http://127.0.0.1:8000/login", formData, {
+        //   const response = await axios.post("http://127.0.0.1:8000/login", formData, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-  
+
       // Store the access token in localStorage
-      localStorage.setItem("admin_access_token", response.data.admin_access_token);
-      localStorage.setItem("username", response.data.username);
-      setusername(response.data.username)
-      settoken( response.data.access_token)
-  
+      localStorage.setItem(
+        "admin_access_token",
+        response.data.admin_access_token
+      );
+      localStorage.setItem("adminname", response.data.username);
+      setadminname(response.data.username);
+      settoken(response.data.access_token);
+
       // Redirect to the dashboard
-      navigate("/AdminPanel");
+      navigate("/Admin");
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Invalid username or password");
@@ -53,14 +55,16 @@ const AdminLogin = () => {
 
   return (
     <div className="h-screen w-screen bg-gray-700 dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] flex items-center justify-center px-2">
-      <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2"><img className="w-[40px] mx-3" src="./mtLogo.png"/> Sentient</div>
+      <div className="absolute top-0 left-0 items-center text-white flex text-[25px] p-2">
+        <img className="w-[40px] mx-3" src="./mtLogo.png" /> Sentient
+      </div>
       <div className="w-[500px] flex justify-center items-center pt-0 bg-black bg-opacity-5 rounded-lg">
         <div className="container w-[500px] p-10 border-[1px] rounded-md shadow-md bg-bggrey">
-          <h2 className="w-full text-center font-bold text-2xl text-gray-400">ADMIN LOGIN</h2>
+          <h2 className="w-full text-center font-bold text-2xl text-gray-400">
+            ADMIN LOGIN
+          </h2>
           <form onSubmit={handleSubmit} className="block p-5">
-            <label className="block text-sm mb-2 text-gray-200" >
-              Admin ID
-            </label>
+            <label className="block text-sm mb-2 text-gray-200">Admin ID</label>
             <input
               className="my-3 appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1"
               type="text"
@@ -71,7 +75,10 @@ const AdminLogin = () => {
               name="Admin ID"
             />
 
-            <label className="block text-sm mb-2 text-gray-200" htmlFor="password">
+            <label
+              className="block text-sm mb-2 text-gray-200"
+              htmlFor="password"
+            >
               Password
             </label>
             <div className="relative">
@@ -125,7 +132,9 @@ const AdminLogin = () => {
               </button>
             </div>
 
-            {errorMessage && <p className="text-red-500 mt-3">{errorMessage}</p>}
+            {errorMessage && (
+              <p className="text-red-500 mt-3">{errorMessage}</p>
+            )}
 
             <input
               type="submit"
@@ -133,7 +142,15 @@ const AdminLogin = () => {
               className="border-[1px] cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full"
             />
           </form>
-        
+          <div className="w-full text-center text-white">
+            Go to{" "}
+            <span
+              className="cursor-pointer text-blue-600"
+              onClick={() => navigate("/Login")}
+            >
+              User Login
+            </span>
+          </div>
         </div>
       </div>
     </div>

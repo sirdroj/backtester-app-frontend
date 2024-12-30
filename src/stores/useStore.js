@@ -8,6 +8,7 @@ const useStore = create((set) => ({
   theme: 'dark',
   token :localStorage.getItem("token"),
   username : localStorage.getItem("username"),
+  adminname : localStorage.getItem("adminname"),
   forminputData:{
 },
   
@@ -19,6 +20,7 @@ const useStore = create((set) => ({
   setName: (newName) => set({ name: newName }),
   settoken: (newtoken) => set({ token: newtoken }),
   setusername: (newusername) => set({ username: newusername }),
+  setadminname: (newadminname) => set({ adminname: newadminname }),
   toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })), // Improved toggle logic
   setFormInputData: (newFormData) => set({ forminputData: newFormData }),
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SettingsDropdown from "./SettingsDropdown";
+import useStore from "../stores/useStore";
 
 export const NavbarTop = () => {
   const [selected, setSelected] = useState(1);
   const location = useLocation();
-
+  const { username } = useStore();
   const navItems = [
     { path: "/", label: "Home", id: 1 },
     { path: "/backtest", label: "BackTest", id: 2 },
@@ -13,6 +14,14 @@ export const NavbarTop = () => {
     { path: "/explore", label: "Explore", id: 4 },
     { path: "/Chat_AI", label: "Chat with AI", id: 6 },
   ];
+
+  function getinitials(name) {
+    var initials = name.match(/\b\w/g) || [];
+    initials = (
+      (initials.shift() || "") + (initials.pop() || "")
+    ).toUpperCase();
+    return initials;
+  }
 
   useEffect(() => {
     const pathSegment = location.pathname.split("/")[1]; // Get the first path segment
@@ -35,8 +44,7 @@ export const NavbarTop = () => {
                 style={
                   selected === item.id
                     ? {
-                        boxShadow:
-                          " 0 0 2px 2px rgba(255, 255, 255, 0.7)",
+                        boxShadow: " 0 0 2px 2px rgba(255, 255, 255, 0.7)",
                       }
                     : {}
                 }
@@ -46,7 +54,17 @@ export const NavbarTop = () => {
             </Link>
           ))}
         </ul>
-        <SettingsDropdown />
+        <div className="flex justify-end items-center w-1/5 ">
+          <div className="flex justify-around items-center w-min px-1 border-[1px] border-opacity-[10%] rounded-full space-x-1 p-[2px]">
+            <SettingsDropdown />
+            {/* <div className="text-xl">{getinitials(username)}</div> */}
+            <div class="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-opacity-30 dark:bg-gray-600">
+              <span class="font-medium text-gray-600 dark:text-gray-300 dark:bg-opacity-30">
+              {getinitials(username)}
+              </span>
+            </div>
+          </div>
+        </div>
       </header>
     </div>
   );
