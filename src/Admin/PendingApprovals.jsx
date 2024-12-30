@@ -4,26 +4,6 @@ import currentAPI from "../apiendpoint";
 
 const PendingApprovals = () => {
     const [pendingSignups, setPendingSignups] = useState([
-        {
-          user_id: "101",
-          username: "john_doe",
-          email: "john.doe@example.com",
-        },
-        {
-          user_id: "102",
-          username: "jane_smith",
-          email: "jane.smith@example.com",
-        },
-        {
-          user_id: "103",
-          username: "alice_jones",
-          email: "alice.jones@example.com",
-        },
-        {
-          user_id: "104",
-          username: "mike_brown",
-          email: "mike.brown@example.com",
-        },
       ]);
 
 //   Fetch pending signups
