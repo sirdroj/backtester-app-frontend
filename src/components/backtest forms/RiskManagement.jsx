@@ -53,16 +53,6 @@ const RiskManagement = () => {
                     "Custom MAs",
                   ],
                 },
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Simple MA",
-                    "Exponential MA",
-                    "Wilder's MA",
-                    "Custom MAs",
-                  ],
-                },
               ],
             },
             {
@@ -203,7 +193,7 @@ const RiskManagement = () => {
                   type: "dropdown",
                   options: [
                     "None",
-                    "Volume Accunulation",
+                    "Volume Accumulation",
                     "Volume weighted MA",
                   ],
                 },

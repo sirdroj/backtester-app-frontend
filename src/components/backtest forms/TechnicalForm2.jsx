@@ -331,7 +331,7 @@ const TechnicalForm2 = () => {
                 type: "dropdown",
                 options: [
                   "None",
-                  "Volume Accunulation",
+                  "Volume Accumulation",
                   "Volume weighted MA",
                 ],
               },
