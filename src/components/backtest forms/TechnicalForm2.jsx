@@ -455,7 +455,7 @@ const TechnicalForm2 = () => {
                                   e.target.value
                                 )
                               }
-                              className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg p-2"
+                              className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
                             >
                               {input.options.map((option, optionIndex) => (
                                 <option key={optionIndex} value={option}>
@@ -479,7 +479,7 @@ const TechnicalForm2 = () => {
                                   e.target.value
                                 )
                               }
-                              className="bg-gray-50 border text-black border-gray-300 text-sm rounded-lg p-2"
+                              className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
                             />
                           )}
                          
