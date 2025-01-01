@@ -142,7 +142,7 @@ const Login2 = () => {
               Signup
             </span>
           </div>
-          <div className="w-full text-center text-white">
+          {/* <div className="w-full text-center text-white">
             to acess Admin Panel{" "}
             <span
               className="cursor-pointer text-blue-600"
@@ -150,7 +150,7 @@ const Login2 = () => {
             >
               Admin Login
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
