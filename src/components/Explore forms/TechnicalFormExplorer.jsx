@@ -66,7 +66,7 @@ const TechnicalFormExplorer = () => {
   }
   function handleSave(title,data){
     // updateFormInputData(title,data)
-    // sendFormData(title,data)
+    sendFormData(title,data)
   }
 
 
