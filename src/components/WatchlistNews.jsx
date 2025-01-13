@@ -5,68 +5,81 @@ import AddWatchlist from "../pages/AddWatchlist";
 import WatchlistNewsPopup from "./popups/WatchlistNewsPopup";
 
 const WatchlistNews = () => {
-  const { watchlist_news, watchlistNewsLoading, watchlistNewsError, watchlist, setshowWatchlistnewsPopup } = useStore();
-  const [showpopup, setShowPopup] = useState(false);
+  const {
+    watchlist_news,
+    watchlistNewsLoading,
+    watchlistNewsError,
+    watchlist,
+    setshowWatchlistnewsPopup,
+  } = useStore();
+  const [showaddwatchlist, setshowaddwatchlist] = useState(false);
 
   return (
     <div>
-      {watchlist.length > 0 && (
-        <div className="overflow-y-auto h-[380px]">
-          {/* Conditional rendering for different states */}
-          {watchlistNewsLoading && <p>Loading news...</p>}
-          {watchlistNewsError && (
-            <p className="text-red-500">Error: {watchlistNewsError}</p>
-          )}
-
-          {!watchlistNewsLoading &&
-            !watchlistNewsError &&
-            watchlist_news.length === 0 && (
-              <p>No news available for your watchlist.</p>
+        {watchlist.length > 0 && !showaddwatchlist && (
+      <div>
+          <div className="overflow-y-auto h-[380px]">
+            {/* Conditional rendering for different states */}
+            {watchlistNewsLoading && <p>Loading news...</p>}
+            {watchlistNewsError && (
+              <p className="text-red-500">Error: {watchlistNewsError}</p>
             )}
 
-          {!watchlistNewsLoading &&
-            !watchlistNewsError &&
-            watchlist_news.length > 0 && (
-              <ul>
-                {watchlist_news
-                  .sort((a, b) => a.date - b.date)
-                  .slice(0)
-                  .map((item) =>
-                    item.heading ? (
-                      <li
-                        key={item.id || item.heading}
-                        className="mx-1 bg-white bg-opacity-5 p-1 rounded-lg my-1"
-                      >
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={item.link}
+            {!watchlistNewsLoading &&
+              !watchlistNewsError &&
+              watchlist_news.length === 0 && (
+                <p>No news available for your watchlist.</p>
+              )}
+
+            {!watchlistNewsLoading &&
+              !watchlistNewsError &&
+              watchlist_news.length > 0 && (
+                <ul>
+                  {watchlist_news
+                    .sort((a, b) => a.date - b.date)
+                    .slice(0)
+                    .map((item) =>
+                      item.heading ? (
+                        <li
+                          key={item.id || item.heading}
+                          className="mx-1 bg-white bg-opacity-5 p-1 rounded-lg my-1"
                         >
-                          <h1 className="text-[14px] font-bold">{item.heading}</h1>
-                          <p className="text-[12px] opacity-70">
-                            {item.content.slice(0, 140)}
-                          </p>
-                          <div className="flex justify-between text-[10px] text-gray-500">
-                            <p>
-                              by {item.author} on {item.source}
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={item.link}
+                          >
+                            <h1 className="text-[14px] font-bold">
+                              {item.heading}
+                            </h1>
+                            <p className="text-[12px] opacity-70">
+                              {item.content.slice(0, 140)}
                             </p>
-                            <p>{item.date.slice(0, 16)}</p>
-                          </div>
-                        </a>
-                      </li>
-                    ) : null
-                  )}
-              </ul>
-            )}
-          <div>
-            <button onClick={() => setshowWatchlistnewsPopup(true)}>
+                            <div className="flex justify-between text-[10px] text-gray-500">
+                              {/* <p>
+                                by {item.author} on {item.source}
+                              </p> */}
+                              <p>{item.date.slice(0, 16)}</p>
+                            </div>
+                          </a>
+                        </li>
+                      ) : null
+                    )}
+                </ul>
+              )}
+            <div>
+              {/* <button onClick={() => setshowWatchlistnewsPopup(true)}>
               View More
-            </button>
+            </button> */}
+            </div>
           </div>
+        <div>
+          <button onClick={()=>setshowaddwatchlist(true)} className="p-1 bg-gray-700 rounded-xl bg-opacity-50 border-[1px] px-3 m-2 text-sm">Add Watchlist</button>
         </div>
-      )}
+      </div>
+        )}
 
-      {!watchlist.length && <AddWatchlist />}
+      {(!watchlist.length || showaddwatchlist) && <AddWatchlist showaddwatchlist={showaddwatchlist} setshowaddwatchlist={setshowaddwatchlist} />}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Watchlist = () => {
     const fetchWatchlist = async () => {
       try {
         const response = await fetch(`${currentAPI}/get_watchlistCSV/?token=${encodeURIComponent(token)}`);
-        // const response = await fetch(`${currentAPI}/get_watchlist2/?token=${encodeURIComponent(token)}`);
+        // const response = await fetch(`${currentAPI}/get_watchlist/?token=${encodeURIComponent(token)}`);
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
