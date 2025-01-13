@@ -581,7 +581,8 @@ const TechnicalFormExplorer = () => {
                       ))}
                     </div>
                   ))}
-                  <div className="flex justify-end py-2">
+                  {/* <div className="flex justify-end py-2">
+
                     <button
                       type="submit"
                       className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
@@ -592,7 +593,7 @@ const TechnicalFormExplorer = () => {
                     >
                       Save&Next
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
