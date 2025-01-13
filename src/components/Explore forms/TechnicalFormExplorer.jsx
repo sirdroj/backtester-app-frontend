@@ -37,42 +37,42 @@ const initializeFormData = (inputsData) => {
   const data = {
     trend: {
       " ": {
-        indicator: "Simple MA",
-        period: "1",
+        indicator: "None",
+        period: "None",
         period_type:"Weekly",
-        price: "Open",
+        price: "None",
       },
     },
     momentum: {
       " ": {
-        indicator: "RSI",
-        period: "1",
+        indicator: "None",
+        period: "None",
         period_type:"Weekly",
-        price: "Close",
+        price: "None",
       },
     },
     volatility: {
       " ": {
-        indicator: "ATR",
-        period: "1",
+        indicator: "None",
+        period: "None",
         period_type:"Weekly",
-        price: "Open",
+        price: "None",
       },
     },
     breadth: {
       " ": {
-        indicator: "OPT1",
-        period: "1",
+        indicator: "None",
+        period: "None",
         period_type:"Weekly",
-        price: "Open",
+        price: "None",
       },
     },
     volume: {
       undefined: {
-        indicator: "Volume Accumulation",
-        period: "1",
+        indicator: "None",
+        period: "None",
         period_type:"Weekly",
-        price: "Open",
+        price: "None",
       },
     },
   };
@@ -121,7 +121,7 @@ const TechnicalFormExplorer = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          stage: "full explore technical filters form",
+          stage: "technical_filters",
           data: inputs,
         }),
       });
