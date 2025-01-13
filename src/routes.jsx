@@ -20,6 +20,10 @@ import AdminPanel from "./Admin/AdminPanel.jsx";
 import Login2 from "./pages/Login2.jsx";
 import ActiveUsers from "./Admin/ActiveUsers.jsx";
 import PendingApprovals from "./Admin/PendingApprovals.jsx";
+import News from "./pages/News/News.jsx";
+import AllNews from "./pages/News/AllNews.jsx";
+import AddWatchlist from "./pages/AddWatchlist.jsx";
+import AddPortfolio from "./pages/AddPortfolio.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +33,15 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+     
+      {
+        path: "add_watchlist",
+        element: <AddWatchlist />,
+      },
+      {
+        path: "add_portfolio",
+        element: <AddPortfolio />,
       },
      
       {
@@ -43,6 +56,7 @@ export const router = createBrowserRouter([
         path: "backtest-guide",
         element: <UserGuide />,
       },
+      
       {
         path: "backtest",
         children: [
@@ -90,6 +104,16 @@ export const router = createBrowserRouter([
       },
     ],
     
+  },
+  {
+    path: "news",
+    element: <News />,
+    children: [
+      {
+        path: "",
+        element: <AllNews />,
+      },
+    ]
   },
   {
     path: "Login",

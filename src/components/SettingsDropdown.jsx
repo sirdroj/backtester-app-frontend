@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const SettingsDropdown = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const { theme, toggleTheme, username, settoken, setusername } = useStore();
+  const { theme, toggleTheme, username, setToken, setUsername } = useStore();
   const settingsRef = useRef(null); // Create a ref for the settings container
   const svgIconRef = useRef(null);
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ const SettingsDropdown = () => {
 
     // Optionally clear other user-related data from localStorage
     localStorage.removeItem("user_info"); // Example
-    setusername(null);
-    settoken(null);
+    setUsername(null);
+    setToken(null);
 
     // Redirect the user to the login page or home page
 

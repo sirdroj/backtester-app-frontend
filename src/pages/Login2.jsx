@@ -10,7 +10,7 @@ const Login2 = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const {setusername,settoken } = useStore();
+  const {setUsername,setToken } = useStore();
 
 
   const togglePasswordVisibility = () => {
@@ -37,8 +37,8 @@ const Login2 = () => {
       // Store the access token in localStorage
       localStorage.setItem("access_token", response.data.access_token);
       localStorage.setItem("username", response.data.username);
-      setusername(response.data.username)
-      settoken( response.data.access_token)
+      setUsername(response.data.username)
+      setToken( response.data.access_token)
   
       // Redirect to the dashboard
       navigate("/");
@@ -46,6 +46,7 @@ const Login2 = () => {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Invalid username or password");
       } else {
+        console.error(error);
         setErrorMessage("An error occurred. Please try again later.");
       }
     }

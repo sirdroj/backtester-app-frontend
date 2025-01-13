@@ -1,0 +1,23 @@
+/* Styles for the Sentibytes component */
+.sentibytes-container {
+    height: 24rem; /* Fixed height for scrollable area */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: #3e4857ac #474f5b34;
+    border-radius: 5px;
+    /* Thumb: gray-700, Track: gray-300 */
+}
+
+.sentibytes-container::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width */
+}
+
+.sentibytes-container::-webkit-scrollbar-track {
+    background: #c2c8cf; /* Track color (gray-300) */
+    border-radius: 8px; /* Rounded edges of the track */
+}
+
+.sentibytes-container::-webkit-scrollbar-thumb {
+    background-color: #3b5073; /* Thumb color (gray-700) */
+    border-radius: 8px; /* Rounded corners for the thumb */
+}

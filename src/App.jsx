@@ -1,15 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import { NavbarTop } from "./components/NavbarTop";
 import useStore from "./stores/useStore";
 import ChatBot from "./pages/ChatBot";
+import currentAPI from "./apiendpoint";
+
+
+
+
 
 function App() {
   const [count, setCount] = useState(0);
-  const { theme, toggleTheme,username,token } = useStore();
+  const { theme, toggleTheme,username,token,fetchnewsData,fetchWatchlistNews,watchlist,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError,fetchSentibytes } = useStore();
   const location = useLocation(); // Get the current route
   
+  const getWatchlistNews = async (token,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError) => {
+    const url = `${currentAPI}/get_watchlist_news/`;
+    // const url = `${currentAPI}/get_sentibytes/`;
+    const payload = {
+      token,
+      // watchlist: watchlist.map((obj) => obj.Ticker),
+    };
+  
+    try {
+      setWatchlistNewsLoading(true); // Start loading
+      setWatchlistNewsError(null); // Clear any previous errors
+  
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      setWatchlistNews(data.watchlistNews); // Update news state
+    } catch (error) {
+      console.error("Error fetching watchlist news:", error);
+      setWatchlistNewsError(error.message); // Set error state
+    } finally {
+      setWatchlistNewsLoading(false); // Stop loading
+    }
+  };
+  
+  useEffect(() => {
+    fetchnewsData();
+
+  }, [fetchnewsData]);
+  
+  useEffect(() => {
+    fetchSentibytes();
+
+  }, [fetchSentibytes]);
+  
+  useEffect(() => {
+      getWatchlistNews(token,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError);
+    }, []);
 
 
   function checkLogin() {
