@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { getBotReply, getBotReplyAPI } from "./ChatBot";
 // import FileUploadPopup from "../components/FileUploadPopup ";
 // import ChatHistory from "./chatbot/chatHistory";
+import axios from "axios";
+import currentAPI from "../apiendpoint";
 
 const ChatWindow = () => {
 
@@ -19,6 +20,56 @@ const ChatWindow = () => {
   const [popupIndex, setPopupIndex] = useState(null); // Track which popup is open
   const [isRenaming, setIsRenaming] = useState(null); // Track which chat is being renamed
   const [newName, setNewName] = useState(""); // New name for renaming
+
+
+  const [loading, setLoading] = useState(false);
+
+  const getBotReplyAPI = async (userMessage, uploadedFile) => {
+    try {
+      // Create a FormData object
+      setLoading(true);
+      const token = localStorage.getItem("access_token");
+      const formData = new FormData();
+      formData.append("role", "user"); // Add the role to the FormData
+      formData.append("content", userMessage);
+      formData.append("token", token);
+      
+      // Add the user's message to the FormData
+  
+  
+      // Check if a file is uploaded and add it to the FormData
+      if (uploadedFile) {
+        formData.append("file", uploadedFile); // Add the file directly
+      }
+  
+      // Send the form data to the backend
+      const response = await axios.post(
+        // "http://127.0.0.1:8000/sentientgpt_chat/",
+        `${currentAPI}/sentientgpt_chat/`,
+        // `${currentAPI}/sentient_chat2/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Ensure correct headers
+          },
+        }
+      );
+  
+      console.log(response.data); // Log the response from the backend
+      if (response.data && response.data.reply) {
+        return response.data.reply; // Return the bot's reply from the API
+      } else {
+        return "Sorry, I didn't understand that.";
+      }
+    } catch (error) {
+      console.error("Error fetching bot reply:", error);
+      return "Sorry, I'm having trouble responding right now."; // Fallback message on error
+    }
+    finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
 
   const togglePopup = (index) => {
     setPopupIndex(popupIndex === index ? null : index); // Toggle the popup
@@ -320,34 +371,7 @@ const ChatWindow = () => {
               {isPopupOpen && (
                 <div className="absolute left-0 bottom-12 bg-gray-700 shadow-lg p-4 rounded-lg">
                   <div className="flex flex-col space-y-3">
-                    {/* Image Upload Option */}
-                    {/* <div className="flex items-center space-x-2">
-                      <label
-                        htmlFor="image-upload"
-                        className="flex items-center space-x-1 cursor-pointer"
-                      >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L7.41 9.59L10 12.17L16.59 5.59L19 8L10 17Z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                        <span>Upload Image</span>
-                      </label>
-                      <input
-                        id="image-upload"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleFileChange}
-                      />
-                    </div> */}
+                
 
                     {/* Document Upload Option */}
                     <div className="flex items-center space-x-2">
@@ -529,9 +553,11 @@ const ChatWindow = () => {
               </div>
             ))
           )}
+          {loading && <div>{"loading...."}</div>}
           {/* Empty div to help scroll to the bottom */}
           <div ref={messagesEndRef} />
         </div>
+       
       </div>
     </div>
   );
