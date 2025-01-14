@@ -20,9 +20,9 @@ const MainMenue = () => {
       <section className="mx-10">
         <div className="p-2 px-4 bg-black bg-opacity-10 rounded-md flex justify-between">
           <div className="flex w-full"> 
-            {"["}
+            {/* {"["} */}
             <MovingIndexes />
-            {` ]`}
+            {/* {` ]`} */}
           </div>
           {/* <div>
             <span className="mx-2">
