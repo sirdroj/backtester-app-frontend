@@ -21,8 +21,26 @@ const MainMenue = () => {
           <div className="flex">
             <b className="shadow-gl">HeadLines</b> -{" "}
             <div className="relative overflow-hidden whitespace-nowrap">
-              <span className="inline-block animate-scroll text-sm">
-                Some Finance headlines running Some Finance headlines running
+              <span className=" animate-scroll text-sm flex">
+                {/* Some Finance headlines running Some Finance headlines running */}
+                <span className="mx-2">
+                  <b>NIFTY 50 </b>{" "}
+                  <span className="text-green-600 rotate-z-on-load">
+                    &#8593; 0.2%
+                  </span>
+                </span>
+                <span className="mx-2 ">
+              <b>SENSEX </b>
+              <span className="text-red-600 rotate-z-on-load">
+                &#8595; 0.2%
+              </span>
+            </span>
+            <span className="mx-2 ">
+              <b>SENSEX </b>
+              <span className="text-red-600 rotate-z-on-load">
+                &#8595; 0.2%
+              </span>
+            </span>
               </span>
             </div>
             {` ]`}
@@ -49,7 +67,7 @@ const MainMenue = () => {
               <p className="p-3">
                 <ul class="list-disc ml-4">
                   <li>
-                    Comprehensive Analysis: Our AI reads and summarizes annual
+                    Stock Analysis: Our AI reads and summarizes annual
                     reports, providing concise insights without the need for
                     manual review.
                   </li>

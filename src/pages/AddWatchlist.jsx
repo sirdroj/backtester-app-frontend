@@ -3,7 +3,7 @@ import Papa from "papaparse";
 import currentAPI from "../apiendpoint";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const AddWatchlist = ({ showaddwatchlist, setshowaddwatchlist }) => {
+const AddWatchlist = ({ setshowaddwatchlist }) => {
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState("");
   const [isFileValid, setIsFileValid] = useState(false);

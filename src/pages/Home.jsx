@@ -2,7 +2,6 @@ import React from 'react'
 import { NavbarTop } from '../components/NavbarTop'
 import MainMenue from './MainMenue'
 import { Outlet } from 'react-router-dom'
-import MainMenueBeta from './MainMenueBeta'
 
 const Home = () => {
   return (
