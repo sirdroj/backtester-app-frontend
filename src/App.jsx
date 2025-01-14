@@ -12,7 +12,7 @@ import currentAPI from "./apiendpoint";
 
 function App() {
   const [count, setCount] = useState(0);
-  const { theme,fetchPortfolioSentibytes, toggleTheme,username,token,fetchnewsData,fetchWatchlistNews,watchlist,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError,fetchSentibytes } = useStore();
+  const { fetchindexTrend,theme,fetchPortfolioSentibytes, toggleTheme,username,token,fetchnewsData,fetchWatchlistNews,watchlist,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError,fetchSentibytes } = useStore();
   const location = useLocation(); // Get the current route
   
   const getWatchlistNews = async (token,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError) => {
@@ -51,6 +51,11 @@ function App() {
     fetchnewsData();
 
   }, [fetchnewsData]);
+  
+  useEffect(() => {
+    fetchindexTrend();
+
+  }, [fetchindexTrend]);
   
   useEffect(() => {
     fetchSentibytes();

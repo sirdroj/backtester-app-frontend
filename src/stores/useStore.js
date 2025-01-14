@@ -7,7 +7,7 @@ const useStore = create((set) => ({
   // State variables
   count: 0,
   name: "Aman",
-  theme: "dark",
+  theme: "light",
   token: localStorage.getItem("access_token"),
   username: localStorage.getItem("username"),
   adminname: localStorage.getItem("adminname"),
@@ -28,6 +28,7 @@ const useStore = create((set) => ({
   portfoliosentibytesloading: false,
   portfoliosentibyteserror: null,
 
+  indexTrend:[],
 
 
   // Actions
@@ -78,6 +79,8 @@ const useStore = create((set) => ({
   setWatchlistNews: (data) => set({ watchlist_news: data }),
   setWatchlistNewsLoading: (data) => set({ watchlistNewsLoading: data }),
   setWatchlistNewsError: (data) => set({ watchlistNewsError: data }),
+
+
   fetchnewsData: async () => {
     set({ newsloading: true, newserror: null });
     try {
@@ -89,6 +92,19 @@ const useStore = create((set) => ({
       set({ news: data, newsloading: false });
     } catch (err) {
       set({ newserror: err.message, newsloading: false });
+    }
+  },
+
+  fetchindexTrend: async () => {
+    set({ newsloading: true, newserror: null });
+    try {
+      const response = await fetch(`${currentAPI}/nifty_indexes`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      set({ indexTrend: data, newsloading: false });
+    } catch (err) {
     }
   },
 

@@ -6,46 +6,25 @@ import Watchlist from "../components/Watchlist";
 import Sentybytes from "../components/GlobalNews";
 import NewsHome from "./News/NewsHome";
 import WatchlistNewsPopup from "../components/popups/WatchlistNewsPopup";
+import { MovingIndexes } from "../components/MovingIndexes";
 
 const MainMenue = () => {
   // const [news, setNews] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
   const [showWatchNews, setShowWAtchNews] = useState(false);
-  const { showWatchlistnewsPopup } = useStore();
+  const { showWatchlistnewsPopup, indexTrend } = useStore();
   return (
     <div className="mt-10">
       {showWatchlistnewsPopup && <WatchlistNewsPopup />}
       <section className="mx-10">
         <div className="p-2 px-4 bg-black bg-opacity-10 rounded-md flex justify-between">
-          <div className="flex">
-            <b className="shadow-gl">HeadLines</b> -{" "}
-            <div className="relative overflow-hidden whitespace-nowrap">
-              <span className=" animate-scroll text-sm flex">
-                {/* Some Finance headlines running Some Finance headlines running */}
-                <span className="mx-2">
-                  <b>NIFTY 50 </b>{" "}
-                  <span className="text-green-600 rotate-z-on-load">
-                    &#8593; 0.2%
-                  </span>
-                </span>
-                <span className="mx-2 ">
-              <b>SENSEX </b>
-              <span className="text-red-600 rotate-z-on-load">
-                &#8595; 0.2%
-              </span>
-            </span>
-            <span className="mx-2 ">
-              <b>SENSEX </b>
-              <span className="text-red-600 rotate-z-on-load">
-                &#8595; 0.2%
-              </span>
-            </span>
-              </span>
-            </div>
+          <div className="flex w-full"> 
+            {"["}
+            <MovingIndexes />
             {` ]`}
           </div>
-          <div>
+          {/* <div>
             <span className="mx-2">
               <b>NIFTY </b>{" "}
               <span className="text-green-600 rotate-z-on-load">
@@ -58,7 +37,7 @@ const MainMenue = () => {
                 &#8595; 0.2%
               </span>
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="flex mt-4 space-x-2">
           <div className="w-1/3">
@@ -67,9 +46,9 @@ const MainMenue = () => {
               <p className="p-3">
                 <ul class="list-disc ml-4">
                   <li>
-                    Stock Analysis: Our AI reads and summarizes annual
-                    reports, providing concise insights without the need for
-                    manual review.
+                    Stock Analysis: Our AI reads and summarizes annual reports,
+                    providing concise insights without the need for manual
+                    review.
                   </li>
                   <li>
                     No-Code Strategy Development: Users can develop and backtest
