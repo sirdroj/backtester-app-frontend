@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 import currentAPI from "../apiendpoint";
+import useStore from "../stores/useStore";
 
-const AddPortfolio = () => {
+const AddPortfolio = ({setshowaddportfolio}) => {
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState("");
   const [isFileValid, setIsFileValid] = useState(false);
   const token = localStorage.getItem("access_token");
-
+  const {fetchPortfolioSentibytes}=useStore()
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file && file.type === "text/csv") {
@@ -52,6 +53,8 @@ const AddPortfolio = () => {
         const result = await response.json();
         console.log("Server response:", result);
         alert("File submitted successfully!");
+        fetchPortfolioSentibytes()
+        setshowaddportfolio(false)
       } else {
         const errorText = await response.json();
         console.error("Error:", errorText);
@@ -59,7 +62,8 @@ const AddPortfolio = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while submitting the file. Please try again.");
+      alert("An error occurred while submitting the file. Please try again.",error);
+      console.log("error,",error)
     }
   };
   
@@ -98,7 +102,7 @@ const AddPortfolio = () => {
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
       </div>
-      {tableData.length > 0 && (
+      {false && tableData.length > 0 && (
         <div className="mt-10 overflow-x-auto">
           <table className="table-auto border-collapse border border-gray-300 mx-auto">
             <thead>

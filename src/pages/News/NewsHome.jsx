@@ -3,12 +3,13 @@ import GlobalNews from '../../components/GlobalNews'
 import WatchlistSentibytes from '../../components/WatchlistSentibytes'
 import WatchlistNews from '../../components/WatchlistNews'
 import PortfolioNews from './PortfolioNews'
+import PortfolioSentibytes from '../../components/PortfolioSentibytes'
 
 const NewsHome = () => {
 
     const [curTab,setTab]=useState(0)
 
-    const tabdc={0:<WatchlistSentibytes />,1:<GlobalNews />,2:<WatchlistNews />,3:<PortfolioNews />}
+    const tabdc={0:<WatchlistSentibytes />,1:<GlobalNews />,2:<WatchlistNews />,3:<PortfolioSentibytes />}
 
   return (
     <div>

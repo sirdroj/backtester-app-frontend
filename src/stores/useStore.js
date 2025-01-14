@@ -23,6 +23,13 @@ const useStore = create((set) => ({
   sentibytes:[],
   sentibytesloading: false,
   sentibyteserror: null,
+
+  portfoliosentibytes:[],
+  portfoliosentibytesloading: false,
+  portfoliosentibyteserror: null,
+
+
+
   // Actions
   increment: () => set((state) => ({ count: state.count + 1 })),
   decrement: () => set((state) => ({ count: state.count - 1 })),
@@ -58,6 +65,10 @@ const useStore = create((set) => ({
   setSentibytes: (data) => set({ sentibytes: data }),
   setsentibytesloading: (data) => set({ sentibytesloading: data }),
   setsentibyteserror: (data) => set({ sentibyteserror: data }),
+
+  portfoliosetSentibytes: (data) => set({ portfoliosentibytes: data }),
+  portfoliosetsentibytesloading: (data) => set({ portfoliosentibytesloading: data }),
+  portfoliosetsentibyteserror: (data) => set({ portfoliosentibyteserror: data }),
 
 
   setshowWatchlistnewsPopup: (data) => set({ showWatchlistnewsPopup: data }),
@@ -118,6 +129,45 @@ const useStore = create((set) => ({
       set({ sentibytesloading:false}); // Stop loading
     }
   },
+
+
+  fetchPortfolioSentibytes: async () => {
+    const { token } = useStore.getState();
+    const url = `${currentAPI}/get_portfoliosentibytes/`;
+
+    // const url = `${currentAPI}/get_sentibytes/`;
+    const payload = {
+      token,
+      // watchlist: watchlist.map((obj) => obj.Ticker),
+    };
+  
+    try {
+      
+      set({ portfoliosentibytesloading: true }); // Start loading
+      set({ portfoliosentibyteserror: null })// Clear any previous errors
+      
+  
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      set({ portfoliosentibytes:data.sentibytes}); // Update news state
+      
+    } catch (error) {
+      console.error("Error fetching watchlist news:", error);
+      set({ portfoliosentibyteserror:error.message}); // Set error state
+    } finally {
+      set({ portfoliosentibytesloading:false}); // Stop loading
+    }
+  },
+
 
 }));
 
