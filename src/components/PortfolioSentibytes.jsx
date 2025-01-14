@@ -37,7 +37,7 @@ const PortfolioSentibytes= () => {
             <div className="flex justify-center items-center h-[300px] ">
               <div>
                 <div className="w-full p-2 text-center">
-                  You dont have a Waatchlist
+                  You dont have a Portfolio
                 </div>
                 <div className="flex justify-center">
                   {addportfoliobutton}

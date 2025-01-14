@@ -29,7 +29,7 @@ const WatchlistSentibytes = () => {
           <div className="flex justify-center items-center h-[300px] ">
             <div>
               <div className="w-full p-2 text-center">
-                You dont have a Waatchlist
+                You dont have a Watchlist
               </div>
               <div className="flex justify-center">
                 <button
