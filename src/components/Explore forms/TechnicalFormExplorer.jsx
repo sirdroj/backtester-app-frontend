@@ -81,7 +81,7 @@ const initializeFormData = (inputsData) => {
 
 const TechnicalFormExplorer = () => {
   async function sendFormData(stage, inputs) {
-    const url = `${currentAPI}/explorer/technical_filters/`;
+    const url = `${currentAPI}/explorer/technical_filters/${stage}`;
     // const url = "https://api.sentientco.in/forms/technicalFilters";
     const token = localStorage.getItem("access_token");
     try {
