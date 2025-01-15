@@ -110,7 +110,7 @@ const TechnicalFormExplorer = () => {
     }
   }
   async function sendFullFormData(inputs) {
-    const url = `${currentAPI}/explorer/technical_filters/`;
+    const url = `${currentAPI}/explorer/technical_filters`;
     // const url = "https://api.sentientco.in/forms/technicalFilters";
     const token = localStorage.getItem("access_token");
     try {
