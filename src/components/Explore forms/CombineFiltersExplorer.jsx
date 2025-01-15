@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const CombineFiltersExplorer = () => {
+const CombineFilters = () => {
   const [currentDropDown, setCurrentDropDown] = useState([0]);
   const [filterOrder, setFilterOrder] = useState(0);
-  const [showNews, setShowNews] = useState(false);
+  const [showNews, setShowNews] = useState(true);
 
   const handleDropdownClick = (id) => {
     if (currentDropDown.includes(id)) {
@@ -35,26 +35,27 @@ const CombineFiltersExplorer = () => {
             currentDropDown.includes(0) ? "show max-h-[" + +"]" : ""
           } ml-2 px-4 p-2`}
         >
-          <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+          <div className="mb-4  mt-5">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
-                className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
+                className={`relative top-[20px] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
                 }`}
                 style={{
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */} Filter
                 Order
               </span>
-            </h2>
+            </h2> */}
+            
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Order</h1>
               <div className="flex justify-between my-2 items-center">
                 <label>Order </label>
                 <div className=" flex justify-between inputs_wrapper">
@@ -90,50 +91,46 @@ const CombineFiltersExplorer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex justify-end mt-2">
-                <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
-                </div>
             </form>
           </div>
           <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
-                className={`relative top-[20px]  dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
+                className={`relative top-[20px] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
                 }`}
                 style={{
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 NEWS SENTIMENT
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">NEWS SENTIMENT</h1>
               <div className="mt-4 flex justify-end">
                 <button
                   className="border-[1px] border-gray-500 px-2 rounded-md flex"
-                  onClick={() => setShowNews(!showNews)}
+                  // onClick={() => setShowNews(!showNews)}
                 >
                   News
                   <img
                     src="./images/chevron-down (1).png"
-                    className={`${
-                      showNews ? "rotate-180" : ""
-                    }`}
+                    // className={`${
+                    //   showNews ? "rotate-180" : ""
+                    // }`}
                     alt="Toggle"
                   />
                 </button>
               </div>
               <table
-                className={`${
-                  showNews ? "" : "hidden"
-                }  px-5 w-full mt-4 rounded-sm border-[1px] border-gray-600 text-gray-300`}
+                className={`
+                     px-5 w-full mt-4 rounded-sm border-[1px] border-gray-600 text-gray-300`}
                 style={{
                   boxShadow: "inset 0px -2px 2px rgba(0, 0, 0, 0.5)", // Inner shadow
                 }}
@@ -199,10 +196,10 @@ const CombineFiltersExplorer = () => {
                   <div class="relative w-11 h-6 bg-gray-500 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-gray-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-grey-200"></div>
                 </label>
               </div>
-              <div className="flex justify-end mt-2">
+            </form>
+            <div className="flex justify-end mt-2">
                 <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
                 </div>
-            </form>
           </div>
         </div>
       </div>
@@ -210,4 +207,4 @@ const CombineFiltersExplorer = () => {
   );
 };
 
-export default CombineFiltersExplorer;
+export default CombineFilters;

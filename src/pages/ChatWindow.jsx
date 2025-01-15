@@ -234,7 +234,7 @@ const ChatWindow = () => {
 
   return (
     <div
-      className=" z-[11] mt-7 p-4 px-2 mx-2 h-[86vh] w-[98vw] border-[1px] border-gray-800  dark:bg-slate-900 rounded-lg shadow-lg flex justify-evenly"
+      className="relative  z-[11] mt-7 p-4 px-2 mx-2 h-[86vh] w-[98vw] border-[1px] border-gray-800  dark:bg-slate-900 rounded-lg shadow-lg flex justify-evenly"
       style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.1)" }}
     >
       {/* Chat History */}

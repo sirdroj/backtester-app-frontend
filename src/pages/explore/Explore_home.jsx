@@ -201,7 +201,7 @@ const Explore_home = () => {
   };
 
   return (
-    <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[1px]">
+    <div className="flex p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[0px]">
     <div className="relative w-[285px] z-1   top-[-9%]  ">
       {/* <img
         src="/images/bt_badge.png"

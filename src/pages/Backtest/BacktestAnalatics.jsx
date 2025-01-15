@@ -201,7 +201,7 @@ const BacktestAnalatics = () => {
   };
 
   return (
-    <div className="my-10 mt-2 px-[0.5%] w-full flex justify-center">
+    <div className="my-10 mt-2 px-[0.5%] w-full flex justify-center relative">
       <div className="w-full">
         <div className="  m- w-full text-sm flex justify-center font-medium text-center text-gray-500 border-y border-gray-200 dark:text-gray-400 dark:border-gray-700">
           <ul className="flex flex-wrap -mb-px ">

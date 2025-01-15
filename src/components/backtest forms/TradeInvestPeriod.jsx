@@ -37,8 +37,8 @@ const TradeInvestPeriod = () => {
             currentDropDown.includes(0) ? "show max-h-[" + +"]" : ""
           } ml-2 px-4 p-2`}
         >
-          <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+          <div className="mb-4 mt-5">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -47,16 +47,16 @@ const TradeInvestPeriod = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Profile Type
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Profile Type</h1>
               <div className="flex justify-between my-2 items-center">
                 <label>Chose a Type </label>
                 <div className=" flex justify-between inputs_wrapper">
@@ -97,7 +97,7 @@ const TradeInvestPeriod = () => {
           {/* ----------------------------------------------------***s2********************************************** */}
 
           <div className="mb-4">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px]">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px]">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -108,13 +108,14 @@ const TradeInvestPeriod = () => {
               >
                 Dates
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Dates</h1>
               <div className="flex justify-between my-2 items-center">
                 <label>Whole Period</label>
 

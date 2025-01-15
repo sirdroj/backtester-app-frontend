@@ -538,11 +538,11 @@ const downloadCSV = () => {
 
 const ExploreTable = () => {
   const [tableTheme, setTableTheme] = useState("light");
-  const navigate=Navigator()
+  const navigate = Navigator();
 
   return (
-    <div>
-        <Outlet />
+    <div className="relative">
+      <Outlet />
       <div className="w-full flex justify-end px-10 mt-5">
         <div
           className=" cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
@@ -550,6 +550,13 @@ const ExploreTable = () => {
           onClick={downloadCSV} // Attach downloadCSV function on click
         >
           Download
+        </div>
+        <div
+          className=" cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+          style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+          onClick={() => window.history.back()}
+        >
+          Close
         </div>
       </div>
       <div
@@ -597,8 +604,7 @@ const ExploreTable = () => {
             <tbody>
               {products.map((product, index) => (
                 <tr
-              
-                onClick={()=>navigate("./popup")}
+                  onClick={() => navigate("./popup")}
                   key={index}
                   className={`border-b ${
                     index % 2 == 0
@@ -607,22 +613,20 @@ const ExploreTable = () => {
                   } cursor-pointer dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
                 >
                   {Object.values(product).map((value, idx) => (
-                      <td
-                        key={idx}
-                        className={`px-6 py-2 text-xs font font-semibold ${
-                          idx === 0
-                            ? "text-black font-bold dark:text-white"
-                            : ""
-                        } ${
-                          value.endsWith("%")
-                            ? parseFloat(value) < 0
-                              ? "text-red-500"
-                              : "text-green-500"
-                            : ""
-                        } w-max`}
-                      >
-                        {value}
-                        </td>
+                    <td
+                      key={idx}
+                      className={`px-6 py-2 text-xs font font-semibold ${
+                        idx === 0 ? "text-black font-bold dark:text-white" : ""
+                      } ${
+                        value.endsWith("%")
+                          ? parseFloat(value) < 0
+                            ? "text-red-500"
+                            : "text-green-500"
+                          : ""
+                      } w-max`}
+                    >
+                      {value}
+                    </td>
                   ))}
                 </tr>
               ))}

@@ -7,6 +7,7 @@ import Sentybytes from "../components/GlobalNews";
 import NewsHome from "./News/NewsHome";
 import WatchlistNewsPopup from "../components/popups/WatchlistNewsPopup";
 import { MovingIndexes } from "../components/MovingIndexes";
+import Couracel from "../components/Couracel";
 
 const MainMenue = () => {
   // const [news, setNews] = useState([]);
@@ -15,7 +16,7 @@ const MainMenue = () => {
   const [showWatchNews, setShowWAtchNews] = useState(false);
   const { showWatchlistnewsPopup, indexTrend } = useStore();
   return (
-    <div className="mt-10">
+    <div className="mt-10 relative ">
       {showWatchlistnewsPopup && <WatchlistNewsPopup />}
       <section className="mx-10">
         <div className="p-2 px-4 bg-black bg-opacity-10 rounded-md flex justify-between">
@@ -24,23 +25,9 @@ const MainMenue = () => {
             <MovingIndexes />
             {/* {` ]`} */}
           </div>
-          {/* <div>
-            <span className="mx-2">
-              <b>NIFTY </b>{" "}
-              <span className="text-green-600 rotate-z-on-load">
-                &#8593; 0.2%
-              </span>
-            </span>
-            <span className="mx-2 ">
-              <b>SENSEX </b>
-              <span className="text-red-600 rotate-z-on-load">
-                &#8595; 0.2%
-              </span>
-            </span>
-          </div> */}
         </div>
         <div className="flex mt-4 space-x-2">
-          <div className="w-1/3">
+          {/* <div className="w-1/3">
             <div className="p-1 bg-black bg-opacity-15 rounded-lg">
               <h2 className="w-full text-center text-2xl">BackTest</h2>
               <p className="p-3">
@@ -67,6 +54,9 @@ const MainMenue = () => {
             <div className="p-1 bg-black bg-opacity-15 rounded-lg h-[450px]">
               <Watchlist />
             </div>
+          </div> */}
+          <div className="w-2/3">
+            <Couracel />
           </div>
           <div className="w-1/3">
             {/* <div className="flex justify-between px-2 p-1">

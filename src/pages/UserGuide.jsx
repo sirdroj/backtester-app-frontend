@@ -84,7 +84,7 @@ const UserGuide = () => {
   }, [svgWidth,current_pos]);
 
   return (
-    <div className="w-full h-[87vh] absolute bottom-0 overflow-hidden border-green-500 border-[0px]">
+    <div className="w-full z-[100] h-[87vh] absolute bottom-0 overflow-hidden border-green-500 border-[0px]">
       {/* <section className="mx-20"><h1>UserGuide</h1></section> */}
       {/* {current_pos} */}
       <div className="relative h-[400px] top-[15px] w-full border-[0px] ">

@@ -1356,8 +1356,8 @@ const RiskManagement = () => {
             {item.title === "TECHNICAL FILTERS" && (
               <div>
                 {item.children.map((subinput, subIndex) => (
-                  <div key={subIndex} className="mb-4">
-                    <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
+                  <div key={subIndex} className="my-4">
+                    {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
                       <span
                         className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                           currentDropDown.includes(index) ? "" : "shadow-none"
@@ -1366,16 +1366,16 @@ const RiskManagement = () => {
                           boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                         }}
                       >
-                        {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                         {subinput.title} -
                       </span>
-                    </h2>
+                    </h2> */}
                     <form
                       className="inputs px-2 pt-5 shadow-black inset-2 rounded-lg p-2"
                       style={{
                         boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                       }}
                     >
+                      <h1 className="font-semibold pb-2">{subinput.title}</h1>
                       {subinput.children.map((item, index) => (
                         <div className="flex justify-between ">
                           <label>{item.title}</label>
@@ -1533,12 +1533,11 @@ const RiskManagement = () => {
                         {" "}
                         {subinput.title} -
                       </h1>
-                      {/* <label>{item.title}</label> */}
                       <div className="flex space-x-2">
                         <form className="inputs px-2 pt- shadow-black inset-2 rounded-lg p-2 w-full">
                           {subinput.children.map((item, index) => (
                             <div className="  my-2 w-full ">
-                              <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
+                              {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
                                 <span
                                   className={`relative top-[10px] dark:bg-[#0D111E]  bg-[#281F2E] bg-opacity-90 border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                                     currentDropDown.includes(index)
@@ -1552,13 +1551,14 @@ const RiskManagement = () => {
                                 >
                                   <label>{item.title}</label>
                                 </span>
-                              </h2>
+                              </h2> */}
                               <div
                                 className=" justify-between border-[px] shadow-black inset-2 rounded-lg p-2"
                                 style={{
                                   boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                                 }}
                               >
+                                <h1 className="font-semibold">{item.title}</h1>
                                 {item.children &&
                                   item.children.map((field, fieldIndex) => {
                                     if (field.type == "dropdown") {

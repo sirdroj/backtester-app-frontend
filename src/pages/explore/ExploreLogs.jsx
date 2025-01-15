@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ExploreLogs = () => {
   return (
-    <div className="p-10">
+    <div className="p-10 relative">
       <h1>Explore Logs</h1>
       <div className="border-b-[1px] border-gray-500 py-2">
         <div className="relative w-[250px]">

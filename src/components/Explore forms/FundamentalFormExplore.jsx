@@ -1159,8 +1159,8 @@ const FundamentalFormExplore = () => {
             } ml-2 px-4 p-2`}
           >
             {item.children.map((subinput, subIndex) => (
-              <div key={subIndex} className="mb-4">
-                <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
+              <div key={subIndex} className="my-4">
+                {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[20px] ">
                   <span
                     className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                       currentDropDown.includes(index) ? "" : "shadow-none"
@@ -1169,16 +1169,16 @@ const FundamentalFormExplore = () => {
                       boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                     }}
                   >
-                    {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                     {subinput.title} -
                   </span>
-                </h2>
+                </h2> */}
                 <form
                   className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
                   style={{
                     boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                   }}
                 >
+                  <h1 className="font-semibold">{subinput.title}</h1>
                   <p className="text-center pt-1 pb-4 text-[12px]">
                     {subinput.info}
                   </p>

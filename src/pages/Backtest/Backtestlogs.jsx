@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Backtestlogs = () => {
   return (
-    <div className="p-10"> 
+    <div className="p-10 relative"> 
     <h1 className=' text-[20px] font-semibold'>Backtest Logs</h1>
     <div className="border-b-[1px] border-gray-500 py-2">
       <div class="relative w-[250px]">

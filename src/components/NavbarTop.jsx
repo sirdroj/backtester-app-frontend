@@ -32,7 +32,10 @@ export const NavbarTop = () => {
   return (
     <div className="h-5 w-[98%] fixed z-[1000]">
       <header className="w-full flex justify-center items-center mt-2">
-        <ul className="ml-60 z-100 flex justify-between p-2 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-[#5E445F] rounded-full text-[12px]">
+        <Link to="/" className="px-2 flex items-center"> 
+          <img src="./mtlogo2.png" className="h-8" /> <span className="text-[1.5rem] font-mono px-2">Sentient</span>
+        </Link>
+        <ul className="ml-36 z-100 flex justify-between p-2 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-[#5E445F] rounded-full text-[12px]">
           {navItems.map((item) => (
             <Link to={item.path} key={item.id} className="text-white z-50 ">
               <li
@@ -60,7 +63,7 @@ export const NavbarTop = () => {
             {/* <div className="text-xl">{getinitials(username)}</div> */}
             <div class="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-opacity-30 dark:bg-gray-600">
               <span class="font-medium text-gray-600 dark:text-gray-300 dark:bg-opacity-30">
-              {getinitials(username)}
+                {getinitials(username)}
               </span>
             </div>
           </div>

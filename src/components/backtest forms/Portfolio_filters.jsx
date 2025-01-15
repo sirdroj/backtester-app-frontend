@@ -211,8 +211,8 @@ const Portfolio_filters = () => {
             currentDropDown.includes(0) ? "show max-h-[" + +"]" : ""
           } ml-2 px-4 p-2`}
         >
-          <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+          <div className="my-4 ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 p-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -221,16 +221,16 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Number of Stocks
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Number of Stocks</h1>
               <div className="flex justify-between my-2 items-center">
                 <label> Number of Stocks in Portfolio </label>
                 <div className=" flex justify-between inputs_wrapper">
@@ -273,8 +273,8 @@ const Portfolio_filters = () => {
             currentDropDown.includes(1) ? "show max-h-[" + +"]" : ""
           } ml-2 px-4 p-2`}
         >
-          <div className="mb-4 m-1 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+          <div className="my-5 m-1 ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -283,16 +283,16 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Market Cap Mix
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold"> Market Cap Mix</h1>
               <div className="flex justify-between my-2 items-center">
                 <div
                   className=" flex items-center cursor-pointer"
@@ -376,7 +376,7 @@ const Portfolio_filters = () => {
             </form>
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
-          <div className="mb-4 m-1 z-50">
+          <div className="my-5 m-1 z-50">
             <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
@@ -445,8 +445,8 @@ const Portfolio_filters = () => {
             currentDropDown.includes(3) ? "show max-h-[" + +"]" : ""
           } ml-2 px-4 p-2`}
         >
-          <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+          <div className="my-5 ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 p-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -455,16 +455,17 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Capital
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold"> Capital</h1>
+
               <div className="flex justify-between my-2 items-center">
                 <label> AUM(capital) </label>
                 <div className=" flex justify-between inputs_wrapper">
@@ -488,7 +489,7 @@ const Portfolio_filters = () => {
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
           <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 p-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -497,16 +498,17 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Allocation of Options
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">  Allocation of Options</h1>
+
               <div className="flex justify-between my-2 items-center">
                 <label>Equiweight</label>
 
@@ -585,7 +587,7 @@ const Portfolio_filters = () => {
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
           <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 p-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -594,16 +596,16 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Factor Trend
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Factor Trend</h1>
               <div className=" my-4 items-center">
                 <div className="flex justify-between font-semibold text-gray-400">
                   <label className="font-semibold">Technical Data</label>
@@ -749,7 +751,7 @@ const Portfolio_filters = () => {
           </div>
           {/* ----------------------------------------------------***s2********************************************** */}
           <div className="mb-4 ">
-            <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+            {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
               <span
                 className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 p-2 rounded-md pr-10 ${
                   currentDropDown.includes(0) ? "" : "shadow-none"
@@ -758,16 +760,16 @@ const Portfolio_filters = () => {
                   boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                 }}
               >
-                {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                 Single Ticker
               </span>
-            </h2>
+            </h2> */}
             <form
               className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
               style={{
                 boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
               }}
             >
+              <h1 className="font-semibold">Single Ticker</h1>
               <div className="flex justify-between my-2 items-center">
                 <label> Single Ticker </label>
                 <div className=" flex justify-between inputs_wrapper">

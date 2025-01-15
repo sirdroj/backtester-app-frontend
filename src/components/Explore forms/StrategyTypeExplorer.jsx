@@ -50,7 +50,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: ["None", "Native data", "Upload Data"],
+                  options: ["None","Native data", "Upload Data"],
                 },
               ],
             },
@@ -70,8 +70,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
-                    "None",
+                  options: ["None",
                     "Exponential MA",
                     "Wilder's MA",
                     "Custom MAs",
@@ -82,7 +81,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -95,11 +94,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "RSI", "Stochastic", "15", "10", "8"],
+                  options: ["None","RSI", "Stochastic", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -112,11 +111,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "Volume Accunulation", "15", "10", "8"],
+                  options: ["None","Volume Accunulation", "15", "10", "8"],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -135,18 +134,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
-                    "None",
-                    "QTR-Growth",
-                    "Rate of Change",
-                    "CAGR",
-                    10,
-                    15,
-                  ],
+                  options: ["None","QTR-Growth", "Rate of Change", "CAGR", 10, 15],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -159,11 +151,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "Employee Cost", "50%", "20%"],
+                  options: ["None","Employee Cost", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -176,11 +168,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "35", "30%", "20%"],
+                  options: ["None","35", "30%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -193,11 +185,11 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: ["None", "Interest", "Depreciation", "50%", "20%"],
+                  options: ["None","Interest", "Depreciation", "50%", "20%"],
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -210,8 +202,7 @@ const StrategyType = () => {
               inputs: [
                 {
                   type: "dropdown",
-                  options: [
-                    "None",
+                  options: ["None",
                     "Reported Net Profit",
                     "Minority share",
                     "Profit for EPS",
@@ -223,7 +214,7 @@ const StrategyType = () => {
                 },
                 {
                   type: "dropdown",
-                  options: ["None", ">", ">=", "<", "<="],
+                  options: ["None",">", ">=", "<", "<="],
                 },
                 {
                   type: "fixed",
@@ -294,35 +285,32 @@ const StrategyType = () => {
           >
             {item.children.map((input, subIndex) => (
               <div key={subIndex} className="mb-4 ">
-                <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
+                {/* <h2 className="flex border-b-[0px] border-b-gray-500 h-[40px] items-center text-[18px] ">
                   <span
-                    className={`relative top-[20px] dark:bg-[#0D111E] bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
+                    className={`relative top-[20px] dark:bg-[#0D111E]  bg-[#281F2E] border-r-[px] px-4 pb-2 rounded-md pr-10 ${
                       currentDropDown.includes(index) ? "" : "shadow-none"
                     }`}
                     style={{
                       boxShadow: "0px -8px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                     }}
                   >
-                    {/* <img className="h-[25px] mx-0" alt="Icon" /> */}
                     {input.title} -
                   </span>
-                </h2>
+                </h2> */}
                 <form
-                  className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
+                  className="inputs px-2 shadow-black inset-2 rounded-lg p-2 mt-5"
                   style={{
                     boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                   }}
                 >
+                  <h1 className="font-semibold">{input.title}</h1>
                   <p className="text-center pt-1 pb-4 text-[10px]">
                     {input.info}
                   </p>
 
                   {input.children.map((field) => {
                     return (
-                      <div
-                        key={field.id}
-                        className="flex items-center justify-between my-2"
-                      >
+                      <div key={field.id} className="flex items-center justify-between my-2">
                         {/* <div> {field.title} </div> */}
                         <label>{field.title}</label>
                         <div className=" flex justify-between items-center inputs_wrapper">
@@ -438,14 +426,9 @@ const StrategyType = () => {
                       </div>
                     );
                   })}
-                  <div className="flex justify-end mt-2">
-                    <button
-                      type="submit"
-                      className="p-1 border-[1px] rounded-lg px-4 text-sm"
-                    >
-                      Save&Next
-                    </button>
-                  </div>
+                <div className="flex justify-end">
+                <button type="submit" className="p-1 border-[1px] rounded-lg px-4 text-sm">Save&Next</button>
+                </div>
                 </form>
               </div>
             ))}

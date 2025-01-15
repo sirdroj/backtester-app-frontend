@@ -6,37 +6,48 @@ import useStore from "./stores/useStore";
 import ChatBot from "./pages/ChatBot";
 import currentAPI from "./apiendpoint";
 
-
-
-
-
 function App() {
-  const [count, setCount] = useState(0);
-  const { fetchindexTrend,theme,fetchPortfolioSentibytes, toggleTheme,username,token,fetchnewsData,fetchWatchlistNews,watchlist,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError,fetchSentibytes } = useStore();
+  const [rotation, setRotation] = useState(0); // State to track rotation degree
+  const {
+    fetchindexTrend,
+    theme,
+    fetchPortfolioSentibytes,
+    toggleTheme,
+    username,
+    token,
+    fetchnewsData,
+    fetchWatchlistNews,
+    watchlist,
+    setWatchlistNews,
+    setWatchlistNewsLoading,
+    setWatchlistNewsError,
+    fetchSentibytes,
+  } = useStore();
   const location = useLocation(); // Get the current route
-  
-  const getWatchlistNews = async (token,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError) => {
+
+  const getWatchlistNews = async (
+    token,
+    setWatchlistNews,
+    setWatchlistNewsLoading,
+    setWatchlistNewsError
+  ) => {
     const url = `${currentAPI}/get_watchlist_news/`;
-    // const url = `${currentAPI}/get_sentibytes/`;
-    const payload = {
-      token,
-      // watchlist: watchlist.map((obj) => obj.Ticker),
-    };
-  
+    const payload = { token };
+
     try {
       setWatchlistNewsLoading(true); // Start loading
       setWatchlistNewsError(null); // Clear any previous errors
-  
+
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-  
+
       const data = await response.json();
       setWatchlistNews(data.watchlistNews); // Update news state
     } catch (error) {
@@ -46,60 +57,71 @@ function App() {
       setWatchlistNewsLoading(false); // Stop loading
     }
   };
-  
+
   useEffect(() => {
     fetchnewsData();
-
   }, [fetchnewsData]);
-  
+
   useEffect(() => {
     fetchindexTrend();
-
   }, [fetchindexTrend]);
-  
+
   useEffect(() => {
     fetchSentibytes();
-
   }, [fetchSentibytes]);
 
   useEffect(() => {
     fetchPortfolioSentibytes();
-
   }, [fetchPortfolioSentibytes]);
-  
-  useEffect(() => {
-      getWatchlistNews(token,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError);
-    }, []);
 
+  useEffect(() => {
+    getWatchlistNews(
+      token,
+      setWatchlistNews,
+      setWatchlistNewsLoading,
+      setWatchlistNewsError
+    );
+  }, []);
+
+  // Continuous rotation logic
+  useEffect(() => {
+    const rotate = () => {
+      setRotation((prev) => (prev + 1) % 360); // Increment rotation by 1 degree
+    };
+    const intervalId = setInterval(rotate, 70); // Rotate every 30ms (adjust for speed)
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
 
   function checkLogin() {
-
-    if ( (!localStorage.getItem("access_token") || !localStorage.getItem("username"))) {
-      window.location.href = "/login"; 
+    if (
+      !localStorage.getItem("access_token") ||
+      !localStorage.getItem("username")
+    ) {
+      window.location.href = "/login";
     }
   }
 
   checkLogin();
 
   return (
-    <div
-      className={` ${theme} `}
-      style={{
-        backgroundImage:
-          'url("https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className={` ${theme} `}>
       <div
-        className={`w-screen min-h-screen bg-gradient-to-r from-[#3E2539] to-[#101F29] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] overflow-hidden text-white bg-opacity-20`}
+        className={` w-screen min-h-screen bg-gradient-to-r from-[#587D9A] via-[#2D384A] to-[#22252E] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] overflow-hidden text-white bg-opacity-20`}
       >
         <NavbarTop />
-
+        <div className="absolute   overflow-hidden w-full h-screen">
+          <img
+            id="vector1"
+            src="./bgsvgs/Vector (2).svg"
+            style={{ transform: `rotate(${rotation}deg)` }} // Apply rotation
+            className="absolute bottom-[-20%] -left-[15%] w-[500px]"
+          />
+        </div>
         {/* Conditionally render ChatBot if the current path is not '/chat_ai' */}
         {location.pathname !== "/Chat_AI" && <ChatBot />}
 
-        <div className="mt-10 overflow-hidden">
+        <div className="  mt-10 overflow-hidden z-[100]">
           <Outlet />
         </div>
       </div>
