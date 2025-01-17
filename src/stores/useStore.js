@@ -7,7 +7,8 @@ const useStore = create((set) => ({
   // State variables
   count: 0,
   name: "Aman",
-
+  input:"",
+  setInput: (data) => set({ input: data }),
 
   theme: "light",
   token: localStorage.getItem("access_token"),

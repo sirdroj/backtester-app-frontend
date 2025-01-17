@@ -31,13 +31,13 @@ const ChatWindow = () => {
 
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [uploadedFile, setUploadedFile] = useState(null);
-
-  const [input, setInput] = useState(""); // Input value
+  
+  const {input, setInput}=useStore()
+  // const [input, setInput] = useState(""); // Input value
   const messagesEndRef = useRef(null); // Reference to message container's end
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [message, setMessage] = useState("");
-
   const [popupIndex, setPopupIndex] = useState(null); // Track which popup is open
   const [isRenaming, setIsRenaming] = useState(null); // Track which chat is being renamed
   const [newName, setNewName] = useState(""); // New name for renaming
