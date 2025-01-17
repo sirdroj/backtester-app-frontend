@@ -7,6 +7,8 @@ const useStore = create((set) => ({
   // State variables
   count: 0,
   name: "Aman",
+
+
   theme: "light",
   token: localStorage.getItem("access_token"),
   username: localStorage.getItem("username"),
@@ -32,8 +34,7 @@ const useStore = create((set) => ({
 
 
   // Actions
-  increment: () => set((state) => ({ count: state.count + 1 })),
-  decrement: () => set((state) => ({ count: state.count - 1 })),
+
   setName: (newName) => set({ name: newName }),
   setToken: (newToken) => set({ token: newToken }),
   setUsername: (newUsername) => set({ username: newUsername }),

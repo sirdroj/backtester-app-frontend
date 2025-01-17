@@ -3,15 +3,36 @@ import React, { useState, useRef, useEffect } from "react";
 // import ChatHistory from "./chatbot/chatHistory";
 import axios from "axios";
 import currentAPI from "../apiendpoint";
+import useStore from "../stores/useStore";
 
 const ChatWindow = () => {
+  // const [messages, setMessages] = useState([]); // Store messages
+  // const [history, setHistory] = useState([]); // Store chat history
+
+  const [messages, setMessages] = useState(() => {
+    // Load messages from localStorage on initialization
+    const storedMessages = localStorage.getItem("messages");
+    return storedMessages ? JSON.parse(storedMessages) : [];
+  });
+
+  const [history, setHistory] = useState(() => {
+    // Load history from localStorage on initialization
+    const storedHistory = localStorage.getItem("history");
+    return storedHistory ? JSON.parse(storedHistory) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(history));
+  }, [history]);
 
   const [isOpen, setIsOpen] = useState(false); // Toggle chat visibility
   const [uploadedFile, setUploadedFile] = useState(null);
 
-  const [messages, setMessages] = useState([]); // Store messages
   const [input, setInput] = useState(""); // Input value
-  const [history, setHistory] = useState([]); // Store chat history
   const messagesEndRef = useRef(null); // Reference to message container's end
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -20,7 +41,6 @@ const ChatWindow = () => {
   const [popupIndex, setPopupIndex] = useState(null); // Track which popup is open
   const [isRenaming, setIsRenaming] = useState(null); // Track which chat is being renamed
   const [newName, setNewName] = useState(""); // New name for renaming
-
 
   const [loading, setLoading] = useState(false);
 
@@ -33,15 +53,14 @@ const ChatWindow = () => {
       formData.append("role", "user"); // Add the role to the FormData
       formData.append("content", userMessage);
       formData.append("token", token);
-      
+
       // Add the user's message to the FormData
-  
-  
+
       // Check if a file is uploaded and add it to the FormData
       if (uploadedFile) {
         formData.append("file", uploadedFile); // Add the file directly
       }
-  
+
       // Send the form data to the backend
       const response = await axios.post(
         // "http://127.0.0.1:8000/sentientgpt_chat/",
@@ -54,7 +73,7 @@ const ChatWindow = () => {
           },
         }
       );
-  
+
       console.log(response.data); // Log the response from the backend
       if (response.data && response.data.reply) {
         return response.data.reply; // Return the bot's reply from the API
@@ -64,12 +83,10 @@ const ChatWindow = () => {
     } catch (error) {
       console.error("Error fetching bot reply:", error);
       return "Sorry, I'm having trouble responding right now."; // Fallback message on error
-    }
-    finally {
+    } finally {
       setLoading(false); // Stop loading
     }
   };
-
 
   const togglePopup = (index) => {
     setPopupIndex(popupIndex === index ? null : index); // Toggle the popup
@@ -159,6 +176,43 @@ const ChatWindow = () => {
 
   // Handle sending message
 
+  // const sendMessage = async (input) => {
+  //   if (input.trim() || uploadedFile) {
+  //     const userMessage = input.trim();
+  //     if (userMessage && !uploadedFile) {
+  //       setMessages((prevMessages) => [
+  //         ...prevMessages,
+  //         { text: userMessage, sender: "user" },
+  //       ]);
+  //     }
+  //     if (uploadedFile) {
+  //       setMessages((prevMessages) => [
+  //         ...prevMessages,
+  //         { text: userMessage, sender: "user", filename: uploadedFile.name },
+  //       ]);
+  //     }
+
+  //     const formData = new FormData();
+  //     if (uploadedFile) {
+  //       formData.append("file", uploadedFile);
+  //       setUploadedFile(null); // Reset the uploaded file
+  //     }
+  //     formData.append("message", userMessage);
+
+  //     const botReply = await getBotReplyAPI(userMessage, uploadedFile);
+  //     // const botReply = await getBotReply(userMessage, uploadedFile);
+  //     // setMessages((prevMessages) => [
+  //     //   ...prevMessages,
+  //     //   { text: botReply, sender: "bot" },
+  //     // ]);
+  //     setMessages((prevMessages) => [
+  //       ...prevMessages,
+  //       { text: botReply, sender: "bot" },
+  //     ]);
+  //     scrollToBottom();
+  //   }
+  // };
+
   const sendMessage = async (input) => {
     if (input.trim() || uploadedFile) {
       const userMessage = input.trim();
@@ -188,6 +242,10 @@ const ChatWindow = () => {
         ...prevMessages,
         { text: botReply, sender: "bot" },
       ]);
+      // setMessages( [
+      //   ...messages,
+      //   { text: botReply, sender: "bot" },
+      // ]);
       scrollToBottom();
     }
   };
@@ -371,8 +429,6 @@ const ChatWindow = () => {
               {isPopupOpen && (
                 <div className="absolute left-0 bottom-12 bg-gray-700 shadow-lg p-4 rounded-lg">
                   <div className="flex flex-col space-y-3">
-                
-
                     {/* Document Upload Option */}
                     <div className="flex items-center space-x-2">
                       <label
@@ -510,11 +566,12 @@ const ChatWindow = () => {
         )}
 
         <div id="messageBox" className="p-4 full overflow-y-auto rounded-md">
-          {messages.length === 0 ? (
+          {messages.length <= 0 ? (
             <p className="dark:text-gray-700 text-gray-500">
               No messages yet...
             </p>
           ) : (
+            // <div>{messages.length}</div>
             messages.map((msg, index) => (
               <div
                 key={index}
@@ -557,7 +614,6 @@ const ChatWindow = () => {
           {/* Empty div to help scroll to the bottom */}
           <div ref={messagesEndRef} />
         </div>
-       
       </div>
     </div>
   );
