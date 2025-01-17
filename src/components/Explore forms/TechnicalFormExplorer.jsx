@@ -115,6 +115,7 @@ const initializeFormData = (inputsData) => {
 };
 
 const TechnicalFormExplorer = () => {
+
   async function sendFormData(stage, inputs) {
     const url = `${currentAPI}/explorer/technical_filters/${stage}`;
     // const url = "https://api.sentientco.in/forms/technicalFilters";
@@ -156,7 +157,7 @@ const TechnicalFormExplorer = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          level: "technical_filters",
+          // level: "technical_filters",
           stage: inputs,
         }),
       });
@@ -584,7 +585,7 @@ const TechnicalFormExplorer = () => {
       {/* </div>
         </div>
       ))} */}
-      <div className="w-full flex justify-end p-2">
+      <div className="w-full flex justify-end p-2 pt-10">
         <button
           type="submit"
           className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
