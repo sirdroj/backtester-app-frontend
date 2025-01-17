@@ -158,7 +158,7 @@ const TechnicalFormExplorer = () => {
         },
         body: JSON.stringify({
           // level: "technical_filters",
-          stage: inputs,
+          "technical_filter": inputs,
         }),
       });
 
@@ -595,7 +595,7 @@ const TechnicalFormExplorer = () => {
           //   sendFormData(formData)
           // }}
         >
-          Save&Next
+          Submit
         </button>
       </div>
     </form>
