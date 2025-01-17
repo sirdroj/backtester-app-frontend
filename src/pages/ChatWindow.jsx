@@ -283,12 +283,15 @@ const ChatWindow = () => {
     // Remove all asterisks from the string
     const cleanedText = text.replace(/\*/g, "");
 
+    // Remove backslashes and unwanted square brackets for mathematical expressions
     const formattedText = cleanedText
       .replace(/\#\#\#(.*?)(\n|$)/g, "<b>$1</b><br />") // Bold text between ### and newline or end of string
+      .replace(/\\|[\[\]]/g, "") // Remove backslashes and square brackets
       .replace(/\n/g, "<br />"); // Replace remaining newlines with <br />
 
     return { __html: formattedText };
-  };
+};
+
 
   return (
     <div
@@ -606,7 +609,8 @@ const ChatWindow = () => {
                 {/* Conditional Rendering for Text or File */}
                 <div
                   dangerouslySetInnerHTML={formatMessageWithHTML(msg.text)}
-                />
+                  />
+                  {/* {msg.text} */}
               </div>
             ))
           )}

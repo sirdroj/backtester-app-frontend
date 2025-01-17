@@ -3,7 +3,7 @@ import UserGuide from "./pages/UserGuide.jsx";
 import Home from "./pages/Home.jsx";
 import Backtest from "./pages/Backtest.jsx";
 import UserGuideBeta from "./pages/UserGuideBeta.jsx";
-import Explore from "./pages/Explore.jsx";
+// import Explore from "./pages/Explore.jsx";
 import ExploreTable from "./pages/explore/ExploreTable.jsx";
 import Explore_home from "./pages/explore/Explore_home.jsx";
 import App from "./App.jsx";
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
         element: <UserGuideBeta />,
       },
       {
-        path: "explore",
+        path: "explorer",
         children: [
           {
             path: "",
