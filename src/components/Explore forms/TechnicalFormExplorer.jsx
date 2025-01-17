@@ -33,47 +33,82 @@ import currentAPI from "../../apiendpoint";
 //   return initialData;
 // };
 
+// const initializeFormData = (inputsData) => {
+//   const data = {
+//     trend: {
+//       " ": {
+//         indicator: "None",
+//         period: "None",
+//         period_type:"Weekly",
+//         price: "None",
+//       },
+//     },
+//     momentum: {
+//       " ": {
+//         indicator: "None",
+//         period: "None",
+//         period_type:"Weekly",
+//         price: "None",
+//       },
+//     },
+//     volatility: {
+//       " ": {
+//         indicator: "None",
+//         period: "None",
+//         period_type:"Weekly",
+//         price: "None",
+//       },
+//     },
+//     breadth: {
+//       " ": {
+//         indicator: "None",
+//         period: "None",
+//         period_type:"Weekly",
+//         price: "None",
+//       },
+//     },
+//     volume: {
+//       undefined: {
+//         indicator: "None",
+//         period: "None",
+//         period_type:"Weekly",
+//         price: "None",
+//       },
+//     },
+//   };
+//   return data;
+// };
 const initializeFormData = (inputsData) => {
   const data = {
     trend: {
-      " ": {
-        indicator: "None",
-        period: "None",
-        period_type:"Weekly",
-        price: "None",
-      },
+      indicator: "None",
+      period: "None",
+      period_type: "Weekly",
+      price: "None",
     },
     momentum: {
-      " ": {
-        indicator: "None",
-        period: "None",
-        period_type:"Weekly",
-        price: "None",
-      },
+      indicator: "None",
+      period: "None",
+      period_type: "Weekly",
+      price: "None",
     },
     volatility: {
-      " ": {
-        indicator: "None",
-        period: "None",
-        period_type:"Weekly",
-        price: "None",
-      },
+      indicator: "None",
+      period: "None",
+      period_type: "Weekly",
+      price: "None",
     },
     breadth: {
-      " ": {
-        indicator: "None",
-        period: "None",
-        period_type:"Weekly",
-        price: "None",
-      },
+      indicator: "None",
+      period: "None",
+      period_type: "Weekly",
+      price: "None",
     },
     volume: {
-      undefined: {
-        indicator: "None",
-        period: "None",
-        period_type:"Weekly",
-        price: "None",
-      },
+      indicator: "None",
+      period: "None",
+      period_type: "Weekly",
+      price: "None",
     },
   };
   return data;
@@ -121,8 +156,8 @@ const TechnicalFormExplorer = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          stage: "technical_filters",
-          data: inputs,
+          level: "technical_filters",
+          stage: inputs,
         }),
       });
 
@@ -157,64 +192,58 @@ const TechnicalFormExplorer = () => {
       key: "trend",
       children: [
         {
-          title: " ",
-          key: " ",
-          children: [
+          title: "Indicator",
+          key: "indicator",
+          inputs: [
             {
-              title: "Indicator",
-              key: "indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Simple MA",
-                    "Exponential MA",
-                    "Wilder's MA",
-                    "Custom MA",
-                    "Double EMA",
-                    "Cumulative MA",
-                    "Triple MA",
-                    "Linear Weighted MA",
-                  ],
-                },
+              type: "dropdown",
+              options: [
+                "None",
+                "Simple MA",
+                "Exponential MA",
+                "Wilder's MA",
+                "Custom MA",
+                "Double EMA",
+                "Cumulative MA",
+                "Triple MA",
+                "Linear Weighted MA",
               ],
             },
+          ],
+        },
+        {
+          title: "Period Type",
+          key: "period_type",
+          inputs: [
             {
-              title: "Period Type",
-              key: "period_type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    // "None",
-                    // "Yearly",
-                    // "Quaterly",
-                    // "Monthly",
-                    "Weekly",
-                    // "Daily",
-                  ],
-                },
+              type: "dropdown",
+              options: [
+                // "None",
+                // "Yearly",
+                // "Quaterly",
+                // "Monthly",
+                "Weekly",
+                // "Daily",
               ],
             },
+          ],
+        },
+        {
+          title: "Period",
+          key: "period",
+          inputs: [
             {
-              title: "Period",
-              key: "period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
+              type: "number",
             },
+          ],
+        },
+        {
+          title: "Price",
+          key: "price",
+          inputs: [
             {
-              title: "Price",
-              key: "price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Open", "Close", "Low", "High", "Volume"],
-                },
-              ],
+              type: "dropdown",
+              options: ["None", "Open", "Close", "Low", "High", "Volume"],
             },
           ],
         },
@@ -225,54 +254,48 @@ const TechnicalFormExplorer = () => {
       key: "momentum",
       children: [
         {
-          title: " ",
-          key: " ",
-          children: [
+          title: "Indicator",
+          key: "indicator",
+          inputs: [
             {
-              title: "Indicator",
-              key: "indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "RSI", "CMO", "Stochastic"],
-                },
+              type: "dropdown",
+              options: ["None", "RSI", "CMO", "Stochastic"],
+            },
+          ],
+        },
+        {
+          title: "Period Type",
+          key: "period_type",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                // "None",
+                // "Yearly",
+                // "Quaterly",
+                // "Monthly",
+                "Weekly",
+                // "Daily",
               ],
             },
+          ],
+        },
+        {
+          title: "Period",
+          key: "period",
+          inputs: [
             {
-              title: "Period Type",
-              key: "period_type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    // "None",
-                    // "Yearly",
-                    // "Quaterly",
-                    // "Monthly",
-                    "Weekly",
-                    // "Daily",
-                  ],
-                },
-              ],
+              type: "number",
             },
+          ],
+        },
+        {
+          title: "Price",
+          key: "price",
+          inputs: [
             {
-              title: "Period",
-              key: "period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              key: "price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Open", "Close", "Low", "High", "Volume"],
-                },
-              ],
+              type: "dropdown",
+              options: ["None", "Open", "Close", "Low", "High", "Volume"],
             },
           ],
         },
@@ -283,54 +306,48 @@ const TechnicalFormExplorer = () => {
       key: "volatility",
       children: [
         {
-          title: " ",
-          key: " ",
-          children: [
+          title: "Indicator",
+          key: "indicator",
+          inputs: [
             {
-              title: "Indicator",
-              key: "indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "ATR", "VIX"],
-                },
+              type: "dropdown",
+              options: ["None", "ATR", "VIX"],
+            },
+          ],
+        },
+        {
+          title: "Period Type",
+          key: "period_type",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                // "None",
+                // "Yearly",
+                // "Quaterly",
+                // "Monthly",
+                "Weekly",
+                // "Daily",
               ],
             },
+          ],
+        },
+        {
+          title: "Period",
+          key: "period",
+          inputs: [
             {
-              title: "Period Type",
-              key: "period_type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    // "None",
-                    // "Yearly",
-                    // "Quaterly",
-                    // "Monthly",
-                    "Weekly",
-                    // "Daily",
-                  ],
-                },
-              ],
+              type: "number",
             },
+          ],
+        },
+        {
+          title: "Price",
+          key: "price",
+          inputs: [
             {
-              title: "Period",
-              key: "period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              key: "price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Open", "Close", "Low", "High", "Volume"],
-                },
-              ],
+              type: "dropdown",
+              options: ["None", "Open", "Close", "Low", "High", "Volume"],
             },
           ],
         },
@@ -341,54 +358,48 @@ const TechnicalFormExplorer = () => {
       key: "breadth",
       children: [
         {
-          title: " ",
-          key: " ",
-          children: [
+          title: "Indicator",
+          key: "indicator",
+          inputs: [
             {
-              title: "Indicator",
-              key: "indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "OPT1", "OPT2"],
-                },
+              type: "dropdown",
+              options: ["None", "Advancing", "Declining"],
+            },
+          ],
+        },
+        {
+          title: "Period Type",
+          key: "period_type",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                // "None",
+                // "Yearly",
+                // "Quaterly",
+                // "Monthly",
+                "Weekly",
+                // "Daily",
               ],
             },
+          ],
+        },
+        {
+          title: "Period",
+          key: "period",
+          inputs: [
             {
-              title: "Period Type",
-              key: "period_type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    // "None",
-                    // "Yearly",
-                    // "Quaterly",
-                    // "Monthly",
-                    "Weekly",
-                    // "Daily",
-                  ],
-                },
-              ],
+              type: "number",
             },
+          ],
+        },
+        {
+          title: "Price",
+          key: "price",
+          inputs: [
             {
-              title: "Period",
-              key: "period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              key: "price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Open", "Close", "Low", "High", "Volume"],
-                },
-              ],
+              type: "dropdown",
+              options: ["None", "Open", "Close", "Low", "High", "Volume"],
             },
           ],
         },
@@ -399,57 +410,48 @@ const TechnicalFormExplorer = () => {
       key: "volume",
       children: [
         {
-          title: "",
-          children: [
+          title: "Indicator",
+          key: "indicator",
+          inputs: [
             {
-              title: "Indicator",
-              key: "indicator",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    "None",
-                    "Volume Accumulation",
-                    "Volume weighted MA",
-                  ],
-                },
+              type: "dropdown",
+              options: ["None", "Volume Accumulation", "Volume weighted MA"],
+            },
+          ],
+        },
+        {
+          title: "Period Type",
+          key: "period_type",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                // "None",
+                // "Yearly",
+                // "Quaterly",
+                // "Monthly",
+                "Weekly",
+                // "Daily",
               ],
             },
+          ],
+        },
+        {
+          title: "Period",
+          key: "period",
+          inputs: [
             {
-              title: "Period Type",
-              key: "period_type",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: [
-                    // "None",
-                    // "Yearly",
-                    // "Quaterly",
-                    // "Monthly",
-                    "Weekly",
-                    // "Daily",
-                  ],
-                },
-              ],
+              type: "number",
             },
+          ],
+        },
+        {
+          title: "Price",
+          key: "price",
+          inputs: [
             {
-              title: "Period",
-              key: "period",
-              inputs: [
-                {
-                  type: "number",
-                },
-              ],
-            },
-            {
-              title: "Price",
-              key: "price",
-              inputs: [
-                {
-                  type: "dropdown",
-                  options: ["None", "Open", "Close", "Low", "High", "Volume"],
-                },
-              ],
+              type: "dropdown",
+              options: ["None", "Open", "Close", "Low", "High", "Volume"],
             },
           ],
         },
@@ -461,18 +463,15 @@ const TechnicalFormExplorer = () => {
   // const [formData, setFormData] = useState({});
   console.log("--initial data---", initializeFormData(inputsData));
 
-  const handleChange = (section, filter, inputType, value) => {
+  const handleChange = (section, inputType, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
         ...prevFormData[section],
-        [filter]: {
-          ...prevFormData[section][filter],
-          [inputType]: value,
-        },
+        [inputType]: value,
       },
     }));
-    console.log(section, filter, inputType, value);
+    console.log(section, inputType, value);
     console.log({ formData });
   };
 
@@ -514,74 +513,59 @@ const TechnicalFormExplorer = () => {
               currentDropDown.includes(index) ? "show max-h-full" : "hidden"
             } ml-2 px-4 p-2`}
           >
-            {section.children.map((filter, subIndex) => (
-              <div key={subIndex} className="mb-4">
-                <h2 className="text-[20px] mb-2 text-black">{filter.title}</h2>
-                <div
-                  // onSubmit={(e) => {
-                  //   e.preventDefault();
-                  //   // handleSave(section.key, formData[section.key][" "]);
-                  // }}
-                  className="inputs px-2 shadow-black inset-2 rounded-lg p-2"
-                >
-                  {filter.children.map((inputField) => (
-                    <div
-                      key={inputField.title}
-                      className="flex justify-between my-2"
-                    >
-                      <label className="mr-2">{inputField.title}</label>
-                      {inputField.inputs.map((input, inputIndex) => (
-                        <div key={inputIndex}>
-                          {input.type === "dropdown" && (
-                            <select
-                              value={
-                                formData[section.key]?.[filter.key]?.[
-                                  inputField.key
-                                ] || ""
-                              }
-                              required
-                              onChange={(e) =>
-                                handleChange(
-                                  section.key,
-                                  filter.key,
-                                  inputField.key,
-                                  e.target.value
-                                )
-                              }
-                              className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
-                            >
-                              {input.options.map((option, optionIndex) => (
-                                <option key={optionIndex} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
-                          )}
-                          {input.type === "number" && (
-                            <input
-                              required
-                              type="number"
-                              value={
-                                formData[section.key]?.[filter.key]?.[
-                                  inputField.key
-                                ] || ""
-                              }
-                              onChange={(e) =>
-                                handleChange(
-                                  section.key,
-                                  filter.key,
-                                  inputField.key,
-                                  e.target.value
-                                )
-                              }
-                              className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
-                            />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                  {/* <div className="flex justify-end py-2">
+            {section.children.map((inputField, subIndex) => (
+              <div key={inputField.title} className="flex justify-between my-2">
+                <label className="mr-2">{inputField.title}</label>
+                {inputField.inputs.map((input, inputIndex) => (
+                  <div key={inputIndex}>
+                    {input.type === "dropdown" && (
+                      <select
+                        value={
+                          formData[section.key]?.[
+                            inputField.key
+                          ] || ""
+                        }
+                        required
+                        onChange={(e) =>
+                          handleChange(
+                            section.key,
+                            inputField.key,
+                            e.target.value
+                          )
+                        }
+                        className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                      >
+                        {input.options.map((option, optionIndex) => (
+                          <option key={optionIndex} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                    {input.type === "number" && (
+                      <input
+                        required
+                        type="number"
+                        value={
+                          formData[section.key]?.[
+                            inputField.key
+                          ] || ""
+                        }
+                        onChange={(e) =>
+                          handleChange(
+                            section.key,
+                            inputField.key,
+                            e.target.value
+                          )
+                        }
+                        className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+            {/* <div className="flex justify-end py-2">
 
                     <button
                       type="submit"
@@ -594,12 +578,12 @@ const TechnicalFormExplorer = () => {
                       Save&Next
                     </button>
                   </div> */}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       ))}
+      {/* </div>
+        </div>
+      ))} */}
       <div className="w-full flex justify-end p-2">
         <button
           type="submit"
