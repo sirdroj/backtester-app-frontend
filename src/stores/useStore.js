@@ -5,8 +5,16 @@ import currentAPI from "../apiendpoint";
 // Zustand store
 const useStore = create((set) => ({
   // State variables
-  count: 0,
+
+
+  explore_inputs_Data:{},
+  
+  set_explore_inputs_Data: (data)=>set({explore_inputs_Data: data}),
+  
   name: "Aman",
+
+
+
   input:"",
   setInput: (data) => set({ input: data }),
 

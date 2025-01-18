@@ -158,7 +158,7 @@ const TechnicalFormExplorer = () => {
         },
         body: JSON.stringify({
           // level: "technical_filters",
-          "technical_filter": inputs,
+          technical_filter: inputs,
         }),
       });
 
@@ -174,9 +174,21 @@ const TechnicalFormExplorer = () => {
       return { error: error.message }; // Return error for handling in UI
     }
   }
-  function handleSave(title, data) {
+
+  const { explore_inputs_Data, set_explore_inputs_Data } = useStore();
+
+  function handleSave(key, data) {
     // updateFormInputData(title,data)
-    sendFormData(title, data);
+  
+    // sendFormData(key, data);
+  
+    set_explore_inputs_Data({
+      ...explore_inputs_Data,
+      technical_filters: {
+        ...explore_inputs_Data.technical_filters, // Clone the current technical_filters object
+        [key]: data, // Update the specific key
+      },
+    });
   }
 
   const {
@@ -521,11 +533,7 @@ const TechnicalFormExplorer = () => {
                   <div key={inputIndex}>
                     {input.type === "dropdown" && (
                       <select
-                        value={
-                          formData[section.key]?.[
-                            inputField.key
-                          ] || ""
-                        }
+                        value={formData[section.key]?.[inputField.key] || ""}
                         required
                         onChange={(e) =>
                           handleChange(
@@ -547,11 +555,7 @@ const TechnicalFormExplorer = () => {
                       <input
                         required
                         type="number"
-                        value={
-                          formData[section.key]?.[
-                            inputField.key
-                          ] || ""
-                        }
+                        value={formData[section.key]?.[inputField.key] || ""}
                         onChange={(e) =>
                           handleChange(
                             section.key,
@@ -566,19 +570,19 @@ const TechnicalFormExplorer = () => {
                 ))}
               </div>
             ))}
-            {/* <div className="flex justify-end py-2">
-
-                    <button
-                      type="submit"
-                      className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
-                      onClick={() => {
-                        console.log(formData[section.key]);
-                        // console.log(forminputData)
-                      }}
-                    >
-                      Save&Next
-                    </button>
-                  </div> */}
+            <div className="flex justify-end py-2">
+              <button
+                type="submit"
+                className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
+                onClick={() => {
+                  console.log(formData[section.key]);
+                  // console.log(forminputData)
+                  handleSave(section.key,formData[section.key])
+                }}
+              >
+                Save&Next
+              </button>
+            </div>
           </div>
         </div>
       ))}
