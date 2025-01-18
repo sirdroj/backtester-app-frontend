@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useStore from "../../stores/useStore";
 
 const ExploreLogs = () => {
+
+  const {explore_response,explore_response_loading,explore_response_error
+  } = useStore();
+
+
   return (
     <div className="p-10 relative">
       <h1>Explore Logs</h1>
+      <div>{explore_response_loading?"loading...":explore_response_error?explore_response_error:"loaded"}</div>
       <div className="border-b-[1px] border-gray-500 py-2">
         <div className="relative w-[250px]">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -33,6 +40,7 @@ const ExploreLogs = () => {
           />
         </div>{" "}
       </div>
+      <div></div>
       <div className="mt-10 border-gray-500  text-sm">
         <div className="flex items-center justify-between py-1 border-b-[1px]">
           <span className="flex items-center ">

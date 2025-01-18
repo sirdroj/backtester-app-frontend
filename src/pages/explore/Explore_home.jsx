@@ -4,7 +4,7 @@ import FundamentalForm from "../../components/backtest forms/FundamentalForm";
 import StrategyType from "../../components/backtest forms/StrategyType";
 import TechnicalForm2 from "../../components/backtest forms/TechnicalForm2";
 import CombineFilters from "../../components/backtest forms/CombineFilters";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TechnicalFormExplorer from "../../components/Explore forms/TechnicalFormExplorer";
 import FundamentalFormExplore from "../../components/Explore forms/FundamentalFormExplore";
 import StrategyTypeExplorer from "../../components/Explore forms/StrategyTypeExplorer";
@@ -15,8 +15,6 @@ import currentAPI from "../../apiendpoint";
 const Explore_home = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
-
-  const { explore_inputs_Data, } = useStore();
 
   const dc = {
     0: <TechnicalFormExplorer />,
@@ -87,38 +85,17 @@ const Explore_home = () => {
     setCurrentIndex((prevIndex) => prevIndex - 1); // Move to the previous item
   };
 
-  async function sendFullFormData(inputs) {
-    const url = `${currentAPI}/explorer/technical_filters`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // level: "technical_filters",
-          technical_filter: inputs,
-        }),
-      });
+  const {
+    explore_inputs_Data,
+    send_Full_Explore_Data
+  } = useStore();
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
+  const navigate = useNavigate();
+  
   function handle_explore() {
-    console.log({explore_inputs_Data})
-    sendFullFormData(explore_inputs_Data)
+    console.log({ explore_inputs_Data });
+    send_Full_Explore_Data(explore_inputs_Data);
+    navigate("logs")
   }
 
   return (
@@ -231,7 +208,7 @@ const Explore_home = () => {
 
             <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
               <Link
-                to={"/explore/logs"}
+                to={"/explorer/logs"}
                 className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
               >
                 View logs
@@ -268,23 +245,17 @@ const Explore_home = () => {
           )}
           {currentIndex == 3 && (
             // <Link to={"/explorer/logs"}>
-              <div
-                // onClick={handleNext}
-                className="scale-[120%] flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
-                style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-                onClick={handle_explore}
-              >
-                Submit
-                <svg width="20" height="20" className={``}>
-                  <circle
-                    cx="15"
-                    cy="10"
-                    r="5"
-                    fill="#05FF00"
-                    className="z-0"
-                  />
-                </svg>
-              </div>
+            <div
+              // onClick={handleNext}
+              className="scale-[120%] flex cursor-pointer pl-6 px-5 py-1 m-2 active:shadow-none shadow-lg sha bg-green-300 bg-opacity-10 rounded-lg border-[1px] border-green-400"
+              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+              onClick={handle_explore}
+            >
+              Submit
+              <svg width="20" height="20" className={``}>
+                <circle cx="15" cy="10" r="5" fill="#05FF00" className="z-0" />
+              </svg>
+            </div>
             // </Link>
           )}
         </div>

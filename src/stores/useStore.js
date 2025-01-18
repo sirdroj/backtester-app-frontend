@@ -6,16 +6,68 @@ import currentAPI from "../apiendpoint";
 const useStore = create((set) => ({
   // State variables
 
+  // State variables
+  explore_inputs_Data: {},
+  set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
 
-  explore_inputs_Data:{},
-  
-  set_explore_inputs_Data: (data)=>set({explore_inputs_Data: data}),
-  
+  explore_response: [],
+  set_explore_response: (data) => set({ explore_response: data }),
+
+  explore_response_loading: false,
+  set_explore_response_loading: (isLoading) =>
+    set({ explore_response_loading: isLoading }),
+
+  explore_response_error: false,
+  set_explore_response_error: (error) => set({ explore_response_error: error }),
+
+  // Function to send full form data
+  send_Full_Explore_Data: async () => {
+    const url = `${currentAPI}/explorer/technical_filters`;
+    const { token, explore_inputs_Data } = useStore.getState();
+
+    // Set loading state to true before starting the API request
+    set({ explore_response_loading: true });
+
+    try {
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(explore_inputs_Data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Success:", result);
+
+      // Update the response state
+      set({ explore_response: result });
+
+      // Reset error state if the request is successful
+      set({ explore_response_error: null });
+
+      return result;
+    } catch (error) {
+      console.error("Error:", error.message);
+
+      // Set the error state
+      set({ explore_response_error: error.message });
+
+      return { error: error.message };
+    } finally {
+      // Set loading state to false after the API request finishes
+      set({ explore_response_loading: false });
+    }
+  },
+
   name: "Aman",
 
-
-
-  input:"",
+  input: "",
   setInput: (data) => set({ input: data }),
 
   theme: "light",
@@ -25,22 +77,21 @@ const useStore = create((set) => ({
   forminputData: {},
   watchlist: [],
   watchlist_news: [],
-  watchlistNewsLoading:[],
-  watchlistNewsError:[],
+  watchlistNewsLoading: [],
+  watchlistNewsError: [],
   news: [],
   newsloading: false,
   newserror: null,
   showWatchlistnewsPopup: null,
-  sentibytes:[],
+  sentibytes: [],
   sentibytesloading: false,
   sentibyteserror: null,
 
-  portfoliosentibytes:[],
+  portfoliosentibytes: [],
   portfoliosentibytesloading: false,
   portfoliosentibyteserror: null,
 
-  indexTrend:[],
-
+  indexTrend: [],
 
   // Actions
 
@@ -78,18 +129,17 @@ const useStore = create((set) => ({
   setsentibyteserror: (data) => set({ sentibyteserror: data }),
 
   portfoliosetSentibytes: (data) => set({ portfoliosentibytes: data }),
-  portfoliosetsentibytesloading: (data) => set({ portfoliosentibytesloading: data }),
-  portfoliosetsentibyteserror: (data) => set({ portfoliosentibyteserror: data }),
-
+  portfoliosetsentibytesloading: (data) =>
+    set({ portfoliosentibytesloading: data }),
+  portfoliosetsentibyteserror: (data) =>
+    set({ portfoliosentibyteserror: data }),
 
   setshowWatchlistnewsPopup: (data) => set({ showWatchlistnewsPopup: data }),
   setWatchlist: (data) => set({ watchlist: data }),
 
-
   setWatchlistNews: (data) => set({ watchlist_news: data }),
   setWatchlistNewsLoading: (data) => set({ watchlistNewsLoading: data }),
   setWatchlistNewsError: (data) => set({ watchlistNewsError: data }),
-
 
   fetchnewsData: async () => {
     set({ newsloading: true, newserror: null });
@@ -114,10 +164,8 @@ const useStore = create((set) => ({
       }
       const data = await response.json();
       set({ indexTrend: data, newsloading: false });
-    } catch (err) {
-    }
+    } catch (err) {}
   },
-
 
   fetchSentibytes: async () => {
     const { token } = useStore.getState();
@@ -128,34 +176,30 @@ const useStore = create((set) => ({
       token,
       // watchlist: watchlist.map((obj) => obj.Ticker),
     };
-  
+
     try {
-      
       set({ sentibytesloading: true }); // Start loading
-      set({ sentibyteserror: null })// Clear any previous errors
-      
-  
+      set({ sentibyteserror: null }); // Clear any previous errors
+
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-  
+
       const data = await response.json();
-      set({ sentibytes:data.sentibytes}); // Update news state
-      
+      set({ sentibytes: data.sentibytes }); // Update news state
     } catch (error) {
       console.error("Error fetching watchlist news:", error);
-      set({ sentibyteserror:error.message}); // Set error state
+      set({ sentibyteserror: error.message }); // Set error state
     } finally {
-      set({ sentibytesloading:false}); // Stop loading
+      set({ sentibytesloading: false }); // Stop loading
     }
   },
-
 
   fetchPortfolioSentibytes: async () => {
     const { token } = useStore.getState();
@@ -166,35 +210,30 @@ const useStore = create((set) => ({
       token,
       // watchlist: watchlist.map((obj) => obj.Ticker),
     };
-  
+
     try {
-      
       set({ portfoliosentibytesloading: true }); // Start loading
-      set({ portfoliosentibyteserror: null })// Clear any previous errors
-      
-  
+      set({ portfoliosentibyteserror: null }); // Clear any previous errors
+
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-  
+
       const data = await response.json();
-      set({ portfoliosentibytes:data.sentibytes}); // Update news state
-      
+      set({ portfoliosentibytes: data.sentibytes }); // Update news state
     } catch (error) {
       console.error("Error fetching watchlist news:", error);
-      set({ portfoliosentibyteserror:error.message}); // Set error state
+      set({ portfoliosentibyteserror: error.message }); // Set error state
     } finally {
-      set({ portfoliosentibytesloading:false}); // Stop loading
+      set({ portfoliosentibytesloading: false }); // Stop loading
     }
   },
-
-
 }));
 
 export default useStore;
