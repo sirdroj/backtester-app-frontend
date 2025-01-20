@@ -31,10 +31,10 @@ const useStore = create((set) => ({
   send_Full_Explore_Data: async () => {
     const url = `${currentAPI}/explorer/technical_filters`;
     const { token, explore_inputs_Data } = useStore.getState();
-
+  
     // Set loading state to true before starting the API request
     set({ explore_response_loading: true });
-
+  
     try {
       const response = await fetch(url, {
         method: "PATCH",
@@ -44,35 +44,38 @@ const useStore = create((set) => ({
         },
         body: JSON.stringify(explore_inputs_Data),
       });
-
+  
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        // Parse the error details from the response body
+        const errorDetails = await response.json();
+        const errorMessage = errorDetails.detail || "An unknown error occurred";
+        throw new Error(errorMessage);
       }
-
+  
       const result = await response.json();
       console.log("Success:", result);
-
+  
       // Update the response state
-      // set({ explore_response: sample_response });
-      // console.log(result.results.trend)
       set({ explore_response: result.results });
-
+  
       // Reset error state if the request is successful
       set({ explore_response_error: null });
-
+  
       return result;
     } catch (error) {
-      console.error("Error:", error.message);
-
-      // Set the error state
+      // Log detailed error information
+      console.error("Error details:", error.message);
+  
+      // Set the error state with the detailed error message
       set({ explore_response_error: error.message });
-
+  
       return { error: error.message };
     } finally {
       // Set loading state to false after the API request finishes
       set({ explore_response_loading: false });
     }
-  },
+  }
+  ,
 
   name: "Aman",
 
