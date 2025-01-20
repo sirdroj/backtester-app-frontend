@@ -2,12 +2,16 @@
 import { create } from "zustand";
 import currentAPI from "../apiendpoint";
 
+
+
+
 // Zustand store
 const useStore = create((set) => ({
   // State variables
 
+
   // State variables
-  explore_inputs_Data: {},
+  explore_inputs_Data: [],
   set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
 
   explore_response: [],
@@ -46,7 +50,9 @@ const useStore = create((set) => ({
       console.log("Success:", result);
 
       // Update the response state
-      set({ explore_response: result });
+      // set({ explore_response: sample_response });
+      // console.log(result.results.trend)
+      set({ explore_response: result.results });
 
       // Reset error state if the request is successful
       set({ explore_response_error: null });

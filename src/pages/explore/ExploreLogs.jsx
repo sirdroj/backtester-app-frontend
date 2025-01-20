@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useStore from "../../stores/useStore";
 
 const ExploreLogs = () => {
@@ -7,11 +7,12 @@ const ExploreLogs = () => {
   const {explore_response,explore_response_loading,explore_response_error
   } = useStore();
 
-
+  const navigate=useNavigate()
+  const isDataValid =
+    Array.isArray(explore_response) && explore_response.length > 0;
   return (
     <div className="p-10 relative">
       <h1>Explore Logs</h1>
-      <div>{explore_response_loading?"loading...":explore_response_error?explore_response_error:"loaded"}</div>
       <div className="border-b-[1px] border-gray-500 py-2">
         <div className="relative w-[250px]">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -40,7 +41,9 @@ const ExploreLogs = () => {
           />
         </div>{" "}
       </div>
-      <div></div>
+    {
+(isDataValid || explore_response_error ||explore_response_loading) &&
+      
       <div className="mt-10 border-gray-500  text-sm">
         <div className="flex items-center justify-between py-1 border-b-[1px]">
           <span className="flex items-center ">
@@ -51,7 +54,7 @@ const ExploreLogs = () => {
             Explore Report 1
           </span>
           <span>28 Aug 2024</span>
-          <span className="flex items-center w-[100px]">
+          <span className="flex items-center w-[300px]">
             {" "}
             <svg width="12" height="12" className="mr-1">
               <circle
@@ -59,40 +62,22 @@ const ExploreLogs = () => {
                 cy="6"
                 r="5"
                 fill="none"
-                stroke="#56FF3B"
+                // stroke="#56FF3B"
+                stroke={explore_response_loading?"orange":explore_response_error?"red":"#56FF3B"}
                 stroke-width="2"
               />
             </svg>
-            Sucess
+            <div>{explore_response_loading?"Running...":explore_response_error?explore_response_error:"Sucess"}</div>
+
           </span>
-          <Link to={"/explore/explor_table"} className=" border-[1px] p-[1px] bg-[#] px-3 rounded-full border-purple-300 " >View Report</Link>
+          <button disabled={explore_response_error || explore_response_loading}
+          onClick={()=>navigate("../explor_table")}
+          className=" disabled:opacity-30 border-[1px] p-[1px] bg-[#] px-3 rounded-full border-purple-300 " 
+          >View Report</button>
         </div>
-        <div className="flex items-center justify-between py-1 my-4 border-b-[1px]">
-          <span className="flex items-center ">
-            {" "}
-            <svg width="8" height="8" className="mr-2">
-              <circle cx="4" cy="4" r="4" fill="gray" />
-            </svg>
-            Explore Report 1
-          </span>
-          <span>28 Aug 2024</span>
-          <span className="flex items-center w-[100px]">
-            {" "}
-            <svg width="12" height="12" className="mr-1">
-              <circle
-                cx="6"
-                cy="6"
-                r="5"
-                fill="none"
-                stroke="#56FF3B"
-                stroke-width="2"
-              />
-            </svg>
-            Running
-          </span>
-          <button className="border-[1px] p-[1px] bg-[#] px-3 rounded-full border-purple-300 " >View Report</button>
-        </div>
-      </div>
+        
+      </div>}
+
     </div>
   );
 };

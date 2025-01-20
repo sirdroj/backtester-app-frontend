@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table } from "../../components/Table";
 import { Link, Outlet } from "react-router-dom";
 import { Navigator } from "../../assets/utils/Navigator";
+import useStore from "../../stores/useStore";
 
 const products = [
   {
@@ -523,115 +524,133 @@ const convertToCSV = (array) => {
   return `${headers}\n${rows}`; // Combine headers and rows
 };
 
-const downloadCSV = () => {
-  const csv = convertToCSV(products);
+const downloadCSV = (data) => {
+  const csv = convertToCSV(data);
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
 
   const link = document.createElement("a");
   link.href = url;
-  link.setAttribute("download", "products.csv");
+  link.setAttribute("download", "data.csv");
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 };
-
 const ExploreTable = () => {
   const [tableTheme, setTableTheme] = useState("light");
   const navigate = Navigator();
+  const { explore_response } = useStore();
+
+  // Check if explore_response is valid and is an array
+  const isDataValid =
+    Array.isArray(explore_response) && explore_response.length > 0;
 
   return (
     <div className="relative">
       <Outlet />
       <div className="w-full flex justify-end px-10 mt-5">
         <div
-          className=" cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+          className="cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
           style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-          onClick={downloadCSV} // Attach downloadCSV function on click
+          onClick={() => {
+            if (isDataValid) {
+              downloadCSV(explore_response);
+            } else {
+              alert("No data available to download");
+            }
+          }} // Check data before downloading CSV
         >
           Download
         </div>
         <div
-          className=" cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+          className="cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
           style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
-          onClick={() => window.history.back()}
+          onClick={() => navigate("../logs")}
         >
           Close
         </div>
       </div>
       <div
-        className={`  mx-10 my-2 flex justify-center overflow-auto rounded-md`}
+        className={`mx-10 my-2 flex justify-center overflow-auto rounded-md`}
       >
         <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {
-          width: 8px; /* Adjust width */
-          height: 8px; /* Adjust height for horizontal scrollbar */
+          width: 8px;
+          height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-          background: #f1f1f1; /* Background of the scrollbar track */
+          background: #f1f1f1;
         }
 
         ::-webkit-scrollbar-thumb {
-          background: #888; /* Color of the scrollbar thumb */
-          border-radius: 10px; /* Rounded corners for thumb */
+          background: #888;
+          border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-          background: #555; /* Color on hover */
+          background: #555;
         }
 
         /* For Firefox */
-        scrollbar-width: thin; /* Makes scrollbar thin */
-        scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
+        scrollbar-width: thin;
+        scrollbar-color: #888 #f1f1f1;
       `}</style>
-        <div className=" relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg  ">
-          <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
-            <thead className="text-xs uppercase dark:text-white">
-              <tr className="bg-[#F7F8FB] dark:bg-slate-700  sticky top-0 z-10">
-                {Object.keys(products[0]).map((key) => (
-                  <th
-                    key={key}
-                    scope="col"
-                    className="px-6 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
-                  >
-                    {key.charAt(0).toUpperCase() + key.slice(1)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product, index) => (
-                <tr
-                  onClick={() => navigate("./popup")}
-                  key={index}
-                  className={`border-b ${
-                    index % 2 == 0
-                      ? " dark:bg-gray-900  bg-[#FBFBFB]"
-                      : " dark:bg-gray-800 bg-white"
-                  } cursor-pointer dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
-                >
-                  {Object.values(product).map((value, idx) => (
-                    <td
-                      key={idx}
-                      className={`px-6 py-2 text-xs font font-semibold ${
-                        idx === 0 ? "text-black font-bold dark:text-white" : ""
-                      } ${
-                        value.endsWith("%")
-                          ? parseFloat(value) < 0
-                            ? "text-red-500"
-                            : "text-green-500"
-                          : ""
-                      } w-max`}
+        <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg">
+          {isDataValid ? (
+            <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
+              <thead className="text-xs uppercase dark:text-white">
+                <tr className="bg-[#F7F8FB] dark:bg-slate-700 sticky top-0 z-10">
+                  {Object.keys(explore_response[0]).map((key) => (
+                    <th
+                      key={key}
+                      scope="col"
+                      className="px-6 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
                     >
-                      {value}
-                    </td>
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {explore_response.map((product, index) => (
+                  <tr
+                    // onClick={() => navigate("./popup")}
+                    key={index}
+                    className={`border-b ${
+                      index % 2 === 0
+                        ? "dark:bg-gray-900 bg-[#FBFBFB]"
+                        : "dark:bg-gray-800 bg-white"
+                    } cursor- dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
+                  >
+                    {Object.values(product).map((value, idx) => (
+                      <td
+                        key={idx}
+                        className={`px-6 py-2 text-xs font font-semibold ${
+                          idx === 0
+                            ? "text-black font-bold dark:text-white"
+                            : ""
+                        } ${
+                          value && value.toString().endsWith("%")
+                            ? parseFloat(value) < 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                            : ""
+                        } w-max`}
+                      >
+                        {value}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="text-gray-500 dark:text-gray-200 p-5">
+              No data available to display.
+            </div>
+          )}
         </div>
       </div>
     </div>
