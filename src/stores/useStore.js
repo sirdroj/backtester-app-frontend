@@ -14,6 +14,9 @@ const useStore = create((set) => ({
   explore_inputs_Data: [],
   set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
 
+  current_response_name:"Report 1",
+  set_current_response_name: (data) => set({ current_response_name: data }),
+
   explore_response: [],
   set_explore_response: (data) => set({ explore_response: data }),
 
