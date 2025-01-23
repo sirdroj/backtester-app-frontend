@@ -15,6 +15,7 @@ import currentAPI from "../../apiendpoint";
 const Explore_home = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
+  const { set_explore_inputs_Data } = useStore();
 
   const dc = {
     0: <TechnicalFormExplorer />,
@@ -85,17 +86,15 @@ const Explore_home = () => {
     setCurrentIndex((prevIndex) => prevIndex - 1); // Move to the previous item
   };
 
-  const {
-    explore_inputs_Data,
-    send_Full_Explore_Data
-  } = useStore();
+  const { explore_inputs_Data, send_Full_Explore_Data } = useStore();
 
   const navigate = useNavigate();
-  
+
   function handle_explore() {
     console.log({ explore_inputs_Data });
     send_Full_Explore_Data(explore_inputs_Data);
-    navigate("logs")
+    navigate("logs");
+    set_explore_inputs_Data({});
   }
 
   return (
@@ -274,23 +273,24 @@ const Explore_home = () => {
                 return;
               }
               let x = explore_inputs_Data[filter];
-              return (
-                <div className="px-1 justify-between border-[1px] rounded flex">
-                  <div>
-                    <div>{filter}</div>
-                    {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
+              if (filter == "technical_filters") {
+                return (
+                  <div className="px-1 justify-between border-[1px] rounded flex">
+                    <div>
+                      <div>{filter}</div>
+                      {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
-                    {Object.entries(x).map(([field, inputs]) => (
-                      <div>
-                        {field}(
-                        {Object.entries(inputs).map(([key, val]) => (
-                          <span>{val},</span>
-                        ))}
-                        )
-                      </div>
-                    ))}
-                  </div>
-                  {/* <button onClick={() => ""}>
+                      {Object.entries(x).map(([field, inputs]) => (
+                        <div>
+                          {field}(
+                          {Object.entries(inputs).map(([key, val]) => (
+                            <span>{val},</span>
+                          ))}
+                          )
+                        </div>
+                      ))}
+                    </div>
+                    {/* <button onClick={() => ""}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="17"
@@ -311,8 +311,57 @@ const Explore_home = () => {
                       </defs>
                     </svg>
                   </button> */}
-                </div>
-              );
+                  </div>
+                );
+              }
+              if (filter == "fundamental_filters") {
+                return (
+                  <div className="px-1 justify-between border-[1px] rounded flex">
+                    <div>
+                      <div className="font-bold">{filter} :-</div>
+                      {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
+
+                      {Object.entries(x).map(([field, inputs]) => (
+                        <div className="ml-2">
+                          {field}
+                          {Object.entries(inputs).map(([sub, subinput]) => (
+                            <div className="ml-2 border-l-[1px] pl-[2px] p-1">
+                              <div>{sub}</div>
+                              <div>
+                                {Object.entries(subinput).map(([key, val]) => (
+                                  <div>{key}-{val}</div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                          
+                        </div>
+                      ))}
+                    </div>
+                    {/* <button onClick={() => ""}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <g clip-path="url(#clip0_6_12293)">
+                        <path
+                          d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"
+                          fill="white"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_6_12293">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </button> */}
+                  </div>
+                );
+              }
             })}
           </div>
         </div>

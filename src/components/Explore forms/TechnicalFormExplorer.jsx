@@ -115,6 +115,7 @@ const initializeFormData = (inputsData) => {
 };
 
 const TechnicalFormExplorer = () => {
+  const { explore_inputs_Data, set_explore_inputs_Data ,handle_full_save_explore} = useStore();
 
   async function sendFormData(stage, inputs) {
     const url = `${currentAPI}/explorer/technical_filters/${stage}`;
@@ -175,13 +176,11 @@ const TechnicalFormExplorer = () => {
     }
   }
 
-  const { explore_inputs_Data, set_explore_inputs_Data } = useStore();
-
   function handleSave(key, data) {
     // updateFormInputData(title,data)
-  
+
     // sendFormData(key, data);
-  
+
     set_explore_inputs_Data({
       ...explore_inputs_Data,
       technical_filters: {
@@ -189,6 +188,38 @@ const TechnicalFormExplorer = () => {
         [key]: data, // Update the specific key
       },
     });
+  }
+
+  function removeNoneValues(data) {
+    const cleanedData = {};
+
+    Object.keys(data).forEach((key) => {
+      const filteredSubObject = {};
+      let x = true;
+      Object.keys(data[key]).forEach((subKey) => {
+        if (data[key][subKey] == "None") {
+          x = false;
+        }
+      });
+
+      if (x) {
+        cleanedData[key] = data[key];
+      }
+    });
+
+    return cleanedData;
+  }
+
+
+  function handle_full_save(data) {
+    const cleanedData = removeNoneValues(data);
+    handle_full_save_explore("technical_filters",cleanedData);
+
+    // console.log({ data });
+    // set_explore_inputs_Data({
+    //   ...explore_inputs_Data,
+    //   technical_filters: cleanedData,
+    // });
   }
 
   const {
@@ -474,7 +505,7 @@ const TechnicalFormExplorer = () => {
 
   const [formData, setFormData] = useState(initializeFormData(inputsData));
   // const [formData, setFormData] = useState({});
-  console.log("--initial data---", initializeFormData(inputsData));
+  // console.log("--initial data---", initializeFormData(inputsData));
 
   const handleChange = (section, inputType, value) => {
     setFormData((prevFormData) => ({
@@ -502,9 +533,14 @@ const TechnicalFormExplorer = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        sendFullFormData(formData);
+        // sendFullFormData(formData);
+        // handle_full_save(formData);
       }}
+      className="relative"
     >
+      <div>
+
+     
       {inputsData.map((section, index) => (
         <div key={index} className="px-">
           <div
@@ -571,7 +607,7 @@ const TechnicalFormExplorer = () => {
               </div>
             ))}
             <div className="flex justify-end py-2">
-              <button
+              {/* <button
                 type="submit"
                 className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
                 onClick={() => {
@@ -581,7 +617,7 @@ const TechnicalFormExplorer = () => {
                 }}
               >
                 Save&Next
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -589,17 +625,18 @@ const TechnicalFormExplorer = () => {
       {/* </div>
         </div>
       ))} */}
-      <div className="w-full flex justify-end p-2 pt-10">
+       </div>
+      <div className="w-full flex justify-end p-2 pt-10  bottom-0">
         <button
-          type="submit"
+          // type="submit"
           className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
-          // onClick={() => {
-          //   console.log(formData[section.key]);
-          //   // console.log(forminputData)
-          //   sendFormData(formData)
-          // }}
+          onClick={() => {
+            // console.log(formData[section.key]);
+            // console.log(forminputData)
+            handle_full_save(formData);
+          }}
         >
-          Submit
+          Save
         </button>
       </div>
     </form>

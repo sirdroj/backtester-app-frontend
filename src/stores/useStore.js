@@ -246,6 +246,15 @@ const useStore = create((set) => ({
       set({ portfoliosentibytesloading: false }); // Stop loading
     }
   },
+  handle_full_save_explore:(sec_name,data)=> {
+    const { explore_inputs_Data,set_explore_inputs_Data } = useStore.getState();
+
+    console.log({ data });
+    set_explore_inputs_Data({
+      ...explore_inputs_Data,
+      [sec_name]: data,
+    });
+  }
 }));
 
 export default useStore;

@@ -548,27 +548,38 @@ const ExploreTable = () => {
   return (
     <div className="relative">
       <Outlet />
-      <div className="w-full flex justify-end px-10 mt-5">
+      <div className="w-full flex justify-end px-10 mt-5 space-x-2 ">
         <div
-          className="cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-          style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
           onClick={() => {
             if (isDataValid) {
               downloadCSV(explore_response);
             } else {
               alert("No data available to download");
             }
-          }} // Check data before downloading CSV
+          }}
+          className="cursor-pointer  font-semibold  shadow-lg shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform hover:scale-[102%] active:scale-95 active:shadow-inner"
+          style={{ boxShadow: " 0 0 2px 1px white" }}
         >
-          Download
+          <button
+            style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            className="px-6 text-xs py-1"
+          >
+            Download
+          </button>
         </div>
         <div
-          className="cursor-pointer px-6 text-xs font-semibold py-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-          style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
           onClick={() => navigate("../logs")}
+          className="cursor-pointer  font-semibold  shadow-lg shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform hover:scale-[102%] active:scale-95 active:shadow-inner"
+          style={{ boxShadow: " 0 0 2px 1px white" }}
         >
-          Close
+          <button
+            style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            className="px-6 text-xs py-1"
+          >
+            Close
+          </button>
         </div>
+        
       </div>
       <div
         className={`mx-10 my-2 flex justify-center overflow-auto rounded-md`}
