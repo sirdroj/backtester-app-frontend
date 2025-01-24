@@ -287,7 +287,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Open", "Close", "Low", "High", "Volume"],
+              options: ["None", "Open", "Close", "Low", "High"],
             },
           ],
         },
@@ -339,7 +339,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Open", "Close", "Low", "High", "Volume"],
+              options: ["None", "Open", "Close", "Low", "High"],
             },
           ],
         },
@@ -391,7 +391,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Open", "Close", "Low", "High", "Volume"],
+              options: ["None", "Open", "Close", "Low", "High"],
             },
           ],
         },
@@ -443,7 +443,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Open", "Close", "Low", "High", "Volume"],
+              options: ["None", "Open", "Close", "Low", "High"],
             },
           ],
         },
@@ -495,7 +495,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Open", "Close", "Low", "High", "Volume"],
+              options: ["None", "Open", "Close", "Low", "High"],
             },
           ],
         },
@@ -542,10 +542,10 @@ const TechnicalFormExplorer = () => {
 
      
       {inputsData.map((section, index) => (
-        <div key={index} className="px-">
+        <div key={index} className="-">
           <div
             onClick={() => handleDropdownClick(index)}
-            className="flex justify-between border-b px-2 h-[40px] w-full items-center text-[20px] cursor-pointer"
+            className="flex justify-between  px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
             style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
           >
             <h1 className="font-semibold">{section.title}</h1>
@@ -560,7 +560,7 @@ const TechnicalFormExplorer = () => {
           <div
             className={`dropdown-content ${
               currentDropDown.includes(index) ? "show max-h-full" : "hidden"
-            } ml-2 px-4 p-2`}
+            } ml-2 px-4 p-4 `}
           >
             {section.children.map((inputField, subIndex) => (
               <div key={inputField.title} className="flex justify-between my-2">
