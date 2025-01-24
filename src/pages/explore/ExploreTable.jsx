@@ -557,8 +557,8 @@ const ExploreTable = () => {
               alert("No data available to download");
             }
           }}
-          className="cursor-pointer  font-semibold  shadow-lg shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform hover:scale-[102%] active:scale-95 active:shadow-inner"
-          style={{ boxShadow: " 0 0 2px 1px white" }}
+          className="cursor-pointer  font-semibold   shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform  shadow-[0_0_2px_2px_rgba(255,255,255,0.5)] active:shadow-[0_0_2px_1px_rgba(255,255,255,0.5)]"
+          // style={{ boxShadow: " 0 0 2px 1px white" }}
         >
           <button
             style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
@@ -569,8 +569,8 @@ const ExploreTable = () => {
         </div>
         <div
           onClick={() => navigate("../logs")}
-          className="cursor-pointer  font-semibold  shadow-lg shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform hover:scale-[102%] active:scale-95 active:shadow-inner"
-          style={{ boxShadow: " 0 0 2px 1px white" }}
+          className="cursor-pointer  font-semibold   shadow-white bg-gray-300 bg-opacity-5 rounded-lg  border-[1px] border-gray-500 transition-transform transform  shadow-[0_0_2px_2px_rgba(255,255,255,0.5)] active:shadow-[0_0_2px_1px_rgba(255,255,255,0.5)]"
+          // style={{ boxShadow: " 0 0 2px 1px white" }}
         >
           <button
             style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}

@@ -119,7 +119,7 @@ function App() {
           />
         </div>
         {/* Conditionally render ChatBot if the current path is not '/chat_ai' */}
-        {location.pathname !== "/Chat_AI" && <ChatBot />}
+        {/* {location.pathname !== "/Chat_AI" && <ChatBot />} */}
 
         <div className="  mt-10 overflow-hidden z-[100]">
           <Outlet />

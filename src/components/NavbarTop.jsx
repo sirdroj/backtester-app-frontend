@@ -30,8 +30,8 @@ export const NavbarTop = () => {
   }, [location.pathname]);
 
   return (
-    <div className="h-5 w-[98%] fixed z-[1000]">
-      <header className="w-full flex justify-center items-center mt-2">
+<div className="w-[100%] fixed z-[1000]  h-max pb-2 pr-3 bg-opacity-[5%] bg-gray-900 backdrop-blur-[3px] bg-gradient-to-b from-gray-800 via-gray-700  to-transparent ">
+<header className="w-full flex justify-center items-center mt-2">
         <Link to="/" className="px-2 flex items-center"> 
           <img src="./mtlogo2.png" className="h-8" /> <span className="text-[1.5rem] font-mono px-2">Sentient</span>
         </Link>

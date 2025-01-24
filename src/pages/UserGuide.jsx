@@ -84,11 +84,11 @@ const UserGuide = () => {
   }, [svgWidth,current_pos]);
 
   return (
-    <div className="w-full z-[100] h-[87vh] absolute bottom-0 overflow-hidden border-green-500 border-[0px]">
+    <div className="w-full z-[100] h-screen absolute bottom-0 overflow-hidden border-green-500 border-[0px]">
       {/* <section className="mx-20"><h1>UserGuide</h1></section> */}
       {/* {current_pos} */}
-      <div className="relative h-[400px] top-[15px] w-full border-[0px] ">
-        <section className="relative top-[40px] scroll bg-opacity-0 border-[0px] border-purple-400 w-full h-[700px] bg-black over">
+      
+        <section className="absolute bottom-[-300px] scroll bg-opacity-0 border-[0px] border-purple-400 w-full h-[700px] bg-black over">
           <svg
             ref={svgRef}
             viewBox={`0 0 ${svgWidth} 200`} // Dynamic viewBox based on container width
@@ -104,7 +104,7 @@ const UserGuide = () => {
               fill="none"
             ></path>
           </svg>
-          <div className="absolute justify-center w-full items-center top-[100px]">
+          <div className="absolute justify-center w-full items-center bottom-[160px]">
             <img
               // src="/images/backtesting_badge.svg"
               src="/images/bt-badge.png"
@@ -212,7 +212,8 @@ const UserGuide = () => {
                 className="z-10 rightbutton w-10 h-10 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
                 onClick={handleRightClick}
               >
-                <b>&#8592;</b>
+                {/* <b>&#8592;</b> */}
+                <b>{"<"}</b>
               </div>
               
               {current_pos!=5?
@@ -220,7 +221,9 @@ const UserGuide = () => {
                 className="z-10 leftbutton w-10 h-10 bg-black border-white border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
                 onClick={handleLeftClick}
               >
-                <b>&#8594;</b>
+                {/* <b>&#8594;</b> */}
+                <b>{">"}</b>
+
               </div>:
               <Link to={"../backtest"}>
               <div
@@ -246,7 +249,6 @@ const UserGuide = () => {
           </div>
         </section>
       </div>
-    </div>
   );
 };
 

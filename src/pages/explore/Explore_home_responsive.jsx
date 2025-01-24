@@ -29,14 +29,13 @@ const Explore_home_responsive = () => {
     };
 
     // Attach the event listener
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup the event listener on unmount
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
 
   const dc = {
     0: <TechnicalFormExplorer />,
@@ -91,7 +90,7 @@ const Explore_home_responsive = () => {
 
   useEffect(() => {
     updateItemPositions();
-  }, [currentIndex,dimensions]);
+  }, [currentIndex, dimensions]);
 
   const handleNext = () => {
     if (currentIndex == 3) {
@@ -120,25 +119,28 @@ const Explore_home_responsive = () => {
 
   return (
     <div className="flex z-[100] p-20 px-0 w-screen  h-[1080px]  fixed left-0 top-0 text-white border-[px]">
-      <div className="relative w-[16%]  z-[0]   top-[-9%]  " onWheel={handleWheel}>
-        {/* <div className="h-screen flex items-center justify-center absolute left-[20px] border-[1px] border-red-500">
-          <div className=" space-y-80 z-[100]">
+      <div
+        className="relative w-[16%]  z-[0]   top-[-9%]  "
+        onWheel={handleWheel}
+      >
+        <div className="h-screen flex items-center justify-center absolute left-[20px]">
+          <div className=" space-y-[1100%] z-[100] text-[20px] font-extralight text-gray-300">
             <div
-              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-700 border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
+              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-500 border-[1px] bg-opacity-10 flex text-center items-center justify-center rounded-full cursor-pointer"
               onClick={handlePrev}
             >
-              <b>&#8593;</b>
+              <b className="rotate-90 relative left-[1px]">{"<"}</b>
             </div>
             <div
-              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-700 border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
+              className=" z-10 rightbutton w-10 h-10 bg-black border-gray-500 border-[1px] bg-opacity-10 flex items-center justify-center rounded-full cursor-pointer"
               onClick={handleNext}
             >
-              <b>&#8595;</b>
+              <b className="rotate-90 relative left-[1px]">{">"}</b>
             </div>
           </div>
-        </div> */}
+        </div>
         <div className=" h-screen ">
-          <ul className="relative left-[-35%] top-[2%]">
+          <ul className="relative left-[-25%] top-[2%]">
             {items.map((item, index) => (
               <li
                 key={index}
@@ -148,7 +150,7 @@ const Explore_home_responsive = () => {
                   currentIndex === index
                     ? "shadow-[0_0_5px_5px_rgba(255,255,255,0.5)] bg-slate-100 dark:bg-gray-700 dark:bg-opacity-100 dark:text-gray-100"
                     : "bg-slate-100 dark:bg-gray-700 z-10 dark:text-gray-300 dark:bg-opacity-100"
-                } cursor-pointer    p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-[70%] text-[12px] font-semibold rounded-xl z-[1000]`}
+                } cursor-pointer    p-3 items-center  text-center relative  border-[1px] border-[#111F29] text-black w-[60%] text-[12px] font-semibold rounded-xl z-[1000]`}
               >
                 {item}
 
@@ -161,9 +163,14 @@ const Explore_home_responsive = () => {
                       : " right-[-50px] opacity-0  "
                   } absolute bottom-[-79px] right-[-100px]`}
                 >
-                  <circle cx={`${window.innerWidth*0.020}`} cy="50" r="6" fill="white" />
+                  <circle
+                    cx={`${window.innerWidth * 0.02}`}
+                    cy="50"
+                    r="6"
+                    fill="white"
+                  />
                   <path
-                    d={`M0,50 L${window.innerWidth*0.021},50`}
+                    d={`M0,50 L${window.innerWidth * 0.021},50`}
                     stroke="white"
                     stroke-width="2"
                     fill="none"
@@ -181,7 +188,11 @@ const Explore_home_responsive = () => {
             <path
               id="arch"
               ref={pathRef}
-              d={`M ${window.innerWidth*0.01},${-window.innerHeight*0.05} A ${window.innerWidth*0.42},${window.innerHeight} 0 0,1 ${window.innerWidth*0.01},${window.innerHeight*1.1} `}
+              d={`M ${window.innerWidth * 0.05},${
+                -window.innerHeight * 0.05
+              } A ${window.innerWidth * 0.21},${window.innerHeight} 0 0,1 ${
+                window.innerWidth * 0.05
+              },${window.innerHeight * 1.1} `}
               fill="none"
               stroke="white"
               strokeWidth="1"
@@ -191,8 +202,9 @@ const Explore_home_responsive = () => {
         </div>
       </div>
 
-      <div className={`w-[57%]   `}
-        style={{  height: `${window.innerHeight*0.78}px` }}
+      <div
+        className={`w-[57%]   `}
+        style={{ height: `${window.innerHeight * 0.78}px` }}
       >
         <div
           id="formsection"
@@ -225,14 +237,7 @@ const Explore_home_responsive = () => {
         scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
       `}</style>
 
-            <div className="flex justify-end border-b-[1px] border-gray-700 text-sm">
-              <Link
-                to={"/explorer/logs"}
-                className=" cursor-pointer px-6 py-1 m-1 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B] "
-              >
-                View logs
-              </Link>
-            </div>
+           
             <section className="relative">
               {dc[currentIndex]}
 
@@ -248,16 +253,16 @@ const Explore_home_responsive = () => {
         <div className="flex justify-between px-10 mt-0 text-[12px]">
           <div
             onClick={handlePrev}
-            className="scale-[120%] cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-            style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+            className="scale-[120%] shadow-[0_0_2px_2px_rgba(255,255,255,0.5)] active:shadow-[0_0_2px_1px_rgba(255,255,255,0.5)] cursor-pointer px-6 py-1 m-2  sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+            // style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
           >
             Prev
           </div>
           {currentIndex != 3 && (
             <div
               onClick={handleNext}
-              className="scale-[120%] cursor-pointer px-6 py-1 m-2 active:shadow-none shadow-lg sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
-              style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
+              className="scale-[120%] shadow-[0_0_2px_2px_rgba(255,255,255,0.5)] active:shadow-[0_0_2px_1px_rgba(255,255,255,0.5)] cursor-pointer px-6 py-1 m-2  sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+            //   style={{ boxShadow: "inset 0 0 10px 4px rgba(0, 0, 0, 0.3)" }}
             >
               Next
             </div>
@@ -279,15 +284,20 @@ const Explore_home_responsive = () => {
           )}
         </div>
       </div>
-      <div className="w-[25%] ml-[20px] mx-2"
-      style={{  height: `${window.innerHeight*0.805}px` }}
+      <div
+        className="w-[25%] ml-[20px] mx-2"
+        style={{ height: `${window.innerHeight * 0.805}px` }}
       >
         <div className=" p-2 h-full overflow">
+            
           <div
             className="border-[1px] p-1 pr-3 h-full rounded-lg px-2 overflow-y-scroll"
             style={{ boxShadow: "0 0 10px 4px rgba(255, 255, 255, 0.2)" }}
           >
-            <h1 className="w-full text-center border-b-2 border-gray-500 mb-4">Saved Filters</h1>
+            
+            <h1 className="w-full text-center border-b-2 border-gray-500 mb-4">
+              Saved Filters
+            </h1>
             {/* <div>{Object.keys(explore_inputs_Data).length}</div> */}
             {/* <div>{Object.keys(explore_inputs_Data.technical_filters).length}</div> */}
             {Object.entries(explore_inputs_Data).map(([filter]) => {
@@ -299,20 +309,20 @@ const Explore_home_responsive = () => {
                 return (
                   <div className="  rounded">
                     <div className="bg-green-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
-                    <div className="font-bold">{filter} :-</div>
-                    {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
+                      <div className="font-bold">{filter} :-</div>
+                      {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
                       {Object.entries(x).map(([sub, subinput]) => (
                         <div className="ml-1  pl-[2px] p-1 my-2">
-                        <div>{sub}:-</div>
-                        <div className="border-l-[1px] ml-1 pl-1">
-                          {Object.entries(subinput).map(([key, val]) => (
-                            <div>
-                              {key} <b className="text-gray-800">:</b> {val}
-                            </div>
-                          ))}
+                          <div>{sub}:-</div>
+                          <div className="border-l-[1px] ml-1 pl-1">
+                            {Object.entries(subinput).map(([key, val]) => (
+                              <div>
+                                {key} <b className="text-gray-800">:</b> {val}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
                       ))}
                     </div>
                     {/* <button onClick={() => ""}>
@@ -347,10 +357,10 @@ const Explore_home_responsive = () => {
                       {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
                       {Object.entries(x).map(([field, inputs]) => (
-                        <div 
-                        className=" bg-gray-600 rounded-md pl-1 bg-opacity-60"
-                        style={{
-                            boxShadow: '-2px 5px 5px rgba(55, 65, 81, 1)', // Adds shadow below the element
+                        <div
+                          className=" bg-gray-600 rounded-md pl-1 bg-opacity-60"
+                          style={{
+                            boxShadow: "-2px 5px 5px rgba(55, 65, 81, 1)", // Adds shadow below the element
                           }}
                         >
                           <span className="font-semibold">{field}:-</span>
@@ -360,7 +370,8 @@ const Explore_home_responsive = () => {
                               <div className="border-l-[1px] ml-1 pl-1">
                                 {Object.entries(subinput).map(([key, val]) => (
                                   <div>
-                                    {key} <b className="text-gray-800">:</b> {val}
+                                    {key} <b className="text-gray-800">:</b>{" "}
+                                    {val}
                                   </div>
                                 ))}
                               </div>
@@ -395,6 +406,14 @@ const Explore_home_responsive = () => {
               }
             })}
           </div>
+          <div className="flex justify-center mt-1  border-gray-700 text-sm">
+              <Link
+                to={"/explorer/logs"}
+                className="scale-[110%] shadow-[0_0_2px_2px_rgba(255,255,255,0.5)] active:shadow-[0_0_2px_1px_rgba(255,255,255,0.5)] cursor-pointer px-6 py-1 m-2  sha bg-gray-300 bg-opacity-5 rounded-lg border-[1px] border-[#41253B]"
+                >
+                View logs
+              </Link>
+            </div>
         </div>
       </div>
     </div>
