@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import React, { useState } from "react";
 import useStore from "../../stores/useStore";
 import currentAPI from "../../apiendpoint";
@@ -462,14 +461,3 @@ const UniversalFilters = () => {
 };
 
 export default UniversalFilters;
-=======
-import React from 'react'
-
-const UniversalFilters = () => {
-  return (
-    <div>UniversalFilters</div>
-  )
-}
-
-export default UniversalFilters
->>>>>>> Stashed changes
