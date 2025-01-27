@@ -24,12 +24,14 @@ const Explore_home = () => {
   });
 
   const dc = {
-    0: <TechnicalFormExplorer />,
-    1: <FundamentalFormExplore />,
-    2: <StrategyTypeExplorer />,
-    3: <CombineFiltersExplorer />,
+    0:<UniversalFilters />,
+    1: <TechnicalFormExplorer />,
+    2: <FundamentalFormExplore />,
+    3: <StrategyTypeExplorer />,
+    4: <CombineFiltersExplorer />,
   };
   const items = [
+    "Univere Filters",
     "Technical Filters",
     "Fundamental Filters",
     "Strategy Type",
