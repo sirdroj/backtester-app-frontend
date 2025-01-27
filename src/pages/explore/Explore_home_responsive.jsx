@@ -11,6 +11,7 @@ import StrategyTypeExplorer from "../../components/Explore forms/StrategyTypeExp
 import CombineFiltersExplorer from "../../components/Explore forms/CombineFiltersExplorer";
 import useStore from "../../stores/useStore";
 import currentAPI from "../../apiendpoint";
+import UniversalFilters from "../../components/Explore forms/UniversalFilters";
 
 const Explore_home_responsive = () => {
   const pathRef = useRef(null);
@@ -38,12 +39,14 @@ const Explore_home_responsive = () => {
   }, []);
 
   const dc = {
-    0: <TechnicalFormExplorer />,
-    1: <FundamentalFormExplore />,
-    2: <StrategyTypeExplorer />,
-    3: <CombineFiltersExplorer />,
+    0: <UniversalFilters />,
+    1: <TechnicalFormExplorer />,
+    2: <FundamentalFormExplore />,
+    3: <StrategyTypeExplorer />,
+    4: <CombineFiltersExplorer />,
   };
   const items = [
+    "Universe Filters",
     "Technical Filters",
     "Fundamental Filters",
     "Strategy Type",
