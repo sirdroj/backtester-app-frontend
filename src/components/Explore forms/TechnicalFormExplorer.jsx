@@ -115,7 +115,11 @@ const initializeFormData = (inputsData) => {
 };
 
 const TechnicalFormExplorer = () => {
-  const { explore_inputs_Data, set_explore_inputs_Data ,handle_full_save_explore} = useStore();
+  const {
+    explore_inputs_Data,
+    set_explore_inputs_Data,
+    handle_full_save_explore,
+  } = useStore();
 
   async function sendFormData(stage, inputs) {
     const url = `${currentAPI}/explorer/technical_filters/${stage}`;
@@ -210,10 +214,9 @@ const TechnicalFormExplorer = () => {
     return cleanedData;
   }
 
-
   function handle_full_save(data) {
     const cleanedData = removeNoneValues(data);
-    handle_full_save_explore("technical_filters",cleanedData);
+    handle_full_save_explore("technical_filters", cleanedData);
 
     // console.log({ data });
     // set_explore_inputs_Data({
@@ -251,6 +254,12 @@ const TechnicalFormExplorer = () => {
                 "Cumulative MA",
                 "Triple MA",
                 "Linear Weighted MA",
+                "Reset Accumulative",
+                "LinearRegression MA",
+                "Centered MA",
+                "Adaptive MA",
+                "Kaufmann AMA",
+                "Mesa AMA",
               ],
             },
           ],
@@ -539,75 +548,76 @@ const TechnicalFormExplorer = () => {
       className="relative"
     >
       <div>
-
-     
-      {inputsData.map((section, index) => (
-        <div key={index} className="-">
-          <div
-            onClick={() => handleDropdownClick(index)}
-            className="flex justify-between  px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
-            style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
-          >
-            <h1 className="font-semibold">{section.title}</h1>
-            <img
-              src="./images/chevron-down.png"
-              className={`${
-                currentDropDown.includes(index) ? "rotate-180" : ""
-              } invert`}
-              alt="Toggle"
-            />
-          </div>
-          <div
-            className={`dropdown-content ${
-              currentDropDown.includes(index) ? "show max-h-full" : "hidden"
-            } ml-2 px-4 p-4 `}
-          >
-            {section.children.map((inputField, subIndex) => (
-              <div key={inputField.title} className="flex justify-between my-2">
-                <label className="mr-2">{inputField.title}</label>
-                {inputField.inputs.map((input, inputIndex) => (
-                  <div key={inputIndex}>
-                    {input.type === "dropdown" && (
-                      <select
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        required
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
-                      >
-                        {input.options.map((option, optionIndex) => (
-                          <option key={optionIndex} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                    {input.type === "number" && (
-                      <input
-                        required
-                        type="number"
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-            <div className="flex justify-end py-2">
-              {/* <button
+        {inputsData.map((section, index) => (
+          <div key={index} className="-">
+            <div
+              onClick={() => handleDropdownClick(index)}
+              className="flex justify-between  px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
+              style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
+            >
+              <h1 className="font-semibold">{section.title}</h1>
+              <img
+                src="./images/chevron-down.png"
+                className={`${
+                  currentDropDown.includes(index) ? "rotate-180" : ""
+                } invert`}
+                alt="Toggle"
+              />
+            </div>
+            <div
+              className={`dropdown-content ${
+                currentDropDown.includes(index) ? "show max-h-full" : "hidden"
+              } ml-2 px-4 p-4 `}
+            >
+              {section.children.map((inputField, subIndex) => (
+                <div
+                  key={inputField.title}
+                  className="flex justify-between my-2"
+                >
+                  <label className="mr-2">{inputField.title}</label>
+                  {inputField.inputs.map((input, inputIndex) => (
+                    <div key={inputIndex}>
+                      {input.type === "dropdown" && (
+                        <select
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          required
+                          onChange={(e) =>
+                            handleChange(
+                              section.key,
+                              inputField.key,
+                              e.target.value
+                            )
+                          }
+                          className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                        >
+                          {input.options.map((option, optionIndex) => (
+                            <option key={optionIndex} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                      {input.type === "number" && (
+                        <input
+                          required
+                          type="number"
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          onChange={(e) =>
+                            handleChange(
+                              section.key,
+                              inputField.key,
+                              e.target.value
+                            )
+                          }
+                          className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <div className="flex justify-end py-2">
+                {/* <button
                 type="submit"
                 className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
                 onClick={() => {
@@ -618,14 +628,14 @@ const TechnicalFormExplorer = () => {
               >
                 Save&Next
               </button> */}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      {/* </div>
+        ))}
+        {/* </div>
         </div>
       ))} */}
-       </div>
+      </div>
       <div className="w-full flex justify-end p-2 pt-10  bottom-0">
         <button
           // type="submit"
