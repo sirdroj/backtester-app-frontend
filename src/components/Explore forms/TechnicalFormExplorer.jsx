@@ -361,7 +361,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "ATR", "VIX"],
+              options: ["None", "ATR"],
             },
           ],
         },
@@ -413,7 +413,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Advancing", "Declining"],
+              options: ["None", "Advancing/Declining"],
             },
           ],
         },
