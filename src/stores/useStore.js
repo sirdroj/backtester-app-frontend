@@ -2,9 +2,6 @@
 import { create } from "zustand";
 import currentAPI from "../apiendpoint";
 
-
-
-
 // Zustand store
 const useStore = create((set) => ({
   // State variables
@@ -29,7 +26,7 @@ const useStore = create((set) => ({
 
   // Function to send full form data
   send_Full_Explore_Data: async () => {
-    const url = `${currentAPI}/explorer/`;
+    const url = `${currentAPI}/explorer`;
     const { token, explore_inputs_Data } = useStore.getState();
   
     // Set loading state to true before starting the API request
