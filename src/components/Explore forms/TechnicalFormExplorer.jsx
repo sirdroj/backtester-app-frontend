@@ -254,12 +254,7 @@ const TechnicalFormExplorer = () => {
                 "Cumulative MA",
                 "Triple MA",
                 "Linear Weighted MA",
-                "Reset Accumulative",
-                "LinearRegression MA",
-                "Centered MA",
-                "Adaptive MA",
-                "Kaufmann AMA",
-                "Mesa AMA",
+                
               ],
             },
           ],
@@ -364,7 +359,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "ATR", "VIX"],
+              options: ["None", "ATR"],
             },
           ],
         },
@@ -416,7 +411,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "Advancing", "Declining"],
+              options: ["None", "Advancing/Declining"],
             },
           ],
         },
