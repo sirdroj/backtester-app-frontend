@@ -249,7 +249,7 @@ const TechnicalFormExplorer = () => {
                 "Simple MA",
                 "Exponential MA",
                 "Wilder's MA",
-                "Custom MA",
+                // "Custom MA",
                 "Double EMA",
                 "Cumulative MA",
                 "Triple MA",

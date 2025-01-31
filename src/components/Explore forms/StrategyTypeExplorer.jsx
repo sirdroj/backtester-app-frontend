@@ -73,7 +73,7 @@ const StrategyType = () => {
                   options: ["None",
                     "Exponential MA",
                     "Wilder's MA",
-                    "Custom MAs",
+                    // "Custom MAs",
                     "15",
                     "10",
                     "8",
