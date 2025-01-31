@@ -349,6 +349,25 @@ const TechnicalFormExplorer = () => {
             },
           ],
         },
+        {
+          title: "Moving Average",
+          key: "moving_average",
+          inputs: [
+            {
+              type: "dropdown",
+              options: ["None","Double EMA", "Simple MA","Exponential MA","Triple MA","Linear Weighted MA"],
+            },
+          ],
+        },
+        {
+          title: "MA Period",
+          key: "ma_period",
+          inputs: [
+            {
+              type: "number",
+            },
+          ],
+        },
       ],
     },
     {
