@@ -184,7 +184,7 @@ const initializeFormData = (inputsData) => {
         if (child.inputs) {
           child.inputs.forEach((input) => {
             if (input.type === "dropdown") {
-              initialData[section.key][child.key] = null; // Default value for dropdown
+              initialData[section.key][child.key] = "None"; // Default value for dropdown
             } else if (input.type === "number") {
               initialData[section.key][child.key] = 0; // Default value for number
             } else if (input.type === "checkbox") {
@@ -215,7 +215,7 @@ const UniversalFilters = () => {
       const filteredSubObject = {};
       let x = true;
       Object.keys(data[key]).forEach((subKey) => {
-        if (data[key][subKey] == "None" || data[key][subKey] == false) {
+        if (data[key][subKey] == "None" || data[key][subKey] == null) {
           x = false;
         }
       });
@@ -231,7 +231,7 @@ const UniversalFilters = () => {
   function handle_full_save(data) {
     const cleanedData = removeNoneValues(data);
     console.log({ cleanedData });
-    // handle_full_save_explore("universe_filters", cleanedData);
+    handle_full_save_explore("universe_filters", cleanedData);
 
     // console.log({ data });
     // set_explore_inputs_Data({

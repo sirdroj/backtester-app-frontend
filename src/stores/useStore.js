@@ -30,7 +30,7 @@ const useStore = create((set) => ({
     console.log({ data });
     set_explore_inputs_Data({
       ...explore_inputs_Data,
-      [sec_name]: data,
+      [sec_name]: {...data},
     });
     console.log("after action",{ explore_inputs_Data });
   },
