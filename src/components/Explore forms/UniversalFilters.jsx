@@ -60,7 +60,6 @@ const inputsData = [
           },
         ],
       },
-    
     ],
   },
   {
@@ -73,7 +72,25 @@ const inputsData = [
         inputs: [
           {
             type: "dropdown",
-            options: ["None", "NIFTY50", "NIFTY100", "NIFTY200","NIFTY500","NIFTY Mid Cap","NIFTY Small Cap","NIFTY Midcap 100","NIFTY Midcap 50","NIFTY Midcap 150","NIFTY Midcap 400","NIFTY Midcap 450","NIFTY Midcap 100 TRI","NIFTY Midcap 50 TRI","NIFTY Midcap 150 TRI","NIFTY Midcap 400 TRI","NIFTY Midcap 450 TRI","NIFTY Midcap 100 PR","NIFTY Midcap 50 PR","NIFTY Midcap 150 PR","NIFTY Midcap 400 PR","NIFTY Midcap 450 PR","NIFTY Midcap 100","NIFTY Midcap 50","NIFTY Midcap 150","NIFTY Midcap 400","NIFTY Midcap 450","NIFTY Midcap 100 TRI","NIFTY Midcap 50 TRI","NIFTY Midcap 150 TRI","NIFTY Midcap 400 TRI","NIFTY Midcap 450 TRI","NIFTY Midcap 100 PR","NIFTY Midcap 50 PR","NIFTY Midcap 150 PR","NIFTY Midcap 400 PR","NIFTY Midcap 450 PR"],
+            options: [
+              "None",
+              "NIFTY50",
+              "NIFTY100",
+              "NIFTY200",
+              "NIFTY500",
+              "NIFTY Mid Cap",
+              "NIFTY Small Cap",
+              "NIFTY Midcap 100",
+              "NIFTY Midcap 50",
+              "NIFTY Midcap 150",
+              "NIFTY Midcap 400",
+              "NIFTY Midcap 450",
+              "NIFTY Midcap 100",
+              "NIFTY Midcap 50",
+              "NIFTY Midcap 150",
+              "NIFTY Midcap 400",
+              "NIFTY Midcap 450",
+            ],
           },
         ],
       },
@@ -83,11 +100,31 @@ const inputsData = [
         inputs: [
           {
             type: "dropdown",
-            options: ["None", ],
+            options: [
+              "None",
+              "Nifty Auto Index",
+              "Nifty Bank Index",
+              "Nifty Financial Services Index",
+              "Nifty Financial Services 25/50 Index",
+              "Nifty Financial Services Ex-Bank Index",
+              "Nifty FMCG Index",
+              "Nifty Healthcare Index",
+              "Nifty IT Index",
+              "Nifty Media Index",
+              "Nifty Metal Index",
+              "Nifty Pharma Index",
+              "Nifty Private Bank Index",
+              "Nifty PSU Bank Index",
+              "Nifty Realty Index",
+              "Nifty Consumer Durables Index",
+              "Nifty Oil and Gas Index",
+              "Nifty MidSmall Financial Services Index",
+              "Nifty MidSmall Healthcare Index",
+              "Nifty MidSmall IT & Telecom Index",
+            ],
           },
         ],
       },
-    
     ],
   },
   {
@@ -133,9 +170,7 @@ const inputsData = [
         ],
       },
     ],
-  }
-  
-
+  },
 ];
 
 const initializeFormData = (inputsData) => {
@@ -162,87 +197,16 @@ const initializeFormData = (inputsData) => {
   };
 
   traverseInputs(inputsData);
-  console.log("universe initial data:", initialData);
+  // console.log("universe initial data:", initialData);
   return initialData;
 };
 
-
-
 const UniversalFilters = () => {
-  const { explore_inputs_Data, set_explore_inputs_Data ,handle_full_save_explore} = useStore();
-
-  async function sendFormData(stage, inputs) {
-    const url = `${currentAPI}/explorer/technical_filters/${stage}`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          stage: stage,
-          data: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
-  async function sendFullFormData(inputs) {
-    const url = `${currentAPI}/explorer/technical_filters`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // level: "technical_filters",
-          technical_filter: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
-
-  function handleSave(key, data) {
-    // updateFormInputData(title,data)
-
-    // sendFormData(key, data);
-
-    set_explore_inputs_Data({
-      ...explore_inputs_Data,
-      technical_filters: {
-        ...explore_inputs_Data.technical_filters, // Clone the current technical_filters object
-        [key]: data, // Update the specific key
-      },
-    });
-  }
+  const {
+    explore_inputs_Data,
+    set_explore_inputs_Data,
+    handle_full_save_explore,
+  } = useStore();
 
   function removeNoneValues(data) {
     const cleanedData = {};
@@ -251,7 +215,7 @@ const UniversalFilters = () => {
       const filteredSubObject = {};
       let x = true;
       Object.keys(data[key]).forEach((subKey) => {
-        if (data[key][subKey] == "None") {
+        if (data[key][subKey] == "None" || data[key][subKey] == false) {
           x = false;
         }
       });
@@ -264,10 +228,10 @@ const UniversalFilters = () => {
     return cleanedData;
   }
 
-
   function handle_full_save(data) {
     const cleanedData = removeNoneValues(data);
-    handle_full_save_explore("universe_filters",cleanedData);
+    console.log({ cleanedData });
+    // handle_full_save_explore("universe_filters", cleanedData);
 
     // console.log({ data });
     // set_explore_inputs_Data({
@@ -284,8 +248,6 @@ const UniversalFilters = () => {
     removeFormInputData,
   } = useStore();
 
- 
-
   const [formData, setFormData] = useState(initializeFormData(inputsData));
   // const [formData, setFormData] = useState({});
   // console.log("--initial data---", initializeFormData(inputsData));
@@ -298,8 +260,16 @@ const UniversalFilters = () => {
         [inputType]: value,
       },
     }));
-    console.log(section, inputType, value);
-    console.log({ formData });
+  };
+
+  const handleCheckboxChange = (section, inputType, checked) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [section]: {
+        ...prevFormData[section],
+        [inputType]: checked,
+      },
+    }));
   };
 
   const [currentDropDown, setCurrentDropDown] = useState([0]);
@@ -316,115 +286,114 @@ const UniversalFilters = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        // sendFullFormData(formData);
-        // handle_full_save(formData);
       }}
       className="relative"
     >
       <div>
+        {inputsData.map((section, index) => (
+          <div key={index} className="-">
+            <div
+              onClick={() => handleDropdownClick(index)}
+              className="flex justify-between  px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
+              style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
+            >
+              <h1 className="font-semibold">{section.title}</h1>
+              <img
+                src="./images/chevron-down.png"
+                className={`${
+                  currentDropDown.includes(index) ? "rotate-180" : ""
+                } invert`}
+                alt="Toggle"
+              />
+            </div>
+            <div
+              className={`dropdown-content ${
+                currentDropDown.includes(index) ? "show max-h-full" : "hidden"
+              } ml-2 px-4 p-4 `}
+            >
+              {section.children.map((inputField, subIndex) => (
+                <div
+                  key={inputField.title}
+                  className="flex justify-between my-2"
+                >
+                  <label className="mr-2">{inputField.title}</label>
+                  {inputField.inputs.map((input, inputIndex) => (
+                    <div key={inputIndex}>
+                      {input.type === "dropdown" && (
+                        <select
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          // required
+                          onChange={(e) =>
+                            handleChange(
+                              section.key,
+                              inputField.key,
+                              e.target.value
+                            )
+                          }
+                          className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                        >
+                          {input.options.map((option, optionIndex) => (
+                            <option key={optionIndex} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                      {input.type === "number" && (
+                        <input
+                          // required
+                          type="number"
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          onChange={(e) =>
+                            handleChange(
+                              section.key,
+                              inputField.key,
+                              e.target.value
+                            )
+                          }
+                          className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                        />
+                      )}
+                      {input.type === "checkbox" && (
+                        <input
+                          // required
+                          type="checkbox"
+                          class="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-none"
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          onChange={(e) =>
+                            handleCheckboxChange(
+                              section.key,
+                              inputField.key,
+                              e.target.checked
+                            )
+                          }
+                          className="bg-gray-500 border text-gray-400 border-gray-800 text-sm p-2"
+                        />
+                      )}
+                      {input.type === "file" && (
+                        <input
+                          // required
+                          type="file"
+                          // class="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-none"
 
-     
-      {inputsData.map((section, index) => (
-        <div key={index} className="-">
-          <div
-            onClick={() => handleDropdownClick(index)}
-            className="flex justify-between  px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
-            style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
-          >
-            <h1 className="font-semibold">{section.title}</h1>
-            <img
-              src="./images/chevron-down.png"
-              className={`${
-                currentDropDown.includes(index) ? "rotate-180" : ""
-              } invert`}
-              alt="Toggle"
-            />
-          </div>
-          <div
-            className={`dropdown-content ${
-              currentDropDown.includes(index) ? "show max-h-full" : "hidden"
-            } ml-2 px-4 p-4 `}
-          >
-            {section.children.map((inputField, subIndex) => (
-              <div key={inputField.title} className="flex justify-between my-2">
-                <label className="mr-2">{inputField.title}</label>
-                {inputField.inputs.map((input, inputIndex) => (
-                  <div key={inputIndex}>
-                    {input.type === "dropdown" && (
-                      <select
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        required
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
-                      >
-                        {input.options.map((option, optionIndex) => (
-                          <option key={optionIndex} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                    {input.type === "number" && (
-                      <input
-                        required
-                        type="number"
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
-                      />
-                    )}
-                    {input.type === "checkbox" && (
-                      <input
-                        required
-                        type="checkbox"
-                        class="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-none"
+                          value={formData[section.key]?.[inputField.key] || ""}
+                          onChange={(e) =>
+                            handleChange(
+                              section.key,
+                              inputField.key,
+                              e.target.files[0]
+                            )
+                          }
 
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        className="bg-gray-500 border text-gray-400 border-gray-800 text-sm p-2"
-                      />
-                    )}
-                    {input.type === "file" && (
-                      <input
-                        required
-                        type="file"
-                        // class="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-none"
-
-                        value={formData[section.key]?.[inputField.key] || ""}
-                        onChange={(e) =>
-                          handleChange(
-                            section.key,
-                            inputField.key,
-                            e.target.value
-                          )
-                        }
-                        // className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-            <div className="flex justify-end py-2">
-              {/* <button
+                          // className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <div className="flex justify-end py-2">
+                {/* <button
                 type="submit"
                 className="p-1 border-[1px] rounded-lg px-4 text-sm cursor-pointer"
                 onClick={() => {
@@ -435,14 +404,14 @@ const UniversalFilters = () => {
               >
                 Save&Next
               </button> */}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      {/* </div>
+        ))}
+        {/* </div>
         </div>
       ))} */}
-       </div>
+      </div>
       <div className="w-full flex justify-end p-2 pt-10  bottom-0">
         <button
           // type="submit"

@@ -24,6 +24,16 @@ const useStore = create((set) => ({
   explore_response_error: false,
   set_explore_response_error: (error) => set({ explore_response_error: error }),
 
+  handle_full_save_explore:(sec_name,data)=> {
+    const { explore_inputs_Data,set_explore_inputs_Data } = useStore.getState();
+
+    console.log({ data });
+    set_explore_inputs_Data({
+      ...explore_inputs_Data,
+      [sec_name]: data,
+    });
+    console.log("after action",{ explore_inputs_Data });
+  },
   // Function to send full form data
   send_Full_Explore_Data: async () => {
     const url = `${currentAPI}/explorer`;
@@ -243,15 +253,7 @@ const useStore = create((set) => ({
       set({ portfoliosentibytesloading: false }); // Stop loading
     }
   },
-  handle_full_save_explore:(sec_name,data)=> {
-    const { explore_inputs_Data,set_explore_inputs_Data } = useStore.getState();
-
-    console.log({ data });
-    set_explore_inputs_Data({
-      ...explore_inputs_Data,
-      [sec_name]: data,
-    });
-  }
+ 
 }));
 
 export default useStore;
