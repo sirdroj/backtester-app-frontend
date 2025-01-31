@@ -247,7 +247,7 @@ const TechnicalFormExplorer = () => {
                 "Exponential MA",
                 "Wilder's MA",
                 // "Custom MA",
-                "Double EMA",
+                "Double MA",
                 "Cumulative MA",
                 "Triple MA",
                 "Linear Weighted MA",
