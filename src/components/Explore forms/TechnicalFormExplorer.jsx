@@ -117,64 +117,7 @@ const initializeFormData = (inputsData) => {
 const TechnicalFormExplorer = () => {
   const { explore_inputs_Data, set_explore_inputs_Data ,handle_full_save_explore} = useStore();
 
-  async function sendFormData(stage, inputs) {
-    const url = `${currentAPI}/explorer/technical_filters/${stage}`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          stage: stage,
-          data: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
-  async function sendFullFormData(inputs) {
-    const url = `${currentAPI}/explorer/technical_filters`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // level: "technical_filters",
-          technical_filter: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
+  
 
   function handleSave(key, data) {
     // updateFormInputData(title,data)
