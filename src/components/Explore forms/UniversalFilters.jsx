@@ -407,7 +407,7 @@ const UniversalFilters = () => {
                             href="#"
                             class={`${
                               customMcap
-                                ? "bg-gray-500 text-gray-100 border-[1px] border-gray-700 scale-[1.01]"
+                                ? "bg-gray-500 text-gray-100 border-[1px] border-gray-700 scale-[1]"
                                 : "bg-gray-700"
                             }  inline-block w-max px-2 p-[1px] bg-opacity-80   border-r-0   rounded-s-lg    `}
                             aria-current="page"
@@ -422,7 +422,7 @@ const UniversalFilters = () => {
                             href="#"
                             class={`${
                               !customMcap
-                                ? "bg-gray-500 text-gray-100 border-[1px] border-gray-700 scale-[1.01]"
+                                ? "bg-gray-500 text-gray-100 border-[1px] border-gray-700 scale-[1]"
                                 : "bg-gray-700"
                             }  inline-block w-max px-2 p-[1px]   bg-opacity-80  border-gray-700   rounded-e-lg    `}
                           >
