@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import useStore from "../../stores/useStore";
 import currentAPI from "../../apiendpoint";
 
-
-
 const initializeFormData = (inputsData) => {
   let initialData = {};
 
@@ -28,13 +26,13 @@ const initializeFormData = (inputsData) => {
       });
     });
   };
-
   traverseInputs(inputsData);
   return initialData;
 };
 
 const UniversalFilters = () => {
   const [customMcap, setCustomMcap] = useState(false);
+
   const inputsData = [
     {
       title: "Market Cap",
@@ -273,7 +271,10 @@ const UniversalFilters = () => {
     Object.keys(formData).forEach((sectionKey) => {
       const section = formData[sectionKey];
       // If any value in this section is null, we skip the section.
-      const hasNull = Object.values(section).some((value) => value === null || value === "" || value === "None" || value === 0);
+      const hasNull = Object.values(section).some(
+        (value) =>
+          value === null || value === "" || value === "None" || value === 0
+      );
       if (!hasNull) {
         cleanedData[sectionKey] = section;
       }
@@ -285,18 +286,22 @@ const UniversalFilters = () => {
     const cleanedData = clean_data(data);
     console.log("sent", { data });
     console.log({ cleanedData });
-    handle_full_save_explore("universe_filters", {...cleanedData});
+    handle_full_save_explore("universe_filters", { ...cleanedData });
   }
 
-
   const [formData, setFormData] = useState(initializeFormData(inputsData));
+
   useEffect(() => {
     setFormData((prevFormData) => {
-      // Destructure to remove market_cap from the previous formData
-      const { market_cap, ...updatedFormData } = prevFormData;
-      return updatedFormData;
+      return {
+        ...prevFormData,
+        market_cap: {
+          market_cap_type: customMcap ? "custom" : "default",
+        },
+      };
     });
   }, [customMcap]);
+
 
   const handleChange = (section, inputType, value) => {
     setFormData((prevFormData) => ({
@@ -403,7 +408,9 @@ const UniversalFilters = () => {
                       <ul class="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                         <li class="w-full focus-within:z-10">
                           <a
-                            onClick={() => setCustomMcap(true)}
+                            onClick={() => {
+                              setCustomMcap(true);
+                            }}
                             href="#"
                             class={`${
                               customMcap
@@ -412,13 +419,15 @@ const UniversalFilters = () => {
                             }  inline-block w-max px-2 p-[1px] bg-opacity-80   border-r-0   rounded-s-lg    `}
                             aria-current="page"
                           >
-                            custom
+                            Custom
                           </a>
                         </li>
 
                         <li class="w-full focus-within:z-10">
                           <a
-                            onClick={() => setCustomMcap(false)}
+                            onClick={() => {
+                              setCustomMcap(false);
+                            }}
                             href="#"
                             class={`${
                               !customMcap
