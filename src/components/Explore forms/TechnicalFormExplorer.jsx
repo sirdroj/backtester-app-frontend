@@ -253,6 +253,7 @@ const TechnicalFormExplorer = () => {
                 "Double MA",
                 "Cumulative MA",
                 "Triple MA",
+                "Reset Accumulative MA",
                 "Linear Weighted MA",
                 
               ],
