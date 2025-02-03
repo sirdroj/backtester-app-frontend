@@ -304,14 +304,17 @@ const UniversalFilters = () => {
 
 
   const handleChange = (section, inputType, value) => {
+    const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
         ...prevFormData[section],
-        [inputType]: value,
+        [inputType]: parsedValue,
       },
     }));
-
+  
+    console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
 

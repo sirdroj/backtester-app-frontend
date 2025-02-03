@@ -189,7 +189,6 @@ const TechnicalFormExplorer = () => {
                 "Simple MA",
                 "Exponential MA",
                 "Wilder's MA",
-                // "Custom MA",
                 "Double MA",
                 "Cumulative MA",
                 "Triple MA",
@@ -476,14 +475,17 @@ const TechnicalFormExplorer = () => {
   // console.log("--initial data---", initializeFormData(inputsData));
 
   const handleChange = (section, inputType, value) => {
+    const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
         ...prevFormData[section],
-        [inputType]: value,
+        [inputType]: parsedValue,
       },
     }));
-    console.log(section, inputType, value);
+  
+    console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
 
