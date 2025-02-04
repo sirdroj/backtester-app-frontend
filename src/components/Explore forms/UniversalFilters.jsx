@@ -137,12 +137,47 @@ const UniversalFilters = () => {
       key: "liquidity",
       children: [
         {
-          title: "Liquidity Type",
-          key: "liquidity_type",
+          title: "Liquidity Period",
+          key: "liquidity_Period",
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "High", "Low", "Medium"],
+              options: [
+                "None",
+                "Yearly",
+                "Quaterly",
+                "Monthly",
+                "Weekly",
+                "Daily",
+              ],
+            },
+          ],
+        },
+        {
+          title: "MA Field",
+          key: "ma_field",
+          inputs: [
+            {
+              type: "dropdown",
+              options: ["Liquidity"],
+            },
+          ],
+        },
+
+        {
+          title: "MA Period",
+          key: "ma_Period",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "None",
+                "Yearly",
+                "Quaterly",
+                "Monthly",
+                "Weekly",
+                "Daily",
+              ],
             },
           ],
         },
@@ -302,10 +337,9 @@ const UniversalFilters = () => {
     });
   }, [customMcap]);
 
-
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
-  
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
@@ -313,7 +347,7 @@ const UniversalFilters = () => {
         [inputType]: parsedValue,
       },
     }));
-  
+
     console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
