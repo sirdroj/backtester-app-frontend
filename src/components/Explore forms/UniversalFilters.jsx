@@ -159,7 +159,14 @@ const UniversalFilters = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["Liquidity"],
+              options: [
+                "Simple MA",
+                "Exponenetial MA",
+                "Double MA",
+                "Tripe MA",
+                "Linear Weighted",
+                "Linear Regression",
+              ],
             },
           ],
         },
@@ -169,7 +176,7 @@ const UniversalFilters = () => {
           key: "ma_Period",
           inputs: [
             {
-              type: "dropdown",
+              type: "number",
               options: [
                 "None",
                 "Yearly",
@@ -615,19 +622,36 @@ const UniversalFilters = () => {
                             </select>
                           )}
                           {input.type === "number" && (
+                            // <input
+                            //   type="number"
+                            //   value={
+                            //     formData[section.key]?.[inputField.key] || ""
+                            //   }
+                            //   onChange={(e) =>
+                            //     handleChange(
+                            //       section.key,
+                            //       inputField.key,
+                            //       e.target.value
+                            //     )
+                            //   }
+                            //   className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                            // />
                             <input
                               type="number"
                               value={
                                 formData[section.key]?.[inputField.key] || ""
                               }
-                              onChange={(e) =>
+                              onChange={(e) => {
+                                let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+                                if (value === "0") value = ""; // Prevent leading zero
                                 handleChange(
                                   section.key,
                                   inputField.key,
-                                  e.target.value
-                                )
-                              }
+                                  value
+                                );
+                              }}
                               className="bg-gray-500 border text-black border-gray-800 text-sm rounded-lg p-2"
+                              min="1" // Ensures UI does not allow values < 1
                             />
                           )}
                           {input.type === "checkbox" && (
