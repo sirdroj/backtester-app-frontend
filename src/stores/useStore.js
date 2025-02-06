@@ -15,6 +15,14 @@ const useStore = create((set) => ({
   },
 
   set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
+  reset_explore_inputs_Data: () =>
+    set({
+      explore_inputs_Data: {
+        universe_filters: {},
+        technical_filters: {},
+        fundamental_filters: {},
+      },
+    }),
 
   current_response_name: "Report 1",
   set_current_response_name: (data) => set({ current_response_name: data }),

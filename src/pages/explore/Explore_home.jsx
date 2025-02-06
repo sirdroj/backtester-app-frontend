@@ -16,7 +16,7 @@ import UniversalFilters from "../../components/Explore forms/UniversalFilters";
 const Explore_home = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
-  const { set_explore_inputs_Data } = useStore();
+  const {reset_explore_inputs_Data } = useStore();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -117,7 +117,7 @@ const Explore_home = () => {
     console.log({ explore_inputs_Data });
     send_Full_Explore_Data(explore_inputs_Data);
     navigate("logs");
-    set_explore_inputs_Data({});
+    reset_explore_inputs_Data();
   }
 
   return (
