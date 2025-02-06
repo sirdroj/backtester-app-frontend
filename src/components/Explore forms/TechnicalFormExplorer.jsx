@@ -257,6 +257,8 @@ const TechnicalFormExplorer = () => {
                 "Linear Weighted MA",
                 "Centered MA",
                 "Adaptive MA",
+                "Kaufmann AMA",
+                "Mesa AMA"
               ],
             },
           ],
