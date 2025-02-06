@@ -78,6 +78,15 @@ const UniversalFilters = () => {
                 },
               ],
             },
+            {
+              title: "Micro Small Cap",
+              key: "micro_small_cap",
+              inputs: [
+                {
+                  type: "checkbox",
+                },
+              ],
+            },
           ],
     },
     // {
@@ -177,14 +186,15 @@ const UniversalFilters = () => {
           inputs: [
             {
               type: "number",
-              options: [
-                "None",
-                "Yearly",
-                "Quaterly",
-                "Monthly",
-                "Weekly",
-                "Daily",
-              ],
+            },
+          ],
+        },
+        {
+          title: "Liquidity Cut Off",
+          key: "liquidity_cut_off",
+          inputs: [
+            {
+              type: "number",
             },
           ],
         },
