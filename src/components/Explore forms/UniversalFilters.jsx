@@ -13,7 +13,8 @@ const initializeFormData = (inputsData) => {
         if (child.inputs) {
           child.inputs.forEach((input) => {
             if (input.type === "dropdown") {
-              initialData[section.key][child.key] = "None"; // Default value for dropdown
+              initialData[section.key][child.key] = input.options[0]; // Default value for dropdown
+              // initialData[section.key][child.key] = "None"; // Default value for dropdown
             } else if (input.type === "number") {
               initialData[section.key][child.key] = 0; // Default value for number
             } else if (input.type === "checkbox") {
