@@ -80,8 +80,8 @@ const UniversalFilters = () => {
               ],
             },
             {
-              title: "Micro Small Cap",
-              key: "micro_small_cap",
+              title: "Micro Cap",
+              key: "micro_cap",
               inputs: [
                 {
                   type: "checkbox",
