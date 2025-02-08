@@ -579,7 +579,6 @@ const ExploreTable = () => {
             Close
           </button>
         </div>
-        
       </div>
       <div
         className={`mx-10 my-2 flex justify-center overflow-auto rounded-md`}
@@ -619,7 +618,14 @@ const ExploreTable = () => {
                       scope="col"
                       className="px-6 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
                     >
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                      <div className="text-wrap">
+                        {key.split(" ").map((word, index) => (
+                          <React.Fragment key={index}>
+                            {word}
+                            <br />
+                          </React.Fragment>
+                        ))}
+                      </div>
                     </th>
                   ))}
                 </tr>
