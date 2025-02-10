@@ -1324,7 +1324,8 @@ const RiskManagement = () => {
     if (currentDropDown.includes(id)) {
       setCurrentDropDown(currentDropDown.filter((item) => item !== id));
     } else {
-      setCurrentDropDown([...currentDropDown, id]);
+      // setCurrentDropDown([...currentDropDown, id]);
+      setCurrentDropDown([id]);
     }
   };
 
