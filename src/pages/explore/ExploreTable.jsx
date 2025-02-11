@@ -540,6 +540,7 @@ const ExploreTable = () => {
   const [tableTheme, setTableTheme] = useState("light");
   const navigate = Navigator();
   const { explore_response } = useStore();
+  // const explore_response = products;
 
   // Check if explore_response is valid and is an array
   const isDataValid =
@@ -549,6 +550,11 @@ const ExploreTable = () => {
     <div className="relative">
       <Outlet />
       <div className="w-full flex justify-end px-10 mt-5 space-x-2 ">
+        {isDataValid && (
+          <div className="bg-[#F7F8FB] text-gray-700 w-max rounded-md px-6 text-xs flex items-center">
+            <span>total count:- {explore_response.length}</span>
+          </div>
+        )}
         <div
           onClick={() => {
             if (isDataValid) {
@@ -580,10 +586,10 @@ const ExploreTable = () => {
           </button>
         </div>
       </div>
-      <div
-        className={`mx-10 my-2 flex justify-center overflow-auto rounded-md`}
-      >
-        <style>{`
+        <div
+          className={`mx-10 my-2 flex justify-center overflow-y-auto overflow-hidden rounded-md`}
+        >
+          <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {
           width: 8px;
@@ -607,69 +613,86 @@ const ExploreTable = () => {
         scrollbar-width: thin;
         scrollbar-color: #888 #f1f1f1;
       `}</style>
-        <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg">
-          {isDataValid ? (
-            <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
-              <thead className="text-xs uppercase dark:text-white">
-                <tr className="bg-[#F7F8FB] dark:bg-slate-700 sticky top-0 z-10">
-                  {Object.keys(explore_response[0]).map((key) => (
+
+          <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg">
+            {isDataValid ? (
+              <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
+                <thead className="text-xs uppercase dark:text-white">
+                  <tr className="bg-[#F7F8FB] dark:bg-slate-700 sticky top-0 z-10">
                     <th
-                      key={key}
+                      // key={key}
                       scope="col"
-                      className="px-6 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
+                      className="px-2 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
                     >
                       <div className="text-wrap">
-                        {key.split(" ").map((word, index) => (
-                          <React.Fragment key={index}>
-                            {word}
-                            <br />
-                          </React.Fragment>
-                        ))}
+                        Sl No.
+                        <br />
                       </div>
                     </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {explore_response.map((product, index) => (
-                  <tr
-                    // onClick={() => navigate("./popup")}
-                    key={index}
-                    className={`border-b ${
-                      index % 2 === 0
-                        ? "dark:bg-gray-900 bg-[#FBFBFB]"
-                        : "dark:bg-gray-800 bg-white"
-                    } cursor- dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
-                  >
-                    {Object.values(product).map((value, idx) => (
-                      <td
-                        key={idx}
-                        className={`px-6 py-2 text-xs font font-semibold ${
-                          idx === 0
-                            ? "text-black font-bold dark:text-white"
-                            : ""
-                        } ${
-                          value && value.toString().endsWith("%")
-                            ? parseFloat(value) < 0
-                              ? "text-red-500"
-                              : "text-green-500"
-                            : ""
-                        } w-max`}
+                    {Object.keys(explore_response[0]).map((key) => (
+                      <th
+                        key={key}
+                        scope="col"
+                        className="px-2 py-3 bg-opacity-20 w-[80px] dark:bg-gray-900 dark:bg-opacity-25"
                       >
-                        {value}
-                      </td>
+                        <div className="text-wrap">
+                          {key.split(" ").map((word, index) => (
+                            <React.Fragment key={index}>
+                              {word}
+                              <br />
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div className="text-gray-500 dark:text-gray-200 p-5">
-              No data available to display.
-            </div>
-          )}
+                </thead>
+                <tbody>
+                  {explore_response.map((product, index) => (
+                    <tr
+                      // onClick={() => navigate("./popup")}
+                      key={index}
+                      className={`border-b ${
+                        index % 2 === 0
+                          ? "dark:bg-gray-900 bg-[#FBFBFB]"
+                          : "dark:bg-gray-800 bg-white"
+                      } cursor- dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
+                    >
+                      <td
+                        className={`px-4 py-2 text-xs font font-semibold w-max`}
+                      >
+                        {index + 1}
+                      </td>
+
+                      {Object.values(product).map((value, idx) => (
+                        <td
+                          key={idx}
+                          className={`px-2 py-2 text-xs font font-semibold ${
+                            idx === 0
+                              ? "text-black font-bold dark:text-white"
+                              : ""
+                          } ${
+                            value && value.toString().endsWith("%")
+                              ? parseFloat(value) < 0
+                                ? "text-red-500"
+                                : "text-green-500"
+                              : ""
+                          } w-max`}
+                        >
+                          {value}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-gray-500 dark:text-gray-200 p-5">
+                No data available to display.
+              </div>
+            )}
+          </div>
         </div>
-      </div>
     </div>
   );
 };
