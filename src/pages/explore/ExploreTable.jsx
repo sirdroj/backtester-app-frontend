@@ -550,11 +550,11 @@ const ExploreTable = () => {
     <div className="relative">
       <Outlet />
       <div className="w-full flex justify-end px-10 mt-5 space-x-2 ">
-        {isDataValid && (
+        {/* {isDataValid && (
           <div className="bg-[#F7F8FB] text-gray-700 w-max rounded-md px-6 text-xs flex items-center">
             <span>total count:- {explore_response.length}</span>
           </div>
-        )}
+        )} */}
         <div
           onClick={() => {
             if (isDataValid) {
@@ -627,6 +627,8 @@ const ExploreTable = () => {
                       <div className="text-wrap">
                         Sl No.
                         <br />
+                        ({explore_response.length})
+                        {/* ({2000}) */}
                       </div>
                     </th>
                     {Object.keys(explore_response[0]).map((key) => (
