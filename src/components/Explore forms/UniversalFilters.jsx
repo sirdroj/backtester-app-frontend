@@ -90,66 +90,7 @@ const UniversalFilters = () => {
             },
           ],
     },
-    {
-      title: "Index",
-      key: "index",
-      children: [
-        {
-          title: "Index",
-          key: "index",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "None",
-                "NIFTY50",
-                "NIFTY100",
-                "NIFTY200",
-                "NIFTY500",
-                "NIFTY Mid Cap",
-                "NIFTY Small Cap",
-                "NIFTY Midcap 100",
-                "NIFTY Midcap 50",
-                "NIFTY Midcap 150",
-                "NIFTY Midcap 400",
-                "NIFTY Midcap 450",
-              ],
-            },
-          ],
-        },
-        {
-          title: "Sectoral Indices",
-          key: "sectoral_indices",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "None",
-                "Nifty Auto Index",
-                "Nifty Bank Index",
-                "Nifty Financial Services Index",
-                "Nifty Financial Services 25/50 Index",
-                "Nifty Financial Services Ex-Bank Index",
-                "Nifty FMCG Index",
-                "Nifty Healthcare Index",
-                "Nifty IT Index",
-                "Nifty Media Index",
-                "Nifty Metal Index",
-                "Nifty Pharma Index",
-                "Nifty Private Bank Index",
-                "Nifty PSU Bank Index",
-                "Nifty Realty Index",
-                "Nifty Consumer Durables Index",
-                "Nifty Oil and Gas Index",
-                "Nifty MidSmall Financial Services Index",
-                "Nifty MidSmall Healthcare Index",
-                "Nifty MidSmall IT & Telecom Index",
-              ],
-            },
-          ],
-        },
-      ],
-    },
+    
 
     {
       title: "Liquidity",
@@ -210,7 +151,66 @@ const UniversalFilters = () => {
         },
       ],
     },
-
+    {
+      title: "Index",
+      key: "index",
+      children: [
+        {
+          title: "Index",
+          key: "index",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "None",
+                "NIFTY50",
+                "NIFTY100",
+                "NIFTY200",
+                "NIFTY500",
+                "NIFTY Mid Cap",
+                "NIFTY Small Cap",
+                "NIFTY Midcap 100",
+                "NIFTY Midcap 50",
+                "NIFTY Midcap 150",
+                "NIFTY Midcap 400",
+                "NIFTY Midcap 450",
+              ],
+            },
+          ],
+        },
+        {
+          title: "Sectoral Indices",
+          key: "sectoral_indices",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "None",
+                "Nifty Auto Index",
+                "Nifty Bank Index",
+                "Nifty Financial Services Index",
+                "Nifty Financial Services 25/50 Index",
+                "Nifty Financial Services Ex-Bank Index",
+                "Nifty FMCG Index",
+                "Nifty Healthcare Index",
+                "Nifty IT Index",
+                "Nifty Media Index",
+                "Nifty Metal Index",
+                "Nifty Pharma Index",
+                "Nifty Private Bank Index",
+                "Nifty PSU Bank Index",
+                "Nifty Realty Index",
+                "Nifty Consumer Durables Index",
+                "Nifty Oil and Gas Index",
+                "Nifty MidSmall Financial Services Index",
+                "Nifty MidSmall Healthcare Index",
+                "Nifty MidSmall IT & Telecom Index",
+              ],
+            },
+          ],
+        },
+      ],
+    },
     {
       title: "Custom Watchlist",
       key: "custom_watchlist",
