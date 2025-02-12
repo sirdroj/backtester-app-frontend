@@ -90,67 +90,6 @@ const UniversalFilters = () => {
             },
           ],
     },
-    
-
-    {
-      title: "Liquidity",
-      key: "liquidity",
-      children: [
-        {
-          title: "Liquidity Period",
-          key: "liquidity_Period",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "None",
-                "Yearly",
-                "Quaterly",
-                "Monthly",
-                "Weekly",
-                "Daily",
-              ],
-            },
-          ],
-        },
-        {
-          title: "MA Field",
-          key: "ma_field",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "Simple MA",
-                "Exponential MA",
-                "Double MA",
-                "Triple MA",
-                "Linear Weighted MA",
-                "Linear Regression",
-              ],
-            },
-          ],
-        },
-
-        {
-          title: "MA Period",
-          key: "ma_Period",
-          inputs: [
-            {
-              type: "number",
-            },
-          ],
-        },
-        {
-          title: "Liquidity Cut Off",
-          key: "liquidity_cut_off",
-          inputs: [
-            {
-              type: "number",
-            },
-          ],
-        },
-      ],
-    },
     {
       title: "Index",
       key: "index",
@@ -211,6 +150,67 @@ const UniversalFilters = () => {
         },
       ],
     },
+
+    {
+      title: "Liquidity",
+      key: "liquidity",
+      children: [
+        {
+          title: "Liquidity Period",
+          key: "liquidity_Period",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "None",
+                "Yearly",
+                "Quaterly",
+                "Monthly",
+                "Weekly",
+                "Daily",
+              ],
+            },
+          ],
+        },
+        {
+          title: "MA Field",
+          key: "ma_field",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "Simple MA",
+                "Exponential MA",
+                "Double MA",
+                "Triple MA",
+                "Linear Weighted MA",
+                "Linear Regression",
+              ],
+            },
+          ],
+        },
+
+        {
+          title: "MA Period",
+          key: "ma_Period",
+          inputs: [
+            {
+              type: "number",
+            },
+          ],
+        },
+        {
+          title: "Liquidity Cut Off",
+          key: "liquidity_cut_off",
+          inputs: [
+            {
+              type: "number",
+            },
+          ],
+        },
+      ],
+    },
+
     {
       title: "Custom Watchlist",
       key: "custom_watchlist",
