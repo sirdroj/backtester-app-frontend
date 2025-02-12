@@ -90,117 +90,6 @@ const UniversalFilters = () => {
             },
           ],
     },
-    // {
-    //   title: "Market Cap",
-    //   key: "market_cap",
-    //   children: [
-    //     {
-    //       title: "Market Cap",
-    //       key: "market_cap",
-    //       inputs: [
-    //         {
-    //           type: "toggle",
-    //           children: [
-    //             [
-    //               {
-    //                 type: "number",
-    //                 options: ["None", "Large Cap", "Mid Cap", "Small Cap"],
-    //               },
-    //             ],
-    //             [
-    //               {
-    //                 title: "Large Cap",
-    //                 key: "large_cap",
-    //                 inputs: [
-    //                   {
-    //                     type: "checkbox",
-    //                   },
-    //                 ],
-    //               },
-    //               {
-    //                 title: "Mid Cap",
-    //                 key: "mid_cap",
-    //                 inputs: [
-    //                   {
-    //                     type: "checkbox",
-    //                   },
-    //                 ],
-    //               },
-    //               {
-    //                 title: "Small Cap",
-    //                 key: "small_cap",
-    //                 inputs: [
-    //                   {
-    //                     type: "checkbox",
-    //                   },
-    //                 ],
-    //               },
-    //             ],
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
-    {
-      title: "Liquidity",
-      key: "liquidity",
-      children: [
-        {
-          title: "Liquidity Period",
-          key: "liquidity_Period",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "None",
-                "Yearly",
-                "Quaterly",
-                "Monthly",
-                "Weekly",
-                "Daily",
-              ],
-            },
-          ],
-        },
-        {
-          title: "MA Field",
-          key: "ma_field",
-          inputs: [
-            {
-              type: "dropdown",
-              options: [
-                "Simple MA",
-"Exponential MA",
-"Double MA",
-"Triple MA",
-"Linear Weighted MA",
-"Linear Regression",
-              ],
-            },
-          ],
-        },
-
-        {
-          title: "MA Period",
-          key: "ma_Period",
-          inputs: [
-            {
-              type: "number",
-            },
-          ],
-        },
-        {
-          title: "Liquidity Cut Off",
-          key: "liquidity_cut_off",
-          inputs: [
-            {
-              type: "number",
-            },
-          ],
-        },
-      ],
-    },
     {
       title: "Index",
       key: "index",
@@ -219,11 +108,6 @@ const UniversalFilters = () => {
                 "NIFTY500",
                 "NIFTY Mid Cap",
                 "NIFTY Small Cap",
-                "NIFTY Midcap 100",
-                "NIFTY Midcap 50",
-                "NIFTY Midcap 150",
-                "NIFTY Midcap 400",
-                "NIFTY Midcap 450",
                 "NIFTY Midcap 100",
                 "NIFTY Midcap 50",
                 "NIFTY Midcap 150",
@@ -266,6 +150,67 @@ const UniversalFilters = () => {
         },
       ],
     },
+
+    {
+      title: "Liquidity",
+      key: "liquidity",
+      children: [
+        {
+          title: "Liquidity Period",
+          key: "liquidity_Period",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "None",
+                "Yearly",
+                "Quaterly",
+                "Monthly",
+                "Weekly",
+                "Daily",
+              ],
+            },
+          ],
+        },
+        {
+          title: "MA Field",
+          key: "ma_field",
+          inputs: [
+            {
+              type: "dropdown",
+              options: [
+                "Simple MA",
+                "Exponential MA",
+                "Double MA",
+                "Triple MA",
+                "Linear Weighted MA",
+                "Linear Regression",
+              ],
+            },
+          ],
+        },
+
+        {
+          title: "MA Period",
+          key: "ma_Period",
+          inputs: [
+            {
+              type: "number",
+            },
+          ],
+        },
+        {
+          title: "Liquidity Cut Off",
+          key: "liquidity_cut_off",
+          inputs: [
+            {
+              type: "number",
+            },
+          ],
+        },
+      ],
+    },
+
     {
       title: "Custom Watchlist",
       key: "custom_watchlist",
