@@ -549,20 +549,20 @@ const ExploreTable = () => {
     // If the same column is clicked, toggle the current order.
     // Otherwise, default to ascending order (false).
     const newOrder = attribute === currentSort ? !asorder : false;
-  
+
     // Sort the data using the newOrder value.
     const sortedData = [...explore].sort((a, b) => {
       // Optionally, try to convert to numbers (for numbers, currency, percentage, etc.)
       let aVal = a[attribute];
       let bVal = b[attribute];
-      
+
       const aNum = parseFloat(aVal.toString().replace(/[^0-9.-]+/g, ""));
       const bNum = parseFloat(bVal.toString().replace(/[^0-9.-]+/g, ""));
       if (!isNaN(aNum) && !isNaN(bNum)) {
         aVal = aNum;
         bVal = bNum;
       }
-      
+
       if (newOrder) {
         // Descending order: if aVal is less than bVal, a comes later.
         return aVal < bVal ? 1 : aVal > bVal ? -1 : 0;
@@ -571,7 +571,7 @@ const ExploreTable = () => {
         return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
       }
     });
-  
+
     // Update the sorted data, current column, and sort order states.
     setExplore(sortedData);
     setCurrentSort(attribute);
@@ -582,7 +582,7 @@ const ExploreTable = () => {
   const isDataValid = Array.isArray(explore) && explore.length > 0;
 
   return (
-    <div className="relative">
+    <div className="">
       <Outlet />
       <div className="w-full flex justify-end px-10 mt-5 space-x-2 ">
         {/* {isDataValid && (
@@ -622,7 +622,7 @@ const ExploreTable = () => {
         </div>
       </div>
       <div
-        className={`mx-10 my-2 flex justify-center overflow-y-auto overflow-hidden rounded-md`}
+        className={`mx-10 my-2 flex justify-center overflow- rounded-md`}
       >
         <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
@@ -657,9 +657,9 @@ const ExploreTable = () => {
                   <th
                     // key={key}
                     scope="col"
-                    className="px-2 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
+                    className="px-2 py-3 bg-opacity-20 relative  dark:bg-gray-900 dark:bg-opacity-25"
                   >
-                    <div className="text-wrap">
+                      <div className="h-[50px]  border-[px] relative top-2 flex items-start">
                       Sl No.
                       <br />({explore.length}){/* ({2000}) */}
                     </div>
@@ -668,22 +668,45 @@ const ExploreTable = () => {
                     <th
                       key={key}
                       scope="col"
-                      className="px-2 py-3 bg-opacity-20 w-[80px] dark:bg-gray-900 dark:bg-opacity-25 cursor-pointer"
+                      className="px-2 h-max border-[1px]  relative bg-opacity-20  dark:bg-gray-900 dark:bg-opacity-25 cursor-pointer"
                       onClick={() => {
                         sortResp(key);
                       }}
                     >
-                      <div className="text-wrap">
-                        {key.split(" ").map((word, index) => (
-                          <React.Fragment key={index}>
-                            {word}
-                            <br />
-                          </React.Fragment>
-                        ))}
-                        {/* {currentSort === key && (
+                      <div className="h-[50px]  border-[px] relative top-2 flex items-start">
+                        <div className="">
+                          {key.split(" ").map((word, index) => (
+                            <React.Fragment key={index}>
+                              {word}
+                              <br />
+                            </React.Fragment>
+                          ))}
+                        </div>
+                        <div>
+                          {currentSort == key && (
+                            <svg
+                              className={`${
+                                asorder ? "" : "rotate-180"
+                              } transition-transform m-1 opacity-70`}
+                              fill="#000000"
+                              height="8px"
+                              width="8px"
+                              version="1.1"
+                              id="Capa_1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              viewBox="0 0 490 490"
+                              xml:space="preserve"
+                            >
+                              <polygon points="245,456.701 490,33.299 0,33.299 " />
+                            </svg>
+                          )}
+
+                          {/* {currentSort === key && (
                           <span className={`${asorder ? "rotate-180" : ""}`}>V</span>
 
                         )}{" "} */}
+                        </div>
                       </div>
                     </th>
                   ))}
