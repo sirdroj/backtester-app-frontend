@@ -36,9 +36,8 @@ const UniversalFilters = () => {
 
   const inputsData = [
     {
-      title: "Market Capitalisation",
-      key: "market_capitalisation",
-      disable:false,
+      title: "Market Cap",
+      key: "market_cap",
       children: customMcap
         ? [
             {
@@ -92,9 +91,8 @@ const UniversalFilters = () => {
           ],
     },
     {
-      title: "Market Indices",
-      key: "market_index",
-      disable:false,
+      title: "Index",
+      key: "index",
       children: [
         {
           title: "Index",
@@ -156,7 +154,6 @@ const UniversalFilters = () => {
     {
       title: "Liquidity",
       key: "liquidity",
-      disable:false,
       children: [
         {
           title: "Liquidity Period",
@@ -217,7 +214,6 @@ const UniversalFilters = () => {
     {
       title: "Custom Watchlist",
       key: "custom_watchlist",
-      disable:false,
       children: [
         {
           title: "Custom index",
@@ -297,24 +293,12 @@ const UniversalFilters = () => {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        market_capitalisation: {
+        market_cap: {
           market_cap_type: customMcap ? "custom" : "default",
         },
       };
     });
   }, [customMcap]);
-
-  // useEffect(() => {
-  //   setFormData((prevFormData) => {
-  //     if(prevFormData.market_capitalisation.large)
-  //     return {
-  //       ...prevFormData,
-  //       market_capitalisation: {
-  //         market_cap_type: customMcap ? "custom" : "default",
-  //       },
-  //     };
-  //   });
-  // }, [formData]);
 
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
@@ -395,15 +379,14 @@ const UniversalFilters = () => {
     >
       <div>
         {inputsData.map((section, index) => {
-          if (section.key === "market_capitalisation") {
+          if (section.title === "Market Cap") {
             return (
               <div key={index}>
                 <div
-                  onClick={() =>  handleDropdownClick(index)}
-                  className={` flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
+                  onClick={() => handleDropdownClick(index)}
+                  className="flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
                   style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
                 >
-                  
                   <h1 className="font-semibold">{section.title}</h1>
                   <img
                     src="./images/chevron-down.png"
@@ -546,8 +529,8 @@ const UniversalFilters = () => {
             return (
               <div key={index}>
                 <div
-                  onClick={() =>!section.disable && handleDropdownClick(index)}
-                  className={`${section.disable?"opacity-":""} flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
+                  onClick={() => handleDropdownClick(index)}
+                  className="flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
                   style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
                 >
                   <h1 className="font-semibold">{section.title}</h1>
