@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import useStore from "../../stores/useStore";
 import currentAPI from "../../apiendpoint";
 
@@ -30,10 +30,9 @@ const initializeFormData = (inputsData) => {
   traverseInputs(inputsData);
   return initialData;
 };
-const UniversalFilters = () => {
-  const [marketcapFilled, setMarketCapFilled] = useState(false);
-  const [customMcap, setCustomMcap] = useState(false);
 
+const UniversalFilters = () => {
+  const [customMcap, setCustomMcap] = useState(false);
   const inputsData = [
     {
       title: "Market Capitalisation",
@@ -262,6 +261,9 @@ const UniversalFilters = () => {
       ],
     },
   ];
+  
+  
+
   // const [inputsData, setinputdata] = useState(inputsDataU);
 
   const {
@@ -272,13 +274,22 @@ const UniversalFilters = () => {
 
   function clean_data(formData) {
     const cleanedData = {};
+    let hasNull;
     Object.keys(formData).forEach((sectionKey) => {
       const section = formData[sectionKey];
+      console.log("clean data",{formData})
       // If any value in this section is null, we skip the section.
-      const hasNull = Object.values(section).some(
+     hasNull = Object.values(section).some(
         (value) =>
-          value === null || value === "" || value === "None" || value === 0
+          value === null || value === "" || value === "None" || value === 0 
       );
+      // if (sectionKey === "market_capitalisation") {
+      //   hasNull = Object.keys(section).some(
+      //     (key) =>
+      //       key !== "market_cap_type" && // Ignore market_cat_type
+      //       (section[key] === null || section[key] === "" || section[key] === "None" || section[key] === 0 || section[key] === false)
+      //   );
+      // }
       if (!hasNull) {
         cleanedData[sectionKey] = section;
       }
@@ -306,32 +317,41 @@ const UniversalFilters = () => {
     });
   }, [customMcap]);
 
-  //   {
-  //     "large_cap": false,
-  //     "mid_cap": false,
-  //     "small_cap": false,
-  //     "micro_cap": false
+
+  // const [marketcapFilled, setMarketCapFilled] = useState(false);
+
+
+  // function handledisable() {
+  //   if (
+  //     formData?.market_capitalisation?.market_cap ||
+  //     formData?.market_capitalisation?.mid_cap ||
+  //     formData?.market_capitalisation?.small_cap ||
+  //     formData?.market_capitalisation?.large_cap ||
+  //     formData?.market_capitalisation?.micro_cap
+  //   ) {
+  //     setMarketCapFilled(true);
+  //     setFormData((prevFormData) => {
+  //       const { index, ...updatedFormData } = prevFormData; // Remove 'index' key
+  //       return updatedFormData;
+  //     });
+  //   } else {
+  //     setMarketCapFilled(false);
+  //   }
   // }
 
-  function handledisable() {
-    if (
+  // useEffect(() => {
+  //   handledisable();
+  // }, [formData]);
+
+
+  const marketcapFilled = useMemo(() => {
+    return !!(
       formData?.market_capitalisation?.market_cap ||
       formData?.market_capitalisation?.mid_cap ||
       formData?.market_capitalisation?.small_cap ||
       formData?.market_capitalisation?.large_cap ||
       formData?.market_capitalisation?.micro_cap
-    ) {
-      setMarketCapFilled(true);
-      setFormData((prevFormData) => {
-        const { index, ...updatedFormData } = prevFormData; // Remove 'index' key
-        return updatedFormData;
-      });
-    } else {
-      setMarketCapFilled(false);
-    }
-  }
-  useEffect(() => {
-    handledisable();
+    );
   }, [formData]);
 
   const handleChange = (section, inputType, value) => {
@@ -350,14 +370,22 @@ const UniversalFilters = () => {
   };
 
   const handleCheckboxChange = (section, inputType, checked) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [section]: {
-        ...prevFormData[section],
-        [inputType]: checked,
-      },
-    }));
+    setFormData((prevFormData) => {
+      const updatedSection = { ...prevFormData[section] };
+  
+      if (checked) {
+        updatedSection[inputType] = true; // Set checkbox to true
+      } else {
+        delete updatedSection[inputType]; // Remove unchecked checkbox from state
+      }
+  
+      return {
+        ...prevFormData,
+        [section]: updatedSection,
+      };
+    });
   };
+  
 
   // New function to handle file input changes
 
