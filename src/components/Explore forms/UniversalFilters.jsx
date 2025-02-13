@@ -274,6 +274,7 @@ const UniversalFilters = () => {
 
   function clean_data(formData) {
     const cleanedData = {};
+    console.log("cleandata",{formData})
     let hasNull;
     Object.keys(formData).forEach((sectionKey) => {
       const section = formData[sectionKey];
@@ -283,17 +284,14 @@ const UniversalFilters = () => {
         (value) =>
           value === null || value === "" || value === "None" || value === 0 
       );
-      // if (sectionKey === "market_capitalisation") {
-      //   hasNull = Object.keys(section).some(
-      //     (key) =>
-      //       key !== "market_cap_type" && // Ignore market_cat_type
-      //       (section[key] === null || section[key] === "" || section[key] === "None" || section[key] === 0 || section[key] === false)
-      //   );
-      // }
+      if (sectionKey === "market_capitalisation" && Object.keys(section).length === 1) {
+        hasNull=true
+      }
       if (!hasNull) {
         cleanedData[sectionKey] = section;
       }
     });
+    console.log("cleandata",{cleanedData})
     return cleanedData;
   }
 
