@@ -36,8 +36,8 @@ const UniversalFilters = () => {
 
   const inputsData = [
     {
-      title: "Market Cap",
-      key: "market_cap",
+      title: "Market Capitalisation",
+      key: "market_capitalisation",
       children: customMcap
         ? [
             {
@@ -95,8 +95,8 @@ const UniversalFilters = () => {
       key: "index",
       children: [
         {
-          title: "Index",
-          key: "index",
+          title: "Market Indices",
+          key: "market_indices",
           inputs: [
             {
               type: "dropdown",
@@ -293,7 +293,7 @@ const UniversalFilters = () => {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        market_cap: {
+        market_capitalisation: {
           market_cap_type: customMcap ? "custom" : "default",
         },
       };
@@ -379,7 +379,7 @@ const UniversalFilters = () => {
     >
       <div>
         {inputsData.map((section, index) => {
-          if (section.title === "Market Cap") {
+          if (section.key === "market_capitalisation") {
             return (
               <div key={index}>
                 <div
