@@ -78,40 +78,70 @@ import currentAPI from "../../apiendpoint";
 //   };
 //   return data;
 // };
+// const initializeFormData = (inputsData) => {
+//   const data = {
+//     trend: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     momentum: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     volatility: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     breadth: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     volume: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//   };
+//   return data;
+// };
+
 const initializeFormData = (inputsData) => {
-  const data = {
-    trend: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    momentum: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    volatility: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    breadth: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    volume: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
+  let initialData = {};
+  
+
+  const traverseInputs = (sections) => {
+    sections.forEach((section) => {
+      initialData[section.key] = {}; // Initialize section key
+
+      section.children.forEach((child) => {
+        if (child.inputs) {
+          child.inputs.forEach((input) => {
+            if (input.type === "dropdown") {
+              initialData[section.key][child.key] = input.options[0]; // Default value for dropdown
+              // initialData[section.key][child.key] = "None"; // Default value for dropdown
+            } else if (input.type === "number") {
+              initialData[section.key][child.key] = 0; // Default value for number
+            } else if (input.type === "checkbox") {
+              initialData[section.key][child.key] = false; // Default value for checkbox
+            } else if (input.type === "file") {
+              initialData[section.key][child.key] = null; // Initialize file inputs as null
+            }
+          });
+        }
+      });
+    });
   };
-  return data;
+  traverseInputs(inputsData);
+  return initialData;
 };
 
 const TechnicalFormExplorer = () => {
@@ -291,25 +321,25 @@ const TechnicalFormExplorer = () => {
             },
           ],
         },
-        {
-          title: "Moving Average",
-          key: "moving_average",
-          inputs: [
-            {
-              type: "dropdown",
-              options: ["None","Double EMA", "Simple MA","Exponential MA","Triple MA","Linear Weighted MA"],
-            },
-          ],
-        },
-        {
-          title: "MA Period",
-          key: "ma_period",
-          inputs: [
-            {
-              type: "number",
-            },
-          ],
-        },
+        // {
+        //   title: "Moving Average",
+        //   key: "moving_average",
+        //   inputs: [
+        //     {
+        //       type: "dropdown",
+        //       options: ["None","Double EMA", "Simple MA","Exponential MA","Triple MA","Linear Weighted MA"],
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "MA Period",
+        //   key: "ma_period",
+        //   inputs: [
+        //     {
+        //       type: "number",
+        //     },
+        //   ],
+        // },
       ],
     },
     {
