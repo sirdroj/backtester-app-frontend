@@ -251,7 +251,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "RSI", "CMO", "Stochastic"],
+              options: ["None", "RSI", "CMO", "Stochastic","Momentum","ROC"],
             },
           ],
         },
@@ -322,7 +322,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "ATR"],
+              options: ["None", "ATR","Keltner","SuperTrend"],
             },
           ],
         },
