@@ -30,14 +30,15 @@ const initializeFormData = (inputsData) => {
   traverseInputs(inputsData);
   return initialData;
 };
-
 const UniversalFilters = () => {
+  const [marketcapFilled, setMarketCapFilled] = useState(false);
   const [customMcap, setCustomMcap] = useState(false);
 
   const inputsData = [
     {
       title: "Market Capitalisation",
       key: "market_capitalisation",
+      disabled: false,
       children: customMcap
         ? [
             {
@@ -93,6 +94,7 @@ const UniversalFilters = () => {
     {
       title: "Index",
       key: "index",
+      disabled: false,
       children: [
         {
           title: "Market Indices",
@@ -154,6 +156,8 @@ const UniversalFilters = () => {
     {
       title: "Liquidity",
       key: "liquidity",
+      disabled: false,
+
       children: [
         {
           title: "Liquidity Period",
@@ -214,6 +218,8 @@ const UniversalFilters = () => {
     {
       title: "Custom Watchlist",
       key: "custom_watchlist",
+      disabled: false,
+
       children: [
         {
           title: "Custom index",
@@ -299,6 +305,34 @@ const UniversalFilters = () => {
       };
     });
   }, [customMcap]);
+
+  //   {
+  //     "large_cap": false,
+  //     "mid_cap": false,
+  //     "small_cap": false,
+  //     "micro_cap": false
+  // }
+
+  function handledisable() {
+    if (
+      formData?.market_capitalisation?.market_cap ||
+      formData?.market_capitalisation?.mid_cap ||
+      formData?.market_capitalisation?.small_cap ||
+      formData?.market_capitalisation?.large_cap ||
+      formData?.market_capitalisation?.micro_cap
+    ) {
+      setMarketCapFilled(true);
+      setFormData((prevFormData) => {
+        const { index, ...updatedFormData } = prevFormData; // Remove 'index' key
+        return updatedFormData;
+      });
+    } else {
+      setMarketCapFilled(false);
+    }
+  }
+  useEffect(() => {
+    handledisable();
+  }, [formData]);
 
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
@@ -529,8 +563,15 @@ const UniversalFilters = () => {
             return (
               <div key={index}>
                 <div
-                  onClick={() => handleDropdownClick(index)}
-                  className="flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
+                  onClick={() => {
+                    !(section.key == "index" && marketcapFilled) &&
+                      handleDropdownClick(index);
+                  }}
+                  className={`${
+                    section.key == "index" && marketcapFilled
+                      ? " opacity-50"
+                      : ""
+                  } flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
                   style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
                 >
                   <h1 className="font-semibold">{section.title}</h1>
