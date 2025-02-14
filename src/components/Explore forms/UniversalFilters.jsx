@@ -316,41 +316,46 @@ const UniversalFilters = () => {
   }, [customMcap]);
 
 
-  // const [marketcapFilled, setMarketCapFilled] = useState(false);
+  const [marketcapFilled, setMarketCapFilled] = useState(false);
 
 
-  // function handledisable() {
-  //   if (
+
+
+
+  // const marketcapFilled = useMemo(() => {
+  //   return !!(
   //     formData?.market_capitalisation?.market_cap ||
   //     formData?.market_capitalisation?.mid_cap ||
   //     formData?.market_capitalisation?.small_cap ||
   //     formData?.market_capitalisation?.large_cap ||
   //     formData?.market_capitalisation?.micro_cap
-  //   ) {
-  //     setMarketCapFilled(true);
-  //     setFormData((prevFormData) => {
-  //       const { index, ...updatedFormData } = prevFormData; // Remove 'index' key
-  //       return updatedFormData;
-  //     });
-  //   } else {
-  //     setMarketCapFilled(false);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   handledisable();
+  //   );
   // }, [formData]);
 
 
-  const marketcapFilled = useMemo(() => {
-    return !!(
+  function handledisable() {
+    if (
       formData?.market_capitalisation?.market_cap ||
       formData?.market_capitalisation?.mid_cap ||
       formData?.market_capitalisation?.small_cap ||
       formData?.market_capitalisation?.large_cap ||
       formData?.market_capitalisation?.micro_cap
-    );
+    ) {
+      setMarketCapFilled(true);
+      setFormData((prevFormData) => {
+        const { index, ...updatedFormData } = prevFormData; // Remove 'index' key
+        return updatedFormData;
+      });
+    } else {
+      setMarketCapFilled(false);
+    }
+  }
+
+  useEffect(() => {
+    handledisable();
   }, [formData]);
+
+
 
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
