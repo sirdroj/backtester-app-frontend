@@ -261,8 +261,6 @@ const UniversalFilters = () => {
       ],
     },
   ];
-  
-  
 
   // const [inputsData, setinputdata] = useState(inputsDataU);
 
@@ -274,24 +272,27 @@ const UniversalFilters = () => {
 
   function clean_data(formData) {
     const cleanedData = {};
-    console.log("cleandata",{formData})
+    console.log("cleandata", { formData });
     let hasNull;
     Object.keys(formData).forEach((sectionKey) => {
       const section = formData[sectionKey];
-      console.log("clean data",{formData})
+      console.log("clean data", { formData });
       // If any value in this section is null, we skip the section.
-     hasNull = Object.values(section).some(
+      hasNull = Object.values(section).some(
         (value) =>
-          value === null || value === "" || value === "None" || value === 0 
+          value === null || value === "" || value === "None" || value === 0
       );
-      if (sectionKey === "market_capitalisation" && Object.keys(section).length === 1) {
-        hasNull=true
+      if (
+        sectionKey === "market_capitalisation" &&
+        Object.keys(section).length === 1
+      ) {
+        hasNull = true;
       }
       if (!hasNull) {
         cleanedData[sectionKey] = section;
       }
     });
-    console.log("cleandata",{cleanedData})
+    console.log("cleandata", { cleanedData });
     return cleanedData;
   }
 
@@ -315,12 +316,8 @@ const UniversalFilters = () => {
     });
   }, [customMcap]);
 
-
   const [marketcapFilled, setMarketCapFilled] = useState(false);
-
-
-
-
+  const [indexFilled, setIndexFilled] = useState(false);
 
   // const marketcapFilled = useMemo(() => {
   //   return !!(
@@ -331,7 +328,6 @@ const UniversalFilters = () => {
   //     formData?.market_capitalisation?.micro_cap
   //   );
   // }, [formData]);
-
 
   function handledisable() {
     if (
@@ -349,13 +345,28 @@ const UniversalFilters = () => {
     } else {
       setMarketCapFilled(false);
     }
+
+    if (
+      formData?.index &&
+      Object.keys(formData.index).some(
+        (key) => formData.index[key] && formData.index[key] !== "None"
+      )
+    ) {
+      setIndexFilled(true);
+      setFormData((prevFormData) => {
+        const { market_capitalisation, ...updatedFormData } = prevFormData; // Remove 'market_capitalisation' key
+        return updatedFormData;
+      });
+    } else {
+      setIndexFilled(false);
+    }
+    
   }
 
   useEffect(() => {
+    console.log("xxx--", { formData });
     handledisable();
-  }, [formData]);
-
-
+  }, [JSON.stringify(formData)]);
 
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
@@ -375,20 +386,19 @@ const UniversalFilters = () => {
   const handleCheckboxChange = (section, inputType, checked) => {
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
-  
+
       if (checked) {
         updatedSection[inputType] = true; // Set checkbox to true
       } else {
         delete updatedSection[inputType]; // Remove unchecked checkbox from state
       }
-  
+
       return {
         ...prevFormData,
         [section]: updatedSection,
       };
     });
   };
-  
 
   // New function to handle file input changes
 
@@ -448,8 +458,12 @@ const UniversalFilters = () => {
             return (
               <div key={index}>
                 <div
-                  onClick={() => handleDropdownClick(index)}
-                  className="flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer"
+                  onClick={() => {
+                    !indexFilled && handleDropdownClick(index);
+                  }}
+                  className={`${
+                    indexFilled ? "opacity-20" : ""
+                  } flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
                   style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
                 >
                   <h1 className="font-semibold">{section.title}</h1>
@@ -600,7 +614,7 @@ const UniversalFilters = () => {
                   }}
                   className={`${
                     section.key == "index" && marketcapFilled
-                      ? " opacity-50"
+                      ? " opacity-20"
                       : ""
                   } flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
                   style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
