@@ -552,25 +552,31 @@ const ExploreTable = () => {
 
     // Sort the data using the newOrder value.
     const sortedData = [...explore].sort((a, b) => {
-      // Optionally, try to convert to numbers (for numbers, currency, percentage, etc.)
-      let aVal = a[attribute];
-      let bVal = b[attribute];
-
+      let aVal = a[attribute] ?? ""; // Default to empty string if null/undefined
+      let bVal = b[attribute] ?? "";
+    
+      // Try to convert to numbers (for numbers, currency, percentage, etc.)
       const aNum = parseFloat(aVal.toString().replace(/[^0-9.-]+/g, ""));
       const bNum = parseFloat(bVal.toString().replace(/[^0-9.-]+/g, ""));
+    
       if (!isNaN(aNum) && !isNaN(bNum)) {
         aVal = aNum;
         bVal = bNum;
       }
-
+    
+      // Case-insensitive comparison for strings
+      if (typeof aVal === "string" && typeof bVal === "string") {
+        aVal = aVal.toLowerCase();
+        bVal = bVal.toLowerCase();
+      }
+    
       if (newOrder) {
-        // Descending order: if aVal is less than bVal, a comes later.
-        return aVal < bVal ? 1 : aVal > bVal ? -1 : 0;
+        return aVal < bVal ? 1 : aVal > bVal ? -1 : 0; // Descending
       } else {
-        // Ascending order: if aVal is greater than bVal, a comes later.
-        return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+        return aVal > bVal ? 1 : aVal < bVal ? -1 : 0; // Ascending
       }
     });
+    
 
     // Update the sorted data, current column, and sort order states.
     setExplore(sortedData);
