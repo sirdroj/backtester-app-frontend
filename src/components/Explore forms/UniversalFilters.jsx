@@ -364,7 +364,13 @@ const UniversalFilters = () => {
     ) {
       setIndexFilled(true);
       setFormData((prevFormData) => {
-        const { market_capitalisation, ...updatedFormData } = prevFormData; // Remove 'market_capitalisation' key
+        const { market_capitalisation, ...updatedFormData } = prevFormData;
+        updatedFormData.market_capitalisation={
+          "large_cap": null,
+          "mid_cap": null,
+          "small_cap": null,
+          "micro_cap": null
+      }
         return updatedFormData;
       });
     } else {
@@ -416,7 +422,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
     console.log("handleSelectAllCheckboxChange", section, checked);
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
-      console.log("entyry", { updatedSection });
+      console.log("entyry", { prevFormData });
       if (checked) {
         // Set all checkboxes to true
         Object.keys(updatedSection).forEach((key) => {
@@ -435,64 +441,13 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
           delete updatedSection[key];
         });
       }
-      console.log("exit", { updatedSection });
+      console.log("exit", { prevFormData });
       return {
         ...prevFormData,
         [section]: updatedSection,
       };
     });
   };
-
-  // New function to handle file input changes
-
-  // const handleFileChange = (section, inputType, file) => {
-  //   // Get the file name from file.name using split and pop (or [-1])
-  //   const fileName = file.name.split("/").pop(); // file.name is generally just the file name in browsers
-
-  //   const reader = new FileReader();
-  //   reader.onload = (e) => {
-  //     const text = e.target.result;
-  //     // Simple CSV parsing: assumes the first line contains headers
-  //     const rows = text.split("\n").filter((row) => row.trim() !== "");
-  //     if (rows.length === 0) return;
-  //     const headers = rows[0].split(",").map((header) => header.trim());
-  //     const jsonData = rows.slice(1).map((row) => {
-  //       const values = row.split(",");
-  //       let obj = {};
-  //       headers.forEach((header, index) => {
-  //         obj[header] = values[index] ? values[index].trim() : "";
-  //       });
-  //       return obj;
-  //     });
-  //     // Update the formData state with the JSON data and the extracted file name
-  //     setFormData((prevFormData) => ({
-  //       ...prevFormData,
-  //       [section]: {
-  //         ...prevFormData[section],
-  //         [inputType]: { filename: fileName, content: jsonData },
-  //       },
-  //     }));
-  //     console.log({ formData });
-  //   };
-  //   reader.readAsText(file);
-  // };
-
-  // const handleCheckboxChange = (section, inputType, checked) => {
-  //   setFormData((prevFormData) => {
-  //     const updatedSection = { ...prevFormData[section] };
-
-  //     if (checked) {
-  //       updatedSection[inputType] = true; // Set checkbox to true
-  //     } else {
-  //       delete updatedSection[inputType]; // Remove unchecked checkbox from state
-  //     }
-
-  //     return {
-  //       ...prevFormData,
-  //       [section]: updatedSection,
-  //     };
-  //   });
-  // };
 
   // New function to handle file input changes
 
