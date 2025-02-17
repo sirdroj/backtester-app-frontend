@@ -406,6 +406,7 @@ const TechnicalFormExplorer = () => {
               type: "dropdown",
               options: ["None", "Advancing/Declining"],
               options: ["None", "Advancing/Declining"],
+              options: ["None", "Advancing/Declining"],
             },
           ],
         },
@@ -508,6 +509,8 @@ const TechnicalFormExplorer = () => {
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
   
+    const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
@@ -526,9 +529,7 @@ const TechnicalFormExplorer = () => {
     if (currentDropDown.includes(id)) {
       setCurrentDropDown(currentDropDown.filter((item) => item !== id));
     } else {
-      // // setCurrentDropDown([...currentDropDown, id]);
-      setCurrentDropDown([id]);
-      setCurrentDropDown([id]);
+      setCurrentDropDown([...currentDropDown, id]);
     }
   };
 
