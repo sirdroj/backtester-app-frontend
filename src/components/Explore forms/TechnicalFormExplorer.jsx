@@ -405,8 +405,6 @@ const TechnicalFormExplorer = () => {
             {
               type: "dropdown",
               options: ["None", "Advancing/Declining"],
-              options: ["None", "Advancing/Declining"],
-              options: ["None", "Advancing/Declining"],
             },
           ],
         },
