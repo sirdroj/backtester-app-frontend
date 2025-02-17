@@ -509,7 +509,6 @@ const TechnicalFormExplorer = () => {
   const handleChange = (section, inputType, value) => {
     const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
   
-    const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
   
     setFormData((prevFormData) => ({
       ...prevFormData,
