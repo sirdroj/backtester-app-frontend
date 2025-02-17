@@ -364,7 +364,13 @@ const UniversalFilters = () => {
     ) {
       setIndexFilled(true);
       setFormData((prevFormData) => {
-        const { market_capitalisation, ...updatedFormData } = prevFormData; // Remove 'market_capitalisation' key
+        const { market_capitalisation, ...updatedFormData } = prevFormData;
+        updatedFormData.market_capitalisation={
+          "large_cap": null,
+          "mid_cap": null,
+          "small_cap": null,
+          "micro_cap": null
+      }
         return updatedFormData;
       });
     } else {
@@ -416,7 +422,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
     console.log("handleSelectAllCheckboxChange", section, checked);
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
-      console.log("entyry", { updatedSection });
+      console.log("entyry", { prevFormData });
       if (checked) {
         // Set all checkboxes to true
         Object.keys(updatedSection).forEach((key) => {
@@ -435,7 +441,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
           delete updatedSection[key];
         });
       }
-      console.log("exit", { updatedSection });
+      console.log("exit", { prevFormData });
       return {
         ...prevFormData,
         [section]: updatedSection,
