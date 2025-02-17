@@ -78,107 +78,76 @@ import currentAPI from "../../apiendpoint";
 //   };
 //   return data;
 // };
+// const initializeFormData = (inputsData) => {
+//   const data = {
+//     trend: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     momentum: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     volatility: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     breadth: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//     volume: {
+//       indicator: "None",
+//       period: "None",
+//       period_type: "Weekly",
+//       price: "None",
+//     },
+//   };
+//   return data;
+// };
+
 const initializeFormData = (inputsData) => {
-  const data = {
-    trend: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    momentum: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    volatility: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    breadth: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
-    volume: {
-      indicator: "None",
-      period: "None",
-      period_type: "Weekly",
-      price: "None",
-    },
+  let initialData = {};
+  
+
+  const traverseInputs = (sections) => {
+    sections.forEach((section) => {
+      initialData[section.key] = {}; // Initialize section key
+
+      section.children.forEach((child) => {
+        if (child.inputs) {
+          child.inputs.forEach((input) => {
+            if (input.type === "dropdown") {
+              initialData[section.key][child.key] = input.options[0]; // Default value for dropdown
+              // initialData[section.key][child.key] = "None"; // Default value for dropdown
+            } else if (input.type === "number") {
+              initialData[section.key][child.key] = 0; // Default value for number
+            } else if (input.type === "checkbox") {
+              initialData[section.key][child.key] = false; // Default value for checkbox
+            } else if (input.type === "file") {
+              initialData[section.key][child.key] = null; // Initialize file inputs as null
+            }
+          });
+        }
+      });
+    });
   };
-  return data;
+  traverseInputs(inputsData);
+  return initialData;
 };
 
 const TechnicalFormExplorer = () => {
-  const {
-    explore_inputs_Data,
-    set_explore_inputs_Data,
-    handle_full_save_explore,
-  } = useStore();
+  const { explore_inputs_Data, set_explore_inputs_Data ,handle_full_save_explore} = useStore();
 
-  async function sendFormData(stage, inputs) {
-    const url = `${currentAPI}/explorer/technical_filters/${stage}`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          stage: stage,
-          data: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
-  async function sendFullFormData(inputs) {
-    const url = `${currentAPI}/explorer/technical_filters`;
-    // const url = "https://api.sentientco.in/forms/technicalFilters";
-    const token = localStorage.getItem("access_token");
-    try {
-      const response = await fetch(url, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // level: "technical_filters",
-          technical_filter: inputs,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Success:", result);
-      return result; // Return response for further use if needed
-    } catch (error) {
-      console.error("Error:", error.message);
-      return { error: error.message }; // Return error for handling in UI
-    }
-  }
+  
 
   function handleSave(key, data) {
     // updateFormInputData(title,data)
@@ -249,16 +218,17 @@ const TechnicalFormExplorer = () => {
                 "Simple MA",
                 "Exponential MA",
                 "Wilder's MA",
-                // "Custom MA",
                 "Double MA",
                 "Cumulative MA",
                 "Triple MA",
                 "Reset Accumulative MA",
                 "Linear Weighted MA",
+                "Reset Accumulative MA",
+                "LinearRegression MA",
                 "Centered MA",
                 "Adaptive MA",
                 "Kaufmann AMA",
-                "Mesa AMA"
+                "Mesa AMA",
               ],
             },
           ],
@@ -311,7 +281,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "RSI", "CMO", "Stochastic"],
+              options: ["None", "RSI", "CMO", "Stochastic","Momentum","ROC"],
             },
           ],
         },
@@ -351,6 +321,25 @@ const TechnicalFormExplorer = () => {
             },
           ],
         },
+        // {
+        //   title: "Moving Average",
+        //   key: "moving_average",
+        //   inputs: [
+        //     {
+        //       type: "dropdown",
+        //       options: ["None","Double EMA", "Simple MA","Exponential MA","Triple MA","Linear Weighted MA"],
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "MA Period",
+        //   key: "ma_period",
+        //   inputs: [
+        //     {
+        //       type: "number",
+        //     },
+        //   ],
+        // },
       ],
     },
     {
@@ -363,7 +352,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "ATR"],
+              options: ["None", "ATR","Keltner","SuperTrend"],
             },
           ],
         },
@@ -415,6 +404,7 @@ const TechnicalFormExplorer = () => {
           inputs: [
             {
               type: "dropdown",
+              options: ["None", "Advancing/Declining"],
               options: ["None", "Advancing/Declining"],
             },
           ],
@@ -516,14 +506,17 @@ const TechnicalFormExplorer = () => {
   // console.log("--initial data---", initializeFormData(inputsData));
 
   const handleChange = (section, inputType, value) => {
+    const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
+  
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
         ...prevFormData[section],
-        [inputType]: value,
+        [inputType]: parsedValue,
       },
     }));
-    console.log(section, inputType, value);
+  
+    console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
 
@@ -533,7 +526,8 @@ const TechnicalFormExplorer = () => {
     if (currentDropDown.includes(id)) {
       setCurrentDropDown(currentDropDown.filter((item) => item !== id));
     } else {
-      // setCurrentDropDown([...currentDropDown, id]);
+      // // setCurrentDropDown([...currentDropDown, id]);
+      setCurrentDropDown([id]);
       setCurrentDropDown([id]);
     }
   };

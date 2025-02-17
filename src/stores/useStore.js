@@ -2,19 +2,29 @@
 import { create } from "zustand";
 import currentAPI from "../apiendpoint";
 
-
-
-
 // Zustand store
 const useStore = create((set) => ({
   // State variables
 
-
   // State variables
-  explore_inputs_Data: [],
-  set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
+  // explore_inputs_Data: [],
+  explore_inputs_Data: {
+    universe_filters: {},
+    technical_filters: {},
+    fundamental_filters: {},
+  },
 
-  current_response_name:"Report 1",
+  set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
+  reset_explore_inputs_Data: () =>
+    set({
+      explore_inputs_Data: {
+        universe_filters: {},
+        technical_filters: {},
+        fundamental_filters: {},
+      },
+    }),
+
+  current_response_name: "Report 1",
   set_current_response_name: (data) => set({ current_response_name: data }),
 
   explore_response: [],
@@ -27,14 +37,25 @@ const useStore = create((set) => ({
   explore_response_error: false,
   set_explore_response_error: (error) => set({ explore_response_error: error }),
 
+  handle_full_save_explore: (sec_name, data) => {
+    const { explore_inputs_Data, set_explore_inputs_Data } =
+      useStore.getState();
+
+    console.log({ data });
+    set_explore_inputs_Data({
+      ...explore_inputs_Data,
+      [sec_name]: data,
+    });
+    console.log("after action", { explore_inputs_Data });
+  },
   // Function to send full form data
   send_Full_Explore_Data: async () => {
-    const url = `${currentAPI}/explorer/`;
+    const url = `${currentAPI}/explorer`;
     const { token, explore_inputs_Data } = useStore.getState();
-  
+
     // Set loading state to true before starting the API request
     set({ explore_response_loading: true });
-  
+
     try {
       const response = await fetch(url, {
         method: "PATCH",
@@ -44,39 +65,37 @@ const useStore = create((set) => ({
         },
         body: JSON.stringify(explore_inputs_Data),
       });
-  
+
       if (!response.ok) {
         // Parse the error details from the response body
         const errorDetails = await response.json();
         const errorMessage = errorDetails.detail || "An unknown error occurred";
         throw new Error(errorMessage);
       }
-  
+
       const result = await response.json();
       console.log("Success:", result);
-  
+
       // Update the response state
       set({ explore_response: result.results });
-  
+
       // Reset error state if the request is successful
       set({ explore_response_error: null });
-  
+
       return result;
     } catch (error) {
       // Log detailed error information
       console.error("Error details:", error.message);
-  
+
       // Set the error state with the detailed error message
       set({ explore_response_error: error.message });
-  
+
       return { error: error.message };
     } finally {
       // Set loading state to false after the API request finishes
       set({ explore_response_loading: false });
     }
-  }
-  ,
-
+  },
   name: "Aman",
 
   input: "",
@@ -246,15 +265,6 @@ const useStore = create((set) => ({
       set({ portfoliosentibytesloading: false }); // Stop loading
     }
   },
-  handle_full_save_explore:(sec_name,data)=> {
-    const { explore_inputs_Data,set_explore_inputs_Data } = useStore.getState();
-
-    console.log({ data });
-    set_explore_inputs_Data({
-      ...explore_inputs_Data,
-      [sec_name]: data,
-    });
-  }
 }));
 
 export default useStore;

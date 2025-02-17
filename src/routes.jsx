@@ -24,7 +24,6 @@ import News from "./pages/News/News.jsx";
 import AllNews from "./pages/News/AllNews.jsx";
 import AddWatchlist from "./pages/AddWatchlist.jsx";
 import AddPortfolio from "./pages/AddPortfolio.jsx";
-import Explore_home_responsive from "./pages/explore/Explore_home_responsive.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -84,8 +83,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "",
-            // element: <Explore_home />,
-            element: <Explore_home_responsive />,
+            element: <Explore_home />,
           },
           {
             path: "explor_table",

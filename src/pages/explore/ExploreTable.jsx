@@ -541,24 +541,65 @@ const ExploreTable = () => {
   const navigate = Navigator();
   const { explore_response } = useStore();
   // const explore_response = products;
+  const [explore, setExplore] = useState(explore_response);
+  const [currentSort, setCurrentSort] = useState(null);
+  const [asorder, setasorder] = useState(true);
+  const sortResp = (attribute) => {
+    // Determine the new sort order:
+    // If the same column is clicked, toggle the current order.
+    // Otherwise, default to ascending order (false).
+    const newOrder = attribute === currentSort ? !asorder : false;
 
-  // Check if explore_response is valid and is an array
-  const isDataValid =
-    Array.isArray(explore_response) && explore_response.length > 0;
+    // Sort the data using the newOrder value.
+    const sortedData = [...explore].sort((a, b) => {
+      let aVal = a[attribute] ?? ""; // Default to empty string if null/undefined
+      let bVal = b[attribute] ?? "";
+    
+      // Try to convert to numbers (for numbers, currency, percentage, etc.)
+      const aNum = parseFloat(aVal.toString().replace(/[^0-9.-]+/g, ""));
+      const bNum = parseFloat(bVal.toString().replace(/[^0-9.-]+/g, ""));
+    
+      if (!isNaN(aNum) && !isNaN(bNum)) {
+        aVal = aNum;
+        bVal = bNum;
+      }
+    
+      // Case-insensitive comparison for strings
+      if (typeof aVal === "string" && typeof bVal === "string") {
+        aVal = aVal.toLowerCase();
+        bVal = bVal.toLowerCase();
+      }
+    
+      if (newOrder) {
+        return aVal < bVal ? 1 : aVal > bVal ? -1 : 0; // Descending
+      } else {
+        return aVal > bVal ? 1 : aVal < bVal ? -1 : 0; // Ascending
+      }
+    });
+    
+
+    // Update the sorted data, current column, and sort order states.
+    setExplore(sortedData);
+    setCurrentSort(attribute);
+    setasorder(newOrder);
+  };
+
+  // Check if explore is valid and is an array
+  const isDataValid = Array.isArray(explore) && explore.length > 0;
 
   return (
-    <div className="relative">
+    <div className="">
       <Outlet />
       <div className="w-full flex justify-end px-10 mt-5 space-x-2 ">
-        {isDataValid && (
+        {/* {isDataValid && (
           <div className="bg-[#F7F8FB] text-gray-700 w-max rounded-md px-6 text-xs flex items-center">
-            <span>total count:- {explore_response.length}</span>
+            <span>total count:- {explore.length}</span>
           </div>
-        )}
+        )} */}
         <div
           onClick={() => {
             if (isDataValid) {
-              downloadCSV(explore_response);
+              downloadCSV(explore);
             } else {
               alert("No data available to download");
             }
@@ -586,10 +627,10 @@ const ExploreTable = () => {
           </button>
         </div>
       </div>
-        <div
-          className={`mx-10 my-2 flex justify-center overflow-y-auto overflow-hidden rounded-md`}
-        >
-          <style>{`
+      <div
+        className={`mx-10 my-2 flex justify-center overflow- rounded-md`}
+      >
+        <style>{`
         /* Scrollbar styles for webkit browsers (Chrome, Safari) */
         ::-webkit-scrollbar {
           width: 8px;
@@ -614,28 +655,32 @@ const ExploreTable = () => {
         scrollbar-color: #888 #f1f1f1;
       `}</style>
 
-          <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg">
-            {isDataValid ? (
-              <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
-                <thead className="text-xs uppercase dark:text-white">
-                  <tr className="bg-[#F7F8FB] dark:bg-slate-700 sticky top-0 z-10">
+        <div className="relative max-h-[500px] overflow-x-auto shadow-md sm:rounded-lg">
+          {isDataValid ? (
+            <table className="w-max rounded-md min text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200 dark:bg-opacity-55">
+              <thead className="text-xs uppercase dark:text-white">
+                <tr className="bg-[#F7F8FB] dark:bg-slate-700 sticky top-0 z-10">
+                  <th
+                    // key={key}
+                    scope="col"
+                    className="px-2 py-3 bg-opacity-20 relative  dark:bg-gray-900 dark:bg-opacity-25"
+                  >
+                      <div className="h-[50px]  border-[px] relative top-2 flex items-start">
+                      Sl No.
+                      <br />({explore.length}){/* ({2000}) */}
+                    </div>
+                  </th>
+                  {Object.keys(explore[0]).map((key) => (
                     <th
-                      // key={key}
+                      key={key}
                       scope="col"
-                      className="px-2 py-3 bg-opacity-20 dark:bg-gray-900 dark:bg-opacity-25"
+                      className="px-2 h-max border-[1px]  relative bg-opacity-20  dark:bg-gray-900 dark:bg-opacity-25 cursor-pointer"
+                      onClick={() => {
+                        sortResp(key);
+                      }}
                     >
-                      <div className="text-wrap">
-                        Sl No.
-                        <br />
-                      </div>
-                    </th>
-                    {Object.keys(explore_response[0]).map((key) => (
-                      <th
-                        key={key}
-                        scope="col"
-                        className="px-2 py-3 bg-opacity-20 w-[80px] dark:bg-gray-900 dark:bg-opacity-25"
-                      >
-                        <div className="text-wrap">
+                      <div className="h-[50px]  border-[px] relative top-2 flex items-start">
+                        <div className="">
                           {key.split(" ").map((word, index) => (
                             <React.Fragment key={index}>
                               {word}
@@ -643,56 +688,82 @@ const ExploreTable = () => {
                             </React.Fragment>
                           ))}
                         </div>
-                      </th>
+                        <div>
+                          {currentSort == key && (
+                            <svg
+                              className={`${
+                                asorder ? "" : "rotate-180"
+                              } transition-transform m-1 opacity-70`}
+                              fill="#000000"
+                              height="8px"
+                              width="8px"
+                              version="1.1"
+                              id="Capa_1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              viewBox="0 0 490 490"
+                              xml:space="preserve"
+                            >
+                              <polygon points="245,456.701 490,33.299 0,33.299 " />
+                            </svg>
+                          )}
+
+                          {/* {currentSort === key && (
+                          <span className={`${asorder ? "rotate-180" : ""}`}>V</span>
+
+                        )}{" "} */}
+                        </div>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {explore.map((product, index) => (
+                  <tr
+                    // onClick={() => navigate("./popup")}
+                    key={index}
+                    className={`border-b ${
+                      index % 2 === 0
+                        ? "dark:bg-gray-900 bg-[#FBFBFB]"
+                        : "dark:bg-gray-800 bg-white"
+                    } cursor- dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
+                  >
+                    <td
+                      className={`px-4 py-2 text-xs font font-semibold w-max`}
+                    >
+                      {index + 1}
+                    </td>
+
+                    {Object.values(product).map((value, idx) => (
+                      <td
+                        key={idx}
+                        className={`px-2 py-2 text-xs font font-semibold ${
+                          idx === 0
+                            ? "text-black font-bold dark:text-white"
+                            : ""
+                        } ${
+                          value && value.toString().endsWith("%")
+                            ? parseFloat(value) < 0
+                              ? "text-red-500"
+                              : "text-green-500"
+                            : ""
+                        } w-max`}
+                      >
+                        {value}
+                      </td>
                     ))}
                   </tr>
-                </thead>
-                <tbody>
-                  {explore_response.map((product, index) => (
-                    <tr
-                      // onClick={() => navigate("./popup")}
-                      key={index}
-                      className={`border-b ${
-                        index % 2 === 0
-                          ? "dark:bg-gray-900 bg-[#FBFBFB]"
-                          : "dark:bg-gray-800 bg-white"
-                      } cursor- dark:text-gray-200 border-b-gray-200 dark:border-gray-700`}
-                    >
-                      <td
-                        className={`px-4 py-2 text-xs font font-semibold w-max`}
-                      >
-                        {index + 1}
-                      </td>
-
-                      {Object.values(product).map((value, idx) => (
-                        <td
-                          key={idx}
-                          className={`px-2 py-2 text-xs font font-semibold ${
-                            idx === 0
-                              ? "text-black font-bold dark:text-white"
-                              : ""
-                          } ${
-                            value && value.toString().endsWith("%")
-                              ? parseFloat(value) < 0
-                                ? "text-red-500"
-                                : "text-green-500"
-                              : ""
-                          } w-max`}
-                        >
-                          {value}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <div className="text-gray-500 dark:text-gray-200 p-5">
-                No data available to display.
-              </div>
-            )}
-          </div>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <div className="text-gray-500 dark:text-gray-200 p-5">
+              No data available to display.
+            </div>
+          )}
         </div>
+      </div>
     </div>
   );
 };
