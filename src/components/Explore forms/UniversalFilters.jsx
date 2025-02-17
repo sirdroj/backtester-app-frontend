@@ -370,7 +370,6 @@ const UniversalFilters = () => {
     } else {
       setIndexFilled(false);
     }
-    
   }
 
   useEffect(() => {
@@ -392,8 +391,11 @@ const UniversalFilters = () => {
     console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
-
+const [selectAllMcap,setSelectAllMcap]=useState(false)
   const handleCheckboxChange = (section, inputType, checked) => {
+    if(!checked){
+      setSelectAllMcap(false)
+    }
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
 
@@ -403,6 +405,37 @@ const UniversalFilters = () => {
         delete updatedSection[inputType]; // Remove unchecked checkbox from state
       }
 
+      return {
+        ...prevFormData,
+        [section]: updatedSection,
+      };
+    });
+  };
+  const handleSelectAllCheckboxChange = (section, checked) => {
+    setSelectAllMcap(checked)
+    console.log("handleSelectAllCheckboxChange", section, checked);
+    setFormData((prevFormData) => {
+      const updatedSection = { ...prevFormData[section] };
+      console.log("entyry", { updatedSection });
+      if (checked) {
+        // Set all checkboxes to true
+        Object.keys(updatedSection).forEach((key) => {
+          updatedSection["large_cap"] = true;
+          updatedSection["mid_cap"] = true;
+          updatedSection["small_cap"] = true;
+          updatedSection["micro_cap"] = true;
+        });
+      } else {
+        // Uncheck all checkboxes (remove them from state)
+        Object.keys(updatedSection).forEach((key) => {
+          updatedSection["large_cap"] = null;
+          updatedSection["mid_cap"] = null;
+          updatedSection["small_cap"] = null;
+          updatedSection["micro_cap"] = null;        
+          delete updatedSection[key];
+        });
+      }
+      console.log("exit", { updatedSection });
       return {
         ...prevFormData,
         [section]: updatedSection,
@@ -531,6 +564,25 @@ const UniversalFilters = () => {
                       </ul>
                     </div>
                   </div>
+                  {!customMcap && (
+                    <div className="text-sm flex justify-end py-1 items-center mt-2">
+                      {" "}
+                      <span className="text-gray-200">Select All </span>{" "}
+                      <input
+                        type="checkbox"
+                        className="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-sm"
+                        checked={
+                          selectAllMcap || false
+                        }
+                        onChange={(e) =>
+                          handleSelectAllCheckboxChange(
+                            section.key,
+                            e.target.checked
+                          )
+                        }
+                      />
+                    </div>
+                  )}
                   {section.children.map((inputField) => (
                     <div
                       key={inputField.title}
