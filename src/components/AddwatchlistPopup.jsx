@@ -56,7 +56,7 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
     }
 
     try {
-      const response = await fetch(`${currentAPI}/add_watchlistCSV`, {
+      const response = await fetch(`${currentAPI}/add_customwatchlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
             <input
               id="csv-upload"
               type="file"
-              accept=".csv"
+              accept=".csv, .xls, .xlsx"
               className="hidden"
               onChange={handleFileUpload}
             />
