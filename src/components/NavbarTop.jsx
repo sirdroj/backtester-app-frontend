@@ -35,7 +35,7 @@ export const NavbarTop = () => {
         <Link to="/" className="px-2 flex items-center"> 
           <img src="./mtlogo2.png" className="h-8" /> <span className="text-[1.5rem] font-mono px-2">Sentient</span>
         </Link>
-        <ul className="ml-36 z-100 flex justify-between p-2 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-[#5E445F] rounded-full text-[12px]">
+        <ul className="ml-36 z-100 flex justify-between p-2 px-5 border-solid border-[1px] w-3/5 bg-black bg-opacity-[10%] border-gray-600 rounded-full text-[12px]">
           {navItems.map((item) => (
             <Link to={item.path} key={item.id} className="text-white z-50 ">
               <li

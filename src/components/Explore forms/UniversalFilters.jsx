@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useStore from "../../stores/useStore";
 import currentAPI from "../../apiendpoint";
+import Select from "react-select";
+import Searchselect from "../Searchselect";
 
 const initializeFormData = (inputsData) => {
   let initialData = {};
@@ -230,41 +232,53 @@ const UniversalFilters = () => {
       disabled: false,
 
       children: [
-        {
-          title: "Custom index",
-          key: "custom_index",
-          inputs: [
-            {
-              type: "dropdown",
-              options: ["None", "opt1"],
-            },
-          ],
-        },
-        {
-          title: "Propriatory index",
-          key: "propriatory_index",
-          inputs: [
-            {
-              type: "dropdown",
-              options: ["None", "opt1"],
-            },
-          ],
-        },
+        // {
+        //   title: "Custom index",
+        //   key: "custom_index",
+        //   inputs: [
+        //     {
+        //       type: "dropdown",
+        //       options: ["None", "opt1"],
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "Propriatory index",
+        //   key: "propriatory_index",
+        //   inputs: [
+        //     {
+        //       type: "dropdown",
+        //       options: ["None", "opt1"],
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "Watchlist",
+        //   key: "watchlist",
+        //   inputs: [
+        //     {
+        //       type: "dropdown",
+        //     },
+        //   ],
+        // },
         {
           title: "Watchlist",
           key: "watchlist",
           inputs: [
             {
-              type: "file",
+              type: "dropdown",
+              options: ["None", "watchlist1", "watchlist2"],
             },
           ],
         },
+
         {
           title: "Portfolio",
           key: "portfolio",
           inputs: [
             {
-              type: "file",
+              type: "dropdown",
+              options: ["None", "portfolio1", "portfolio2"],
             },
           ],
         },
@@ -273,11 +287,12 @@ const UniversalFilters = () => {
   ];
 
   // const [inputsData, setinputdata] = useState(inputsDataU);
-
+  const customWatchlistSec = inputsData[-1];
   const {
     explore_inputs_Data,
     set_explore_inputs_Data,
     handle_full_save_explore,
+    set_showAddwatchlistPopup,
   } = useStore();
 
   function clean_data(formData) {
@@ -365,12 +380,12 @@ const UniversalFilters = () => {
       setIndexFilled(true);
       setFormData((prevFormData) => {
         const { market_capitalisation, ...updatedFormData } = prevFormData;
-        updatedFormData.market_capitalisation={
-          "large_cap": null,
-          "mid_cap": null,
-          "small_cap": null,
-          "micro_cap": null
-      }
+        updatedFormData.market_capitalisation = {
+          large_cap: null,
+          mid_cap: null,
+          small_cap: null,
+          micro_cap: null,
+        };
         return updatedFormData;
       });
     } else {
@@ -397,10 +412,24 @@ const UniversalFilters = () => {
     console.log(section, inputType, parsedValue);
     console.log({ formData });
   };
-const [selectAllMcap,setSelectAllMcap]=useState(false)
+  function get_setval(section, inputType) {
+    function set_val(value) {
+      console.log("set_val",section, inputType,{value})
+      const parsedValue = !isNaN(value) && value !== "" ? Number(value) : value;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [section]: {
+          ...prevFormData[section],
+          [inputType]: parsedValue,
+        },
+      }));
+    }
+    return set_val;
+  }
+  const [selectAllMcap, setSelectAllMcap] = useState(false);
   const handleCheckboxChange = (section, inputType, checked) => {
-    if(!checked){
-      setSelectAllMcap(false)
+    if (!checked) {
+      setSelectAllMcap(false);
     }
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
@@ -418,7 +447,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
     });
   };
   const handleSelectAllCheckboxChange = (section, checked) => {
-    setSelectAllMcap(checked)
+    setSelectAllMcap(checked);
     console.log("handleSelectAllCheckboxChange", section, checked);
     setFormData((prevFormData) => {
       const updatedSection = { ...prevFormData[section] };
@@ -437,7 +466,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
           updatedSection["large_cap"] = null;
           updatedSection["mid_cap"] = null;
           updatedSection["small_cap"] = null;
-          updatedSection["micro_cap"] = null;        
+          updatedSection["micro_cap"] = null;
           delete updatedSection[key];
         });
       }
@@ -520,7 +549,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                     src="./images/chevron-down.png"
                     className={`${
                       currentDropDown.includes(index) ? "rotate-180" : ""
-                    } invert`}
+                    } invert z-[-1]`}
                     alt="Toggle"
                   />
                 </div>
@@ -577,9 +606,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                       <input
                         type="checkbox"
                         className="w-4 h-4 mx-2 text-gray-600 bg-gray-500 rounded-sm"
-                        checked={
-                          selectAllMcap || false
-                        }
+                        checked={selectAllMcap || false}
                         onChange={(e) =>
                           handleSelectAllCheckboxChange(
                             section.key,
@@ -598,26 +625,36 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                       {inputField.inputs.map((input, inputIndex) => (
                         <div key={inputIndex}>
                           {input.type === "dropdown" && (
-                            <select
-                              value={
-                                formData[section.key]?.[inputField.key] || ""
-                              }
-                              onChange={(e) =>
-                                handleChange(
+                            <div>
+                              {/* <select
+                                value={
+                                  formData[section.key]?.[inputField.key] || ""
+                                }
+                                onChange={(e) =>
+                                  handleChange(
+                                    section.key,
+                                    inputField.key,
+                                    e.target.value
+                                  )
+                                }
+                                className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                              >
+                                {input.options.map((option, optionIndex) => (
+                                  <option key={optionIndex} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select> */}
+                              <Searchselect
+                                options={input.options}
+                                onSelect={get_setval(
                                   section.key,
-                                  inputField.key,
-                                  e.target.value
-                                )
-                              }
-                              className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
-                            >
-                              {input.options.map((option, optionIndex) => (
-                                <option key={optionIndex} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
+                                  inputField.key
+                                )}
+                              />
+                            </div>
                           )}
+
                           {input.type === "number" && (
                             <input
                               type="number"
@@ -672,6 +709,100 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                 </div>
               </div>
             );
+          } else if (section.key === "custom_watchlist") {
+            return (
+              <div key={index}>
+                <div
+                  onClick={() => {
+                    !(section.key == "index" && marketcapFilled) &&
+                      handleDropdownClick(index);
+                  }}
+                  className={`${
+                    section.key == "index" && marketcapFilled
+                      ? " opacity-20"
+                      : ""
+                  } flex justify-between px-2 mb-4 h-[40px] w-full items-center text-[20px] cursor-pointer`}
+                  style={{ boxShadow: "0px 0px 16px rgba(0, 0, 0, 0.7)" }}
+                >
+                  <h1 className="font-semibold">{section.title}</h1>
+                  <img
+                    src="./images/chevron-down.png"
+                    className={`${
+                      currentDropDown.includes(index) ? "rotate-180" : ""
+                    } invert z-[-1]`}
+                    alt="Toggle"
+                  />
+                </div>
+                <div
+                  className={`dropdown-content ${
+                    currentDropDown.includes(index)
+                      ? "show max-h-full"
+                      : "hidden"
+                  } ml-2 px-4 p-4`}
+                >
+                  {section.children.map((inputField) => (
+                    <div
+                      key={inputField.title}
+                      className="flex justify-between my-2"
+                    >
+                      <label className="mr-2">{inputField.title}</label>
+
+                      {inputField.inputs.map((input, inputIndex) => (
+                        <div key={inputIndex} className="flex">
+                          {inputField.key == "watchlist" && (
+                            <button
+                              onClick={() => {
+                                // if(inputField.key=="watchlist"){
+                                set_showAddwatchlistPopup(true);
+                                // }
+                              }}
+                              className="p-1 bg-gray-700 rounded-xl bg-opacity-50 border-[1px] px-3 m-2 text-sm"
+                            >
+                              {/* {inputField.key=="watchlist"?" Add watchlist":"Add Portfolio"} */}
+                              Add watchlist
+                            </button>
+                          )}
+                          {input.type === "dropdown" && (
+                            <div>
+                              {/* <select
+                                value={
+                                  formData[section.key]?.[inputField.key] || ""
+                                }
+                                onChange={(e) =>
+                                  handleChange(
+                                    section.key,
+                                    inputField.key,
+                                    e.target.value
+                                  )
+                                }
+                                className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                              >
+                                {input.options.map((option, optionIndex) => (
+                                  <option key={optionIndex} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select> */}
+
+                              <Searchselect
+                                options={input.options}
+                                onSelect={get_setval(
+                                  section.key,
+                                  inputField.key
+                                )}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                  <div className="flex justify-end py-2">
+                    {/* Additional button or functionality can be added here */}
+                  </div>
+                </div>
+              </div>
+            );
           } else {
             return (
               <div key={index}>
@@ -692,7 +823,7 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                     src="./images/chevron-down.png"
                     className={`${
                       currentDropDown.includes(index) ? "rotate-180" : ""
-                    } invert`}
+                    } invert z-[-1]`}
                     alt="Toggle"
                   />
                 </div>
@@ -712,25 +843,34 @@ const [selectAllMcap,setSelectAllMcap]=useState(false)
                       {inputField.inputs.map((input, inputIndex) => (
                         <div key={inputIndex}>
                           {input.type === "dropdown" && (
-                            <select
-                              value={
-                                formData[section.key]?.[inputField.key] || ""
-                              }
-                              onChange={(e) =>
-                                handleChange(
+                            <div>
+                              {/* <select
+                                value={
+                                  formData[section.key]?.[inputField.key] || ""
+                                }
+                                onChange={(e) =>
+                                  handleChange(
+                                    section.key,
+                                    inputField.key,
+                                    e.target.value
+                                  )
+                                }
+                                className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
+                              >
+                                {input.options.map((option, optionIndex) => (
+                                  <option key={optionIndex} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </select> */}
+                              <Searchselect
+                                options={input.options}
+                                onSelect={get_setval(
                                   section.key,
-                                  inputField.key,
-                                  e.target.value
-                                )
-                              }
-                              className="bg-gray-500 border border-gray-700 text-black text-sm rounded-lg p-2"
-                            >
-                              {input.options.map((option, optionIndex) => (
-                                <option key={optionIndex} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </select>
+                                  inputField.key
+                                )}
+                              />
+                            </div>
                           )}
                           {input.type === "number" && (
                             // <input

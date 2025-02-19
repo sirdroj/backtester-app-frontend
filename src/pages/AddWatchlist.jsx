@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 import currentAPI from "../apiendpoint";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useStore from "../stores/useStore";
 
 const AddWatchlist = ({ setshowaddwatchlist }) => {
   const [tableData, setTableData] = useState([]);
+  const [watchlistName, setWatchlistName] = useState("");
   const [error, setError] = useState("");
   const [isFileValid, setIsFileValid] = useState(false);
   const navigate = useNavigate();
-  const { theme, toggleTheme,username,token,fetchnewsData,fetchWatchlistNews,watchlist,setWatchlistNews,setWatchlistNewsLoading,setWatchlistNewsError,fetchSentibytes } = useStore();
-
+  const { token, fetchSentibytes } = useStore();
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -27,9 +27,7 @@ const AddWatchlist = ({ setshowaddwatchlist }) => {
           } else {
             setTableData([]);
             setIsFileValid(false);
-            setError(
-              "Invalid CSV format. Ensure columns are 'Name' and 'Ticker'."
-            );
+            setError("Invalid CSV format. Ensure columns are 'Name' and 'Ticker'.");
           }
         },
       });
@@ -41,7 +39,10 @@ const AddWatchlist = ({ setshowaddwatchlist }) => {
   };
 
   const handleSubmit = async () => {
-    // Replace with the actual token value.
+    if (!watchlistName.trim()) {
+      alert("Please enter a watchlist name.");
+      return;
+    }
 
     try {
       const response = await fetch(`${currentAPI}/add_watchlistCSV`, {
@@ -50,8 +51,9 @@ const AddWatchlist = ({ setshowaddwatchlist }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          watchlistName,
           watchlist: tableData,
-          token: token,
+          token,
         }),
       });
 
@@ -59,16 +61,13 @@ const AddWatchlist = ({ setshowaddwatchlist }) => {
         const result = await response.json();
         console.log("Server response:", result);
         alert("File submitted successfully!");
-        // navigate("/")
         setshowaddwatchlist(false);
-        fetchSentibytes()
+        fetchSentibytes();
       } else {
         const errorText = await response.json();
         console.error("Error:", errorText);
         alert(
-          `Failed to submit the file. Error: ${
-            errorText.detail?.[0]?.msg || "Unknown error"
-          }`
+          `Failed to submit the file. Error: ${errorText.detail?.[0]?.msg || "Unknown error"}`
         );
       }
     } catch (error) {
@@ -77,55 +76,44 @@ const AddWatchlist = ({ setshowaddwatchlist }) => {
     }
   };
 
-  // return (
-  //   <div>
-  //     <h1 className="text-[20px] w-full text-center mt-20">
-  //       This section is under Developement
-  //     </h1>
-  //     <div className="w-full flex justify-center mt-4">
-  //       <button
-  //         className="p-2 px-4 text-white bg-gray-500 rounded-md hover:bg-gray-600"
-  //         onClick={() => setshowaddwatchlist(false)}
-  //       >
-  //         Back
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
-
   return (
-    <div className="flex justify-center items-center mt-20">
-      <div>
-        <p className="px-4 text-[13px] text-center">
-          <b>Note :-</b> The uploaded CSV should have two columns only: 'Name'
-          and 'Ticker'.
-        </p>
-        <div className="flex items-center space-x-4 justify-center h-14">
-          <label
-            htmlFor="csv-upload"
-            className="p-2 px-4 text-[14px] border text-white cursor-pointer underline border-gray-300 rounded-md bg-gray-300 bg-opacity-20"
+    <form className="flex flex-col items-center mt-20" onSubmit={(e)=>{e.preventDefault(); handleSubmit();}}>
+      <p className="px-4 text-[13px] text-center">
+        <b>Note :-</b> The uploaded CSV should have two columns only: 'Name' and 'Ticker'.
+      </p>
+      <input
+        type="text"
+        value={watchlistName}
+        onChange={(e) => setWatchlistName(e.target.value)}
+        placeholder="Enter Watchlist Name"
+        required
+        className="border p-2 rounded-md my-2 w-64 text-black "
+      />
+      <div className="flex items-center space-x-4 justify-center h-14">
+        <label
+          htmlFor="csv-upload"
+          className="p-2 px-4 text-[14px] border text-white cursor-pointer underline border-gray-300 rounded-md bg-gray-300 bg-opacity-20"
+        >
+          Add Watch List
+        </label>
+        <input
+          id="csv-upload"
+          type="file"
+          accept=".csv"
+          className="hidden"
+          onChange={handleFileUpload}
+        />
+        {isFileValid && (
+          <button
+            type="submit"
+            className="p-2 px-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
           >
-            Add Watch List
-          </label>
-          <input
-            id="csv-upload"
-            type="file"
-            accept=".csv"
-            className="hidden"
-            onChange={handleFileUpload}
-          />
-          {isFileValid && (
-            <button
-              onClick={handleSubmit}
-              className="p-2 px-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Submit
-            </button>
-          )}
-        </div>
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+            Submit
+          </button>
+        )}
       </div>
-    </div>
+      {error && <p className="text-red-500 mt-4">{error}</p>}
+    </form>
   );
 };
 

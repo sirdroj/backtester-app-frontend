@@ -13,6 +13,8 @@ const useStore = create((set) => ({
     technical_filters: {},
     fundamental_filters: {},
   },
+  showAddwatchlistPopup:false,
+  set_showAddwatchlistPopup: (data) => set({ showAddwatchlistPopup: data }),
 
   set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
   reset_explore_inputs_Data: () =>

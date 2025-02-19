@@ -8,6 +8,8 @@ import NewsHome from "./News/NewsHome";
 import WatchlistNewsPopup from "../components/popups/WatchlistNewsPopup";
 import { MovingIndexes } from "../components/MovingIndexes";
 import Couracel from "../components/Couracel";
+import AddwatchlistPopup from "../components/AddwatchlistPopup";
+import AddwatchlistPopup2 from "../components/AddwatchlistPopup2";
 
 const MainMenue = () => {
   // const [news, setNews] = useState([]);

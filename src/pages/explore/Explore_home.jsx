@@ -16,7 +16,7 @@ import UniversalFilters from "../../components/Explore forms/UniversalFilters";
 const Explore_home = () => {
   const pathRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0); // Track the current index
-  const {reset_explore_inputs_Data } = useStore();
+  const { reset_explore_inputs_Data } = useStore();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -269,7 +269,7 @@ const Explore_home = () => {
               Next
             </div>
           )}
-          { (
+          {
             // <Link to={"/explorer/logs"}>
             <div
               // onClick={handleNext}
@@ -283,7 +283,7 @@ const Explore_home = () => {
               </svg>
             </div>
             // </Link>
-          )}
+          }
         </div>
       </div>
       <div
@@ -361,15 +361,14 @@ const Explore_home = () => {
                           <div>{sub}:-</div>
                           <div className="border-l-[1px] ml-1 pl-1">
                             {Object.entries(subinput).map(([key, val]) => {
-
-                              if(key=="watchlist" || key=="portfolio"){
-                                return (
-                                  <div>
-                                    {key} <b className="text-gray-800">:</b>{" "}
-                                    {String(val.filename)}
-                                  </div>
-                                );
-                              }
+                              // if(key=="watchlist" || key=="portfolio"){
+                              //   return (
+                              //     <div>
+                              //       {key} <b className="text-gray-800">:</b>{" "}
+                              //       {String(val.filename)}
+                              //     </div>
+                              //   );
+                              // }
                               return (
                                 <div>
                                   {key} <b className="text-gray-800">:</b>{" "}

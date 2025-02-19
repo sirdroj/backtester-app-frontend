@@ -5,6 +5,7 @@ import { NavbarTop } from "./components/NavbarTop";
 import useStore from "./stores/useStore";
 import ChatBot from "./pages/ChatBot";
 import currentAPI from "./apiendpoint";
+import AddwatchlistPopup from "./components/AddwatchlistPopup";
 
 function App() {
   const [rotation, setRotation] = useState(0); // State to track rotation degree
@@ -110,6 +111,7 @@ function App() {
         className={` w-screen min-h-screen bg-gradient-to-r from-[#587D9A] via-[#2D384A] to-[#22252E] dark:bg-gradient-to-r dark:from-[#121124] dark:to-[#0b191e] overflow-hidden text-white bg-opacity-20`}
       >
         <NavbarTop />
+        <AddwatchlistPopup />
         <div className="absolute   overflow-hidden w-full h-screen">
           <img
             id="vector1"
