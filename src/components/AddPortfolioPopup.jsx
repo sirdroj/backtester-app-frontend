@@ -95,7 +95,7 @@ const AddPortfolioPopup = () => {
     }
 
     try {
-      const response = await fetch(`${currentAPI}/add_customPortfolio`, {
+      const response = await fetch(`${currentAPI}/add_customwatchlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
