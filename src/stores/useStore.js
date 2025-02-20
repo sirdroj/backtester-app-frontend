@@ -13,6 +13,8 @@ const useStore = create((set) => ({
     technical_filters: {},
     fundamental_filters: {},
   },
+  showAddPortfolioPopup:false,
+  set_showAddPortfolioPopup: (data) => set({ showAddPortfolioPopup: data }),
   showAddwatchlistPopup:false,
   set_showAddwatchlistPopup: (data) => set({ showAddwatchlistPopup: data }),
 

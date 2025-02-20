@@ -6,6 +6,7 @@ import useStore from "./stores/useStore";
 import ChatBot from "./pages/ChatBot";
 import currentAPI from "./apiendpoint";
 import AddwatchlistPopup from "./components/AddwatchlistPopup";
+import AddPortfolioPopup from "./components/AddPortfolioPopup";
 
 function App() {
   const [rotation, setRotation] = useState(0); // State to track rotation degree
@@ -112,6 +113,7 @@ function App() {
       >
         <NavbarTop />
         <AddwatchlistPopup />
+        <AddPortfolioPopup />
         <div className="absolute   overflow-hidden w-full h-screen">
           <img
             id="vector1"

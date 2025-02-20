@@ -293,6 +293,7 @@ const UniversalFilters = () => {
     set_explore_inputs_Data,
     handle_full_save_explore,
     set_showAddwatchlistPopup,
+    set_showAddPortfolioPopup,
   } = useStore();
 
   function clean_data(formData) {
@@ -760,6 +761,19 @@ const UniversalFilters = () => {
                             >
                               {/* {inputField.key=="watchlist"?" Add watchlist":"Add Portfolio"} */}
                               Add watchlist
+                            </button>
+                          )}
+                          {inputField.key == "portfolio" && (
+                            <button
+                              onClick={() => {
+                                // if(inputField.key=="watchlist"){
+                                set_showAddPortfolioPopup(true);
+                                // }
+                              }}
+                              className="p-1 bg-gray-700 rounded-xl bg-opacity-50 border-[1px] px-3 m-2 text-sm"
+                            >
+                              {/* {inputField.key=="watchlist"?" Add watchlist":"Add Portfolio"} */}
+                              Add Portfolio
                             </button>
                           )}
                           {input.type === "dropdown" && (
