@@ -3,13 +3,15 @@ import Papa from "papaparse";
 import currentAPI from "../apiendpoint";
 import { useNavigate } from "react-router-dom";
 import useStore from "../stores/useStore";
+import * as XLSX from "xlsx";
 
-const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
+const AddwatchlistPopup = () => {
   const [tableData, setTableData] = useState([]);
   const [watchlistName, setWatchlistName] = useState("");
   const [error, setError] = useState("");
   const [isFileValid, setIsFileValid] = useState(false);
   const [fileName, setFileName] = useState(""); // New state for file name
+  const [file,setfile]=useState()
   const navigate = useNavigate();
   const {
     token,
@@ -20,9 +22,12 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    if (file && file.type === "text/csv") {
-      setError("");
-      setFileName(file.name); // Set the file name
+
+    if (!file) return;
+
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+
+    if (fileExtension === "csv") {
       Papa.parse(file, {
         header: true,
         skipEmptyLines: true,
@@ -31,21 +36,53 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
           if (data.length > 0 && "Name" in data[0] && "Ticker" in data[0]) {
             setTableData(data);
             setIsFileValid(true);
+            setFileName(file.name);
+            setError("");
           } else {
             setTableData([]);
             setIsFileValid(false);
-            setFileName(""); // Reset file name if invalid
+            setFileName("");
             setError(
               "Invalid CSV format. Ensure columns are 'Name' and 'Ticker'."
             );
           }
         },
       });
+    } else if (fileExtension === "xls" || fileExtension === "xlsx") {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+
+        const firstSheetName = workbook.SheetNames[0];
+        const sheetData = XLSX.utils.sheet_to_json(
+          workbook.Sheets[firstSheetName]
+        );
+
+        if (
+          sheetData.length > 0 &&
+          "Name" in sheetData[0] &&
+          "Ticker" in sheetData[0]
+        ) {
+          setTableData(sheetData);
+          setIsFileValid(true);
+          setFileName(file.name);
+          setError("");
+        } else {
+          setTableData([]);
+          setIsFileValid(false);
+          setFileName("");
+          setError(
+            "Invalid Excel format. Ensure columns are 'Name' and 'Ticker'."
+          );
+        }
+      };
+      reader.readAsArrayBuffer(file);
     } else {
       setTableData([]);
       setIsFileValid(false);
-      setFileName(""); // Reset file name
-      setError("Please upload a valid CSV file.");
+      setFileName("");
+      setError("Please upload a valid CSV or Excel file.");
     }
   };
 
@@ -72,8 +109,8 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
         const result = await response.json();
         console.log("Server response:", result);
         alert("File submitted successfully!");
-        setshowaddwatchlist(false);
         fetchSentibytes();
+        set_showAddwatchlistPopup(false)
       } else {
         const errorText = await response.json();
         console.error("Error:", errorText);
@@ -85,16 +122,16 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while submitting the file. Please try again.");
+      alert(error);
     }
   };
 
   return (
     <div
-    className={`fixed ${
+      className={`fixed ${
         showAddwatchlistPopup ? "flex" : "hidden"
       } z-[1000] justify-center items-center h-full w-full bg-black bg-opacity-[2%] backdrop-blur-sm`}
-      >
+    >
       <div className=" bg-slate-700 p-10 rounded-md">
         <div className="flex justify-end">
           <button
@@ -139,7 +176,9 @@ const AddwatchlistPopup = ({ setshowaddwatchlist }) => {
               onChange={handleFileUpload}
             />
             {fileName && (
-              <p className="text-sm text-green-400 mt-2">Uploaded: {fileName}</p>
+              <p className="text-sm text-green-400 mt-2">
+                Uploaded: {fileName}
+              </p>
             )}
           </div>
           {isFileValid && (

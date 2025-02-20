@@ -15,22 +15,27 @@ const threedots = (
   </svg>
 );
 
-const WatchlistObject = ({ watchlist }) => {
+const WatchlistObject = ({ watchlist,setSelectedWatchlists}) => {
   const [showOptions, setShowOptions] = useState(false);
-
+  function handleChange(e) {
+    // if (e.target.checked) {
+    //   // Add to selectedWatchlists if checked
+    //   setSelectedWatchlists((prevwatchlist) => [...prevwatchlist, watchlist.name]);
+    // } else {
+    //   // Remove from selectedWatchlists if unchecked
+    //   setSelectedWatchlists((prevwatchlist) =>
+    //     prevwatchlist.filter(name => name !== watchlist.name)
+    //   );    }
+  }
   return (
-    <div className=" p-1 bg-gray-600 m-1 rounded-md flex justify-between flex-1">
+    <div className=" p-1 bg-gray-700 m-1 rounded-md flex justify-between flex-1">
       <h1>{watchlist.name}</h1>{" "}
       <div className=" cursor-pointer relative">
-        <span onClick={()=>setShowOptions(!showOptions)}>{threedots}</span>
-        {showOptions &&
-          <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max">
-
-            <li className="hover:bg-slate-600 p-[2px] rounded-sm px-1">Set as Current Watchlist</li>
-            <li className="hover:bg-slate-600 p-[2px] rounded-sm px-1">Delete </li>
-            {/* <li onClick={()=>setShowOptions(false)}>close</li> */}
-          </ul>
-        }
+        <input
+          className="w-4 h-4 mx-2 text-slate-800 bg-gray-400 rounded-sm stroke-gray-300"
+          type="checkbox"
+          onChange={handleChange}
+        />
       </div>
     </div>
   );
