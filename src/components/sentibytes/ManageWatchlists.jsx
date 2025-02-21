@@ -3,6 +3,7 @@ import SentibyteObject from "../SentibyteObject";
 import WatchlistObject from "./WatchlistObject";
 import AddWatchlist from "../../pages/AddWatchlist";
 import useStore from "../../stores/useStore";
+import currentAP from "../../apiendpoint";
 const sampleWatchlist = [
   {
     name: "Tech Giants",
@@ -59,7 +60,7 @@ const ManageWatchlists = ({
   setshowmanageWatchlist,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddwatchlistPopup ,userWatchlists,token} = useStore();
+  const { set_showAddwatchlistPopup ,userWatchlists,token,fetchoptions} = useStore();
   const [selectedwatchlists, setSelectedWatchlists] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
 
@@ -77,23 +78,35 @@ const ManageWatchlists = ({
       <circle cx="19" cy="12" r="2" />
     </svg>
   );
-  function handleDelete() {
-    fetch(`${currentAP}/deleteportfolio`, {
-      method: "POST",
+
+ function handleDelete() {
+    fetch(`${currentAP}/delete_options`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        portfolios: selectedwatchlists,
+        watchlists: selectedwatchlists,
         token: token, // Token is now included in the payload
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to delete portfolios");
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log("Delete response:", data);
+        alert("Portfolios deleted successfully!"); 
+        fetchoptions()
       })
-      .catch((error) => console.error("Error deleting portfolios:", error));
+      .catch((error) => {
+        console.error("Error deleting portfolios:", error);
+        alert("Failed to delete portfolios. Please try again."); // Error message
+      });
   }
+  
   
 
   return (
@@ -109,15 +122,15 @@ const ManageWatchlists = ({
               </span>
               {showOptions && (
                 <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max">
-                  <li className={`${selectedPortfolios.length!=1?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
+                  <li className={`${selectedwatchlists.length!=1?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
                     Set as Current Portfolio
                   </li>
                   <li onClick={()=>{
-                    if(selectedPortfolios.length>0){
+                    // if(selectedwatchlists.length>0){
                       handleDelete()
-                    }
+                    // }
 
-                  }} className={`${selectedPortfolios.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
+                  }} className={`${selectedwatchlists.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
                     Delete{" "}
                   </li>
                   {/* <li onClick={()=>setShowOptions(false)}>close</li> */}

@@ -59,7 +59,7 @@ const ManagePortfolios = ({
   setshowmanagePortfolio,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddPortfolioPopup ,userPortfolios,token} = useStore();
+  const { set_showAddPortfolioPopup ,userPortfolios,token,fetchoptions} = useStore();
   const [selectedPortfolios, setSelectedPortfolios] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
 
@@ -79,22 +79,33 @@ const ManagePortfolios = ({
   );
 
   function handleDelete() {
-  fetch(`${currentAP}/deleteportfolio`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      portfolios: selectedPortfolios,
-      token: token, // Token is now included in the payload
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Delete response:", data);
+    fetch(`${currentAP}/delete_options`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        portfolios: selectedPortfolios,
+        token: token, // Token is now included in the payload
+      }),
     })
-    .catch((error) => console.error("Error deleting portfolios:", error));
-}
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to delete portfolios");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Delete response:", data);
+        alert("Portfolios deleted successfully!"); 
+        fetchoptions()
+      })
+      .catch((error) => {
+        console.error("Error deleting portfolios:", error);
+        alert("Failed to delete portfolios. Please try again."); // Error message
+      });
+  }
+  
 
 
   return (
