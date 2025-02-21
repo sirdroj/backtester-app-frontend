@@ -63,6 +63,8 @@ function App() {
       setWatchlistNewsLoading(false); // Stop loading
     }
   };
+  // fetchoptions();
+
   useEffect(() => {
     // console.log("calling fetchoptions")
     fetchoptions();

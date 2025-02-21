@@ -18,14 +18,14 @@ const threedots = (
 const WatchlistObject = ({ watchlist,setSelectedWatchlists}) => {
   const [showOptions, setShowOptions] = useState(false);
   function handleChange(e) {
-    // if (e.target.checked) {
-    //   // Add to selectedWatchlists if checked
-    //   setSelectedWatchlists((prevwatchlist) => [...prevwatchlist, watchlist.name]);
-    // } else {
-    //   // Remove from selectedWatchlists if unchecked
-    //   setSelectedWatchlists((prevwatchlist) =>
-    //     prevwatchlist.filter(name => name !== watchlist.name)
-    //   );    }
+    if (e.target.checked) {
+      // Add to selectedWatchlists if checked
+      setSelectedWatchlists((prevwatchlist) => [...prevwatchlist, watchlist]);
+    } else {
+      // Remove from selectedWatchlists if unchecked
+      setSelectedWatchlists((prevwatchlist) =>
+        prevwatchlist.filter(name => name !== watchlist)
+      );    }
   }
   return (
     <div className=" p-1 bg-gray-700 m-1 rounded-md flex justify-between flex-1">
