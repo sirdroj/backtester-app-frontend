@@ -112,7 +112,12 @@ const ManageWatchlists = ({
                   <li className={`${selectedPortfolios.length!=1?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
                     Set as Current Portfolio
                   </li>
-                  <li onClick={handleDelete} className={`${selectedPortfolios.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
+                  <li onClick={()=>{
+                    if(selectedPortfolios.length>0){
+                      handleDelete()
+                    }
+
+                  }} className={`${selectedPortfolios.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
                     Delete{" "}
                   </li>
                   {/* <li onClick={()=>setShowOptions(false)}>close</li> */}
