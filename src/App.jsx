@@ -62,6 +62,10 @@ function App() {
       setWatchlistNewsLoading(false); // Stop loading
     }
   };
+  useEffect(() => {
+    // console.log("calling fetchoptions")
+    fetchoptions();
+  }, []);
 
   useEffect(() => {
     fetchnewsData();
@@ -75,10 +79,7 @@ function App() {
     fetchSentibytes();
     
   }, [fetchSentibytes]);
-  useEffect(() => {
-    console.log("calling fetchoptions")
-    fetchoptions();
-  }, []);
+  
 
   useEffect(() => {
     fetchPortfolioSentibytes();
