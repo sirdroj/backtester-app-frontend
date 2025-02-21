@@ -29,7 +29,7 @@ const WatchlistObject = ({ watchlist,setSelectedWatchlists}) => {
   }
   return (
     <div className=" p-1 bg-gray-700 m-1 rounded-md flex justify-between flex-1">
-      <h1>{watchlist.name}</h1>{" "}
+      <h1>{watchlist}</h1>{" "}
       <div className=" cursor-pointer relative">
         <input
           className="w-4 h-4 mx-2 text-slate-800 bg-gray-400 rounded-sm stroke-gray-300"

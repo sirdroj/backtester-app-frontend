@@ -59,7 +59,7 @@ const ManageWatchlists = ({
   setshowmanageWatchlist,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddwatchlistPopup } = useStore();
+  const { set_showAddwatchlistPopup ,userWatchlists} = useStore();
   const [selectedwatchlists, setSelectedWatchlists] = useState();
   const [showOptions, setShowOptions] = useState(false);
 
@@ -105,7 +105,7 @@ const ManageWatchlists = ({
         </div>
         {pg == 0 && (
           <body>
-            {sampleWatchlist.map((item, idx) => (
+            {userWatchlists.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
                 key={idx}
