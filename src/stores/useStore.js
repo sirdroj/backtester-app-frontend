@@ -8,14 +8,40 @@ const useStore = create((set) => ({
 
   // State variables
   // explore_inputs_Data: [],
+  userWatchlists: ["w1", "w2"],
+  userPortfolios: ["p1", "p2"],
+
+  fetchoptions: async () => {
+    console.log("fetching options called");
+    const { token } = useStore.getState();
+    const url = `${currentAPI}/get_options?token=${encodeURIComponent(token)}`;
+
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json" }, // No Content-Type for GET
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      set({userWatchlists: data.watchlist_files, userPortfolios: data.portfolio_files});
+    } catch (error) {
+      console.error("Error fetching watchlist :", error);
+    } finally {
+    }
+  },
+
   explore_inputs_Data: {
     universe_filters: {},
     technical_filters: {},
     fundamental_filters: {},
   },
-  showAddPortfolioPopup:false,
+  showAddPortfolioPopup: false,
   set_showAddPortfolioPopup: (data) => set({ showAddPortfolioPopup: data }),
-  showAddwatchlistPopup:false,
+  showAddwatchlistPopup: false,
   set_showAddwatchlistPopup: (data) => set({ showAddwatchlistPopup: data }),
 
   set_explore_inputs_Data: (data) => set({ explore_inputs_Data: data }),
@@ -240,10 +266,8 @@ const useStore = create((set) => ({
     const { token } = useStore.getState();
     const url = `${currentAPI}/get_portfoliosentibytes/`;
 
-    // const url = `${currentAPI}/get_sentibytes/`;
     const payload = {
       token,
-      // watchlist: watchlist.map((obj) => obj.Ticker),
     };
 
     try {

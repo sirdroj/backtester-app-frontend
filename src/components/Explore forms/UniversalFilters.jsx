@@ -6,7 +6,10 @@ import Searchselect from "../Searchselect";
 
 const initializeFormData = (inputsData) => {
   let initialData = {};
+  
 
+
+  
   const traverseInputs = (sections) => {
     sections.forEach((section) => {
       initialData[section.key] = {}; // Initialize section key
@@ -34,6 +37,15 @@ const initializeFormData = (inputsData) => {
 };
 
 const UniversalFilters = () => {
+  const {
+    explore_inputs_Data,
+    set_explore_inputs_Data,
+    handle_full_save_explore,
+    set_showAddwatchlistPopup,
+    set_showAddPortfolioPopup,
+    userWatchlists,
+    userPortfolios
+  } = useStore();
   const [customMcap, setCustomMcap] = useState(false);
   const inputsData = [
     {
@@ -267,7 +279,7 @@ const UniversalFilters = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "watchlist1", "watchlist2"],
+              options: userWatchlists,
             },
           ],
         },
@@ -278,7 +290,7 @@ const UniversalFilters = () => {
           inputs: [
             {
               type: "dropdown",
-              options: ["None", "portfolio1", "portfolio2"],
+              options: userPortfolios,
             },
           ],
         },
@@ -288,13 +300,7 @@ const UniversalFilters = () => {
 
   // const [inputsData, setinputdata] = useState(inputsDataU);
   const customWatchlistSec = inputsData[-1];
-  const {
-    explore_inputs_Data,
-    set_explore_inputs_Data,
-    handle_full_save_explore,
-    set_showAddwatchlistPopup,
-    set_showAddPortfolioPopup,
-  } = useStore();
+  
 
   function clean_data(formData) {
     const cleanedData = {};

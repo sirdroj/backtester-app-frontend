@@ -18,6 +18,7 @@ const AddPortfolioPopup = () => {
     fetchSentibytes,
     showAddPortfolioPopup,
     set_showAddPortfolioPopup,
+    fetchoptions
   } = useStore();
 
   const handleFileUpload = (e) => {
@@ -111,7 +112,7 @@ const AddPortfolioPopup = () => {
         const result = await response.json();
         console.log("Server response:", result);
         alert("File submitted successfully!");
-        fetchSentibytes();
+        fetchoptions();
         set_showAddPortfolioPopup(false)
       } else {
         const errorText = await response.json();

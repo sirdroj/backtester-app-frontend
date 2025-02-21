@@ -18,6 +18,7 @@ const AddwatchlistPopup = () => {
     fetchSentibytes,
     showAddwatchlistPopup,
     set_showAddwatchlistPopup,
+    fetchoptions
   } = useStore();
 
   const handleFileUpload = (e) => {
@@ -109,8 +110,8 @@ const AddwatchlistPopup = () => {
         const result = await response.json();
         console.log("Server response:", result);
         alert("File submitted successfully!");
-        fetchSentibytes();
         set_showAddwatchlistPopup(false)
+        fetchoptions()
       } else {
         const errorText = await response.json();
         console.error("Error:", errorText);

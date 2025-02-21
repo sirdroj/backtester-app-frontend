@@ -24,6 +24,9 @@ function App() {
     setWatchlistNewsLoading,
     setWatchlistNewsError,
     fetchSentibytes,
+    userWAtchlist,
+    fetchoptions
+
   } = useStore();
   const location = useLocation(); // Get the current route
 
@@ -70,7 +73,12 @@ function App() {
 
   useEffect(() => {
     fetchSentibytes();
+    
   }, [fetchSentibytes]);
+  useEffect(() => {
+    console.log("calling fetchoptions")
+    fetchoptions();
+  }, []);
 
   useEffect(() => {
     fetchPortfolioSentibytes();
