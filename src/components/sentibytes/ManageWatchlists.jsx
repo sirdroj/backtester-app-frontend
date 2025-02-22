@@ -98,7 +98,7 @@ const ManageWatchlists = ({
       })
       .then((data) => {
         console.log("Delete response:", data);
-        alert("Portfolios deleted successfully!"); 
+        alert("Watchlist deleted successfully!"); 
         fetchoptions()
       })
       .catch((error) => {
