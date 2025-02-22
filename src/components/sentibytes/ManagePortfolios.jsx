@@ -98,6 +98,7 @@ const ManagePortfolios = ({
       .then((data) => {
         console.log("Delete response:", data);
         alert("Portfolios deleted successfully!"); 
+        setSelectedPortfolios([])
         fetchoptions()
       })
       .catch((error) => {

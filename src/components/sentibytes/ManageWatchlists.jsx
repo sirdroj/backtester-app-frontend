@@ -99,6 +99,7 @@ const ManageWatchlists = ({
       .then((data) => {
         console.log("Delete response:", data);
         alert("Watchlist deleted successfully!"); 
+        setSelectedWatchlists([])
         fetchoptions()
       })
       .catch((error) => {
