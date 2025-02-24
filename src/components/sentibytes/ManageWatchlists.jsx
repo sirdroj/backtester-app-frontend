@@ -148,6 +148,7 @@ const ManageWatchlists = ({
                 key={idx}
                 setSelectedWatchlists={setSelectedWatchlists}
                 selectedwatchlists={selectedwatchlists}
+                dir={"watchlist"}
               />
             ))}
           </body>

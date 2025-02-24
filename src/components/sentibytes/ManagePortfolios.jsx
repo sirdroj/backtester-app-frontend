@@ -147,6 +147,7 @@ const ManagePortfolios = ({
                 key={idx}
                 setSelectedWatchlists={setSelectedPortfolios}
                 selectedwatchlists={selectedPortfolios}
+                dir={"portfolio"}
               />
             ))}
           </body>
