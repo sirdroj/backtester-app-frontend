@@ -59,9 +59,12 @@ const ManagePortfolios = ({
   setshowmanagePortfolio,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddPortfolioPopup ,userPortfolios,token,fetchoptions} = useStore();
+  const { set_showAddPortfolioPopup, userPortfolios, token, fetchoptions } =
+    useStore();
   const [selectedPortfolios, setSelectedPortfolios] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
 
   const threedots = (
     <svg
@@ -97,17 +100,16 @@ const ManagePortfolios = ({
       })
       .then((data) => {
         console.log("Delete response:", data);
-        alert("Portfolios deleted successfully!"); 
-        setSelectedPortfolios([])
-        fetchoptions()
+        alert("Portfolios deleted successfully!");
+        setSelectedPortfolios([]);
+        fetchoptions();
+        setDeleteMode(false);
       })
       .catch((error) => {
         console.error("Error deleting portfolios:", error);
         alert("Failed to delete portfolios. Please try again."); // Error message
       });
   }
-  
-
 
   return (
     <div>
@@ -121,18 +123,47 @@ const ManagePortfolios = ({
                 {threedots}
               </span>
               {showOptions && (
-                <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max">
-                  <li className={`${selectedPortfolios.length!=1?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
+                <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max text-left">
+                  <li
+                    className={`${
+                      selectedPortfolios.length != 1 ? "opacity-50" : ""
+                    } hover:bg-slate-600 p-[2px] rounded-sm px-1`}
+                  >
                     Set as Current Portfolio
                   </li>
-                  <li onClick={()=>{
-                    if(selectedPortfolios.length>0){
-                      handleDelete()
-                    }
-
-                  }} className={`${selectedPortfolios.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
-                    Delete{" "}
+                  {deleteMode && (
+                    <li
+                      onClick={() => {
+                        // if(selectedPortfolios.length>0){
+                        handleDelete();
+                        setShowOptions(!showOptions); // }
+                      }}
+                      className={` hover:bg-slate-600 p-[2px] rounded-sm px-1`}
+                    >
+                      Delete{" "}
+                    </li>
+                  )}
+                  {!deleteMode && (
+                    <li
+                      onClick={() => {
+                        setDeleteMode(true);
+                        setShowOptions(!showOptions);
+                      }}
+                      className={` hover:bg-slate-600 p-[2px] rounded-sm px-1`}
+                    >
+                      Select
+                    </li>
+                  )}
+                  <li
+                    onClick={() => {
+                      setEditMode(!editMode);
+                      setShowOptions(!showOptions);
+                    }}
+                    className={` hover:bg-slate-600 p-[2px] rounded-sm px-1`}
+                  >
+                    {editMode ? "Exit Edit Mode" : "Edit mode"}
                   </li>
+
                   {/* <li onClick={()=>setShowOptions(false)}>close</li> */}
                 </ul>
               )}
@@ -148,6 +179,8 @@ const ManagePortfolios = ({
                 setSelectedWatchlists={setSelectedPortfolios}
                 selectedwatchlists={selectedPortfolios}
                 dir={"portfolio"}
+                deleteMode={deleteMode}
+                editMode={editMode}
               />
             ))}
           </body>

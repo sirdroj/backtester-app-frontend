@@ -1,68 +1,20 @@
 import React, { useState } from "react";
-import SentibyteObject from "../SentibyteObject";
 import WatchlistObject from "./WatchlistObject";
 import AddWatchlist from "../../pages/AddWatchlist";
 import useStore from "../../stores/useStore";
 import currentAP from "../../apiendpoint";
-const sampleWatchlist = [
-  {
-    name: "Tech Giants",
-    stocks: [
-      { ticker: "AAPL", name: "Apple Inc." },
-      { ticker: "GOOGL", name: "Alphabet Inc." },
-      { ticker: "MSFT", name: "Microsoft Corp." },
-    ],
-  },
-  {
-    name: "Tech Giants",
-    stocks: [
-      { ticker: "AAPL", name: "Apple Inc." },
-      { ticker: "GOOGL", name: "Alphabet Inc." },
-      { ticker: "MSFT", name: "Microsoft Corp." },
-    ],
-  },
-  {
-    name: "Indian Blue Chips",
-    stocks: [
-      { ticker: "RELIANCE", name: "Reliance Industries Ltd" },
-      { ticker: "TCS", name: "Tata Consultancy Services Ltd" },
-      { ticker: "INFY", name: "Infosys Ltd" },
-    ],
-  },
-  {
-    name: "EV & Auto",
-    stocks: [
-      { ticker: "TSLA", name: "Tesla Inc." },
-      { ticker: "TATAMOTORS", name: "Tata Motors Ltd" },
-      { ticker: "NIO", name: "Nio Inc." },
-    ],
-  },
-  {
-    name: "Banking Sector",
-    stocks: [
-      { ticker: "HDFCBANK", name: "HDFC Bank Ltd" },
-      { ticker: "ICICIBANK", name: "ICICI Bank Ltd" },
-      { ticker: "JPM", name: "JPMorgan Chase & Co." },
-    ],
-  },
-  {
-    name: "Healthcare & Pharma",
-    stocks: [
-      { ticker: "PFE", name: "Pfizer Inc." },
-      { ticker: "SUNPHARMA", name: "Sun Pharmaceutical Industries Ltd" },
-      { ticker: "ABBV", name: "AbbVie Inc." },
-    ],
-  },
-];
+
 const ManageWatchlists = ({
   sentibytes,
   showmanageWatchlist,
   setshowmanageWatchlist,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddwatchlistPopup ,userWatchlists,token,fetchoptions} = useStore();
-  const [selectedwatchlists, setSelectedWatchlists] = useState([]);
+  const { set_showAddwatchlistPopup, userWatchlists, token, fetchoptions } = useStore();
+  const [selectedWatchlists, setSelectedWatchlists] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
 
   const threedots = (
     <svg
@@ -79,98 +31,122 @@ const ManageWatchlists = ({
     </svg>
   );
 
- function handleDelete() {
+  function handleDelete() {
     fetch(`${currentAP}/delete_options`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        watchlists: selectedwatchlists,
-        token: token, // Token is now included in the payload
+        watchlists: selectedWatchlists,
+        token: token,
       }),
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to delete portfolios");
+          throw new Error("Failed to delete watchlists");
         }
         return res.json();
       })
       .then((data) => {
         console.log("Delete response:", data);
-        alert("Watchlist deleted successfully!"); 
-        setSelectedWatchlists([])
-        fetchoptions()
+        alert("Watchlists deleted successfully!");
+        fetchoptions();
+        setSelectedWatchlists([]);
+        setDeleteMode(false);
       })
       .catch((error) => {
-        console.error("Error deleting portfolios:", error);
-        alert("Failed to delete portfolios. Please try again."); // Error message
+        console.error("Error deleting watchlists:", error);
+        alert("Failed to delete watchlists. Please try again.");
       });
   }
-  
-  
 
   return (
     <div>
-      <div className="relative   h-full sentibytes-container">
+      <div className="relative h-full sentibytes-container">
         <div>
           <h1 className="text-center border-b-[1px] mb-2 py-1 flex justify-between px-2">
             <div></div>
-            <span>ManageWatchlists</span>
-            <div className=" cursor-pointer relative">
+            <span>Manage Watchlists</span>
+            <div className="cursor-pointer relative ">
               <span onClick={() => setShowOptions(!showOptions)}>
                 {threedots}
               </span>
               {showOptions && (
-                <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max">
-                  <li className={`${selectedwatchlists.length!=1?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
-                    Set as Current Portfolio
+                <ul className="absolute bg-gray-500 z-10 rounded-md right-[0%] p-1 space-y-1 text-[10px] w-max text-left">
+                  <li className={`${selectedWatchlists.length !== 1 ? "opacity-50" : ""} hover:bg-slate-600 p-[2px] rounded-sm px-1`}>
+                    Set as Current Watchlist
                   </li>
-                  <li onClick={()=>{
-                    // if(selectedwatchlists.length>0){
-                      handleDelete()
-                    // }
-
-                  }} className={`${selectedwatchlists.length==0?"opacity-50":""} hover:bg-slate-600 p-[2px] rounded-sm px-1`} >
-                    Delete{" "}
+                  {deleteMode && (
+                    <li
+                      onClick={() => {
+                        handleDelete();
+                        setShowOptions(!showOptions);
+                      }}
+                      className="hover:bg-slate-600 p-[2px] rounded-sm px-1"
+                    >
+                      Delete
+                    </li>
+                  )}
+                  {!deleteMode && (
+                    <li
+                      onClick={() => {
+                        setDeleteMode(true);
+                        setShowOptions(!showOptions);
+                      }}
+                      className="hover:bg-slate-600 p-[2px] rounded-sm px-1"
+                    >
+                      Select 
+                    </li>
+                  )}
+                  <li
+                    onClick={() => {
+                      setEditMode(!editMode);
+                      setShowOptions(!showOptions);
+                    }}
+                    className="hover:bg-slate-600 p-[2px] rounded-sm px-1"
+                  >
+                    {editMode ? "Exit Edit Mode" : "Edit Mode"}
                   </li>
-                  {/* <li onClick={()=>setShowOptions(false)}>close</li> */}
                 </ul>
               )}
             </div>
           </h1>
         </div>
-        {pg == 0 && (
-          <body>
+
+        {pg === 0 && (
+          <div>
             {userWatchlists.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
-                key={idx}
+                key={item}
                 setSelectedWatchlists={setSelectedWatchlists}
-                selectedwatchlists={selectedwatchlists}
+                selectedwatchlists={selectedWatchlists}
                 dir={"watchlist"}
+                deleteMode={deleteMode}
+                editMode={editMode}
               />
             ))}
-          </body>
+          </div>
         )}
-        {pg == 1 && (
-          <body>
+        {pg === 1 && (
+          <div>
             <AddWatchlist />
-          </body>
+          </div>
         )}
       </div>
-      <div className="  bottom-0">
+
+      <div className="bottom-0">
         <button
           onClick={() => {
-            pg == 1 ? setpg(0) : setshowmanageWatchlist(false);
+            pg === 1 ? setpg(0) : setshowmanageWatchlist(false);
           }}
           className="p-1 bg-gray-700 rounded-xl bg-opacity-50 border-[1px] px-3 m-2 text-sm"
         >
-          back
+          Back
         </button>
         {pg !== 1 && (
           <button
-            // onClick={() => setpg(1)}
             onClick={() => set_showAddwatchlistPopup(true)}
             className="p-1 bg-gray-700 rounded-xl bg-opacity-50 border-[1px] px-3 m-2 text-sm"
           >
