@@ -93,7 +93,7 @@ const useStore = create((set) => ({
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(explore_inputs_Data),
+        body: JSON.stringify({ explore_inputs_Data, token }),
       });
 
       if (!response.ok) {
