@@ -64,7 +64,8 @@ export default function Searchselect({ options, onSelect }) {
           {/* Dropdown Options */}
           <div className="mt-2 space-y-1 text-white">
             <div className="px-2 py-1 text-sm text-gray-white z-[100000000] hover:bg-gray-600 cursor-pointer rounded-md" onClick={()=>{
-              setSelected(null)
+              setSelected(null);
+              onSelect("None");
               setIsOpen(false);
 
               ;}}>

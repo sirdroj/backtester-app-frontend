@@ -310,13 +310,18 @@ const UniversalFilters = () => {
         let section = formData[sectionKey];
 
         if (sectionKey === "custom_watchlist") {
-            // Filter out null, undefined, and "None" values
-            section = Object.fromEntries(
-                Object.entries(section).filter(
-                    ([key, value]) => value !== null && value !== undefined && value !== "None"
-                )
-            );
-        }
+          // Filter out null, undefined, and "None" values
+          section = Object.fromEntries(
+              Object.entries(section).filter(
+                  ([key, value]) => value !== null && value !== undefined && value !== "None"
+              )
+          );
+
+          // If custom_watchlist is empty after filtering, do not add it to cleanedData
+          if (Object.keys(section).length === 0) {
+              return;
+          }
+      }
 
         // Check if the section has any values that should be considered as "null-like"
         let hasNull = Object.values(section).some(
