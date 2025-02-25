@@ -310,7 +310,7 @@ const Explore_home = () => {
               if (filter == "technical_filters") {
                 return (
                   <div className="  rounded">
-                    <div className="bg-green-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
+                    <div className="bg-gray-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
                       <div className="font-bold">{filter} :-</div>
                       {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
@@ -354,7 +354,7 @@ const Explore_home = () => {
               if (filter == "universe_filters") {
                 return (
                   <div className="  rounded">
-                    <div className="bg-red-900 m-1 w-full rounded-md p-1 bg-opacity-10 ">
+                    <div className="bg-gray-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
                       <div className="font-bold">{filter} :-</div>
                       {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
@@ -388,7 +388,7 @@ const Explore_home = () => {
               if (filter == "fundamental_filters") {
                 return (
                   <div className=" rounded ">
-                    <div className="bg-blue-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
+                    <div className="bg-gray-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
                       <div className="font-bold">{filter} :-</div>
                       {/* {console.log("explore_inputs_Data[filter]",explore_inputs_Data[filter])} */}
 
