@@ -304,29 +304,39 @@ const UniversalFilters = () => {
 
   function clean_data(formData) {
     const cleanedData = {};
-    console.log("cleandata", { formData });
-    let hasNull;
+    console.log("Initial formData:", { formData });
+
     Object.keys(formData).forEach((sectionKey) => {
-      const section = formData[sectionKey];
-      console.log("clean data", { formData });
-      // If any value in this section is null, we skip the section.
-      hasNull = Object.values(section).some(
-        (value) =>
-          value === null || value === "" || value === "None" || value === 0
-      );
-      if (
-        sectionKey === "market_capitalisation" &&
-        Object.keys(section).length === 1
-      ) {
-        hasNull = true;
-      }
-      if (!hasNull) {
-        cleanedData[sectionKey] = section;
-      }
+        let section = formData[sectionKey];
+
+        if (sectionKey === "custom_watchlist") {
+            // Filter out null, undefined, and "None" values
+            section = Object.fromEntries(
+                Object.entries(section).filter(
+                    ([key, value]) => value !== null && value !== undefined && value !== "None"
+                )
+            );
+        }
+
+        // Check if the section has any values that should be considered as "null-like"
+        let hasNull = Object.values(section).some(
+            (value) => value === null || value === "" || value === "None" || value === 0
+        );
+
+        // Special condition for market_capitalisation
+        if (sectionKey === "market_capitalisation" && Object.keys(section).length === 1) {
+            hasNull = true;
+        }
+
+        if (!hasNull) {
+            cleanedData[sectionKey] = section;
+        }
     });
-    console.log("cleandata", { cleanedData });
+
+    console.log("Final cleanedData:", { cleanedData });
     return cleanedData;
-  }
+}
+
 
   function handle_full_save(data) {
     const cleanedData = clean_data(data);
