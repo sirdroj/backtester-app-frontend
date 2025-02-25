@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
 export default function Searchselect({ options, onSelect }) {
-  options = options.filter(op => op !== "None");
+  options = options.filter((op) => op !== "None");
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const dropdownRef = useRef(null); // Reference for detecting outside clicks
- const [selected,setSelected]=useState()
+  const [selected, setSelected] = useState();
   const filteredOptions = options.filter((option) =>
     option.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -24,9 +24,8 @@ export default function Searchselect({ options, onSelect }) {
     };
   }, []);
 
-
   return (
-    <div className="z-20" ref={dropdownRef} >
+    <div className="z-20" ref={dropdownRef}>
       {/* Button to toggle dropdown */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -52,23 +51,32 @@ export default function Searchselect({ options, onSelect }) {
       {isOpen && (
         <div className="absolute text-white right-0 mt-2 w-56 bg-gray-700 shadow-lg rounded-md border border-gray-200 p-2">
           {/* Search Input */}
-          {options.length>5 && <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-2 py-1 text-white bg-gray-700 border rounded-md border-gray-300 focus:outline-none"
-          />}
+          {options.length > 5 && (
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-2 py-1 text-white bg-gray-700 border rounded-md border-gray-300 focus:outline-none"
+            />
+          )}
 
           {/* Dropdown Options */}
           <div className="mt-2 space-y-1 text-white">
+            <div className="px-2 py-1 text-sm text-gray-white z-[100000000] hover:bg-gray-600 cursor-pointer rounded-md" onClick={()=>{
+              setSelected(null)
+              setIsOpen(false);
+
+              ;}}>
+              reset
+            </div>
             {options.length > 0 ? (
               filteredOptions.map((option, index) => (
                 <div
                   key={index}
                   className="px-2 py-1 text-sm text-gray-white z-[100000000] hover:bg-gray-600 cursor-pointer rounded-md"
                   onClick={() => {
-                    setSelected(option)
+                    setSelected(option);
                     onSelect(option);
                     setIsOpen(false);
                   }}
