@@ -8,8 +8,8 @@ const useStore = create((set) => ({
 
   // State variables
   // explore_inputs_Data: [],
-  userWatchlists: ["w1", "w2"],
-  userPortfolios: ["p1", "p2"],
+  userWatchlists: ["None","w1", "w2"],
+  userPortfolios: ["None","p1", "p2"],
 
   fetchoptions: async () => {
     console.log("fetching options called");
