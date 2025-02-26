@@ -1,37 +1,103 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Searchselect from "../Searchselect";
+import useStore from "../../stores/useStore";
 
 const initializeFormData = (inputsData) => {
-  const initialData = {};
+  let initialData = {};
 
-  const traverseInputs = (inputs) => {
-    inputs.forEach((input) => {
-      // Initialize the data for each input's title
-      if (input.children) {
-        initialData[input.title] = {}; // Initialize with empty object for nested fields
+  const traverseInputs = (nodes, dataObj) => {
+    nodes.forEach((node) => {
+      if (!node.key) return; // Ensure key exists
+      dataObj[node.key] = {};
 
-        input.children.forEach((child) => {
-          if (child.type === "dropdown" || child.type === "period") {
-            initialData[input.title][child.title] = child.options[0] || ""; // Set default value or empty string
-          } else if (child.type === "input") {
-            initialData[input.title][child.title] = ""; // Default for input fields
-          }
-          // Recurse into children
-          traverseInputs(child.children || []);
+      if (node.inputs) {
+        node.inputs.forEach((input) => {
+          dataObj[node.key] = input.type === "number" ? 0 : null;
         });
-      } else {
-        if (input.type === "dropdown" || input.type === "period") {
-          initialData[input.title] = input.options[0] || ""; // Set default value or empty string
-        } else if (input.type === "input") {
-          initialData[input.title] = ""; // Default for input fields
-        }
+      }
+
+      if (node.children) {
+        traverseInputs(node.children, dataObj[node.key]); // Recurse deeper
       }
     });
   };
 
-  traverseInputs(inputsData);
+  traverseInputs(inputsData, initialData);
   return initialData;
 };
+
+const cleanData = (data) => {
+  console.log("input clean data", data);
+  const deepClean = (obj) => {
+    if (typeof obj !== "object" || obj === null) return obj;
+
+    let newObj = {};
+    let hasNestedObjects = false; // To check if a parent has grandchildren
+
+    Object.entries(obj).forEach(([key, value]) => {
+      if (typeof value === "object" && value !== null) {
+        let cleanedChild = deepClean(value);
+
+        if (Object.keys(cleanedChild).length > 0) {
+          newObj[key] = cleanedChild;
+          hasNestedObjects = true; // Mark this parent as having valid grandchildren
+        }
+      } else if (value !== null && value !== 0) {
+        newObj[key] = value;
+      }
+    });
+
+    // If no grandchildren exist, ensure all children are non-null & non-zero
+    if (!hasNestedObjects && Object.keys(newObj).length > 0) {
+      const allValid = Object.values(newObj).every((v) => v !== null && v !== 0 && v !== "None");
+      if (!allValid) return {}; // Remove parent if any child is null/0
+    }
+
+    return newObj;
+  };
+
+  return deepClean(data);
+};
+function clean_data2(formData) {
+  const cleanedData = {};
+  console.log("Initial formData:", { formData });
+
+  Object.keys(formData).forEach((sectionKey) => {
+      let section = formData[sectionKey];
+
+      if (sectionKey === "custom_watchlist" || sectionKey === "trend") {
+        // Filter out null, undefined, and "None" values
+        section = Object.fromEntries(
+            Object.entries(section).filter(
+                ([key, value]) => value !== null && value !== undefined && value !== "None"
+            )
+        );
+
+        // If custom_watchlist is empty after filtering, do not add it to cleanedData
+        if (Object.keys(section).length === 0) {
+            return;
+        }
+    }
+
+      // Check if the section has any values that should be considered as "null-like"
+      let hasNull = Object.values(section).some(
+          (value) => value === null || value === "" || value === "None" || value === 0
+      );
+
+      // Special condition for market_capitalisation
+      if (sectionKey === "market_capitalisation" && Object.keys(section).length === 1) {
+          hasNull = true;
+      }
+
+      if (!hasNull) {
+          cleanedData[sectionKey] = section;
+      }
+  });
+
+  console.log("Final cleanedData:", { cleanedData });
+  return cleanedData;
+}
+
 
 const StrategyTypeExplor2 = () => {
   const inputsData = [
@@ -109,7 +175,6 @@ const StrategyTypeExplor2 = () => {
                   inputs: [
                     {
                       type: "number",
-                      options: ["Weekly", "Monthly"],
                     },
                   ],
                 },
@@ -392,28 +457,71 @@ const StrategyTypeExplor2 = () => {
       ],
     },
   ];
+  const { explore_inputs_Data, set_explore_inputs_Data } = useStore();
+  // console.log("initializeFormData",initializeFormData(inputsData));
+  // const [formData, setFormData] = useState(initializeFormData(inputsData));
+  const [formData, setFormData] = useState(initializeFormData(inputsData));
+  // console.log("clean data",formData && cleanData(formData))
+  // const []
   function handleSelect(option) {
     console.log(option);
   }
   function getInput(type) {
     if (type == "dropdown") return <div>{type}</div>;
   }
-  const [formData, setFormData] = useState(() =>
-    initializeFormData(inputsData)
-  );
 
-  const handleChange = (secName, filterName, inputName, value) => {
-    if (inputName == "quantity" && value < 0) {
-      value = 0;
-    }
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [filterName]: {
-        ...prevFormData[filterName],
-        [inputName]: value,
-      },
-    }));
+  const gethandleChange = (item, input, sec, field) => {
+    return (value) => {
+      if (field === "number" && value < 0) {
+        value = 0;
+      }
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [item]: {
+          ...prevFormData[item], // Ensure 'item' exists
+          [input]: {
+            ...prevFormData[item][input], // Ensure 'input' exists
+            [sec]: {
+              ...prevFormData[item][input][sec], // Ensure 'sec' exists
+              [field]: value,
+            },
+          },
+        },
+      }));
+    };
   };
+
+  function handlesaveandnext(subinput, section) {
+    console.log("subinput", subinput);
+    console.log("form data", formData);
+    let prevData = explore_inputs_Data;
+    if (!prevData["strategy_type"]) {
+      prevData["strategy_type"] = {};
+    }
+    if (!prevData["strategy_type"][subinput]) {
+      prevData["strategy_type"][subinput] = {};
+    }
+    let clean_data = cleanData(formData[subinput][section]);
+    console.log("subinput", subinput);
+    console.log("clean data", clean_data);
+    console.log("subinput- ", subinput, "section- ", section);
+
+    if (clean_data) {
+      prevData["strategy_type"][subinput][section] = clean_data;
+      set_explore_inputs_Data(prevData);
+    }
+    // handleDropdownClick(subinput);
+    // console.log("prevData", prevData);
+    // console.log("subinput",subinput)
+    // console.log("formData",formData)
+    // console.log("clean data",cleanData(formData))
+  }
+
+  // useEffect(()=>{
+  //   console.log({formData})
+
+  // },[formData])
 
   const [currentDropDown, setCurrentDropDown] = useState([0]);
 
@@ -453,7 +561,7 @@ const StrategyTypeExplor2 = () => {
                   currentDropDown.includes(index) ? "show max-h-[" + +"]" : ""
                 } ml-2 px-4 p-2`}
               >
-                {item.children.map((input, subIndex) => (
+                {item.children.map((block, subIndex) => (
                   <div key={subIndex} className="mb-4 ">
                     <div
                       //   onSubmit={() => {
@@ -464,19 +572,26 @@ const StrategyTypeExplor2 = () => {
                         boxShadow: "0px -4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
                       }}
                     >
-                      <h1 className="font-semibold">{input.title}</h1>
-                      <p className="text-center pt-1 pb-4 text-[10px]">
-                        {input.info}
-                      </p>
+                      <h1 className="font-semibold">{block.title}</h1>
 
-                      {input.children.map((sec) => {
+                      {block.children.map((sec) => {
                         return (
                           <div
                             key={sec.id}
-                            className=" items-center justify-between my-2"
+                            className=" items-center justify-between my-2 rounded-sm p-1"
+                            style={{
+                              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.5)", // Adjust shadow as needed
+                            }}
                           >
-                            <div className=" underline">{sec.title}</div>
-                            <div className=" justify-between ml-2 border-l-2 items-center inputs_wrapper">
+                            <div
+                              className=" rounded-md font-bold p-1"
+                              style={{
+                                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)", // Adjust shadow as needed
+                              }}
+                            >
+                              {sec.title}
+                            </div>
+                            <div className=" justify-between ml-2  items-center inputs_wrapper">
                               {sec.children.map((field) => (
                                 <div className="flex justify-between w-full my-2 pl-2">
                                   <div>{field.title}</div>
@@ -496,7 +611,12 @@ const StrategyTypeExplor2 = () => {
                                         {input.type === "dropdown" && (
                                           <Searchselect
                                             options={input.options}
-                                            onSelect={handleSelect}
+                                            onSelect={gethandleChange(
+                                              item.key,
+                                              block.key,
+                                              sec.key,
+                                              field.key
+                                            )}
                                           />
                                         )}
 
@@ -521,116 +641,14 @@ const StrategyTypeExplor2 = () => {
                                   })}
                                 </div>
                               ))}
-
-                              {/* {field.inputs.map((input) => {
-                                return (
-                                  <div key={input.id} className="mx-2 ">
-                                    {input.type === "file upload" && (
-                                      <div className="p-[2px] scale-90 bg-gray-700 text-[10px] rounded-lg">
-                                        <input
-                                          className="rounded-md"
-                                          type="file"
-                                          accept=".csv, .xlsx"
-                                        />{" "}
-                                      </div>
-                                    )}
-
-                                    {input.type === "dropdown" && (
-                                      <select
-                                        id="states"
-                                        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg border-s-gray-100 dark:border-s-gray-700 border-s-2 focus:ring-[#111F29] focus:border-[#111F29] block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#111F29] dark:focus:border-[#111F29]"
-                                      >
-                                        {input.options.map(
-                                          (option, optionIndex) => (
-                                            <option
-                                              key={optionIndex}
-                                              value={option}
-                                            >
-                                              {option}
-                                            </option>
-                                          )
-                                        )}
-                                      </select>
-                                    )}
-
-                                    {input.type === "fixed" && (
-                                      <div
-                                        id="states"
-                                        className="border-[1px] p-[6px] border-red-300 w-[11rem] rounded-md bg-gray-700"
-                                      >
-                                        {input.info}
-                                      </div>
-                                    )}
-
-                                    {input.type === "number" && (
-                                      <div class="relative flex items-center max-w-[8rem]">
-                                        <button
-                                          type="button"
-                                          id="decrement-button"
-                                          data-input-counter-decrement="quantity-input"
-                                          class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                                        >
-                                          <svg
-                                            class="w-3 h-3 text-gray-900 dark:text-white"
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 18 2"
-                                          >
-                                            <path
-                                              stroke="currentColor"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                              stroke-width="2"
-                                              d="M1 1h16"
-                                            />
-                                          </svg>
-                                        </button>
-                                        <input
-                                          type="text"
-                                          id="quantity-input"
-                                          data-input-counter
-                                          aria-describedby="helper-text-explanation"
-                                          class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                          placeholder="999"
-                                          required
-                                        />
-                                        <button
-                                          type="button"
-                                          id="increment-button"
-                                          // onClick={()=>handleChange(item.name,"quantity",formData[item.name].quantity+1)}
-
-                                          data-input-counter-increment="quantity-input"
-                                          class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                                        >
-                                          <svg
-                                            class="w-3 h-3 text-gray-900 dark:text-white"
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 18 18"
-                                          >
-                                            <path
-                                              stroke="currentColor"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                              stroke-width="2"
-                                              d="M9 1v16M1 9h16"
-                                            />
-                                          </svg>
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
-                                );
-                              })} */}
                             </div>
                           </div>
                         );
                       })}
                       <div className="flex justify-end">
                         <button
-                          type="submit"
+                          // type="submit"
+                          onClick={() => handlesaveandnext(item.key, block.key)}
                           className="p-1 border-[1px] rounded-lg px-4 text-sm"
                         >
                           Save&Next

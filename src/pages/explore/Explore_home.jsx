@@ -440,6 +440,55 @@ const Explore_home = () => {
                   </div>
                 );
               }
+              if (filter == "strategy_type") {
+                return (
+                  <div className=" rounded ">
+                    {console.log("saved filters", explore_inputs_Data)}
+                    <div className="bg-gray-500 m-1 w-full rounded-md p-1 bg-opacity-10 ">
+                      <div className="font-bold">{filter} :-</div>
+
+                      {Object.entries(x).map(([field, inputs]) => (
+                        <div
+                          className=" bg-gray-600 rounded-md pl-1 bg-opacity-60"
+                          style={{
+                            boxShadow: "-2px 5px 5px rgba(55, 65, 81, 1)", // Adds shadow below the element
+                          }}
+                        >
+                          <span className="font-semibold">{field}:-</span>
+                          {Object.entries(inputs).map(([sub, subinput]) => (
+                            <div className="ml-1  pl-[2px] p-1 my-2"
+                            style={{
+                              boxShadow: "2px 5px 5px rgba(55, 65, 81, 1)", // Adds shadow below the element
+                            }}
+                            >
+                              <div>{sub}:-</div>
+                              <div className=" ml-1 pl-1">
+                                {Object.entries(subinput).map(([key, val]) => (
+                                  <div>
+                                    {key} <b className="text-gray-800">:</b>{" "}
+                                    {/* {val} */}
+                                    <div className="ml-4 pl-1 border-l-[1px]">
+                                      {Object.entries(val).map(
+                                        ([input, value]) => (
+                                          <div>
+                                            {input}{" "}
+                                            <b className="text-gray-800">:</b>{" "}
+                                            {value}
+                                          </div>
+                                        )
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
             })}
           </div>
           <div className="flex justify-center mt-1  border-gray-700 text-sm">
