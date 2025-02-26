@@ -309,7 +309,7 @@ const UniversalFilters = () => {
     Object.keys(formData).forEach((sectionKey) => {
         let section = formData[sectionKey];
 
-        if (sectionKey === "custom_watchlist") {
+        if (sectionKey === "custom_watchlist" || sectionKey === "index") {
           // Filter out null, undefined, and "None" values
           section = Object.fromEntries(
               Object.entries(section).filter(
