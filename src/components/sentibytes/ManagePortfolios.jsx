@@ -59,13 +59,13 @@ const ManagePortfolios = ({
   setshowmanagePortfolio,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddPortfolioPopup, userPortfolios, token, fetchoptions } =
+  const { set_showAddPortfolioPopup, userPortfolios, token, fetchoptions,detailedPortfolio } =
     useStore();
   const [selectedPortfolios, setSelectedPortfolios] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
-
+  console.log({ detailedPortfolio });
   const threedots = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +172,7 @@ const ManagePortfolios = ({
         </div>
         {pg == 0 && (
           <body>
-            {userPortfolios.map((item, idx) => (
+            {detailedPortfolio.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
                 key={idx}

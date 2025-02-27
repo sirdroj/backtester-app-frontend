@@ -11,10 +11,12 @@ const useStore = create((set) => ({
   userWatchlists: ["None","w1", "w2"],
   userPortfolios: ["None","p1", "p2"],
 
+
   fetchoptions: async () => {
     console.log("fetching options called");
     const { token } = useStore.getState();
     const url = `${currentAPI}/get_options?token=${encodeURIComponent(token)}`;
+    // const url = `${currentAPI}/get_files_home?token=${encodeURIComponent(token)}`;
 
     try {
       const response = await fetch(url, {
@@ -28,6 +30,30 @@ const useStore = create((set) => ({
 
       const data = await response.json();
       set({userWatchlists: data.watchlist_files, userPortfolios: data.portfolio_files});
+    } catch (error) {
+      console.error("Error fetching watchlist :", error);
+    } finally {
+    }
+  },
+  detailedWatchlist:[],
+  detailedPortfolio:[],
+  fetchdetaillists: async () => {
+    console.log("fetching options called");
+    const { token } = useStore.getState();
+    const url = `${currentAPI}/get_files_home?token=${encodeURIComponent(token)}`;
+
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json" }, // No Content-Type for GET
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      set({detailedWatchlist: data.watchlist_files, detailedPortfolio: data.portfolio_files});
     } catch (error) {
       console.error("Error fetching watchlist :", error);
     } finally {

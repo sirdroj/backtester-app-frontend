@@ -26,7 +26,7 @@ function App() {
     fetchSentibytes,
     userWAtchlist,
     fetchoptions,
-    
+    fetchdetaillists
 
   } = useStore();
   const location = useLocation(); // Get the current route
@@ -68,6 +68,7 @@ function App() {
   useEffect(() => {
     // console.log("calling fetchoptions")
     fetchoptions();
+    fetchdetaillists();
   }, [token]);
 
   useEffect(() => {

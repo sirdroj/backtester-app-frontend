@@ -10,12 +10,12 @@ const ManageWatchlists = ({
   setshowmanageWatchlist,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddwatchlistPopup, userWatchlists, token, fetchoptions } = useStore();
+  const { set_showAddwatchlistPopup, userWatchlists, token, fetchoptions,detailedWatchlist } = useStore();
   const [selectedWatchlists, setSelectedWatchlists] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
-
+  console.log({ detailedWatchlist})
   const threedots = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,8 @@ const ManageWatchlists = ({
 
         {pg === 0 && (
           <div>
-            {userWatchlists.map((item, idx) => (
+            {detailedWatchlist.map((item, idx) => (
+            // {userWatchlists.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
                 key={item}
