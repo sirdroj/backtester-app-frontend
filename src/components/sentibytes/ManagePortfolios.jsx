@@ -66,6 +66,9 @@ const ManagePortfolios = ({
   const [editMode, setEditMode] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
   console.log({ detailedPortfolio });
+  const[searchTerm, setSearchTerm] = useState("");
+  const searchportfolios = detailedPortfolio.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
   const threedots = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -115,9 +118,15 @@ const ManagePortfolios = ({
     <div>
       <div className="relative   h-full sentibytes-container">
         <div>
-          <h1 className="text-center border-b-[1px] mb-2 py-1 flex justify-between px-2">
-            <div></div>
+          <h1 className="text-center items-center border-b-[1px] mb-2 py-1 flex justify-between px-2">
             <span>ManagePortfolios</span>
+            <div><input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w- px-2 py-0 text-white bg-gray-700 border rounded-md border-gray-300 focus:outline-none mx-2 my-1"
+            /></div>
             <div className=" cursor-pointer relative">
               <span onClick={() => setShowOptions(!showOptions)}>
                 {threedots}
@@ -172,7 +181,7 @@ const ManagePortfolios = ({
         </div>
         {pg == 0 && (
           <body>
-            {detailedPortfolio.map((item, idx) => (
+            {searchportfolios.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
                 key={idx}

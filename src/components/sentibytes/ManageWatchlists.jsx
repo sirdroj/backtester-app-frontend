@@ -16,6 +16,10 @@ const ManageWatchlists = ({
   const [editMode, setEditMode] = useState(false);
   const [deleteMode, setDeleteMode] = useState(false);
   console.log({ detailedWatchlist})
+  const[searchTerm, setSearchTerm] = useState("");
+  const searchWatchlist = detailedWatchlist.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  
+  
   const threedots = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +69,15 @@ const ManageWatchlists = ({
     <div>
       <div className="relative h-full sentibytes-container">
         <div>
-          <h1 className="text-center border-b-[1px] mb-2 py-1 flex justify-between px-2">
-            <div></div>
+          <h1 className="items-center text-center border-b-[1px] mb-2 py-1 flex justify-between px-2">
             <span>Manage Watchlists</span>
+            <div><input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w- px-2 py-0 text-xsm text-white bg-gray-700 border rounded-md border-gray-300 focus:outline-none mx-2 my-1"
+            /></div>
             <div className="cursor-pointer relative ">
               <span onClick={() => setShowOptions(!showOptions)}>
                 {threedots}
@@ -116,7 +126,7 @@ const ManageWatchlists = ({
 
         {pg === 0 && (
           <div>
-            {detailedWatchlist.map((item, idx) => (
+            {searchWatchlist.map((item, idx) => (
             // {userWatchlists.map((item, idx) => (
               <WatchlistObject
                 watchlist={item}
