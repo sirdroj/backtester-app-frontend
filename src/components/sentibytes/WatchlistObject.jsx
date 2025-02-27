@@ -88,7 +88,7 @@ const WatchlistObject = ({
   const { token, fetchoptions } = useStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const[searchTerm, setSearchTerm] = useState("");
-  const searchStocks = sampleStocks.filter((stock) => stock.ticker.toLowerCase().includes(searchTerm.toLowerCase()) || stock.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const searchStocks = watchlist.data.filter((stock) => stock.Ticker.toLowerCase().includes(searchTerm.toLowerCase()) || stock.Name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   function handleChange(e) {
     if (e.target.checked) {
@@ -215,7 +215,7 @@ const WatchlistObject = ({
             />
         </div>
         <div className="p-1 px-2">
-          {watchlist.data.map((stock) => (
+          {searchStocks.map((stock) => (
             <div className="bg-gray-600 my-1 p-[2px] px-1">{stock.Ticker}-{stock.Name}</div>
           ))}
         </div>
