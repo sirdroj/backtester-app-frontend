@@ -59,7 +59,7 @@ const ManagePortfolios = ({
   setshowmanagePortfolio,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddPortfolioPopup, userPortfolios, token, fetchoptions,detailedPortfolio } =
+  const { set_showAddPortfolioPopup, userPortfolios, token,fetchdetaillists, fetchoptions,detailedPortfolio } =
     useStore();
   const [selectedPortfolios, setSelectedPortfolios] = useState([]);
   const [showOptions, setShowOptions] = useState(false);

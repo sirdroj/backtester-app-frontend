@@ -81,21 +81,22 @@ const WatchlistObject = ({
   dir,
   deleteMode,
   editMode,
+  fetchdetaillists
 }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [newName, setNewName] = useState(watchlist);
+  const [newName, setNewName] = useState(watchlist.name);
   const { token, fetchoptions } = useStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const[searchTerm, setSearchTerm] = useState("");
-  const searchStocks = watchlist.data.filter((stock) => stock.Ticker.toLowerCase().includes(searchTerm.toLowerCase()) || stock.Name.toLowerCase().includes(searchTerm.toLowerCase()));
+  const searchStocks = watchlist.data.filter((stock) => stock.Ticker.toLowerCase().includes(searchTerm.toLowerCase()) || stock.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   function handleChange(e) {
     if (e.target.checked) {
-      setSelectedWatchlists([...selectedwatchlists, watchlist]);
+      setSelectedWatchlists([...selectedwatchlists, watchlist.name]);
     } else {
       setSelectedWatchlists(
-        selectedwatchlists.filter((name) => name !== watchlist)
+        selectedwatchlists.filter((name) => name !== watchlist.name)
       );
     }
   }
@@ -134,8 +135,8 @@ const WatchlistObject = ({
 
   function handleBlur() {
     setIsEditing(false);
-    if (newName.trim() !== "" && newName !== watchlist) {
-      updateWatchlistName(watchlist, newName);
+    if (newName.trim() !== "" && newName !== watchlist.name) {
+      updateWatchlistName(watchlist.name, newName);
     }
   }
 
@@ -167,7 +168,7 @@ const WatchlistObject = ({
               className="py-0 text-sm mx-2 text-slate-800 bg-gray-400 rounded-sm stroke-gray-300"
               type="checkbox"
               onChange={handleChange}
-              checked={selectedwatchlists.includes(watchlist)}
+              checked={selectedwatchlists.includes(watchlist.name)}
             />
           )}
           {editMode && (
@@ -216,7 +217,7 @@ const WatchlistObject = ({
         </div>
         <div className="p-1 px-2">
           {searchStocks.map((stock) => (
-            <div className="bg-gray-600 my-1 p-[2px] px-1">{stock.Ticker}-{stock.Name}</div>
+            <div className="bg-gray-600 my-1 p-[2px] px-1">{stock.Ticker}-{stock.name}</div>
           ))}
         </div>
       </div>

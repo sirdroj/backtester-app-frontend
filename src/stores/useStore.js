@@ -14,10 +14,10 @@ const useStore = create((set) => ({
 
   fetchoptions: async () => {
     console.log("fetching options called");
-    const { token } = useStore.getState();
+    const { token,fetchdetaillists } = useStore.getState();
     const url = `${currentAPI}/get_options?token=${encodeURIComponent(token)}`;
     // const url = `${currentAPI}/get_files_home?token=${encodeURIComponent(token)}`;
-
+    fetchdetaillists();
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -34,6 +34,7 @@ const useStore = create((set) => ({
       console.error("Error fetching watchlist :", error);
     } finally {
     }
+
   },
   detailedWatchlist:[],
   detailedPortfolio:[],

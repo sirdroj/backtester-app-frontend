@@ -10,7 +10,7 @@ const ManageWatchlists = ({
   setshowmanageWatchlist,
 }) => {
   const [pg, setpg] = useState(0);
-  const { set_showAddwatchlistPopup, userWatchlists, token, fetchoptions,detailedWatchlist } = useStore();
+  const { set_showAddwatchlistPopup, userWatchlists, token, fetchoptions,fetchdetaillists,detailedWatchlist } = useStore();
   const [selectedWatchlists, setSelectedWatchlists] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   const [editMode, setEditMode] = useState(false);
